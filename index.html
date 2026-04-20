@@ -1,44 +1,181 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal de Contenidos</title>
+  <title>Portal de Finanzas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Dark theme — trading desk */
+      --bg:            #0b1220;
+      --bg-elev:       #111a2c;
+      --bg-elev-2:     #17223a;
+      --border:        #1f2b45;
+      --border-strong: #2b3a5c;
+      --text:          #e6edf7;
+      --text-dim:      #9aa7bf;
+      --text-muted:    #6b7a96;
+      --accent:        #4fd1c5;   /* teal */
+      --accent-dim:    #2a7f77;
+      --up:            #22c55e;
+      --down:          #ef4444;
+      --warn:          #f5b544;
+
+      --nav-h: 56px;
+      --brand-h: 52px;
+      --total-h: calc(var(--nav-h) + var(--brand-h));
+    }
+
+    html[data-theme="light"] {
+      --bg:            #f5f7fb;
+      --bg-elev:       #ffffff;
+      --bg-elev-2:     #eef2f8;
+      --border:        #dde3ee;
+      --border-strong: #c6d0e0;
+      --text:          #0e1730;
+      --text-dim:      #4a5878;
+      --text-muted:    #6b7a96;
+      --accent:        #0f766e;
+      --accent-dim:    #99e4dd;
+      --up:            #16a34a;
+      --down:          #dc2626;
+      --warn:          #b45309;
+    }
 
     html, body {
       height: 100%;
       overflow: hidden;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── HEADER ── */
-    header {
-      height: 60px;
-      background: #ffffff;
-      border-bottom: 2px solid #e5e7eb;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    /* ── BRAND HEADER ── */
+    .brand-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--brand-h);
+      background: var(--bg-elev);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 20px;
+      z-index: 105;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
       gap: 12px;
-      padding: 0 16px;
+    }
+
+    .brand-mark {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+      display: grid;
+      place-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      color: #0b1220;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .brand-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .brand-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .meta-item .k {
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 10px;
+    }
+
+    .meta-item .v { color: var(--text); font-weight: 500; }
+
+    .meta-sep {
+      width: 1px; height: 16px;
+      background: var(--border-strong);
+    }
+
+    .icon-btn {
+      width: 30px; height: 30px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-elev-2);
+      color: var(--text-dim);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .icon-btn:hover { color: var(--text); border-color: var(--accent); }
+    .icon-btn svg { width: 15px; height: 15px; }
+
+    /* ── NAV ── */
+    header.nav-bar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: var(--brand-h);
+      left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--bg-elev);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: stretch;
       z-index: 100;
     }
 
-    /* ── NAV (izquierda) ── */
     nav {
       display: flex;
       flex-wrap: nowrap;
-      gap: 4px;
+      gap: 2px;
+      padding: 0 16px;
       overflow-x: auto;
       scrollbar-width: none;
+      align-items: stretch;
       flex: 1;
       min-width: 0;
     }
@@ -46,148 +183,407 @@
 
     nav button {
       flex-shrink: 0;
-      padding: 8px 16px;
-      border: 2px solid #d1d5db;
-      background: #f9fafb;
-      color: #374151;
-      font-size: 0.82rem;
-      font-weight: 600;
+      position: relative;
+      padding: 0 18px;
+      border: none;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 13px;
+      font-weight: 500;
       font-family: inherit;
-      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: color 0.15s ease, background 0.15s ease;
       white-space: nowrap;
-    }
-    nav button:hover {
-      border-color: #2563eb;
-      color: #2563eb;
-      background: #eff6ff;
-    }
-    nav button.active {
-      background: #2563eb;
-      border-color: #2563eb;
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(37,99,235,0.30);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.005em;
     }
 
-    /* ── DATE PICKER (derecha) ── */
+    nav button .dot-mark {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.55;
+      transition: all 0.2s ease;
+    }
+
+    nav button:hover {
+      color: var(--text);
+      background: var(--bg-elev-2);
+    }
+    nav button:hover .dot-mark { opacity: 1; }
+
+    nav button.active { color: var(--text); }
+    nav button.active .dot-mark {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      opacity: 1;
+    }
+    nav button.active::after {
+      content: "";
+      position: absolute;
+      left: 10px; right: 10px;
+      bottom: -1px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* ── DATE PICKER ── */
     .date-wrapper {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      padding: 0 16px 0 16px;
+      border-left: 1px solid var(--border);
+      height: 100%;
       flex-shrink: 0;
     }
-    .date-wrapper label {
-      font-size: 0.78rem;
+
+    .date-wrapper .date-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
       font-weight: 600;
-      color: #6b7280;
-      white-space: nowrap;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
-    .date-wrapper input[type="date"] {
-      padding: 6px 10px;
-      border: 2px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-family: inherit;
-      color: #374151;
-      background: #f9fafb;
+    .date-wrapper .date-label svg { width: 12px; height: 12px; }
+
+    .date-input {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .date-input input[type="date"] {
+      padding: 7px 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--bg);
       cursor: pointer;
-      transition: border-color 0.2s;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      color-scheme: dark;
     }
-    .date-wrapper input[type="date"]:focus {
+    html[data-theme="light"] .date-input input[type="date"] { color-scheme: light; }
+    .date-input input[type="date"]:hover { border-color: var(--accent-dim); }
+    .date-input input[type="date"]:focus {
       outline: none;
-      border-color: #2563eb;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
     }
+
+    .date-nav {
+      display: flex;
+      gap: 2px;
+    }
+    .date-nav button {
+      width: 28px; height: 28px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      background: var(--bg-elev-2);
+      color: var(--text-dim);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 0.15s ease;
+    }
+    .date-nav button:hover:not(:disabled) {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+    .date-nav button:disabled { opacity: 0.35; cursor: not-allowed; }
+    .date-nav button svg { width: 13px; height: 13px; }
+
+    .today-btn {
+      padding: 0 10px;
+      height: 28px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      background: var(--bg-elev-2);
+      color: var(--text-dim);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .today-btn:hover { color: var(--text); border-color: var(--accent); }
+    .today-btn.is-today { opacity: 0.4; cursor: default; }
 
     /* ── IFRAME ── */
     #portal-frame {
       display: block;
       position: fixed;
-      top: 60px;
+      top: var(--total-h);
       left: 0;
       width: 100%;
-      height: calc(100vh - 60px);
+      height: calc(100vh - var(--total-h));
       border: none;
-      background: #f9fafb;
+      background: var(--bg);
     }
 
-    /* ── FALLBACK ── */
-    #no-content {
+    /* ── NO CONTENT / LOADING ── */
+    #no-content, #loading {
       display: none;
       position: fixed;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      height: calc(100vh - 60px);
-      background: #f9fafb;
+      top: var(--total-h);
+      left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent) 6%, transparent), transparent 50%),
+        radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--accent) 4%, transparent), transparent 50%),
+        var(--bg);
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      gap: 12px;
-      color: #6b7280;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      gap: 18px;
+      z-index: 5;
     }
-    #no-content .icon { font-size: 3rem; }
-    #no-content .msg  { font-size: 1.1rem; font-weight: 600; color: #374151; }
-    #no-content .sub  { font-size: 0.88rem; color: #9ca3af; }
 
-    @media (max-width: 640px) {
-      .date-wrapper label { display: none; }
-      nav button { font-size: 0.75rem; padding: 7px 10px; }
+    .empty-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 32px 48px;
+      border: 1px solid var(--border);
+      background: var(--bg-elev);
+      border-radius: 10px;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      background: var(--bg-elev-2);
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .empty-icon svg { width: 24px; height: 24px; }
+
+    .empty-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .empty-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .empty-hint {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .spinner {
+      width: 28px; height: 28px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 720px) {
+      .brand-meta .meta-item:not(:last-child),
+      .brand-meta .meta-sep { display: none; }
+      .date-wrapper .date-label span { display: none; }
+      .today-btn { display: none; }
+      nav button { padding: 0 12px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <button class="active" onclick="loadPage('noticias.html', this)">Noticias del día</button>
-    <button onclick="loadPage('boletin.html', this)">Boletín Oficial</button>
-    <button onclick="loadPage('cierre-datos.html', this)">Cierre datos duros</button>
-    <button onclick="loadPage('cierre-noticias.html', this)">Cierre + noticias</button>
-    <button onclick="loadPage('vista-jornada.html', this)">Vista jornada</button>
+<!-- ── BRAND HEADER ── -->
+<div class="brand-bar">
+  <div class="brand">
+    <div class="brand-mark">PF</div>
+    <div class="brand-text">
+      <div class="brand-title">Portal de Finanzas</div>
+      <div class="brand-sub">Research &amp; Markets Desk</div>
+    </div>
+  </div>
+  <div class="brand-meta">
+    <div class="meta-item">
+      <span class="k">Sesión</span>
+      <span class="v" id="session-label">—</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="k">BA</span>
+      <span class="v" id="clock">--:--:--</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="k" id="date-label">—</span>
+    </div>
+    <button class="icon-btn" id="theme-toggle" title="Cambiar tema" aria-label="Cambiar tema">
+      <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+      <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<header class="nav-bar">
+  <nav id="main-nav">
+    <button class="active" data-src="noticias.html">
+      <span class="dot-mark"></span>Noticias del día
+    </button>
+    <button data-src="boletin.html">
+      <span class="dot-mark"></span>Boletín Oficial
+    </button>
+    <button data-src="cierre-datos.html">
+      <span class="dot-mark"></span>Cierre datos duros
+    </button>
+    <button data-src="cierre-noticias.html">
+      <span class="dot-mark"></span>Cierre + noticias
+    </button>
+    <button data-src="vista-jornada.html">
+      <span class="dot-mark"></span>Vista jornada
+    </button>
   </nav>
 
   <div class="date-wrapper">
-    <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" />
+    <div class="date-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+      </svg>
+      <span>Fecha</span>
+    </div>
+    <div class="date-nav">
+      <button id="date-prev" title="Día anterior" aria-label="Día anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button id="date-next" title="Día siguiente" aria-label="Día siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="date-input">
+      <input type="date" id="fecha" />
+    </div>
+    <button class="today-btn" id="today-btn">Hoy</button>
   </div>
 </header>
 
+<!-- ── CONTENT ── -->
 <iframe id="portal-frame" src="" title="Contenido"></iframe>
 
+<div id="loading">
+  <div class="spinner"></div>
+  <div class="empty-sub">Cargando…</div>
+</div>
+
 <div id="no-content">
-  <span class="icon">📭</span>
-  <span class="msg">Sin contenido para esta fecha</span>
-  <span class="sub" id="no-content-sub"></span>
+  <div class="empty-card">
+    <div class="empty-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16v5l-8 5-8-5V4z"/><path d="M4 9v11h16V9"/><path d="m9 14 3 2 3-2"/>
+      </svg>
+    </div>
+    <div>
+      <div class="empty-title">Sin contenido para esta fecha</div>
+      <div class="empty-sub" id="no-content-sub"></div>
+    </div>
+    <div class="empty-hint">Probá seleccionar otra fecha o volver a hoy.</div>
+  </div>
 </div>
 
 <script>
+  /* ── State ── */
   let currentPage = 'noticias.html';
-
   const datePicker = document.getElementById('fecha');
-  const today = new Date();
-  const pad = n => String(n).padStart(2, '0');
-  const todayStr = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
-  datePicker.value = todayStr;
+  const todayBtn   = document.getElementById('today-btn');
+  const prevBtn    = document.getElementById('date-prev');
+  const nextBtn    = document.getElementById('date-next');
 
-  function loadPage(page, btn) {
-    currentPage = page;
-    if (btn) {
-      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
+  const pad = n => String(n).padStart(2, '0');
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+  datePicker.value = todayStr;
+  datePicker.max   = todayStr;
+
+  /* ── Nav ── */
+  const nav = document.getElementById('main-nav');
+  nav.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-src]');
+    if (!btn) return;
+    currentPage = btn.dataset.src;
+    nav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    loadFrame();
+  });
+
+  /* ── Date controls ── */
+  datePicker.addEventListener('change', () => { updateTodayBtn(); loadFrame(); });
+
+  todayBtn.addEventListener('click', () => {
+    if (datePicker.value === todayStr) return;
+    datePicker.value = todayStr;
+    updateTodayBtn();
+    loadFrame();
+  });
+
+  prevBtn.addEventListener('click', () => shiftDate(-1));
+  nextBtn.addEventListener('click', () => shiftDate(+1));
+
+  function shiftDate(delta) {
+    const [y,m,d] = datePicker.value.split('-').map(Number);
+    const dt = new Date(y, m-1, d);
+    dt.setDate(dt.getDate() + delta);
+    const s = `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
+    if (s > todayStr) return;
+    datePicker.value = s;
+    updateTodayBtn();
     loadFrame();
   }
 
+  function updateTodayBtn() {
+    const isToday = datePicker.value === todayStr;
+    todayBtn.classList.toggle('is-today', isToday);
+    nextBtn.disabled = isToday;
+  }
+
+  /* ── Load iframe with fallback ── */
   function loadFrame() {
     const date  = datePicker.value;
-    const src   = date + '/' + currentPage;
+    const src   = `${date}/${currentPage}`;
     const frame = document.getElementById('portal-frame');
     const noContent = document.getElementById('no-content');
+    const loading   = document.getElementById('loading');
+
+    frame.style.display = 'none';
+    noContent.style.display = 'none';
+    loading.style.display = 'flex';
 
     fetch(src, { method: 'HEAD' })
       .then(res => {
+        loading.style.display = 'none';
         if (res.ok) {
           noContent.style.display = 'none';
           frame.style.display = 'block';
@@ -196,7 +592,10 @@
           showNoContent(date);
         }
       })
-      .catch(() => showNoContent(date));
+      .catch(() => {
+        loading.style.display = 'none';
+        showNoContent(date);
+      });
   }
 
   function showNoContent(date) {
@@ -207,11 +606,46 @@
     frame.src = '';
     noContent.style.display = 'flex';
     const [y, m, d] = date.split('-');
-    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-    sub.textContent = d + ' de ' + meses[parseInt(m) - 1] + ' de ' + y;
+    const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    sub.textContent = `${d} ${meses[parseInt(m)-1]} ${y}`;
   }
 
-  datePicker.addEventListener('change', loadFrame);
+  /* ── Theme toggle ── */
+  const themeBtn = document.getElementById('theme-toggle');
+  const iconSun  = document.getElementById('icon-sun');
+  const iconMoon = document.getElementById('icon-moon');
+  const savedTheme = localStorage.getItem('pf-theme') || 'dark';
+  setTheme(savedTheme);
+  themeBtn.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    localStorage.setItem('pf-theme', next);
+  });
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    iconSun.style.display  = t === 'dark' ? 'block' : 'none';
+    iconMoon.style.display = t === 'dark' ? 'none' : 'block';
+  }
+
+  /* ── Clock + date + session status ── */
+  const clockEl = document.getElementById('clock');
+  const dateEl  = document.getElementById('date-label');
+  const sessionEl = document.getElementById('session-label');
+  function tick() {
+    const now = new Date();
+    clockEl.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    dateEl.textContent = `${pad(now.getDate())} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    const h = now.getHours();
+    const dayOk = now.getDay() >= 1 && now.getDay() <= 5;
+    const open = dayOk && h >= 11 && h < 17;
+    sessionEl.textContent = open ? 'Abierta' : 'Cerrada';
+    sessionEl.style.color = open ? 'var(--up)' : 'var(--text-dim)';
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ── Init ── */
+  updateTodayBtn();
   loadFrame();
 </script>
 
