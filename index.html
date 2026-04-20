@@ -14,7 +14,7 @@
       background: #ffffff;
     }
 
-    /* ── NAV ── */
+    /* ── HEADER ── */
     header {
       height: 60px;
       background: #ffffff;
@@ -22,6 +22,9 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 16px;
       position: fixed;
       top: 0;
       left: 0;
@@ -29,25 +32,25 @@
       z-index: 100;
     }
 
+    /* ── NAV (izquierda) ── */
     nav {
       display: flex;
       flex-wrap: nowrap;
       gap: 4px;
-      padding: 0 16px;
-      width: 100%;
       overflow-x: auto;
       scrollbar-width: none;
+      flex: 1;
+      min-width: 0;
     }
-
     nav::-webkit-scrollbar { display: none; }
 
     nav button {
       flex-shrink: 0;
-      padding: 8px 18px;
+      padding: 8px 16px;
       border: 2px solid #d1d5db;
       background: #f9fafb;
       color: #374151;
-      font-size: 0.875rem;
+      font-size: 0.82rem;
       font-weight: 600;
       font-family: inherit;
       border-radius: 8px;
@@ -55,18 +58,45 @@
       transition: all 0.2s ease;
       white-space: nowrap;
     }
-
     nav button:hover {
       border-color: #2563eb;
       color: #2563eb;
       background: #eff6ff;
     }
-
     nav button.active {
       background: #2563eb;
       border-color: #2563eb;
       color: #ffffff;
       box-shadow: 0 2px 8px rgba(37,99,235,0.30);
+    }
+
+    /* ── DATE PICKER (derecha) ── */
+    .date-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .date-wrapper label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #6b7280;
+      white-space: nowrap;
+    }
+    .date-wrapper input[type="date"] {
+      padding: 6px 10px;
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      color: #374151;
+      background: #f9fafb;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .date-wrapper input[type="date"]:focus {
+      outline: none;
+      border-color: #2563eb;
     }
 
     /* ── IFRAME ── */
@@ -80,6 +110,31 @@
       border: none;
       background: #f9fafb;
     }
+
+    /* ── FALLBACK ── */
+    #no-content {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 60px);
+      background: #f9fafb;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: #6b7280;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    #no-content .icon { font-size: 3rem; }
+    #no-content .msg  { font-size: 1.1rem; font-weight: 600; color: #374151; }
+    #no-content .sub  { font-size: 0.88rem; color: #9ca3af; }
+
+    @media (max-width: 640px) {
+      .date-wrapper label { display: none; }
+      nav button { font-size: 0.75rem; padding: 7px 10px; }
+    }
   </style>
 </head>
 <body>
@@ -92,16 +147,72 @@
     <button onclick="loadPage('cierre-noticias.html', this)">Cierre + noticias</button>
     <button onclick="loadPage('vista-jornada.html', this)">Vista jornada</button>
   </nav>
+
+  <div class="date-wrapper">
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" />
+  </div>
 </header>
 
-<iframe id="portal-frame" src="noticias.html" title="Contenido"></iframe>
+<iframe id="portal-frame" src="" title="Contenido"></iframe>
+
+<div id="no-content">
+  <span class="icon">📭</span>
+  <span class="msg">Sin contenido para esta fecha</span>
+  <span class="sub" id="no-content-sub"></span>
+</div>
 
 <script>
-  function loadPage(src, btn) {
-    document.getElementById('portal-frame').src = src;
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+  let currentPage = 'noticias.html';
+
+  const datePicker = document.getElementById('fecha');
+  const today = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const todayStr = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+  datePicker.value = todayStr;
+
+  function loadPage(page, btn) {
+    currentPage = page;
+    if (btn) {
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    loadFrame();
   }
+
+  function loadFrame() {
+    const date  = datePicker.value;
+    const src   = date + '/' + currentPage;
+    const frame = document.getElementById('portal-frame');
+    const noContent = document.getElementById('no-content');
+
+    fetch(src, { method: 'HEAD' })
+      .then(res => {
+        if (res.ok) {
+          noContent.style.display = 'none';
+          frame.style.display = 'block';
+          frame.src = src;
+        } else {
+          showNoContent(date);
+        }
+      })
+      .catch(() => showNoContent(date));
+  }
+
+  function showNoContent(date) {
+    const frame = document.getElementById('portal-frame');
+    const noContent = document.getElementById('no-content');
+    const sub = document.getElementById('no-content-sub');
+    frame.style.display = 'none';
+    frame.src = '';
+    noContent.style.display = 'flex';
+    const [y, m, d] = date.split('-');
+    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    sub.textContent = d + ' de ' + meses[parseInt(m) - 1] + ' de ' + y;
+  }
+
+  datePicker.addEventListener('change', loadFrame);
+  loadFrame();
 </script>
 
 </body>
