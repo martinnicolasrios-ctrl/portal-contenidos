@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hipotecario Seguros â AnÃ¡lisis Regulatorio BO 20/04/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #192B3D;
+  color: #FFFFFF;
+  min-height: 100vh;
+  padding-bottom: 0;
+}
+
+/* ââ HEADER ââ */
+.header {
+  background: linear-gradient(160deg, #0F2233 0%, #152536 50%, #192B3D 100%);
+  border-bottom: 2px solid #34BBDA;
+  padding: 40px 52px 32px;
+}
+.header-logo {
+  font-size: 26px;
+  font-weight: 900;
+  color: #34BBDA;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.header-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: #A0B8C8;
+  margin-top: 6px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.header-meta {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.header-badge {
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(52,187,218,0.12);
+  color: #34BBDA;
+  border: 1px solid rgba(52,187,218,0.35);
+  border-radius: 20px;
+  padding: 4px 14px;
+  letter-spacing: 0.5px;
+}
+.header-date {
+  font-size: 13px;
+  font-weight: 300;
+  color: #A0B8C8;
+}
+.header-date strong {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* ââ LAYOUT ââ */
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+/* ââ SECTION HEADER ââ */
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #34BBDA;
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 5px;
+  letter-spacing: -0.3px;
+}
+.section-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: #A0B8C8;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.section-rule {
+  height: 1px;
+  background: linear-gradient(to right, rgba(52,187,218,0.5), transparent);
+  margin-bottom: 28px;
+}
+.section-block {
+  margin-bottom: 56px;
+}
+
+/* ââ CARDS ââ */
+.card {
+  background: #0F2233;
+  border-left: 3px solid #34BBDA;
+  border-radius: 6px;
+  padding: 24px 26px 20px;
+  margin-bottom: 14px;
+  transition: box-shadow 0.2s;
+}
+.card:last-child { margin-bottom: 0; }
+.card.urgent { border-left-color: #e05c5c; }
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.card-norma {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #34BBDA;
+  background: rgba(52,187,218,0.1);
+  border: 1px solid rgba(52,187,218,0.25);
+  border-radius: 3px;
+  padding: 3px 9px;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 1px;
+}
+.card.urgent .card-norma {
+  color: #e05c5c;
+  background: rgba(224,92,92,0.1);
+  border-color: rgba(224,92,92,0.25);
+}
+.card-meta-col { flex: 1; min-width: 0; }
+.card-organismo {
+  font-size: 10px;
+  font-weight: 400;
+  color: #A0B8C8;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.45;
+}
+.card-body {
+  font-size: 13.5px;
+  color: #A0B8C8;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.card-body strong {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.card-tags {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  background: rgba(52,187,218,0.08);
+  color: #34BBDA;
+  border: 1px solid rgba(52,187,218,0.22);
+  border-radius: 20px;
+  padding: 3px 11px;
+}
+.card.urgent .tag {
+  background: rgba(224,92,92,0.08);
+  color: #e05c5c;
+  border-color: rgba(224,92,92,0.22);
+}
+
+/* ââ NO-SSN NOTICE ââ */
+.notice-card {
+  background: rgba(15,34,51,0.6);
+  border: 1px solid rgba(160,184,200,0.15);
+  border-radius: 6px;
+  padding: 18px 22px;
+  font-size: 13.5px;
+  color: #A0B8C8;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* ââ CHIPS ââ */
+.chips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.chip {
+  background: #0F2233;
+  border-radius: 8px;
+  border-top: 2px solid #34BBDA;
+  padding: 16px 18px;
+}
+.chip-date {
+  font-size: 14px;
+  font-weight: 900;
+  color: #34BBDA;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.chip-desc {
+  font-size: 12px;
+  color: #A0B8C8;
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.chip-action {
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ââ FOOTER ââ */
+.footer {
+  background: #0F2233;
+  border-top: 1px solid rgba(52,187,218,0.15);
+  padding: 20px 52px;
+  text-align: center;
+  font-size: 11px;
+  color: #A0B8C8;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+@media (max-width: 640px) {
+  .header { padding: 28px 20px 24px; }
+  .container { padding: 32px 16px 48px; }
+  .card { padding: 18px 16px 16px; }
+  .footer { padding: 18px 20px; }
+  .chips-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ââââââ HEADER ââââââ -->
+<header class="header">
+  <div class="header-logo">Hipotecario Seguros</div>
+  <div class="header-subtitle">BoletÃ­n Oficial â AnÃ¡lisis Regulatorio</div>
+  <div class="header-meta">
+    <span class="header-badge">EdiciÃ³n 20 de Abril de 2026</span>
+    <span class="header-date">SecciÃ³n 1 &mdash; LegislaciÃ³n y Avisos Oficiales &nbsp;&middot;&nbsp; <strong>AdministraciÃ³n &amp; Finanzas</strong></span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ââââââ SECCIÃN 1: URGENTE ââââââ -->
+  <div class="section-block">
+    <div class="section-eyebrow">SecciÃ³n 1</div>
+    <div class="section-title">Urgente</div>
+    <div class="section-desc">Normativa con impacto inmediato o plazo corto de implementaciÃ³n.</div>
+    <div class="section-rule"></div>
+
+    <!-- Card: RG 5836 Ganancias -->
+    <div class="card urgent">
+      <div class="card-header">
+        <span class="card-norma">RG ARCA 5836/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Agencia de RecaudaciÃ³n y Control Aduanero</div>
+          <div class="card-title">Ganancias Personas Humanas â ModificaciÃ³n al procedimiento de DJ anual, vigente desde hoy</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Modifica la ResoluciÃ³n General NÂ° 5.692 e incorpora el RÃ©gimen Simplificado (Ley 27.799, F. 2711) al mismo flujo que el rÃ©gimen general (F. 711). Toda la determinaciÃ³n anual se unifica en el servicio <strong>"Ganancias Personas Humanas - Portal Integrado"</strong> disponible en el sitio de ARCA. Las Ã¡reas de RRHH y AdministraciÃ³n deben verificar que los sistemas de liquidaciÃ³n de haberes y cÃ¡lculo de retenciones de <strong>cuarta categorÃ­a</strong> estÃ©n parametrizados en el nuevo portal. Vigencia: <strong>20/04/2026</strong>. Las liquidaciones en curso deben revisarse antes del prÃ³ximo cierre de mes.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Vigencia inmediata</span>
+        <span class="tag">Ganancias 4Âª categorÃ­a</span>
+        <span class="tag">Agente de retenciÃ³n</span>
+        <span class="tag">RRHH / AdministraciÃ³n</span>
+      </div>
+    </div>
+
+    <!-- Card: Com A 8423 Efectivo MÃ­nimo -->
+    <div class="card urgent">
+      <div class="card-header">
+        <span class="card-norma">Com. "A" 8423/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Banco Central de la RepÃºblica Argentina</div>
+          <div class="card-title">Efectivo MÃ­nimo â IntegraciÃ³n mÃ­nima diaria al 65% y eliminaciÃ³n de plazos para suscripciones primarias (vigente desde 17/04)</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Establece que la integraciÃ³n mÃ­nima diaria en pesos no puede ser inferior al <strong>65%</strong> (punto 2.3.1 del TO de Efectivo MÃ­nimo) y elimina los plazos mÃ¡ximo y mÃ­nimo previstos para los tÃ­tulos pÃºblicos nacionales admisibles adquiridos en suscripciones primarias (puntos 1.3.17 y 1.3.18). Si bien aplica directamente a entidades financieras, la seÃ±al de polÃ­tica monetaria y la mayor flexibilidad de plazos en suscripciones primarias son referencias clave para la <strong>gestiÃ³n de la cartera de inversiones reguladas</strong> ante la SSN: la eliminaciÃ³n de restricciones de madurez amplÃ­a el universo elegible de tÃ­tulos pÃºblicos para el portafolio de renta fija de la compaÃ±Ã­a. <strong>Vigencia retroactiva: 17/04/2026.</strong>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Vigente desde 17/04/2026</span>
+        <span class="tag">Inversiones reguladas</span>
+        <span class="tag">TÃ­tulos pÃºblicos</span>
+        <span class="tag">Cartera renta fija</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ââââââ SECCIÃN 2: NOVEDADES REGULATORIAS ââââââ -->
+  <div class="section-block">
+    <div class="section-eyebrow">SecciÃ³n 2</div>
+    <div class="section-title">Novedades Regulatorias</div>
+    <div class="section-desc">Resoluciones y disposiciones relevantes para el sector asegurador publicadas hoy.</div>
+    <div class="section-rule"></div>
+
+    <!-- SSN: sin publicaciones -->
+    <div class="notice-card">La Superintendencia de Seguros de la NaciÃ³n no publicÃ³ resoluciones, circulares ni disposiciones en la ediciÃ³n del 20 de Abril de 2026.</div>
+    <div style="margin-bottom:14px"></div>
+
+    <!-- Card: Com A 8422 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">Com. "A" 8422/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Banco Central de la RepÃºblica Argentina</div>
+          <div class="card-title">Financiamiento al Sector PÃºblico No Financiero â Letras del Municipio de CÃ³rdoba por $50.000M</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Habilita a las entidades financieras para adquirir Letras del Tesoro emitidas por el municipio de CÃ³rdoba por hasta <strong>$50.000 millones</strong> en el marco del Programa de EmisiÃ³n de Letras 2026 (Ordenanza 13.622), encuadrado en los textos ordenados LISOL 1-1139 y OPRAC 1-1308. Este nuevo instrumento de deuda sub-soberana puede resultar elegible como activo admisible en el portafolio regulado de la compaÃ±Ã­a bajo el rÃ©gimen de inversiones de la SSN. Se recomienda analizar plazo, tasa y calificaciÃ³n crediticia del instrumento para determinar su pertinencia en la cartera.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Nuevos instrumentos</span>
+        <span class="tag">Deuda sub-soberana</span>
+        <span class="tag">Inversiones admisibles SSN</span>
+      </div>
+    </div>
+
+    <!-- Card: Com B 13160 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">Com. "B" 13160/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Banco Central de la RepÃºblica Argentina</div>
+          <div class="card-title">Tasas de referencia â GarantÃ­a de DepÃ³sitos (Circular OPASI 2): actualizaciÃ³n periÃ³dica</div>
+        </div>
+      </div>
+      <div class="card-body">
+        PublicaciÃ³n periÃ³dica de las tasas de referencia aplicables a la garantÃ­a de depÃ³sitos. Estos valores son utilizados por el Ã¡rea de Finanzas como <strong>benchmarks de rendimiento</strong> para la valuaciÃ³n de instrumentos de renta fija y la evaluaciÃ³n de la rentabilidad de la cartera de inversiones. Se recomienda actualizar el tablero de tasas de referencia del Ã¡rea con los valores de esta comunicaciÃ³n.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Tasas de referencia</span>
+        <span class="tag">Renta fija</span>
+        <span class="tag">ActualizaciÃ³n periÃ³dica</span>
+      </div>
+    </div>
+
+    <!-- Card: Com B 13161 UVI -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">Com. "B" 13161/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Banco Central de la RepÃºblica Argentina</div>
+          <div class="card-title">Unidad de Vivienda (UVI) â Valores diarios actualizados (ICC, Ley 27.271)</div>
+        </div>
+      </div>
+      <div class="card-body">
+        PublicaciÃ³n periÃ³dica de los valores diarios de la UVI, ajustada por el Ãndice del Costo de la ConstrucciÃ³n. Relevante para las coberturas del ramo <strong>Incendio / Patrimoniales</strong> con sumas aseguradas o clÃ¡usulas de actualizaciÃ³n indexadas por este coeficiente, y para pÃ³lizas de largo plazo con capitales denominados en UVI. El Ã¡rea actuarial debe verificar la consistencia entre los valores de reservas constituidas y el valor UVI publicado en esta ediciÃ³n.
+      </div>
+      <div class="card-tags">
+        <span class="tag">UVI / ICC</span>
+        <span class="tag">Sumas aseguradas</span>
+        <span class="tag">Patrimoniales / Incendio</span>
+        <span class="tag">Reservas</span>
+      </div>
+    </div>
+
+    <!-- Card: RG 5834 Aduanas -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">RG ARCA 5834/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Agencia de RecaudaciÃ³n y Control Aduanero</div>
+          <div class="card-title">Servicios extraordinarios aduaneros â Nuevos cuadros tarifarios, vigentes desde hoy</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Aprueba cuadros tarifarios actualizados para los servicios extraordinarios realizados por personal aduanero en horarios inhÃ¡biles (art. 773, CÃ³digo Aduanero), complementando la RG 5.825. Impacto indirecto en el sector: aplica a operaciones aduaneras propias de la compaÃ±Ã­a y puede incidir en los costos de gestiÃ³n de siniestros del ramo <strong>Transporte de MercaderÃ­as</strong> y coberturas con componente aduanero. Vigente desde el <strong>20/04/2026</strong>.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Vigencia inmediata</span>
+        <span class="tag">Costos aduaneros</span>
+        <span class="tag">Transporte de mercaderÃ­as</span>
+      </div>
+    </div>
+
+    <!-- Card: Decreto 266 Gas -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">Decreto 266/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Poder Ejecutivo Nacional â Ministerio de EconomÃ­a</div>
+          <div class="card-title">Fondo Fiduciario Gas â Facultad para modificar el recargo sobre el PIST en hasta un 50%</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Faculta al Ministerio de EconomÃ­a a aumentar o disminuir el recargo sobre el precio del gas natural en el Punto de Ingreso al Sistema de Transporte (Ley 25.565, art. 75) en hasta un <strong>50%</strong>. No genera obligaciones regulatorias directas para aseguradoras, pero puede impactar los costos operativos generales de la compaÃ±Ã­a (gas en instalaciones y sucursales) de forma marginal, segÃºn la decisiÃ³n que se adopte.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Costos operativos</span>
+        <span class="tag">EnergÃ­a / Gas</span>
+        <span class="tag">Impacto indirecto</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ââââââ SECCIÃN 3: IMPACTO FINANCIERO ââââââ -->
+  <div class="section-block">
+    <div class="section-eyebrow">SecciÃ³n 3</div>
+    <div class="section-title">Impacto Financiero</div>
+    <div class="section-desc">Cambios con efecto sobre inversiones, reservas, tipo de cambio o posiciÃ³n fiscal de la compaÃ±Ã­a.</div>
+    <div class="section-rule"></div>
+
+    <!-- Card: Efectivo MÃ­nimo cartera -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">Com. "A" 8423 â BCRA</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Inversiones / Cartera de renta fija</div>
+          <div class="card-title">IntegraciÃ³n mÃ­nima del 65% en pesos: seÃ±al de polÃ­tica monetaria y mayor flexibilidad en suscripciones primarias</div>
+        </div>
+      </div>
+      <div class="card-body">
+        La fijaciÃ³n del umbral mÃ­nimo de integraciÃ³n diaria al <strong>65% en pesos</strong> seÃ±ala la continuidad de la polÃ­tica de mayor exposiciÃ³n en moneda local. La eliminaciÃ³n de los plazos mÃ­nimos y mÃ¡ximos para tÃ­tulos pÃºblicos en suscripciones primarias amplÃ­a el rango de madurez elegible para integrar reservas, lo que tiene <strong>impacto directo en la composiciÃ³n de la cartera regulada</strong> de la compaÃ±Ã­a ante la SSN: permite incorporar licitaciones del Tesoro de cualquier duraciÃ³n sin restricciones de plazo, mejorando la flexibilidad de gestiÃ³n de activos admisibles.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Cartera SSN</span>
+        <span class="tag">TÃ­tulos pÃºblicos â suscripciones primarias</span>
+        <span class="tag">Pesos</span>
+      </div>
+    </div>
+
+    <!-- Card: Letras CÃ³rdoba elegibilidad -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">Com. "A" 8422 â BCRA</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Inversiones / Nuevos activos admisibles</div>
+          <div class="card-title">Letras Municipio de CÃ³rdoba $50.000M: anÃ¡lisis de elegibilidad para el portafolio regulado SSN</div>
+        </div>
+      </div>
+      <div class="card-body">
+        El nuevo instrumento de deuda sub-soberana abre una opciÃ³n de diversificaciÃ³n del portafolio. El Ã¡rea de Finanzas debe evaluar: <strong>(a)</strong> si las Letras cumplen el requisito de plazo del rÃ©gimen de inversiones SSN; <strong>(b)</strong> si cuentan con calificaciÃ³n crediticia mÃ­nima exigida; <strong>(c)</strong> su nivel de liquidez en el mercado secundario. Es el primer instrumento habilitado para el Municipio de CÃ³rdoba en el marco del ciclo 2026 y la posiciÃ³n de hasta $50.000M ofrece margen de acceso relevante para aseguradoras de tamaÃ±o mediano.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Nuevos activos</span>
+        <span class="tag">Deuda sub-soberana</span>
+        <span class="tag">EvaluaciÃ³n requerida</span>
+      </div>
+    </div>
+
+    <!-- Card: UVI reservas -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">Com. "B" 13161 â BCRA Â· UVI</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">Reservas / ActuarÃ­a</div>
+          <div class="card-title">Valores UVI actualizados: revisiÃ³n de reservas en coberturas Incendio con capitales indexados</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Los nuevos valores diarios de la UVI pueden incidir en la valuaciÃ³n de <strong>reservas matemÃ¡ticas</strong> en pÃ³lizas de largo plazo con capitales denominados en UVI, y en la actualizaciÃ³n de sumas aseguradas de coberturas Patrimoniales/Incendio. El Ã¡rea actuarial debe revisar la consistencia entre los valores de reservas constituidas y el coeficiente UVI publicado hoy antes del prÃ³ximo reporte de posiciÃ³n a la SSN.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Reservas matemÃ¡ticas</span>
+        <span class="tag">Incendio / Patrimoniales</span>
+        <span class="tag">ActuarÃ­a</span>
+      </div>
+    </div>
+
+    <!-- Card: RG 5836 Ganancias retenciones -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-norma">RG ARCA 5836/2026</span>
+        <div class="card-meta-col">
+          <div class="card-organismo">PosiciÃ³n fiscal / Retenciones laborales</div>
+          <div class="card-title">ModificaciÃ³n DJ Ganancias PH: revisiÃ³n de retenciones de cuarta categorÃ­a en curso</div>
+        </div>
+      </div>
+      <div class="card-body">
+        La unificaciÃ³n del rÃ©gimen general y simplificado en el Portal Integrado modifica el flujo de <strong>retenciones de cuarta categorÃ­a</strong> que la compaÃ±Ã­a practica como agente de retenciÃ³n. Es necesario verificar que los sistemas de liquidaciÃ³n de haberes contemplen el nuevo rÃ©gimen (adhesiÃ³n, ratificaciÃ³n anual, desistimiento o exclusiÃ³n del F. 2711) y que las liquidaciones del perÃ­odo en curso se ajusten a la nueva parametrizaciÃ³n. La <strong>vigencia inmediata</strong> (20/04/2026) no admite perÃ­odo de gracia.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Retenciones 4Âª categorÃ­a</span>
+        <span class="tag">Agente de retenciÃ³n</span>
+        <span class="tag">Cierre mensual</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ââââââ SECCIÃN 4: PRÃXIMOS VENCIMIENTOS ââââââ -->
+  <div class="section-block">
+    <div class="section-eyebrow">SecciÃ³n 4</div>
+    <div class="section-title">PrÃ³ximos Vencimientos</div>
+    <div class="section-desc">Fechas lÃ­mite y acciones requeridas surgidas de la ediciÃ³n de hoy.</div>
+    <div class="section-rule"></div>
+
+    <div class="chips-grid">
+      <div class="chip">
+        <div class="chip-date">20/04/2026 â Hoy</div>
+        <div class="chip-desc">RG ARCA 5836/2026 â UnificaciÃ³n DJ Ganancias PH en Portal Integrado. Incorpora rÃ©gimen simplificado (F. 2711).</div>
+        <div class="chip-action">Verificar sistemas de retenciÃ³n 4Âª categorÃ­a</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">20/04/2026 â Hoy</div>
+        <div class="chip-desc">RG ARCA 5834/2026 â Nuevos cuadros tarifarios de servicios extraordinarios aduaneros.</div>
+        <div class="chip-action">Actualizar previsiones de costos aduaneros</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">Vigente 17/04/2026</div>
+        <div class="chip-desc">Com. "A" 8423/2026 BCRA â Efectivo MÃ­nimo: integraciÃ³n mÃ­nima diaria 65% y eliminaciÃ³n de plazos en suscripciones primarias.</div>
+        <div class="chip-action">Revisar composiciÃ³n y elegibilidad cartera renta fija</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">A evaluar</div>
+        <div class="chip-desc">Com. "A" 8422/2026 BCRA â Letras Municipio de CÃ³rdoba, $50.000M disponibles.</div>
+        <div class="chip-action">Analizar elegibilidad para inversiones admisibles SSN</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">ActualizaciÃ³n diaria</div>
+        <div class="chip-desc">Com. "B" 13161/2026 BCRA â Nuevos valores UVI. Impacto en coberturas Incendio con capitales indexados.</div>
+        <div class="chip-action">Actualizar parÃ¡metros actuariales â revisar reservas</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ââââââ FOOTER ââââââ -->
+<footer class="footer">
+  Generado automÃ¡ticamente &nbsp;&middot;&nbsp; 20 de Abril de 2026 &nbsp;&middot;&nbsp; Fuente: BoletÃ­n Oficial de la RepÃºblica Argentina â www.boletinoficial.gob.ar
+</footer>
+
+</body>
+</html>
