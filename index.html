@@ -7,35 +7,43 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
+    html, body {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Segoe UI', Arial, sans-serif;
       background: #ffffff;
-      color: #1a1a2e;
-      min-height: 100vh;
     }
 
+    /* ── NAV ── */
     header {
+      height: 60px;
       background: #ffffff;
       border-bottom: 2px solid #e5e7eb;
-      position: sticky;
-      top: 0;
-      z-index: 100;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 4px;
-      padding: 12px 24px;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 0 16px;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
+    nav::-webkit-scrollbar { display: none; }
+
     nav button {
-      flex: 1 1 auto;
-      min-width: 140px;
-      padding: 10px 18px;
+      flex-shrink: 0;
+      padding: 8px 18px;
       border: 2px solid #d1d5db;
       background: #f9fafb;
       color: #374151;
@@ -61,96 +69,16 @@
       box-shadow: 0 2px 8px rgba(37,99,235,0.30);
     }
 
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .section.visible {
+    /* ── IFRAME ── */
+    #portal-frame {
       display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 32px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid #e5e7eb;
-    }
-
-    .section-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-
-    .section h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #111827;
-    }
-
-    .section p.subtitle {
-      font-size: 0.9rem;
-      color: #6b7280;
-      margin-top: 2px;
-    }
-
-    .content-card {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 60px);
+      border: none;
       background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 40px 36px;
-      text-align: center;
-    }
-
-    .content-card .coming-soon-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .content-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #374151;
-      margin-bottom: 8px;
-    }
-
-    .content-card p {
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-
-    #noticias .section-icon     { background: #dbeafe; color: #2563eb; }
-    #boletin .section-icon      { background: #fce7f3; color: #db2777; }
-    #cierre-datos .section-icon { background: #d1fae5; color: #059669; }
-    #cierre-noticias .section-icon { background: #fef3c7; color: #d97706; }
-    #vista-jornada .section-icon{ background: #ede9fe; color: #7c3aed; }
-
-    @media (max-width: 640px) {
-      nav { padding: 10px 12px; gap: 6px; }
-      nav button { font-size: 0.8rem; padding: 8px 10px; min-width: 0; }
-      main { padding: 28px 16px; }
-      .section h2 { font-size: 1.3rem; }
-      .content-card { padding: 28px 20px; }
     }
   </style>
 </head>
@@ -158,98 +86,20 @@
 
 <header>
   <nav>
-    <button class="active" onclick="showSection('noticias', this)">Noticias del día</button>
-    <button onclick="showSection('boletin', this)">Boletín Oficial</button>
-    <button onclick="showSection('cierre-datos', this)">Cierre datos duros</button>
-    <button onclick="showSection('cierre-noticias', this)">Cierre + noticias</button>
-    <button onclick="showSection('vista-jornada', this)">Vista jornada</button>
+    <button class="active" onclick="loadPage('noticias.html', this)">Noticias del día</button>
+    <button onclick="loadPage('boletin.html', this)">Boletín Oficial</button>
+    <button onclick="loadPage('cierre-datos.html', this)">Cierre datos duros</button>
+    <button onclick="loadPage('cierre-noticias.html', this)">Cierre + noticias</button>
+    <button onclick="loadPage('vista-jornada.html', this)">Vista jornada</button>
   </nav>
 </header>
 
-<main>
-
-  <section id="noticias" class="section visible">
-    <div class="section-header">
-      <div class="section-icon">📰</div>
-      <div>
-        <h2>Noticias del día</h2>
-        <p class="subtitle">Principales noticias y novedades de la jornada</p>
-      </div>
-    </div>
-    <div class="content-card">
-      <span class="coming-soon-icon">🕐</span>
-      <h3>Contenido del día próximamente</h3>
-      <p>Las noticias del día estarán disponibles aquí en breve.</p>
-    </div>
-  </section>
-
-  <section id="boletin" class="section">
-    <div class="section-header">
-      <div class="section-icon">📋</div>
-      <div>
-        <h2>Boletín Oficial</h2>
-        <p class="subtitle">Publicaciones y resoluciones del Boletín Oficial</p>
-      </div>
-    </div>
-    <div class="content-card">
-      <span class="coming-soon-icon">🕐</span>
-      <h3>Contenido del día próximamente</h3>
-      <p>El contenido del Boletín Oficial estará disponible aquí en breve.</p>
-    </div>
-  </section>
-
-  <section id="cierre-datos" class="section">
-    <div class="section-header">
-      <div class="section-icon">📊</div>
-      <div>
-        <h2>Cierre datos duros</h2>
-        <p class="subtitle">Datos y cifras del cierre de jornada</p>
-      </div>
-    </div>
-    <div class="content-card">
-      <span class="coming-soon-icon">🕐</span>
-      <h3>Contenido del día próximamente</h3>
-      <p>Los datos del cierre estarán disponibles aquí en breve.</p>
-    </div>
-  </section>
-
-  <section id="cierre-noticias" class="section">
-    <div class="section-header">
-      <div class="section-icon">🗞️</div>
-      <div>
-        <h2>Cierre + noticias</h2>
-        <p class="subtitle">Resumen de cierre con las noticias destacadas</p>
-      </div>
-    </div>
-    <div class="content-card">
-      <span class="coming-soon-icon">🕐</span>
-      <h3>Contenido del día próximamente</h3>
-      <p>El cierre con noticias estará disponible aquí en breve.</p>
-    </div>
-  </section>
-
-  <section id="vista-jornada" class="section">
-    <div class="section-header">
-      <div class="section-icon">🗓️</div>
-      <div>
-        <h2>Vista jornada</h2>
-        <p class="subtitle">Panorama completo de la jornada</p>
-      </div>
-    </div>
-    <div class="content-card">
-      <span class="coming-soon-icon">🕐</span>
-      <h3>Contenido del día próximamente</h3>
-      <p>La vista de la jornada estará disponible aquí en breve.</p>
-    </div>
-  </section>
-
-</main>
+<iframe id="portal-frame" src="noticias.html" title="Contenido"></iframe>
 
 <script>
-  function showSection(id, btn) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  function loadPage(src, btn) {
+    document.getElementById('portal-frame').src = src;
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('visible');
     btn.classList.add('active');
   }
 </script>
