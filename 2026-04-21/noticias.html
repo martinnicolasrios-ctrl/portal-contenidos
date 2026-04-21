@@ -1,0 +1,607 @@
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen Noticias — 21/04/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================================
+   Portal de Finanzas — shared.css
+   Sistema visual unificado para boletin / noticias / cierre-noticias / index
+   --------------------------------------------------------------------------
+   Uso:
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="shared.css">
+   ========================================================================== */
+
+
+/* ── Tokens ────────────────────────────────────────────────────────────── */
+:root {
+  /* Superficies */
+  --bg:         #0B1620;
+  --bg-2:       #0F1E2B;
+  --bg-3:       #17293A;
+  --bg-4:       #1E3447;
+  --panel:      #0F1E2B;
+
+  /* Líneas */
+  --line:       #1E3447;
+  --line-soft:  rgba(255, 255, 255, 0.06);
+
+  /* Tinta */
+  --ink:        #F2F6F9;
+  --ink-2:      #B5C5D3;
+  --ink-3:      #7B91A3;
+
+  /* Color */
+  --accent:       #34BBDA;                      /* cyan primario */
+  --accent-2:     #7FD4EA;
+  --accent-soft:  rgba(52, 187, 218, 0.12);
+  --accent-line:  rgba(52, 187, 218, 0.30);
+
+  --gold:         #E8B04A;                      /* fechas / eyebrow secundario */
+  --pos:          #5BD39A;                      /* variación positiva */
+  --neg:          #EF6C6C;                      /* variación negativa / urgencia */
+  --neg-soft:     rgba(239, 108, 108, 0.10);
+  --neg-line:     rgba(239, 108, 108, 0.30);
+
+  /* Tipografía */
+  --sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  /* Radios + sombras */
+  --r-sm: 2px;
+  --r:    4px;
+  --r-lg: 6px;
+}
+
+
+/* ── Reset ─────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  background-image:
+    radial-gradient(1200px 500px at 15% -10%, rgba(52, 187, 218, 0.07), transparent 60%),
+    radial-gradient(900px 400px at 95% 0%, rgba(232, 176, 74, 0.04), transparent 60%);
+  background-attachment: fixed;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+
+/* ── Layout containers ─────────────────────────────────────────────────── */
+.pf-container  { max-width: 960px; margin: 0 auto; padding: 48px 40px 64px; }
+.pf-container-narrow { max-width: 880px; margin: 0 auto; padding: 48px 52px 64px; }
+.pf-container-wide   { max-width: 1200px; margin: 0 auto; padding: 48px 40px 64px; }
+
+
+/* ── Header editorial ──────────────────────────────────────────────────── */
+.pf-header {
+  padding: 44px 52px 28px;
+  max-width: 960px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+}
+
+.pf-logo {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.pf-logo::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.pf-subtitle {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  margin-top: 12px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+.pf-header-meta {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+
+/* ── Badges (inline cyan) ──────────────────────────────────────────────── */
+.pf-badge {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--r-sm);
+  padding: 4px 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.pf-badge--gold { color: var(--gold); border-color: var(--gold); }
+.pf-badge--neg  { color: var(--neg);  border-color: var(--neg);  }
+.pf-badge--mute { color: var(--ink-3); border-color: var(--line); }
+
+.pf-date {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-3);
+  letter-spacing: 0.2px;
+}
+.pf-date strong { color: var(--ink-2); font-weight: 600; }
+
+
+/* ── Section ───────────────────────────────────────────────────────────── */
+.pf-section { margin-bottom: 56px; }
+
+.pf-section-eyebrow {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.pf-section-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.pf-section-desc {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--ink-3);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  max-width: 620px;
+}
+
+.pf-section-rule {
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 28px;
+  border: 0;
+}
+
+/* Header alterno: eyebrow + línea al costado */
+.pf-section-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.pf-section-head .pf-section-eyebrow { margin-bottom: 0; white-space: nowrap; }
+.pf-section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+
+/* ── Card base ─────────────────────────────────────────────────────────── */
+.pf-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  margin-bottom: 12px;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+.pf-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  border-top-left-radius: var(--r);
+  border-bottom-left-radius: var(--r);
+}
+.pf-card:hover { border-color: var(--accent-line); }
+
+.pf-card--urgent::before { background: var(--neg); }
+.pf-card--urgent:hover   { border-color: var(--neg-line); }
+
+.pf-card--flat::before   { display: none; }
+
+
+/* Card — patrones de contenido */
+.pf-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.pf-card-norma {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 1px;
+}
+.pf-card--urgent .pf-card-norma {
+  color: var(--neg);
+  background: var(--neg-soft);
+  border-color: var(--neg-line);
+}
+
+.pf-card-meta { flex: 1; min-width: 0; }
+
+.pf-card-organismo,
+.pf-card-source {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.pf-card-title {
+  font-family: var(--sans);
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  margin-bottom: 10px;
+}
+
+.pf-card-body {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  font-weight: 400;
+}
+.pf-card-body strong { color: var(--ink); font-weight: 600; }
+.pf-card-body p + p  { margin-top: 8px; }
+
+
+/* Card — tags */
+.pf-card-tags {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pf-tag {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 3px 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.pf-card--urgent .pf-tag {
+  color: var(--neg);
+  border-color: var(--neg-line);
+}
+
+
+/* ── Notice (bloque neutral "sin contenido") ──────────────────────────── */
+.pf-notice {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px 22px;
+  font-size: 13.5px;
+  color: var(--ink-3);
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+/* ── Grid de chips (fechas clave / KPIs compactos) ─────────────────────── */
+.pf-chip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.pf-chip-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.pf-chip-grid--7 { grid-template-columns: repeat(7, 1fr); }
+
+.pf-chip {
+  background: transparent;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 22px;
+}
+.pf-chip:hover { background: var(--bg-3); }
+
+.pf-chip-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.pf-chip-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pf-chip-desc {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  font-weight: 400;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.pf-chip-value {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.pf-chip-action {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.pf-chip-var {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+  letter-spacing: 0.2px;
+}
+.pf-chip-var--up   { color: var(--pos); }
+.pf-chip-var--down { color: var(--neg); }
+.pf-chip-var--neu  { color: var(--ink-3); }
+
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+.pf-footer {
+  padding: 24px 52px;
+  max-width: 960px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--ink-3);
+  letter-spacing: 0.5px;
+}
+
+
+/* ── Utilities ─────────────────────────────────────────────────────────── */
+.pf-mono   { font-family: var(--mono); }
+.pf-serif  { font-family: var(--serif); }
+.pf-sans   { font-family: var(--sans); }
+
+.pf-ink    { color: var(--ink); }
+.pf-ink-2  { color: var(--ink-2); }
+.pf-ink-3  { color: var(--ink-3); }
+.pf-accent { color: var(--accent); }
+.pf-gold   { color: var(--gold); }
+.pf-pos    { color: var(--pos); }
+.pf-neg    { color: var(--neg); }
+
+.pf-caps {
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .pf-chip-grid--7 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .pf-header,
+  .pf-footer { padding-left: 20px; padding-right: 20px; }
+
+  .pf-container,
+  .pf-container-narrow,
+  .pf-container-wide { padding: 32px 20px 48px; }
+
+  .pf-logo         { font-size: 26px; }
+  .pf-section-title { font-size: 24px; }
+  .pf-card         { padding: 20px 18px; }
+
+  .pf-chip-grid,
+  .pf-chip-grid--4,
+  .pf-chip-grid--7 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .pf-chip-grid,
+  .pf-chip-grid--4,
+  .pf-chip-grid--7 { grid-template-columns: 1fr; }
+  .pf-chip:nth-last-child(n) { border-right: none; }
+}
+
+</style>
+</head>
+<body>
+<div class="pf-container">
+  <header class="pf-header">
+    <div class="pf-logo">Resumen Ejecutivo de Noticias</div>
+    <div class="pf-subtitle">Economía · Mercados · Política</div>
+    <div class="pf-header-meta">
+      <span class="pf-badge">Edición diaria</span>
+      <span class="pf-date"><strong>Martes 21 de abril</strong> · 2026</span>
+    </div>
+  </header>
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-eyebrow">Bloque 1</span>
+      <h2 class="pf-section-title" style="margin:0">Economía y Mercados</h2>
+    </div>
+    <div class="pf-card pf-card--urgent">
+      <div class="pf-card-source">Ámbito Financiero · Economía</div>
+      <div class="pf-card-title">Inflación de abril perforaría el 3%: se cortaría la racha alcista de 10 meses</div>
+      <div class="pf-card-body">Las estimaciones privadas anticipan que el IPC de abril quebraría la tendencia ascendente sostenida durante 10 meses consecutivos y se ubicaría por debajo del 3% mensual. El dato representa un punto de inflexión clave para el programa económico del gobierno, que apuesta a la desinflación como ancla de la estabilidad macro. Si se confirma, reforzaría la narrativa oficial de convergencia hacia una inflación de un dígito mensual, aunque persiste la duda sobre la sostenibilidad del ancla cambiaria como mecanismo principal de contención de precios.</div>
+    </div>
+    <div class="pf-card pf-card--urgent">
+      <div class="pf-card-source">El Cronista · Comercio Exterior</div>
+      <div class="pf-card-title">Exportaciones de marzo baten récord histórico: superávit comercial alcanza u$s 2.523 millones</div>
+      <div class="pf-card-body">El intercambio comercial de marzo registró un superávit de u$s 2.523 millones, el tercer máximo de la era Milei, impulsado por exportaciones que marcan un hito en la historia reciente del comercio exterior argentino. El resultado consolida el proceso de acumulación de divisas y da sustento al esquema de bandas cambiarias. La liquidación del agro y el impulso de Vaca Muerta son los motores principales, en un contexto donde el BCRA acumuló compras durante 70 ruedas consecutivas, sumando otros u$s 131 millones en la última jornada.</div>
+    </div>
+    <div class="pf-card">
+      <div class="pf-card-source">Ámbito Financiero · Mercado Cambiario</div>
+      <div class="pf-card-title">Dólar planchado: la demanda para atesoramiento cae y quedan u$s 3.200 M de ONs por liquidar</div>
+      <div class="pf-card-body">La demanda de dólares para ahorro continúa en retroceso un año después del levantamiento del cepo, con el tipo de cambio oficial operando más de un 22% por debajo del techo de la banda cambiaria. El oficial avanzó por segunda jornada consecutiva pero el diferencial con la banda superior sigue siendo amplio. El flujo de vencimientos de Obligaciones Negociables privadas —estimado en u$s 3.200 millones aún pendientes de liquidar— aparece como el próximo catalizador de oferta de divisas que extendería la calma cambiaria, según el gobierno.</div>
+    </div>
+    <div class="pf-card">
+      <div class="pf-card-source">El Cronista · Sistema Financiero</div>
+      <div class="pf-card-title">Bancos en alerta: el negocio se transforma y la torta financiera se divide con más actores</div>
+      <div class="pf-card-body">El sistema financiero argentino enfrenta una reconfiguración estructural de su modelo de negocio. La apertura cambiaria, la baja de tasas y la irrupción de nuevos operadores —fintech, fondos de inversión, fideicomisos— erosionan los márgenes tradicionales de intermediación bancaria. La banca deberá adaptarse a mayor competencia por depósitos y créditos, en particular en el segmento hipotecario UVA —con señales de recuperación— y en financiamiento corporativo, donde las empresas acceden directamente al mercado de capitales.</div>
+    </div>
+    <div class="pf-card">
+      <div class="pf-card-source">Ámbito Financiero / Infobae · Mercados</div>
+      <div class="pf-card-title">Riesgo país roza los 530 puntos ante menor optimismo global; ADRs escalan hasta 4,9%</div>
+      <div class="pf-card-body">El riesgo país argentino operó al alza —526 puntos básicos, con una suba de 1,35%— en sintonía con un contexto internacional menos favorable, marcado por la tensión en Medio Oriente y la incertidumbre sobre las negociaciones entre EE.UU. e Irán. No obstante, los ADRs de empresas argentinas en Wall Street treparon hasta 4,9%, evidenciando divergencia entre la percepción soberana y el apetito por acciones del sector privado local. El Merval acompañó con una suba del 1,4%, alcanzando los 2.931.701 puntos.</div>
+    </div>
+  </section>
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-eyebrow">Bloque 2</span>
+      <h2 class="pf-section-title" style="margin:0">Noticias Generales con Impacto Político, Regulatorio o Sectorial</h2>
+    </div>
+    <div class="pf-card">
+      <div class="pf-card-source">El Cronista · Deuda Soberana</div>
+      <div class="pf-card-title">El Gobierno lleva al Congreso el cierre del default de 2001: cuánto resta pagar y con qué condiciones</div>
+      <div class="pf-card-body">El Ejecutivo impulsa una iniciativa legislativa para cerrar definitivamente los pasivos residuales del default de 2001, buscando despejar una deuda histórica que opera como lastre sobre el perfil crediticio soberano. El tratamiento parlamentario incluiría condiciones sobre plazos, quitas y mecanismos de pago, en un momento en que el gobierno busca consolidar su narrativa de normalización financiera ante organismos multilaterales e inversores externos.</div>
+    </div>
+    <div class="pf-card">
+      <div class="pf-card-source">El Cronista / Ámbito · Tarifas y Consumo</div>
+      <div class="pf-card-title">Servicios treparon casi 50% interanual en el AMBA: presión creciente sobre hogares y sector asegurador</div>
+      <div class="pf-card-body">Un relevamiento sobre el costo de servicios públicos y regulados en el AMBA indica una suba acumulada de casi 50% interanual, muy por encima de la inflación general. El dato tiene impacto directo sobre el sector asegurador —coberturas atadas a valores de reposición— y sobre la capacidad de pago de deudores hipotecarios UVA. El gobierno avanza además en un ajuste de hasta 50% en los recargos de tarifas de gas a través de cambios en el esquema de ARCA, profundizando la presión sobre el ingreso disponible.</div>
+    </div>
+    <div class="pf-card">
+      <div class="pf-card-source">Ámbito Financiero / Infobae · Política Económica</div>
+      <div class="pf-card-title">CIPPEC reúne al poder y llama a un acuerdo político mínimo para sostener las reformas estructurales</div>
+      <div class="pf-card-body">La cena anual de CIPPEC congregó a la dirigencia política, empresaria y técnica bajo el lema "crecer o crecer". El diputado Laspina planteó la necesidad de un acuerdo "mínimo, simple y duradero" como condición para que las reformas estructurales tengan continuidad más allá del ciclo electoral. La cautela empresaria fue el tono dominante: optimismo sobre la macro, pero preocupación por cuándo la estabilidad se trasladará al nivel microeconómico y al consumo real.</div>
+    </div>
+  </section>
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-eyebrow">Bloque 3</span>
+      <h2 class="pf-section-title" style="margin:0">Mercado al Cierre</h2>
+    </div>
+    <div class="pf-chip-grid pf-chip-grid--7">
+      <div class="pf-chip">
+        <div class="pf-chip-label">Dólar BNA</div>
+        <div class="pf-chip-value">$ 1.400</div>
+        <div class="pf-chip-var pf-chip-var--up">+0,72%</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Dólar Blue</div>
+        <div class="pf-chip-value">$ 1.410</div>
+        <div class="pf-chip-var pf-chip-var--neu">0,00%</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Dólar MEP</div>
+        <div class="pf-chip-value">$ 1.415,58</div>
+        <div class="pf-chip-var pf-chip-var--up">+0,06%</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Dólar CCL</div>
+        <div class="pf-chip-value">$ 1.468,60</div>
+        <div class="pf-chip-var pf-chip-var--down">-0,04%</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Dólar Tarjeta</div>
+        <div class="pf-chip-value">$ 1.820</div>
+        <div class="pf-chip-var pf-chip-var--up">+0,72%</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Merval</div>
+        <div class="pf-chip-value">2.931.701</div>
+        <div class="pf-chip-var pf-chip-var--up">+1,40%</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Riesgo País</div>
+        <div class="pf-chip-value">526 pb</div>
+        <div class="pf-chip-var pf-chip-var--up">+1,35%</div>
+      </div>
+    </div>
+  </section>
+  <footer class="pf-footer">
+    Resumen elaborado a partir de Ámbito Financiero, El Cronista e Infobae · Martes 21 de abril de 2026 · Datos de mercado al cierre de la jornada local
+  </footer>
+</div>
+
+</body></html>
