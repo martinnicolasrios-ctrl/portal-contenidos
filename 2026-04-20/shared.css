@@ -1,0 +1,485 @@
+/* ==========================================================================
+   Portal de Finanzas — shared.css
+   Sistema visual unificado para boletin / noticias / cierre-noticias / index
+   --------------------------------------------------------------------------
+   Uso:
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="shared.css">
+   ========================================================================== */
+
+
+/* ── Tokens ────────────────────────────────────────────────────────────── */
+:root {
+  /* Superficies */
+  --bg:         #0B1620;
+  --bg-2:       #0F1E2B;
+  --bg-3:       #17293A;
+  --bg-4:       #1E3447;
+  --panel:      #0F1E2B;
+
+  /* Líneas */
+  --line:       #1E3447;
+  --line-soft:  rgba(255, 255, 255, 0.06);
+
+  /* Tinta */
+  --ink:        #F2F6F9;
+  --ink-2:      #B5C5D3;
+  --ink-3:      #7B91A3;
+
+  /* Color */
+  --accent:       #34BBDA;                      /* cyan primario */
+  --accent-2:     #7FD4EA;
+  --accent-soft:  rgba(52, 187, 218, 0.12);
+  --accent-line:  rgba(52, 187, 218, 0.30);
+
+  --gold:         #E8B04A;                      /* fechas / eyebrow secundario */
+  --pos:          #5BD39A;                      /* variación positiva */
+  --neg:          #EF6C6C;                      /* variación negativa / urgencia */
+  --neg-soft:     rgba(239, 108, 108, 0.10);
+  --neg-line:     rgba(239, 108, 108, 0.30);
+
+  /* Tipografía */
+  --sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  /* Radios + sombras */
+  --r-sm: 2px;
+  --r:    4px;
+  --r-lg: 6px;
+}
+
+
+/* ── Reset ─────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  background-image:
+    radial-gradient(1200px 500px at 15% -10%, rgba(52, 187, 218, 0.07), transparent 60%),
+    radial-gradient(900px 400px at 95% 0%, rgba(232, 176, 74, 0.04), transparent 60%);
+  background-attachment: fixed;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+
+/* ── Layout containers ─────────────────────────────────────────────────── */
+.pf-container  { max-width: 960px; margin: 0 auto; padding: 48px 40px 64px; }
+.pf-container-narrow { max-width: 880px; margin: 0 auto; padding: 48px 52px 64px; }
+.pf-container-wide   { max-width: 1200px; margin: 0 auto; padding: 48px 40px 64px; }
+
+
+/* ── Header editorial ──────────────────────────────────────────────────── */
+.pf-header {
+  padding: 44px 52px 28px;
+  max-width: 960px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+}
+
+.pf-logo {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.pf-logo::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.pf-subtitle {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  margin-top: 12px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+.pf-header-meta {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+
+/* ── Badges (inline cyan) ──────────────────────────────────────────────── */
+.pf-badge {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--r-sm);
+  padding: 4px 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.pf-badge--gold { color: var(--gold); border-color: var(--gold); }
+.pf-badge--neg  { color: var(--neg);  border-color: var(--neg);  }
+.pf-badge--mute { color: var(--ink-3); border-color: var(--line); }
+
+.pf-date {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-3);
+  letter-spacing: 0.2px;
+}
+.pf-date strong { color: var(--ink-2); font-weight: 600; }
+
+
+/* ── Section ───────────────────────────────────────────────────────────── */
+.pf-section { margin-bottom: 56px; }
+
+.pf-section-eyebrow {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.pf-section-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.pf-section-desc {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--ink-3);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  max-width: 620px;
+}
+
+.pf-section-rule {
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 28px;
+  border: 0;
+}
+
+/* Header alterno: eyebrow + línea al costado */
+.pf-section-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.pf-section-head .pf-section-eyebrow { margin-bottom: 0; white-space: nowrap; }
+.pf-section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+
+/* ── Card base ─────────────────────────────────────────────────────────── */
+.pf-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  margin-bottom: 12px;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+.pf-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  border-top-left-radius: var(--r);
+  border-bottom-left-radius: var(--r);
+}
+.pf-card:hover { border-color: var(--accent-line); }
+
+.pf-card--urgent::before { background: var(--neg); }
+.pf-card--urgent:hover   { border-color: var(--neg-line); }
+
+.pf-card--flat::before   { display: none; }
+
+
+/* Card — patrones de contenido */
+.pf-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.pf-card-norma {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 1px;
+}
+.pf-card--urgent .pf-card-norma {
+  color: var(--neg);
+  background: var(--neg-soft);
+  border-color: var(--neg-line);
+}
+
+.pf-card-meta { flex: 1; min-width: 0; }
+
+.pf-card-organismo,
+.pf-card-source {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.pf-card-title {
+  font-family: var(--sans);
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  margin-bottom: 10px;
+}
+
+.pf-card-body {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  font-weight: 400;
+}
+.pf-card-body strong { color: var(--ink); font-weight: 600; }
+.pf-card-body p + p  { margin-top: 8px; }
+
+
+/* Card — tags */
+.pf-card-tags {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pf-tag {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 3px 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.pf-card--urgent .pf-tag {
+  color: var(--neg);
+  border-color: var(--neg-line);
+}
+
+
+/* ── Notice (bloque neutral "sin contenido") ──────────────────────────── */
+.pf-notice {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px 22px;
+  font-size: 13.5px;
+  color: var(--ink-3);
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+/* ── Grid de chips (fechas clave / KPIs compactos) ─────────────────────── */
+.pf-chip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.pf-chip-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.pf-chip-grid--7 { grid-template-columns: repeat(7, 1fr); }
+
+.pf-chip {
+  background: transparent;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 22px;
+}
+.pf-chip:hover { background: var(--bg-3); }
+
+.pf-chip-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.pf-chip-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pf-chip-desc {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  font-weight: 400;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.pf-chip-value {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.pf-chip-action {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.pf-chip-var {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+  letter-spacing: 0.2px;
+}
+.pf-chip-var--up   { color: var(--pos); }
+.pf-chip-var--down { color: var(--neg); }
+.pf-chip-var--neu  { color: var(--ink-3); }
+
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+.pf-footer {
+  padding: 24px 52px;
+  max-width: 960px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--ink-3);
+  letter-spacing: 0.5px;
+}
+
+
+/* ── Utilities ─────────────────────────────────────────────────────────── */
+.pf-mono   { font-family: var(--mono); }
+.pf-serif  { font-family: var(--serif); }
+.pf-sans   { font-family: var(--sans); }
+
+.pf-ink    { color: var(--ink); }
+.pf-ink-2  { color: var(--ink-2); }
+.pf-ink-3  { color: var(--ink-3); }
+.pf-accent { color: var(--accent); }
+.pf-gold   { color: var(--gold); }
+.pf-pos    { color: var(--pos); }
+.pf-neg    { color: var(--neg); }
+
+.pf-caps {
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .pf-chip-grid--7 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .pf-header,
+  .pf-footer { padding-left: 20px; padding-right: 20px; }
+
+  .pf-container,
+  .pf-container-narrow,
+  .pf-container-wide { padding: 32px 20px 48px; }
+
+  .pf-logo         { font-size: 26px; }
+  .pf-section-title { font-size: 24px; }
+  .pf-card         { padding: 20px 18px; }
+
+  .pf-chip-grid,
+  .pf-chip-grid--4,
+  .pf-chip-grid--7 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .pf-chip-grid,
+  .pf-chip-grid--4,
+  .pf-chip-grid--7 { grid-template-columns: 1fr; }
+  .pf-chip:nth-last-child(n) { border-right: none; }
+}
