@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumen Ejecutivo — 22/04/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e2a;
+    --border: #252a38;
+    --text: #e8ecf4;
+    --text-muted: #505870;
+    --text-secondary: #8a93b0;
+    --accent: #4a7de8;
+    --accent-light: #6b96f0;
+    --gold: #c9a84c;
+    --gold-light: #e0c068;
+    --red: #e05555;
+    --green: #3db87a;
+    --urgent: #e05555;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --font-serif: 'Fraunces', Georgia, serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; padding-bottom: 60px; }
+  .pf-header { background: linear-gradient(135deg, #0d0f14 0%, #111521 60%, #13161e 100%); border-bottom: 1px solid var(--border); padding: 36px 0 28px; text-align: center; }
+  .pf-logo { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: block; }
+  .pf-header h1 { font-family: var(--font-serif); font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; margin-bottom: 6px; }
+  .pf-subtitle { font-size: 13px; color: var(--text-secondary); font-weight: 400; margin-bottom: 12px; }
+  .pf-date { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+  .pf-container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .pf-section { margin-top: 44px; }
+  .pf-section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .pf-section-eyebrow { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+  .pf-section-head h2 { font-family: var(--font-sans); font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; }
+  .pf-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; transition: border-color 0.2s; }
+  .pf-card:hover { border-color: #303650; }
+  .pf-card--urgent { border-left: 3px solid var(--urgent); background: linear-gradient(90deg, #1a1219 0%, var(--surface) 40%); }
+  .pf-card-norma { font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; display: block; }
+  .pf-card-organismo { font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; display: block; }
+  .pf-card-title { font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 10px; letter-spacing: -0.2px; }
+  .pf-card-body { font-size: 13.5px; color: var(--text-secondary); line-height: 1.65; }
+  .pf-card-body strong { color: var(--text); font-weight: 600; }
+  .pf-card-footer { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .pf-link { font-family: var(--font-mono); font-size: 10px; font-weight: 600; text-decoration: none; padding: 3px 8px; border-radius: 3px; transition: opacity 0.15s; white-space: nowrap; }
+  .pf-link:hover { opacity: 0.7; }
+  .pf-link--fuente { color: var(--accent); border: 1px solid rgba(74,125,232,.3); }
+  .pf-link--bora { color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
+  .pf-link--kronos { color: var(--text-muted); border: 1px solid rgba(80,88,112,.4); }
+  .pf-market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 8px; }
+  .pf-market-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 14px 16px; }
+  .pf-market-label { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; display: block; }
+  .pf-market-value { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.1; display: block; }
+  .pf-market-sub { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 3px; display: block; }
+  .pf-pos { color: var(--green); }
+  .pf-neg { color: var(--red); }
+  .pf-accent { color: var(--accent); }
+  .pf-gold { color: var(--gold); }
+  .pf-footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border); text-align: center; }
+  .pf-footer p { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<header class="pf-header">
+  <span class="pf-logo">Press Feed — Argentina</span>
+  <h1>Resumen Ejecutivo de Mercados</h1>
+  <p class="pf-subtitle">Economía · Finanzas · Política regulatoria</p>
+  <span class="pf-date">Miércoles 22 de abril de 2026</span>
+</header>
+<main class="pf-container">
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-eyebrow">Bloque 01</span>
+      <h2>Economía y Mercados</h2>
+    </div>
+    <article class="pf-card pf-card--urgent">
+      <span class="pf-card-organismo">BCRA — Reservas</span>
+      <h3 class="pf-card-title">El BCRA aceleró la compra de divisas y acumuló más de USD 2.000 millones en abril</h3>
+      <p class="pf-card-body">El Banco Central intensificó sus intervenciones en el mercado cambiario durante la primera quincena de abril, acumulando compras netas superiores a <strong>USD 2.000 millones en el mes</strong> y elevando el total de 2026 a <strong>USD 6.382 millones</strong>. El ritmo de adquisición refleja el ingreso de divisas de la cosecha gruesa y la consolidación del superávit comercial. El dato es clave para la estrategia de reconstrucción de reservas internacionales bajo el programa con el FMI, aunque el Gobierno mantiene por ahora el ancla cambiaria sin convalidar una expansión monetaria adicional.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.ambito.com/finanzas/el-bcra-acelero-la-compra-divisas-y-ya-acumulo-us2000-lo-que-va-del-mes-n6269326" class="pf-link pf-link--fuente" target="_blank">→ Ver nota</a>
+      </div>
+    </article>
+    <article class="pf-card">
+      <span class="pf-card-organismo">INDEC — Inflación</span>
+      <h3 class="pf-card-title">Inflación de abril perforaría el 3%: se cortaría la racha alcista de diez meses</h3>
+      <p class="pf-card-body">Las consultoras privadas proyectan que el IPC de abril quebrará el umbral del <strong>3% mensual</strong> por primera vez en diez meses, cortando la tendencia alcista sostenida desde mediados de 2025. Los factores que explican la desaceleración incluyen la estabilidad del tipo de cambio oficial dentro de la banda, la moderación en tarifas y la menor presión de alimentos estacionales. El dato será decisivo para evaluar la consistencia del programa antiinflacionario de cara al segundo semestre, cuando venzan acuerdos salariales y se renegocien contratos de servicios.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.ambito.com/economia/inflacion-preven-que-abril-se-cortara-la-racha-alcista-10-meses-y-el-ipc-perforara-el-3-n6268848" class="pf-link pf-link--fuente" target="_blank">→ Ver nota</a>
+      </div>
+    </article>
+    <article class="pf-card">
+      <span class="pf-card-organismo">BCRA — Tasas y Deuda en Pesos</span>
+      <h3 class="pf-card-title">El BCRA armó un corredor de tasas: las Lecaps cortas se acercan al piso</h3>
+      <p class="pf-card-body">La autoridad monetaria consolidó un corredor implícito de tasas en pesos que está comprimiendo los rendimientos de las Letras de Capitalización (Lecaps) de corto plazo hacia el piso de la banda. El mercado comienza a rotar hacia instrumentos de mayor duration —como las Boncap— en búsqueda de rendimiento real. La señal anticipa una eventual nueva baja de tasas de política monetaria, reforzando el sesgo expansivo y la apuesta del Gobierno a la desinflación gradual. Los analistas monitorean si la compresión de spreads genera presión sobre el tipo de cambio financiero.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.ambito.com/finanzas/el-bcra-armo-un-corredor-tasas-y-las-lecaps-cortas-se-acercan-al-piso-que-pasara-futuro-n6269154" class="pf-link pf-link--fuente" target="_blank">→ Ver nota</a>
+      </div>
+    </article>
+    <article class="pf-card">
+      <span class="pf-card-organismo">Comercio Exterior — Balanza Comercial</span>
+      <h3 class="pf-card-title">Superávit comercial en nuevos máximos: exportaciones de carne superan USD 1.000 M en el trimestre</h3>
+      <p class="pf-card-body">El saldo comercial de bienes consolidó un nuevo piso positivo impulsado por el boom exportador del agro: las ventas externas de carne vacuna <strong>superaron los USD 1.000 millones en el primer trimestre de 2026</strong>, un récord histórico. El Cronista destacó que las exportaciones de marzo marcaron un punto de inflexión en el comercio exterior, con el Ministerio de Economía celebrando el ingreso masivo de divisas. El dato apalanca la acumulación de reservas del BCRA, aunque el "lado B" es el impacto al alza en los precios domésticos por el arrastre exportador sobre la oferta interna.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.infobae.com/economia/2026/04/22/boom-exportador-las-ventas-de-carne-argentina-al-exterior-superaron-los-usd-1000-millones-en-el-primer-trimestre-de-2026/" class="pf-link pf-link--fuente" target="_blank">→ Ver nota (Infobae)</a>
+        <a href="https://www.cronista.com/economia-politica/superavit-comercial-a-cuanto-llega-el-nuevo-piso-los-motores-y-el-lado-b/" class="pf-link pf-link--fuente" target="_blank">→ Ver nota (El Cronista)</a>
+      </div>
+    </article>
+    <article class="pf-card">
+      <span class="pf-card-organismo">Mercados Internacionales — Impacto Local</span>
+      <h3 class="pf-card-title">Tensión en Medio Oriente frenó la racha: riesgo país sube a 533 pb y bonos retroceden</h3>
+      <p class="pf-card-body">La escalada del conflicto en Medio Oriente —con petróleo en alza y amenaza iraní sobre el estrecho de Ormuz— generó turbulencias globales que se trasladaron a los activos locales: el <strong>riesgo país rebotó a 533 puntos básicos</strong> (+1,33%) y los bonos soberanos en dólares y ADR cedieron posiciones. En contraste, Wall Street mantuvo niveles históricos y analistas proyectan que un eventual acuerdo comercial entre EEUU y sus principales socios podría impulsar las acciones argentinas otro 50% en dólares. El escenario externo sigue siendo el principal factor de volatilidad de corto plazo.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.cronista.com/finanzas-mercados/a-la-espera-de-senales-sobre-iran-los-mercados-ceden-y-el-riesgo-pais-argentino-resiste-arriba-de-500-puntos/" class="pf-link pf-link--fuente" target="_blank">→ Ver nota (El Cronista)</a>
+        <a href="https://www.cronista.com/finanzas-mercados/wall-street-alcanza-maximos-historicos-que-acciones-recomiendan-ahora-los-analistas/" class="pf-link pf-link--fuente" target="_blank">→ Wall Street (El Cronista)</a>
+      </div>
+    </article>
+  </section>
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-eyebrow">Bloque 02</span>
+      <h2>Noticias Generales con Impacto Regulatorio y Político</h2>
+    </div>
+    <article class="pf-card">
+      <span class="pf-card-organismo">Política — Ejecutivo Nacional</span>
+      <h3 class="pf-card-title">Milei apuró el anuncio de la reforma electoral: gobernadores como pieza clave para los votos</h3>
+      <p class="pf-card-body">El Gobierno adelantó el lanzamiento del proyecto de reforma electoral antes del regreso de Milei de Israel, buscando instalar la agenda previa a las elecciones de medio término. La estrategia oficialista apunta a construir un acuerdo con gobernadores provinciales dialoguistas para asegurar los votos en el Congreso. La reforma tiene potencial impacto sobre el calendario electoral 2027, el financiamiento partidario y el esquema de listas, con implicancias directas para la estabilidad política del programa económico.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.infobae.com/politica/2026/04/22/milei-apuro-el-anuncio-de-la-reforma-electoral-la-incognita-por-los-votos-y-el-rol-clave-de-los-gobernadores/" class="pf-link pf-link--fuente" target="_blank">→ Ver nota</a>
+      </div>
+    </article>
+    <article class="pf-card">
+      <span class="pf-card-organismo">Infraestructura — Licitación Vial</span>
+      <h3 class="pf-card-title">El Gobierno abrió sobres para concesionar más de 1.800 km de rutas nacionales</h3>
+      <p class="pf-card-body">El Ministerio de Infraestructura abrió las ofertas para concesionar corredores viales nacionales por más de <strong>1.800 kilómetros</strong>, en el mayor proceso de privatización de obra pública de la gestión Milei. La concesión contempla inversión privada en mejoras, mantenimiento y cobro de peajes, aliviando el gasto fiscal en infraestructura. El proceso es relevante para el sector construcción, las economías regionales vinculadas a esos corredores y la señal de apertura al capital privado en activos estatales estratégicos.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.infobae.com/economia/2026/04/22/rutas-nacionales-el-gobierno-abrio-los-sobres-con-las-ofertas-de-las-empresas-para-concesionar-mas-de-1800-kilometros/" class="pf-link pf-link--fuente" target="_blank">→ Ver nota</a>
+      </div>
+    </article>
+    <article class="pf-card pf-card--urgent">
+      <span class="pf-card-organismo">Economía Social — UCA</span>
+      <h3 class="pf-card-title">Casi 6 de cada 10 niños son pobres en Argentina y el 30% no come regularmente, según la UCA</h3>
+      <p class="pf-card-body">El Observatorio de la Deuda Social de la UCA reveló que la <strong>pobreza infantil afecta al 58% de los menores</strong> y que un 30% enfrenta inseguridad alimentaria regular. El informe presiona sobre las políticas sociales del Gobierno en contexto de ajuste fiscal, con implicancias para el debate sobre la AUH y los programas de asistencia. El dato evidencia que la recuperación del poder adquisitivo aún no alcanzó a los sectores más vulnerables, pese a la desaceleración inflacionaria que se viene verificando.</p>
+      <div class="pf-card-footer">
+        <a href="https://www.infobae.com/economia/2026/04/22/casi-6-de-cada-10-ninos-son-pobres-en-la-argentina-y-el-30-no-come-regularmente-segun-la-uca/" class="pf-link pf-link--fuente" target="_blank">→ Ver nota</a>
+      </div>
+    </article>
+  </section>
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-eyebrow">Bloque 03</span>
+      <h2>Mercado al Cierre — 22/04/2026</h2>
+    </div>
+    <div class="pf-market-grid">
+      <div class="pf-market-item">
+        <span class="pf-market-label">Dólar BNA</span>
+        <span class="pf-market-value">$ 1.400</span>
+        <span class="pf-market-sub">Compra 1.350 / Venta 1.400 · <span class="pf-accent">0,00%</span></span>
+      </div>
+      <div class="pf-market-item">
+        <span class="pf-market-label">Dólar Blue</span>
+        <span class="pf-market-value">$ 1.410</span>
+        <span class="pf-market-sub">Compra 1.390 / Venta 1.410 · <span class="pf-accent">0,00%</span></span>
+      </div>
+      <div class="pf-market-item">
+        <span class="pf-market-label">Dólar MEP</span>
+        <span class="pf-market-value">$ 1.414,89</span>
+        <span class="pf-market-sub">Bursátil · <span class="pf-pos">+0,03%</span></span>
+      </div>
+      <div class="pf-market-item">
+        <span class="pf-market-label">Dólar CCL</span>
+        <span class="pf-market-value">$ 1.470,82</span>
+        <span class="pf-market-sub">GD30 48hs</span>
+      </div>
+      <div class="pf-market-item">
+        <span class="pf-market-label">Dólar Tarjeta</span>
+        <span class="pf-market-value">$ 1.820</span>
+        <span class="pf-market-sub">Consumo exterior · <span class="pf-accent">0,00%</span></span>
+      </div>
+      <div class="pf-market-item">
+        <span class="pf-market-label">S&amp;P Merval</span>
+        <span class="pf-market-value">2.940.100</span>
+        <span class="pf-market-sub">Pts · <span class="pf-pos">+0,29%</span></span>
+      </div>
+      <div class="pf-market-item">
+        <span class="pf-market-label">Riesgo País</span>
+        <span class="pf-market-value pf-neg">533</span>
+        <span class="pf-market-sub">Puntos básicos · <span class="pf-neg">+1,33%</span></span>
+      </div>
+    </div>
+    <p style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 16px; text-align: right;">Fuentes: Ámbito Financiero · El Cronista — Datos al cierre de la jornada del 22/04/2026</p>
+  </section>
+</main>
+<footer class="pf-footer">
+  <div class="pf-container">
+    <p>Generado el 22/04/2026 — Fuentes: Ámbito Financiero · El Cronista · Infobae</p>
+    <p style="margin-top:4px;">Este resumen es de uso informativo y no constituye asesoramiento de inversión.</p>
+  </div>
+</footer>
+</body>
+</html>
