@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETN INDEC — Análisis de Riesgo · Abril–Junio 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0B1620;
+      --bg-2: #0F1E2B;
+      --bg-3: #17293A;
+      --line: #1E3447;
+      --line-soft: rgba(255,255,255,0.06);
+      --ink: #F2F6F9;
+      --ink-2: #B5C5D3;
+      --ink-3: #7B91A3;
+      --accent: #34BBDA;
+      --accent-soft: rgba(52,187,218,0.12);
+      --gold: #E8B04A;
+      --pos: #5BD39A;
+      --neg: #EF6C6C;
+      --warn: #F5A623;
+      --grid-max: 1240px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(1200px 500px at 15% -10%, rgba(52,187,218,0.06), transparent 60%),
+        radial-gradient(900px 400px at 95% 0%, rgba(239,108,108,0.04), transparent 60%),
+        var(--bg);
+    }
+    .mono { font-family: 'IBM Plex Mono', monospace; font-feature-settings: "tnum" 1; }
+    .serif { font-family: 'Fraunces', serif; }
+
+    /* ============ HEADER ============ */
+    .header {
+      border-bottom: 1px solid var(--line);
+      padding: 28px 40px 20px;
+    }
+    .header-inner {
+      max-width: var(--grid-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; flex-direction: column; gap: 4px; }
+    .brand-eyebrow {
+      font-size: 10.5px;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600;
+    }
+    .brand-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 34px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .brand-accent { color: var(--neg); }
+    .brand-accent-2 { color: var(--accent); }
+    .header-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      text-align: right;
+    }
+    .header-meta-row {
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .header-meta-row strong { color: var(--ink-2); font-weight: 600; }
+    .pub-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-2);
+      letter-spacing: 0.5px;
+    }
+
+    /* ============ MAIN ============ */
+    .main {
+      max-width: var(--grid-max);
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
+
+    /* ============ SECTION FRAME ============ */
+    .section { margin-bottom: 72px; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .section-lede {
+      font-size: 13px;
+      color: var(--ink-3);
+      max-width: 420px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--bg-2), var(--bg));
+    }
+    .hero-cell {
+      padding: 32px 32px 28px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+      position: relative;
+    }
+    .hero-cell:last-child { border-right: none; }
+    .hero-cell.primary {
+      background:
+        radial-gradient(600px 200px at 0% 100%, rgba(239,108,108,0.08), transparent 70%),
+        var(--bg-2);
+    }
+    .hero-label {
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-label::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .hero-cell.primary .hero-label::before { background: var(--neg); }
+    .hero-cell.gold-cell .hero-label::before { background: var(--warn); }
+
+    .hero-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 54px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-top: 24px;
+    }
+    .hero-cell.primary .hero-value { font-size: 72px; color: var(--neg); }
+    .hero-cell.gold-cell .hero-value { color: var(--warn); }
+
+    .hero-meta {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hero-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      font-size: 13px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--line);
+    }
+    .hero-row-label { color: var(--ink-3); letter-spacing: 0.3px; }
+    .hero-row-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .pos { color: var(--pos); }
+    .neg { color: var(--neg); }
+    .warn { color: var(--warn); }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 10.5px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 2px;
+      align-self: flex-start;
+    }
+    .hero-tag.alerta-elevado {
+      color: var(--neg);
+      border: 1px solid var(--neg);
+      background: rgba(239,108,108,0.1);
+    }
+    .hero-tag.alerta-moderado {
+      color: var(--warn);
+      border: 1px solid var(--warn);
+      background: rgba(245,166,35,0.1);
+    }
+    .hero-tag.alerta-moderado-elevado {
+      color: #F0884A;
+      border: 1px solid #F0884A;
+      background: rgba(240,136,74,0.1);
+    }
+
+    /* ============ ALERTAS STRIP ============ */
+    .alerts-strip {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--bg-2);
+    }
+    .alert-cell {
+      padding: 20px 24px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .alert-cell:last-child { border-right: none; }
+    .alert-ramo {
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600;
+    }
+    .alert-nivel {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .alert-nivel.elevado { color: var(--neg); }
+    .alert-nivel.moderado { color: var(--warn); }
+    .alert-nivel.mod-elevado { color: #F0884A; }
+    .alert-accion {
+      font-size: 12px;
+      color: var(--ink-3);
+      line-height: 1.5;
+    }
+
+    /* ============ SECCIÓN 2 — INDICADORES ============ */
+    .indicadores-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .indicadores-col {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 28px 28px 16px;
+    }
+    .indicadores-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .indicadores-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .ice-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+    .ice-badge.bad {
+      color: var(--neg);
+      background: rgba(239,108,108,0.12);
+      border: 1px solid rgba(239,108,108,0.3);
+    }
+    .ice-badge.worse {
+      color: #FF4545;
+      background: rgba(255,69,69,0.15);
+      border: 1px solid rgba(255,69,69,0.35);
+    }
+
+    .indicador {
+      padding: 16px 0 14px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .indicador:last-child { border-bottom: none; }
+    .indicador-top {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .indicador-name {
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .indicador-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .indicador-var {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      min-width: 64px;
+      text-align: right;
+    }
+    .indicador-bar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+    .indicador-bar-track {
+      height: 6px;
+      background: var(--bg-3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .indicador-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+    .indicador-bar-fill.neg-fill { background: var(--neg); }
+    .indicador-bar-fill.warn-fill { background: var(--warn); }
+    .indicador-bar-fill.neutral-fill { background: var(--accent); }
+    .indicador-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      min-width: 80px;
+      text-align: right;
+    }
+
+    /* ============ SECCIÓN 3 — COBERTURAS ============ */
+    .coberturas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--bg-2);
+    }
+    .cobertura-cell {
+      padding: 30px 28px;
+      border-right: 1px solid var(--line);
+    }
+    .cobertura-cell:last-child { border-right: none; }
+    .cobertura-kicker {
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .cobertura-title {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .cobertura-metrics {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+    .cobertura-metric {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .cobertura-metric-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      min-width: 110px;
+    }
+    .cobertura-metric-label {
+      font-size: 12px;
+      color: var(--ink-3);
+      letter-spacing: 0.2px;
+    }
+    .cobertura-body {
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.65;
+    }
+    .cobertura-body em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .cobertura-body .up { color: var(--pos); font-weight: 600; }
+    .cobertura-body .dn { color: var(--neg); font-weight: 600; }
+    .cobertura-body .wn { color: var(--warn); font-weight: 600; }
+
+    /* ============ SECCIÓN 4 — RECOMENDACIONES ============ */
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .rec-col {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .rec-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+    .rec-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+    }
+    .rec-title.elevado { color: var(--neg); }
+    .rec-title.moderado { color: var(--warn); }
+    .rec-title.mod-elevado { color: #F0884A; }
+    .rec-body {
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .rec-body p { margin-bottom: 10px; }
+    .rec-body p:last-child { margin-bottom: 0; }
+    .rec-body strong { color: var(--ink); }
+    .rec-body .dn { color: var(--neg); font-weight: 600; }
+    .rec-body .wn { color: var(--warn); font-weight: 600; }
+    .rec-body .up { color: var(--pos); font-weight: 600; }
+    .rec-pull {
+      font-size: 12px;
+      color: var(--ink-3);
+      font-style: italic;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      line-height: 1.6;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 20px 40px;
+    }
+    .footer-inner {
+      max-width: var(--grid-max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.5px;
+    }
+    .footer-source {
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-cell { border-right: none; border-bottom: 1px solid var(--line); min-height: 180px; }
+      .indicadores-grid, .coberturas-grid, .rec-grid, .alerts-strip { grid-template-columns: 1fr; }
+      .cobertura-cell, .alert-cell { border-right: none; border-bottom: 1px solid var(--line); }
+      .main { padding: 32px 20px 60px; }
+      .header { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-eyebrow">Análisis de Riesgo · Comité de Dirección</div>
+        <div class="brand-title">ETN <span class="brand-accent-2">INDEC</span> — <span class="brand-accent">Riesgo</span></div>
+      </div>
+      <div class="header-meta">
+        <div class="header-meta-row">Período <strong>Abril – Junio 2026</strong></div>
+        <div class="header-meta-row">Fuente <strong>Encuesta de Tendencia de Negocios</strong></div>
+        <div class="pub-date">21 / 04 / 2026</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ============================================= -->
+    <!-- SECCIÓN 1 — INDICADORES CLAVE                 -->
+    <!-- ============================================= -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-num">§ 01 / Señal principal</div>
+          <div class="section-title">Indicadores de Confianza Empresarial</div>
+        </div>
+        <div class="section-lede">ICE de ambos sectores en terreno negativo. Industria en mínimo de la serie reciente.</div>
+      </div>
+
+      <div class="hero">
+        <!-- ICE Industrial -->
+        <div class="hero-cell primary">
+          <div class="hero-label">ICE Industria Manufacturera</div>
+          <div class="hero-value">−18,3</div>
+          <div class="hero-meta">
+            <div class="hero-row">
+              <span class="hero-row-label">Cartera pedidos (balance)</span>
+              <span class="hero-row-value neg">−48,0%</span>
+            </div>
+            <div class="hero-row">
+              <span class="hero-row-label">Situación financiera mala</span>
+              <span class="hero-row-value neg">25,5%</span>
+            </div>
+            <div class="hero-row">
+              <span class="hero-row-label">Acceso al crédito difícil</span>
+              <span class="hero-row-value neg">35,0%</span>
+            </div>
+          </div>
+          <div class="hero-tag alerta-elevado">⚠ Mínimo serie reciente</div>
+        </div>
+
+        <!-- ICE Supermercados -->
+        <div class="hero-cell">
+          <div class="hero-label">ICE Supermercados / Mayoristas</div>
+          <div class="hero-value">−6,2</div>
+          <div class="hero-meta">
+            <div class="hero-row">
+              <span class="hero-row-label">Situación comercial mala</span>
+              <span class="hero-row-value neg">32,0%</span>
+            </div>
+            <div class="hero-row">
+              <span class="hero-row-label">Acceso financiamiento difícil</span>
+              <span class="hero-row-value neg">30,7%</span>
+            </div>
+            <div class="hero-row">
+              <span class="hero-row-label">Demanda insuficiente (factor)</span>
+              <span class="hero-row-value neg">56,7%</span>
+            </div>
+          </div>
+          <div class="hero-tag alerta-moderado">▲ Deterioro crediticio</div>
+        </div>
+
+        <!-- Empleo -->
+        <div class="hero-cell gold-cell">
+          <div class="hero-label">Reducción de dotación esperada</div>
+          <div class="hero-value">−24,0</div>
+          <div class="hero-meta">
+            <div class="hero-row">
+              <span class="hero-row-label">Comercio — empresas que reducen</span>
+              <span class="hero-row-value neg">24,0%</span>
+            </div>
+            <div class="hero-row">
+              <span class="hero-row-label">Industria — empresas que reducen</span>
+              <span class="hero-row-value neg">17,3%</span>
+            </div>
+            <div class="hero-row">
+              <span class="hero-row-label">Horas trabajadas (balance ind.)</span>
+              <span class="hero-row-value neg">−12,4</span>
+            </div>
+          </div>
+          <div class="hero-tag alerta-moderado-elevado">▼ Exposición Vida / AP</div>
+        </div>
+      </div>
+
+      <!-- Alertas strip -->
+      <div class="alerts-strip">
+        <div class="alert-cell">
+          <div class="alert-ramo">Caución / Crédito</div>
+          <div class="alert-nivel elevado">Alerta ELEVADO</div>
+          <div class="alert-accion">Alerta a Suscripción y revisión de condiciones en manufactura y comercio.</div>
+        </div>
+        <div class="alert-cell">
+          <div class="alert-ramo">Incendio / Propiedad</div>
+          <div class="alert-nivel moderado">Alerta MODERADO</div>
+          <div class="alert-accion">Revisión de condiciones y monitoreo de inspecciones en plantas industriales.</div>
+        </div>
+        <div class="alert-cell">
+          <div class="alert-ramo">Vida / Accidentes Personales</div>
+          <div class="alert-nivel mod-elevado">Alerta MODERADO–ELEVADO</div>
+          <div class="alert-accion">Monitoreo activo y alerta a Suscripción en renovaciones colectivas.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- SECCIÓN 2 — INDICADORES POR SECTOR            -->
+    <!-- ============================================= -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-num">§ 02 / Desglose sectorial</div>
+          <div class="section-title">Indicadores clave por sector</div>
+        </div>
+        <div class="section-lede">Balances de respuesta: diferencia entre porcentaje de respuestas positivas y negativas.</div>
+      </div>
+
+      <div class="indicadores-grid">
+        <!-- Supermercados -->
+        <div class="indicadores-col">
+          <div class="indicadores-head">
+            <div class="indicadores-title">Supermercados y Autoservicios Mayoristas</div>
+            <div class="ice-badge bad">ICE −6,2</div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Situación comercial actual</div>
+              <div class="indicador-value neg">−32,0%</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:80%"></div></div>
+              <div class="indicador-label">37,3% mala</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Acceso al financiamiento</div>
+              <div class="indicador-value neg">−28,0</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:70%"></div></div>
+              <div class="indicador-label">30,7% difícil</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Pedidos a proveedores (esperado)</div>
+              <div class="indicador-value neg">−22,7</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:57%"></div></div>
+              <div class="indicador-label">24,0% baja</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Nivel de stocks</div>
+              <div class="indicador-value neg">−12,0%</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill warn-fill" style="width:30%"></div></div>
+              <div class="indicador-label">25,3% bajo normal</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Empleo esperado (balance)</div>
+              <div class="indicador-value neg">−24,0</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:60%"></div></div>
+              <div class="indicador-label">24,0% reduce</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Demanda insuficiente (factor limitante)</div>
+              <div class="indicador-value warn">56,7%</div>
+              <div class="indicador-var warn">principal</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill warn-fill" style="width:57%"></div></div>
+              <div class="indicador-label">1° restricción</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industria -->
+        <div class="indicadores-col">
+          <div class="indicadores-head">
+            <div class="indicadores-title">Industria Manufacturera</div>
+            <div class="ice-badge worse">ICE −18,3</div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Cartera de pedidos de clientes</div>
+              <div class="indicador-value neg">−48,0%</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:100%"></div></div>
+              <div class="indicador-label">50,9% bajo normal</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Acceso al crédito bancario</div>
+              <div class="indicador-value neg">−28,8</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:72%"></div></div>
+              <div class="indicador-label">35,0% difícil</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Situación financiera mala</div>
+              <div class="indicador-value neg">−14,8%</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:37%"></div></div>
+              <div class="indicador-label">25,5% mala</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Stocks producto terminado</div>
+              <div class="indicador-value warn">+2,1%</div>
+              <div class="indicador-var warn">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill warn-fill" style="width:20%"></div></div>
+              <div class="indicador-label">19,7% sobre adecuado</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Reducción volumen producción</div>
+              <div class="indicador-value neg">−5,0%</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:25%"></div></div>
+              <div class="indicador-label">20,1% reduce</div>
+            </div>
+          </div>
+
+          <div class="indicador">
+            <div class="indicador-top">
+              <div class="indicador-name">Horas trabajadas (balance esperado)</div>
+              <div class="indicador-value neg">−12,4</div>
+              <div class="indicador-var neg">balance</div>
+            </div>
+            <div class="indicador-bar">
+              <div class="indicador-bar-track"><div class="indicador-bar-fill neg-fill" style="width:31%"></div></div>
+              <div class="indicador-label">18,7% reduce</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- SECCIÓN 3 — SEÑAL POR COBERTURA               -->
+    <!-- ============================================= -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-num">§ 03 / Señal por cobertura</div>
+          <div class="section-title">Lectura de riesgo por ramo</div>
+        </div>
+        <div class="section-lede">Interpretación de los datos ETN en clave de exposición aseguradora.</div>
+      </div>
+
+      <div class="coberturas-grid">
+        <!-- Caución / Crédito -->
+        <div class="cobertura-cell">
+          <div class="cobertura-kicker">Ramo 01</div>
+          <div class="cobertura-title">Caución / Crédito</div>
+          <div class="cobertura-metrics">
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−48,0%</span>
+              <span class="cobertura-metric-label">cartera pedidos industria (balance)</span>
+            </div>
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−28,8</span>
+              <span class="cobertura-metric-label">acceso crédito bancario industria</span>
+            </div>
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−28,0</span>
+              <span class="cobertura-metric-label">acceso financiamiento comercio</span>
+            </div>
+          </div>
+          <div class="cobertura-body">
+            Ambos sectores muestran deterioro simultáneo en acceso al financiamiento. El ICE industrial de <span class="dn">−18,3</span> es el más bajo registrado en la serie reciente. La cartera de pedidos con balance de <span class="dn">−48,0%</span> anticipa presión sobre la capacidad de repago de obligaciones comerciales. <em>Suscripción</em> debe revisar límites por asegurado en manufactura dependiente del mercado interno y activar el protocolo de monitoreo de cartera en Caución de contratos.
+          </div>
+        </div>
+
+        <!-- Incendio / Propiedad -->
+        <div class="cobertura-cell">
+          <div class="cobertura-kicker">Ramo 02</div>
+          <div class="cobertura-title">Incendio / Propiedad</div>
+          <div class="cobertura-metrics">
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value warn">+2,1%</span>
+              <span class="cobertura-metric-label">exceso stocks prod. terminado industria</span>
+            </div>
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−5,0%</span>
+              <span class="cobertura-metric-label">balance reducción de producción</span>
+            </div>
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−12,0%</span>
+              <span class="cobertura-metric-label">nivel de stocks comercio (balance)</span>
+            </div>
+          </div>
+          <div class="cobertura-body">
+            En industria, la acumulación involuntaria de stocks de producto terminado ante la caída de pedidos eleva transitoriamente la <em>suma asegurada expuesta</em>. La perspectiva de reducción de actividad productiva para el 2T 2026 genera condiciones de activos subutilizados —históricamente correlacionados con <span class="wn">mayor probabilidad de siniestro</span>. En comercio, el riesgo es menor en sumas aseguradas, pero se activa el factor de locales con actividad reducida.
+          </div>
+        </div>
+
+        <!-- Vida / AP -->
+        <div class="cobertura-cell">
+          <div class="cobertura-kicker">Ramo 03</div>
+          <div class="cobertura-title">Vida / Accidentes Personales</div>
+          <div class="cobertura-metrics">
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−24,0</span>
+              <span class="cobertura-metric-label">balance empleo comercio (el más agudo)</span>
+            </div>
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−13,5</span>
+              <span class="cobertura-metric-label">balance empleo industria</span>
+            </div>
+            <div class="cobertura-metric">
+              <span class="cobertura-metric-value neg">−12,4</span>
+              <span class="cobertura-metric-label">balance horas trabajadas industria</span>
+            </div>
+          </div>
+          <div class="cobertura-body">
+            Ambos sectores anticipan caída neta de puestos de trabajo. <em>Ninguna empresa</em> del sector comercial anticipa aumento de dotación (76,0% estabilidad, <span class="dn">24,0% disminución</span>). La reducción simultánea de dotación y horas en industria es consistente con condiciones de mayor presión sobre el personal remanente, lo que puede incrementar la frecuencia de siniestros en coberturas de <span class="wn">Accidentes Personales colectivos</span>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- SECCIÓN 4 — RECOMENDACIONES AL COMITÉ         -->
+    <!-- ============================================= -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-num">§ 04 / Recomendaciones</div>
+          <div class="section-title">Acciones para el Comité de Dirección</div>
+        </div>
+        <div class="section-lede">Tres ángulos de acción: suscripción, inspección patrimonial y monitoreo de cartera de personas.</div>
+      </div>
+
+      <div class="rec-grid">
+        <!-- Caución -->
+        <article class="rec-col">
+          <div class="rec-num">01</div>
+          <h3 class="rec-title elevado">Caución / Crédito</h3>
+          <div class="rec-body">
+            <p>La combinación de situación financiera deteriorada, acceso restringido al crédito y demanda insuficiente como restricción estructural configura un cuadro de potencial <strong>incremento de siniestralidad</strong> en coberturas de crédito comercial e incumplimiento de contratos.</p>
+            <p>Se recomienda que Suscripción revise los límites de exposición por asegurado en los sectores de manufactura con mayor dependencia del mercado interno, y que se active el <strong>protocolo de monitoreo de cartera</strong> vigente en Caución de contratos y crédito comercial.</p>
+            <p>Para renovaciones, incorporar cláusulas de actualización de sumas y <strong>revisión semestral</strong> de clasificación crediticia del tomador.</p>
+          </div>
+          <div class="rec-pull">El sector industrial exhibe mayor fragilidad sistémica que el comercial. ICE −18,3 es el peor valor registrado en la serie reciente.</div>
+        </article>
+
+        <!-- Incendio -->
+        <article class="rec-col">
+          <div class="rec-num">02</div>
+          <h3 class="rec-title moderado">Incendio / Propiedad</h3>
+          <div class="rec-body">
+            <p>El riesgo más relevante surge de la industria manufacturera, donde el exceso de inventario de producto terminado (<span class="wn">+2,1%</span> de balance en stocks) combinado con perspectiva de reducción de producción (<span class="dn">balance −5,0%</span>) anticipa plantas con menor actividad operativa y bienes acumulados.</p>
+            <p>Se recomienda que en las próximas <strong>inspecciones de riesgo</strong> se evalúe el estado de mantenimiento de instalaciones en clientes industriales que hayan comunicado paradas o reducción de turnos.</p>
+            <p>Actualizar las <strong>cláusulas de suma asegurada mínima</strong> en pólizas con revisión anual para capturar el valor real de los stocks acumulados.</p>
+          </div>
+          <div class="rec-pull">Locales comerciales con actividad reducida también presentan mayor exposición a siniestros incendiales por menor presencia activa.</div>
+        </article>
+
+        <!-- Vida / AP -->
+        <article class="rec-col">
+          <div class="rec-num">03</div>
+          <h3 class="rec-title mod-elevado">Vida / Accidentes Personales</h3>
+          <div class="rec-body">
+            <p>Las pólizas colectivas del segmento <strong>supermercadista y autoservicios mayoristas</strong> deben ser identificadas para revisión preventiva de cláusulas de ajuste de nómina, dado que el balance de empleo esperado es el más agudo de ambos informes (<span class="dn">−24,0</span>).</p>
+            <p>En manufactura, focalizar la atención en clientes con mayor intensidad de proceso productivo que además muestren deterioro en su situación financiera (<span class="dn">−14,8%</span> de balance), dado que la presión sobre el personal en contextos de restricción financiera es un <strong>predictor histórico de aumento de accidentalidad</strong>.</p>
+          </div>
+          <div class="rec-pull">La reducción simultánea de dotación y horas en industria es consistente con mayor rotación, posible trabajo informal o tercerizado, y presión sobre equipos reducidos.</div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-text">Informe generado automáticamente · 21/04/2026</div>
+      <div class="footer-source">Fuente · INDEC — ETN Vol. 10 N.º 14 · Supermercados y Autoservicios Mayoristas + Industria Manufacturera</div>
+    </div>
+  </footer>
+
+</body>
+</html>
