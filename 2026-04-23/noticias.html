@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumen Ejecutivo de Noticias — 23/04/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0f14;--bg-card:#141720;--bg-card-hover:#1a1e2a;--border:#232736;--border-accent:#2e3448;--accent:#4a7de8;--accent-dim:rgba(74,125,232,0.12);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.12);--urgent:rgba(220,60,60,0.10);--urgent-border:rgba(220,60,60,0.30);--text:#e8eaf0;--text-muted:#505870;--text-mid:#8892aa;--font-sans:'Inter',sans-serif;--font-serif:'Fraunces',serif;--font-mono:'IBM Plex Mono',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.65;min-height:100vh;padding:0 0 60px}
+.pf-container{max-width:860px;margin:0 auto;padding:0 24px}
+.pf-header{border-bottom:1px solid var(--border);padding:40px 0 28px;margin-bottom:40px}
+.pf-logo{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
+.pf-header h1{font-family:var(--font-serif);font-size:2rem;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:10px}
+.pf-subtitle{font-size:0.95rem;color:var(--text-mid);font-weight:400;margin-bottom:14px}
+.pf-date{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase}
+.pf-section{margin-bottom:48px}
+.pf-section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.pf-section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)}
+.pf-section-head h2{font-family:var(--font-serif);font-size:1.1rem;font-weight:600;color:var(--text)}
+.pf-card{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:20px 22px;margin-bottom:14px;transition:border-color 0.15s}
+.pf-card:hover{border-color:var(--border-accent)}
+.pf-card--urgent{background:var(--urgent);border-color:var(--urgent-border)}
+.pf-card-norma{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block}
+.pf-card-organismo{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;display:block}
+.pf-card-title{font-family:var(--font-serif);font-size:1.05rem;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:10px}
+.pf-card-body{font-size:0.875rem;color:var(--text-mid);line-height:1.7}
+.pf-card-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.pf-link{font-family:var(--font-mono);font-size:10px;font-weight:600;text-decoration:none;padding:3px 8px;border-radius:3px;transition:opacity 0.15s;white-space:nowrap}
+.pf-link:hover{opacity:0.7}
+.pf-link--fuente{color:var(--accent);border:1px solid rgba(74,125,232,.3)}
+.pf-link--bora{color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.pf-link--kronos{color:var(--text-muted);border:1px solid rgba(80,88,112,.4)}
+.pf-market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-top:10px}
+.pf-market-item{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:14px 16px}
+.pf-market-label{font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;display:block}
+.pf-market-value{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--text);line-height:1.1;display:block}
+.pf-market-sub{font-family:var(--font-mono);font-size:10px;font-weight:500;margin-top:4px;display:block}
+.pf-pos{color:#4cbb7a}
+.pf-neg{color:#e05555}
+.pf-accent{color:var(--accent)}
+.pf-gold{color:var(--gold)}
+.pf-footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:0.06em}
+.pf-footer p{margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="pf-container">
+<header class="pf-header">
+<span class="pf-logo">Resumen Ejecutivo · Noticias Argentinas</span>
+<h1>Panorama del Día</h1>
+<p class="pf-subtitle">Análisis diario de economía, mercados y política argentina</p>
+<span class="pf-date">Jueves 23 de abril de 2026 — Fuentes: Ámbito Financiero · El Cronista · Infobae</span>
+</header>
+
+<section class="pf-section">
+<div class="pf-section-head">
+<span class="pf-section-eyebrow">Bloque 01</span>
+<h2>Economía y Mercados</h2>
+</div>
+
+<div class="pf-card pf-card--urgent">
+<span class="pf-card-organismo">INDEC · Actividad Económica</span>
+<div class="pf-card-title">La actividad económica se derrumbó 2,6% en febrero: peor caída desde diciembre de 2023</div>
+<div class="pf-card-body">El Estimador Mensual de Actividad Económica (EMAE) publicado por el INDEC registró una contracción del 2,6% mensual en febrero de 2026, el retroceso más pronunciado en más de dos años. El dato contagió negativamente a los mercados locales y elevó la cautela de los inversores, que ajustaron sus expectativas de recuperación. El deterioro refleja el impacto acumulado del ajuste fiscal sobre la demanda interna, con sectores industriales y de construcción entre los más afectados. Se espera que el dato de marzo —motorizado por la cosecha gruesa— ofrezca cierta recuperación, aunque los analistas advierten que la reactivación sigue siendo frágil.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.ambito.com/la-economia-se-hundio-26-mensual-febrero-su-peor-retroceso-diciembre-2023-n6269708" target="_blank">Ver nota</a>
+</div>
+</div>
+
+<div class="pf-card">
+<span class="pf-card-organismo">BCRA · Reservas y Tipo de Cambio</span>
+<div class="pf-card-title">El BCRA acumula casi u$s6.500 millones de compras en 2026 y el oficial sigue por debajo de los $1.400</div>
+<div class="pf-card-body">El Banco Central volvió a posicionarse como comprador neto, sumando u$s105 millones y llevando las reservas brutas por encima de los u$s45.800 millones. El dólar oficial acumula más de un mes operando por debajo del piso de la banda cambiaria ($1.400), reflejo del aumento en la oferta de divisas del agro en plena campaña de cosecha gruesa. El tipo de cambio oficial se ubica a casi 23% por debajo del techo de la banda acordada con el FMI, con el Banco Central aprovechando el margen para acumular reservas y estabilizar las expectativas cambiarias.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.ambito.com/finanzas/el-bcra-compro-otros-us105-millones-y-ya-acumulo-casi-us6500-millones-2026-n6269760" target="_blank">Ver nota</a>
+</div>
+</div>
+
+<div class="pf-card pf-card--urgent">
+<span class="pf-card-organismo">Wall Street · ADRs y Mercado Local</span>
+<div class="pf-card-title">ADRs argentinos cayeron hasta 6% a contramano de los récords de Wall Street; el Merval retrocede 1,41%</div>
+<div class="pf-card-body">Mientras Wall Street quebró nuevos máximos históricos impulsado por el sector tecnológico —favorecido por la prórroga de la tregua entre EEUU e Irán y los sólidos resultados de Tesla—, los papeles argentinos operaron en rojo. Los ADRs bancarios lideraron las caídas con retrocesos de hasta 6%. El S&P Merval cerró con una baja de 1,41% y el riesgo país cedió levemente hasta 532 puntos básicos. El "trade Argentina" se mantiene activo en Wall Street pero los inversores internacionales exigen mayor selectividad ante el calendario electoral 2027 y la incertidumbre sobre la continuidad del programa.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.ambito.com/finanzas/los-bonos-dolares-y-los-adrs-abren-verde-wall-street-mientras-se-prorroga-el-alto-al-fuego-n6269531" target="_blank">Ver nota</a>
+</div>
+</div>
+
+<div class="pf-card">
+<span class="pf-card-organismo">Mercados · Tasas e Instrumentos</span>
+<div class="pf-card-title">Caen las tasas y el mercado abandona las Lecap: los inversores migran hacia nuevos instrumentos</div>
+<div class="pf-card-body">La compresión de tasas en el mercado local generó un desplazamiento de carteras desde las Letras Capitalizables (Lecap), que habían sido el instrumento estrella del Tesoro durante 2025. Los inversores institucionales y minoristas buscan alternativas ante el achicamiento del rendimiento real. La dinámica anticipa una reconfiguración del mercado de pesos con tasas más bajas, en un contexto donde el Tesoro avanza en alargar plazos y reducir el costo de la deuda en moneda local. Paralelamente, el economista Roberto Frenkel —quien formó a Milei— advirtió que el programa económico actual "no es sostenible ni durable" y propuso tres ajustes estructurales.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.cronista.com/finanzas-mercados/caen-las-tasas-y-el-mercado-abandona-las-lecap-en-que-nuevo-instrumento-se-refugia/" target="_blank">Ver nota</a>
+</div>
+</div>
+
+<div class="pf-card">
+<span class="pf-card-organismo">Energía · GNL y YPF</span>
+<div class="pf-card-title">El Gobierno posterga un año la privatización de importaciones de GNL; YPF avanza con la venta de Metrogas</div>
+<div class="pf-card-body">El Ejecutivo decidió extender por doce meses la participación de Enarsa en la importación de Gas Natural Licuado, postergando el cronograma de apertura al sector privado. La medida sorprendió dado el discurso de desregulación del Gobierno. En paralelo, YPF avanza con la venta de Metrogas: hay 13 interesados y expectativas de superar los u$s700 millones, configurando una desinversión selectiva en el sector gasífero. Ambas novedades tienen impacto directo sobre tarifas de gas y sobre los esquemas de abastecimiento energético del próximo invierno.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.ambito.com/energia/el-gobierno-posterga-la-privatizacion-las-importaciones-gnl-un-ano-n6269825" target="_blank">Ver nota</a>
+</div>
+</div>
+
+</section>
+
+<section class="pf-section">
+<div class="pf-section-head">
+<span class="pf-section-eyebrow">Bloque 02</span>
+<h2>Noticias Generales con Impacto Regulatorio y Sectorial</h2>
+</div>
+
+<div class="pf-card">
+<span class="pf-card-organismo">Política · Sistema Electoral</span>
+<div class="pf-card-title">El Gobierno envió al Congreso la reforma electoral: eliminación de PASO y boleta única de papel</div>
+<div class="pf-card-body">La Casa Rosada remitió al Congreso el texto completo de la reforma que propone eliminar las PASO e instrumentar la boleta única de papel. La medida generó fracturas internas en el oficialismo y activó un acelerado armado opositor encabezado por el PJ. Tres provincias avanzan en paralelo con sus propios proyectos de reforma y Ficha Limpia. El impacto regulatorio es profundo: afecta el financiamiento de partidos, los plazos de campaña, la arquitectura del sistema electoral y el escenario político de las elecciones legislativas de 2027.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.ambito.com/politica/casa-rosada-envio-al-congreso-el-proyecto-reforma-electoral-el-texto-completo-n6269761" target="_blank">Ver nota</a>
+</div>
+</div>
+
+<div class="pf-card">
+<span class="pf-card-organismo">Poder Judicial · Reforma Laboral</span>
+<div class="pf-card-title">La Justicia volvió a frenar parte de la reforma laboral a pedido de un gremio minero</div>
+<div class="pf-card-body">El Juzgado Nacional del Trabajo N° 63 dictó una nueva cautelar —a pedido de un gremio del sector minero— que suspende artículos de la Ley Bases vinculados a la reforma laboral. La reiterada judicialización mantiene en suspenso disposiciones clave sobre contratación y desvinculación, con impacto directo sobre la formalización del empleo y la inversión en sectores regulados. La incertidumbre jurídica frena la adopción del nuevo marco por parte de las empresas y prolonga el conflicto gremial-judicial que condiciona el clima de negocios.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.ambito.com/politica/reforma-laboral-pedido-un-gremio-minero-la-justicia-volvio-frenar-parte-la-ley-n6269834" target="_blank">Ver nota</a>
+</div>
+</div>
+
+<div class="pf-card">
+<span class="pf-card-organismo">Sistema Financiero · Salud · Gremios</span>
+<div class="pf-card-title">Paro en el BCRA el lunes 27; la CGT alerta por obras sociales al borde del default</div>
+<div class="pf-card-body">La Asociación Bancaria confirmó un paro de 24 horas para el lunes 27 de abril en el Banco Central, con riesgo de afectación en la carga de cajeros automáticos y operaciones financieras. Simultáneamente, la CGT advirtió que varias obras sociales sindicales se encuentran en situación "terminal", al borde del default por el aumento de prestaciones ante recursos insuficientes. El modelo de financiamiento de obras sociales y prepagas está ante un punto de quiebre que podría derivar en restricciones de cobertura médica para miles de afiliados.</div>
+<div class="pf-card-footer">
+<a class="pf-link pf-link--fuente" href="https://www.ambito.com/informacion-general/paro-el-bcra-la-asociacion-bancaria-confirmo-un-paro-24-horas-el-proximo-lunes-27-abril-n6269858" target="_blank">Ver nota</a>
+</div>
+</div>
+
+</section>
+
+<section class="pf-section">
+<div class="pf-section-head">
+<span class="pf-section-eyebrow">Bloque 03</span>
+<h2>Mercado al Cierre</h2>
+</div>
+<div class="pf-market-grid">
+<div class="pf-market-item">
+<span class="pf-market-label">Dólar BNA</span>
+<span class="pf-market-value">$1.400</span>
+<span class="pf-market-sub" style="color:var(--text-muted)">Venta · 0,00%</span>
+</div>
+<div class="pf-market-item">
+<span class="pf-market-label">Dólar Blue</span>
+<span class="pf-market-value">$1.415</span>
+<span class="pf-market-sub pf-pos">Venta · +0,35%</span>
+</div>
+<div class="pf-market-item">
+<span class="pf-market-label">Dólar MEP</span>
+<span class="pf-market-value">$1.419</span>
+<span class="pf-market-sub pf-neg">-0,05%</span>
+</div>
+<div class="pf-market-item">
+<span class="pf-market-label">Dólar Tarjeta</span>
+<span class="pf-market-value">$1.820</span>
+<span class="pf-market-sub" style="color:var(--text-muted)">0,00%</span>
+</div>
+<div class="pf-market-item">
+<span class="pf-market-label">S&P Merval</span>
+<span class="pf-market-value">2.898.691</span>
+<span class="pf-market-sub pf-neg">-1,41%</span>
+</div>
+<div class="pf-market-item">
+<span class="pf-market-label">Riesgo País</span>
+<span class="pf-market-value">532 pb</span>
+<span class="pf-market-sub pf-pos">-0,19%</span>
+</div>
+</div>
+</section>
+
+<footer class="pf-footer">
+<p>Resumen generado el jueves 23 de abril de 2026.</p>
+<p>Fuentes: Ámbito Financiero (ambito.com) · El Cronista (cronista.com) · Infobae (infobae.com)</p>
+<p>La Nación no estaba disponible como pestaña en el browser al momento de la recolección.</p>
+<p>Cotizaciones: última actualización disponible al cierre de la jornada.</p>
+</footer>
+</div>
+</body>
+</html>

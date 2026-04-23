@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial — Análisis Regulatorio · 23/04/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: radial-gradient(ellipse 80% 50% at 0% 0%, rgba(52,187,218,0.06) 0%, transparent 60%), var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  /* HEADER */
+  header {
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+    margin-bottom: 4px;
+  }
+
+  .date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  section {
+    margin-bottom: 56px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-urgent {
+    border-left: 2px solid var(--neg);
+  }
+
+  .card-novelty {
+    border-left: 2px solid var(--accent);
+  }
+
+  .card-financial {
+    border-left: 2px solid var(--gold);
+  }
+
+  .card-top {
+    margin-bottom: 10px;
+  }
+
+  .norm-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .norm-number-urgent { color: var(--accent); }
+  .norm-number-novelty { color: var(--accent); }
+  .norm-number-financial { color: var(--gold); }
+
+  .org-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  /* CARD FOOTER LINKS */
+  .card-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .link-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    display: inline-block;
+    transition: opacity 0.2s;
+  }
+
+  .link-btn:hover { opacity: 0.8; }
+
+  .link-bora-urgent { color: var(--neg); border: 1px solid rgba(239,108,108,0.3); }
+  .link-bora-novelty { color: var(--accent); border: 1px solid rgba(52,187,218,0.3); }
+  .link-bora-financial { color: var(--gold); border: 1px solid rgba(232,176,74,0.3); }
+  .link-kronos { color: var(--ink-3); border: 1px solid rgba(123,145,163,0.3); }
+
+  /* CHIPS */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+
+  .chip-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .chip-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+
+  .chip-action {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .chip-empty {
+    color: var(--ink-3);
+    font-size: 13px;
+  }
+
+  /* NO ITEMS MESSAGE */
+  .no-items {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-3);
+    padding: 20px 0;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    margin-top: 56px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .container { padding: 32px 20px; }
+    .logo { font-size: 22px; }
+    .section-title { font-size: 22px; }
+    .chips-grid { grid-template-columns: 1fr; }
+    .card-links { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Hipotecario Seguros</div>
+    <div class="subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="date">Jueves, 23 de Abril de 2026</div>
+  </header>
+
+  <!-- SECCIÓN 1: URGENTE — OMITIDA (sin items urgentes hoy) -->
+
+  <!-- SECCIÓN 2: NOVEDADES REGULATORIAS -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Novedades Regulatorias</span>
+    </div>
+
+    <!-- IGJ RG 2/2026 -->
+    <div class="card card-novelty">
+      <div class="card-top">
+        <div class="norm-number norm-number-novelty">RESOG-2026-2-APN-IGJ#MJ · Resolución General 2/2026</div>
+        <div class="org-label">Inspección General de Justicia</div>
+        <div class="card-title">Elaboración Participativa de Normas: consulta pública sobre reforma del régimen societario</div>
+      </div>
+      <div class="card-desc">
+        La IGJ institucionaliza el procedimiento de Elaboración Participativa de Normas (Decreto 1172/2003) para proyectos de resoluciones generales de relevancia. Invita a la ciudadanía y entidades profesionales a presentar observaciones, en especial sobre la Resolución General IGJ 15/2024, en el marco del proceso de desregulación impulsado por el Poder Ejecutivo. Los comentarios se canalizan por https://www.argentina.gob.ar/justicia/igj/consulta-publica. Aunque la IGJ no regula directamente a aseguradoras (que se rigen por SSN), cambios en el régimen de sociedades comerciales pueden impactar en procesos de constitución, reestructuración corporativa y requisitos de presentación de estados contables de compañías del sector.
+      </div>
+      <div class="card-links">
+        <a class="link-btn link-bora-novelty" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341092/20260423" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Decreto 269/2026 -->
+    <div class="card card-novelty">
+      <div class="card-top">
+        <div class="norm-number norm-number-novelty">DECTO-2026-269-APN-PTE · Decreto 269/2026</div>
+        <div class="org-label">Poder Ejecutivo Nacional — Administración Pública Nacional</div>
+        <div class="card-title">Reorganización de la Jefatura de Gabinete de Ministros: nueva estructura con Secretaría de Comunicación y Prensa</div>
+      </div>
+      <div class="card-desc">
+        El decreto modifica el Organigrama de la Administración Nacional (Decreto 50/2019) incorporando la Secretaría de Comunicación y Prensa a la órbita de la Jefatura de Gabinete. Se ajustan competencias de la Secretaría de Innovación, Ciencia y Tecnología (agrega funciones de IA, blockchain y ciberseguridad) y se transfieren cargos presupuestarios. Para el sector asegurador el impacto es indirecto: la SSN actúa en el ámbito del Ministerio de Economía, por lo que cambios en JGM no alteran la cadena de mando regulatoria sobre seguros. Sin embargo, las nuevas competencias en IA y tecnología blockchain de la Secretaría de Innovación pueden ser relevantes para futuras iniciativas de digitalización del reporte regulatorio.
+      </div>
+      <div class="card-links">
+        <a class="link-btn link-bora-novelty" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341077/20260423" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3: IMPACTO FINANCIERO -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Impacto Financiero</span>
+    </div>
+
+    <!-- BNA Tasas TAMAR -->
+    <div class="card card-financial">
+      <div class="card-top">
+        <div class="norm-number norm-number-financial">Aviso Oficial · Banco de la Nación Argentina</div>
+        <div class="org-label">Banco de la Nación Argentina</div>
+        <div class="card-title">Tasas de referencia: TAMAR y Tasa Activa Cartera General — actualización vigente desde 22/04/2026</div>
+      </div>
+      <div class="card-desc">
+        El BNA publica las tasas vigentes aplicables a préstamos con caución de certificados de obra y operaciones de descuento. La TAMAR (Tasa Activa para Mutuales y Afines de la República Argentina) es una referencia de mercado utilizada en contratos de financiación e inversión del sector asegurador. Las tasas publicadas para el período 22/04–23/04/2026 son: TNA Adelantada a 30 días 25,43% — TNA Vencida a 30 días 27,13% — Efectiva Anual Vencida 30,03% — Efectiva Mensual Vencida 2,182%. Para descuentos a PyMEs: hasta 30 días al 23,00% TNA. Estas referencias impactan en la valuación de activos de renta fija en cartera, el cálculo de tasas técnicas en reservas de seguros de vida y la medición de rendimiento de inversiones contra benchmarks regulatorios.
+      </div>
+      <div class="card-links">
+        <a class="link-btn link-bora-financial" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341098/20260423" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4: PRÓXIMOS VENCIMIENTOS -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Próximos Vencimientos</span>
+    </div>
+    <div class="chips-grid">
+      <div class="chip">
+        <div class="chip-empty">Sin vencimientos derivados de esta edición</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTA EDITORIAL -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Nota Editorial</span>
+    </div>
+    <div class="card card-novelty">
+      <div class="card-desc">
+        <strong style="color: var(--ink);">La edición del 23 de abril de 2026 no contiene publicaciones de la SSN (Superintendencia de Seguros de la Nación).</strong> Tampoco se publicaron comunicaciones del BCRA con impacto en el régimen de inversiones o cómputo de reservas de entidades aseguradoras, ni resoluciones generales de ARCA/AFIP con cambios impositivos relevantes para el sector. Los dos avisos del BCRA corresponden exclusivamente a notificaciones de sumarios cambiarios a personas físicas y jurídicas por infracciones al régimen penal cambiario (Ley 19.359), sin efecto normativo sobre aseguradoras. La edición presenta un día de baja carga regulatoria sectorial.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Generado automáticamente · 23/04/2026 · Fuente: Boletín Oficial de la República Argentina
+  </footer>
+
+</div>
+</body>
+</html>
