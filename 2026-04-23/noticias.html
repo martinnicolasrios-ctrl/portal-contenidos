@@ -1,195 +1,524 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resumen Ejecutivo de Noticias — 23/04/2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0d0f14;--bg-card:#141720;--bg-card-hover:#1a1e2a;--border:#232736;--border-accent:#2e3448;--accent:#4a7de8;--accent-dim:rgba(74,125,232,0.12);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.12);--urgent:rgba(220,60,60,0.10);--urgent-border:rgba(220,60,60,0.30);--text:#e8eaf0;--text-muted:#505870;--text-mid:#8892aa;--font-sans:'Inter',sans-serif;--font-serif:'Fraunces',serif;--font-mono:'IBM Plex Mono',monospace}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.65;min-height:100vh;padding:0 0 60px}
-.pf-container{max-width:860px;margin:0 auto;padding:0 24px}
-.pf-header{border-bottom:1px solid var(--border);padding:40px 0 28px;margin-bottom:40px}
-.pf-logo{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
-.pf-header h1{font-family:var(--font-serif);font-size:2rem;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:10px}
-.pf-subtitle{font-size:0.95rem;color:var(--text-mid);font-weight:400;margin-bottom:14px}
-.pf-date{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase}
-.pf-section{margin-bottom:48px}
-.pf-section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.pf-section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)}
-.pf-section-head h2{font-family:var(--font-serif);font-size:1.1rem;font-weight:600;color:var(--text)}
-.pf-card{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:20px 22px;margin-bottom:14px;transition:border-color 0.15s}
-.pf-card:hover{border-color:var(--border-accent)}
-.pf-card--urgent{background:var(--urgent);border-color:var(--urgent-border)}
-.pf-card-norma{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block}
-.pf-card-organismo{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;display:block}
-.pf-card-title{font-family:var(--font-serif);font-size:1.05rem;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:10px}
-.pf-card-body{font-size:0.875rem;color:var(--text-mid);line-height:1.7}
-.pf-card-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
-.pf-link{font-family:var(--font-mono);font-size:10px;font-weight:600;text-decoration:none;padding:3px 8px;border-radius:3px;transition:opacity 0.15s;white-space:nowrap}
-.pf-link:hover{opacity:0.7}
-.pf-link--fuente{color:var(--accent);border:1px solid rgba(74,125,232,.3)}
-.pf-link--bora{color:var(--gold);border:1px solid rgba(201,168,76,.3)}
-.pf-link--kronos{color:var(--text-muted);border:1px solid rgba(80,88,112,.4)}
-.pf-market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-top:10px}
-.pf-market-item{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:14px 16px}
-.pf-market-label{font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;display:block}
-.pf-market-value{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--text);line-height:1.1;display:block}
-.pf-market-sub{font-family:var(--font-mono);font-size:10px;font-weight:500;margin-top:4px;display:block}
-.pf-pos{color:#4cbb7a}
-.pf-neg{color:#e05555}
-.pf-accent{color:var(--accent)}
-.pf-gold{color:var(--gold)}
-.pf-footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:0.06em}
-.pf-footer p{margin-bottom:4px}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 23/04/2026 · Hipotecario Seguros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620;
+      --bg-2: #0F1E2B;
+      --bg-3: #17293A;
+      --line: #1E3447;
+      --ink: #F2F6F9;
+      --ink-2: #B5C5D3;
+      --ink-3: #7B91A3;
+      --accent: #34BBDA;
+      --gold: #E8B04A;
+      --pos: #5BD39A;
+      --neg: #EF6C6C;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%);
+      color: var(--ink);
+      padding: 40px 20px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 36px;
+      margin-bottom: 32px;
+      border-radius: 4px;
+    }
+    .header-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 8px;
+    }
+    .header-title {
+      font-family: 'Fraunces', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .header-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: .08em;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 28px;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+    }
+    .card-header {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      letter-spacing: .1em;
+      margin-bottom: 10px;
+    }
+    .card-content {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .card-content strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .card-content p {
+      margin-bottom: 10px;
+    }
+    .card-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ALERT CARD */
+    .card-alert {
+      border-left: 3px solid var(--neg);
+      background: rgba(239,108,108,.04);
+    }
+    .card-alert .card-header {
+      color: var(--neg);
+    }
+
+    /* RECOMMENDATION CARD */
+    .card-rec {
+      border-left: 3px solid var(--gold);
+      background: rgba(232,176,74,.04);
+    }
+    .card-rec .card-header {
+      color: var(--gold);
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .highlight strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* BULLETS */
+    .bullet-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .bullet-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      border-left: 2px solid var(--accent);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+    .bullet-list li:last-child {
+      margin-bottom: 0;
+    }
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 6px;
+      box-shadow: 0 0 6px rgba(52,187,218,.5);
+    }
+    .bullet-list strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* TAG */
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      background: rgba(52,187,218,.1);
+      color: var(--accent);
+      border: 1px solid rgba(52,187,218,.25);
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    .tag.neg {
+      background: rgba(239,108,108,.1);
+      color: var(--neg);
+      border-color: rgba(239,108,108,.25);
+    }
+    .tag.gold {
+      background: rgba(232,176,74,.1);
+      color: var(--gold);
+      border-color: rgba(232,176,74,.25);
+    }
+    .tag.pos {
+      background: rgba(91,211,154,.1);
+      color: var(--pos);
+      border-color: rgba(91,211,154,.25);
+    }
+
+    /* LISTA DE TENSIONES */
+    .tension-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .tension-list li {
+      margin-bottom: 16px;
+      padding-left: 0;
+    }
+    .tension-list li:last-child {
+      margin-bottom: 0;
+    }
+    .tension-item {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .tension-item strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      text-align: center;
+      letter-spacing: .06em;
+      line-height: 1.6;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      .header-title { font-size: 24px; }
+      .section-title { font-size: 18px; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 24px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
 </head>
 <body>
-<div class="pf-container">
-<header class="pf-header">
-<span class="pf-logo">Resumen Ejecutivo · Noticias Argentinas</span>
-<h1>Panorama del Día</h1>
-<p class="pf-subtitle">Análisis diario de economía, mercados y política argentina</p>
-<span class="pf-date">Jueves 23 de abril de 2026 — Fuentes: Ámbito Financiero · El Cronista · Infobae</span>
-</header>
+<div class="container">
 
-<section class="pf-section">
-<div class="pf-section-head">
-<span class="pf-section-eyebrow">Bloque 01</span>
-<h2>Economía y Mercados</h2>
-</div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial</div>
+    <div class="header-title">El carry manda, pero el mercado empieza a cobrar la entrada para 2027</div>
+    <div class="header-meta">23 de abril de 2026 · Análisis regulatorio y financiero para CEO · Hipotecario Seguros</div>
+  </div>
 
-<div class="pf-card pf-card--urgent">
-<span class="pf-card-organismo">INDEC · Actividad Económica</span>
-<div class="pf-card-title">La actividad económica se derrumbó 2,6% en febrero: peor caída desde diciembre de 2023</div>
-<div class="pf-card-body">El Estimador Mensual de Actividad Económica (EMAE) publicado por el INDEC registró una contracción del 2,6% mensual en febrero de 2026, el retroceso más pronunciado en más de dos años. El dato contagió negativamente a los mercados locales y elevó la cautela de los inversores, que ajustaron sus expectativas de recuperación. El deterioro refleja el impacto acumulado del ajuste fiscal sobre la demanda interna, con sectores industriales y de construcción entre los más afectados. Se espera que el dato de marzo —motorizado por la cosecha gruesa— ofrezca cierta recuperación, aunque los analistas advierten que la reactivación sigue siendo frágil.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.ambito.com/la-economia-se-hundio-26-mensual-febrero-su-peor-retroceso-diciembre-2023-n6269708" target="_blank">Ver nota</a>
-</div>
-</div>
+  <!-- RESUMEN EJECUTIVO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El tipo de cambio opera cerca del piso de la banda</strong> (BNA $1.400, Blue $1.415, MEP $1.419, CCL $1.474): el dólar financiero está prácticamente quieto y la brecha se mantiene comprimida, lo que alimenta el carry pero erosiona competitividad de exportadores no-energéticos.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La curva CER opera con tasas reales profundamente negativas</strong> (tramo corto a -14%, tramo hasta 2027 en -5%): el mercado está pagando prima de seguro de inflación a costa de rendimiento real, lo que indica que el consenso de desinflación ya está sobrepriceado en el tramo corto.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Riesgo país en 535 bps, con leve alza semanal de 8 bps</strong>: fondos internacionales mantienen posiciones de deuda hard dollar pero en modo "hold sin compras adicionales". El catalizador para nueva compresión es el crecimiento real, no el flujo financiero.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La actividad cayó 2,6% en febrero (INDEC)</strong>: el rebote no es uniforme. El mercado empieza a separar la narrativa de "estabilización macro exitosa" de la de "recuperación económica genuina".</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El frente político entra en zona de estrés</strong>: la reforma electoral PASO, el informe Adorni en el Congreso y proyectos pendientes (universidades, holdouts, patentes) concentran riesgo político para las próximas dos semanas.</div>
+      </li>
+    </ul>
+  </div>
 
-<div class="pf-card">
-<span class="pf-card-organismo">BCRA · Reservas y Tipo de Cambio</span>
-<div class="pf-card-title">El BCRA acumula casi u$s6.500 millones de compras en 2026 y el oficial sigue por debajo de los $1.400</div>
-<div class="pf-card-body">El Banco Central volvió a posicionarse como comprador neto, sumando u$s105 millones y llevando las reservas brutas por encima de los u$s45.800 millones. El dólar oficial acumula más de un mes operando por debajo del piso de la banda cambiaria ($1.400), reflejo del aumento en la oferta de divisas del agro en plena campaña de cosecha gruesa. El tipo de cambio oficial se ubica a casi 23% por debajo del techo de la banda acordada con el FMI, con el Banco Central aprovechando el margen para acumular reservas y estabilizar las expectativas cambiarias.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.ambito.com/finanzas/el-bcra-compro-otros-us105-millones-y-ya-acumulo-casi-us6500-millones-2026-n6269760" target="_blank">Ver nota</a>
-</div>
-</div>
+  <!-- LECTURA DE MERCADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Régimen de Transición dentro del Carry</div>
+      <div class="card-content">
+        <p>El escenario de hoy <strong>no es de ruptura sino de transición dentro del régimen de carry</strong>. El mercado está en una fase en que los activos en pesos ya rindieron lo que tenían que rendir en el ciclo de compresión de spread, y ahora el interrogante es qué viene después.</p>
+        <p>El dato más significativo del día no es el tipo de cambio —que está quieto— sino <strong>la arquitectura de tasas reales negativas en CER</strong>: cuando el tramo corto rinde -14% real, el mercado está comunicando que no cree en inflación futura o que está tan sobrecomprado que ya no hay margen de error. Cualquier sorpresa inflacionaria al alza (que el propio mercado admite: el dato de marzo fue 3,4% vs 3% esperado) puede provocar una salida violenta del tramo corto.</p>
+        <p>La narrativa implícita que construye el mercado es: <strong>"la macro está estabilizada, el FMI validó el esquema, las reservas suben, las elecciones están lejos... por ahora"</strong>. Pero esa narrativa tiene una fecha de vencimiento. Los fondos internacionales en Washington lo dijeron sin filtro: el horizonte de <strong>2027 ya está en el radar</strong>, y sin una estrategia de liability management visible para ese año, el apetito incremental no aparece.</p>
+        <p>El contexto geopolítico actúa como fondo de ruido: la guerra con Irán sube los precios del GNL (mala para importación energética, que Enarsa seguirá asumiendo) pero también mantiene un sesgo restrictivo en los bancos centrales globales, lo que limita el flujo hacia emergentes.</p>
+      </div>
+    </div>
+  </div>
 
-<div class="pf-card pf-card--urgent">
-<span class="pf-card-organismo">Wall Street · ADRs y Mercado Local</span>
-<div class="pf-card-title">ADRs argentinos cayeron hasta 6% a contramano de los récords de Wall Street; el Merval retrocede 1,41%</div>
-<div class="pf-card-body">Mientras Wall Street quebró nuevos máximos históricos impulsado por el sector tecnológico —favorecido por la prórroga de la tregua entre EEUU e Irán y los sólidos resultados de Tesla—, los papeles argentinos operaron en rojo. Los ADRs bancarios lideraron las caídas con retrocesos de hasta 6%. El S&P Merval cerró con una baja de 1,41% y el riesgo país cedió levemente hasta 532 puntos básicos. El "trade Argentina" se mantiene activo en Wall Street pero los inversores internacionales exigen mayor selectividad ante el calendario electoral 2027 y la incertidumbre sobre la continuidad del programa.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.ambito.com/finanzas/los-bonos-dolares-y-los-adrs-abren-verde-wall-street-mientras-se-prorroga-el-alto-al-fuego-n6269531" target="_blank">Ver nota</a>
-</div>
-</div>
+  <!-- TENSIONES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li>
+        <div class="tension-item">
+          <strong>Tipo de cambio vs. competitividad exportadora</strong>
+          El dólar planchado en el piso de la banda beneficia al carry y al sector financiero, pero Claudio Caprarulo (Analytica) lo señaló explícitamente: el agro —el sector más favorecido por el Gobierno— puede verse perjudicado por la apreciación real. Si el tipo de cambio no sube, la liquidación del agro puede demorarse, presionando reservas brutas.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Tasas reales CER negativas vs. riesgo de inflación sorpresa</strong>
+          El break-even de abril está en 2,8% y el dato de marzo sorprendió al alza. Si abril cierra entre 3% y 3,5%, el tramo corto de la curva CER sufre un ajuste de precio brusco. El mercado está posicionado para lo mejor, no para lo probable.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Fondos internacionales: "hold" no es compra</strong>
+          El informe de Banco Comafi desde las reuniones de Washington es clave. Los grandes fondos no están saliendo, pero tampoco están entrando. La compresión del riesgo país desde niveles de 600 bps se hizo sin flujo nuevo. La siguiente compresión necesita crecimiento real y claridad sobre refinanciamiento 2027.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>ANSES comprando acciones en el mercado local</strong>
+          La ANSES duplicó su participación en dos empresas mediante compras hormigas. Es una señal de uso activo del fondo como instrumento de mercado, que puede tener lectura política o de cobertura. Reduce el float disponible en esos papeles.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Mora bancaria todavía subiendo</strong>
+          Los bancos refinancian deudas en tarjeta (TNAs bajan de 120-140% a 80%, plazo se estira a 24 meses). Esto es correcto como gestión de riesgo pero muestra que el consumo del ciclo crediticio 2025 dejó cuelgues reales. La mora real del sistema todavía no tocó fondo.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Decisión GNL / Enarsa</strong>
+          El Gobierno desistió de privatizar la importación de GNL. Con precios internacionales en máximos por el conflicto en Medio Oriente, el costo fiscal implícito de mantener a Enarsa importando puede aumentar, o bien implica tarifas más altas que el Gobierno deberá trasladar (o subsidiar).
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>YPF vende Metrogas</strong>
+          13 interesados en primera ronda, due diligence con Citi. La concreción dentro de 2026 generaría ingreso de divisas al sector privado, pero también involucra riesgo regulatorio y posible conflicto con la Provincia de Buenos Aires.
+        </div>
+      </li>
+    </ul>
+  </div>
 
-<div class="pf-card">
-<span class="pf-card-organismo">Mercados · Tasas e Instrumentos</span>
-<div class="pf-card-title">Caen las tasas y el mercado abandona las Lecap: los inversores migran hacia nuevos instrumentos</div>
-<div class="pf-card-body">La compresión de tasas en el mercado local generó un desplazamiento de carteras desde las Letras Capitalizables (Lecap), que habían sido el instrumento estrella del Tesoro durante 2025. Los inversores institucionales y minoristas buscan alternativas ante el achicamiento del rendimiento real. La dinámica anticipa una reconfiguración del mercado de pesos con tasas más bajas, en un contexto donde el Tesoro avanza en alargar plazos y reducir el costo de la deuda en moneda local. Paralelamente, el economista Roberto Frenkel —quien formó a Milei— advirtió que el programa económico actual "no es sostenible ni durable" y propuso tres ajustes estructurales.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.cronista.com/finanzas-mercados/caen-las-tasas-y-el-mercado-abandona-las-lecap-en-que-nuevo-instrumento-se-refugia/" target="_blank">Ver nota</a>
-</div>
-</div>
+  <!-- IMPACTO EN VARIABLES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Tipo de cambio (oficial / MEP / CCL)</div>
+      <div class="card-content">El BNA está anclado en $1.400, dentro de la banda. El CCL en $1.474 implica una brecha cambiaria de apenas ~5%, la más baja en años. No hay presión inmediata sobre el techo de la banda, pero la apreciación real acumulada vs. Brasil y socios comerciales es un riesgo estructural. El BCRA sigue comprando reservas con flujo del agro, aunque si el agro demora liquidación por tipo de cambio bajo, el flujo puede caer.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de tasas (corto vs. largo)</div>
+      <div class="card-content">El tramo corto CER (-14% real) está operando en modo "burbuja de expectativas". El tramo medio (TZXD6, TZXM7, TZXD7) es donde los portfolio managers están concentrando posición: mejor equilibrio riesgo-retorno. El tramo largo CER (TX26, TZX28) empieza a tener valor relativo si la inflación no cae tan rápido como el mercado espera. La tasa fija de corto plazo ofrece rendimientos muy bajos en términos reales, lo que la hace menos atractiva frente a CER medio.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación esperada</div>
+      <div class="card-content">Break-even de abril: 2,8%. Expectativa de mercado: caída progresiva al 2% en mayo, 1,8-1,9% en septiembre. El riesgo es que abril cierre entre 3% y 3,5% —la primera quincena de datos de alta frecuencia no muestra desaceleración contundente—, rompiendo la narrativa de desinflación y castigando el tramo corto de la curva.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Liquidez del sistema</div>
+      <div class="card-content">Los bancos refinancian cartera irregular (no originan crédito nuevo). La Encuesta de Condiciones Crediticias del BCRA confirma foco en gestión de cartera, no en expansión. Esto es desinflatoriamente saludable pero limita el canal de crédito como motor de actividad. El consumo privado sigue sin despegar con fuerza.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo soberano</div>
+      <div class="card-content">535 bps. Compresión mensual de -65 bps es significativa. La resistencia ahora es estructural: para bajar de 500 bps de forma sostenida se necesita crecimiento del PIB visible y un plan de refinanciamiento 2027 comunicado. Sin eso, el riesgo es una lateralización prolongada entre 500 y 600 bps.</div>
+    </div>
+  </div>
 
-<div class="pf-card">
-<span class="pf-card-organismo">Energía · GNL y YPF</span>
-<div class="pf-card-title">El Gobierno posterga un año la privatización de importaciones de GNL; YPF avanza con la venta de Metrogas</div>
-<div class="pf-card-body">El Ejecutivo decidió extender por doce meses la participación de Enarsa en la importación de Gas Natural Licuado, postergando el cronograma de apertura al sector privado. La medida sorprendió dado el discurso de desregulación del Gobierno. En paralelo, YPF avanza con la venta de Metrogas: hay 13 interesados y expectativas de superar los u$s700 millones, configurando una desinversión selectiva en el sector gasífero. Ambas novedades tienen impacto directo sobre tarifas de gas y sobre los esquemas de abastecimiento energético del próximo invierno.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.ambito.com/energia/el-gobierno-posterga-la-privatizacion-las-importaciones-gnl-un-ano-n6269825" target="_blank">Ver nota</a>
-</div>
-</div>
+  <!-- IMPLICANCIAS DE POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Se benefician</div>
+      <div class="card-content">Bonos CER de tramo medio (duration ~1 año, instrumentos TZXD6/TZXM7/TZXD7), que capturan inflación sin riesgo de duration extremo. Acciones energéticas con exposición a Vaca Muerta (con la apreciación real como riesgo moderador). RIGI como catalizador de flujo de capitales privados: Fertil Pampa $2.400M es señal concreta de activación del régimen. <span class="tag pos">POSITIVOS</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Se perjudican o son más riesgosos</div>
+      <div class="card-content">Bonos CER de tramo muy corto (ya en -14% real, sin margen de error). Posiciones largas en acciones de consumo doméstico: el Merval en pesos no rompe resistencia sin un catalizador de actividad real. Exportadores agroindustriales en el margen si el tipo de cambio sigue planchado. <span class="tag neg">RIESGOSOS</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Pierden sentido</div>
+      <div class="card-content">Estrategias de cobertura con dólar linked de corto plazo si el dólar sigue en el piso de la banda. Plazo fijo tradicional: tasas nominales bajas con inflación que puede sorprender al alza.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Empieza a tener valor</div>
+      <div class="card-content">Cobertura de inflación en tramo medio-largo CER para quien no la tiene. Diversificación hacia activos hard dollar soberanos de ley NY (GD30, GD35) como ancla de cartera ante eventual volatilidad política. Liquidez en pesos de corto plazo (cauciones) como opción táctica si la inflación sorprende y el mercado recompone tasas. <span class="tag">VALOR RELATIVO</span></div>
+    </div>
+  </div>
 
-</section>
+  <!-- ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas</span>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Dato de inflación de abril</div>
+      <div class="card-content">Si cierra por encima de 3%, la curva CER de tramo corto tiene una corrección técnica severa. El consenso de mercado está posicionado para 2,8%. Un error de expectativas puede forzar reposicionamiento masivo. <span class="tag neg">RIESGO CRÍTICO</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Frente político</div>
+      <div class="card-content">Las próximas dos semanas concentran la agenda parlamentaria más densa (informe Adorni + reforma electoral PASO). Si el Gobierno pierde iniciativa o no logra apoyos clave, el riesgo país puede subir 30-50 bps en pocas jornadas. <span class="tag neg">RIESGO ALTO</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Refinanciamiento 2027</div>
+      <div class="card-content">Los fondos internacionales están esperando señales concretas de liability management. Si el Gobierno no comunica una hoja de ruta en Q2 2026, el flujo externo hacia bonos argentinos puede secarse antes de las elecciones. <span class="tag neg">RIESGO ESTRUCTURAL</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Mora bancaria y calidad de cartera</div>
+      <div class="card-content">Los bancos están absorbiendo la cartera irregular con refinanciaciones, pero si la mora no da señales de techo en junio, el regulador puede exigir mayores previsiones, afectando resultados del sector financiero Q2 2026. <span class="tag neg">RIESGO MEDIO</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Precios del GNL y Enarsa</div>
+      <div class="card-content">Con precios internacionales en máximos, el costo de importación de gas aumenta. Si no hay traslado a tarifas, la presión fiscal puede comprometer el superávit. Si hay traslado, hay un spike inflacionario en tarifas de energía que el mercado aún no está descontando. <span class="tag neg">RIESGO DUAL</span></div>
+    </div>
+  </div>
 
-<section class="pf-section">
-<div class="pf-section-head">
-<span class="pf-section-eyebrow">Bloque 02</span>
-<h2>Noticias Generales con Impacto Regulatorio y Sectorial</h2>
-</div>
+  <!-- LO QUE NO ESTÁ PRECIADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight">
+      <strong>La fragilidad del consenso de desinflación.</strong> El mercado descuenta una convergencia casi lineal de la inflación al 1,8-1,9% mensual para Q3 2026. Pero hay tres shocks latentes que esa trayectoria no contempla: (1) el posible traslado de mayores costos de importación energética a tarifas, (2) un deslizamiento cambiario si el BCRA necesita comprar reservas con el tipo de cambio cerca del piso y el agro no liquida, y (3) un evento político que demore o revierta la agenda de desregulación, liberando expectativas de precios reprimidas.
+    </div>
+    <div class="highlight">
+      <strong>La correlación entre riesgo político y costo de carry.</strong> Si el frente parlamentario escala (reforma PASO, Adorni, holdouts), el riesgo país puede subir 40-60 bps en días, cortando abruptamente el diferencial de tasas que sostiene el carry. Quien esté largo en pesos sin cobertura ni stop loss tiene un riesgo asimétrico muy alto.
+    </div>
+  </div>
 
-<div class="pf-card">
-<span class="pf-card-organismo">Política · Sistema Electoral</span>
-<div class="pf-card-title">El Gobierno envió al Congreso la reforma electoral: eliminación de PASO y boleta única de papel</div>
-<div class="pf-card-body">La Casa Rosada remitió al Congreso el texto completo de la reforma que propone eliminar las PASO e instrumentar la boleta única de papel. La medida generó fracturas internas en el oficialismo y activó un acelerado armado opositor encabezado por el PJ. Tres provincias avanzan en paralelo con sus propios proyectos de reforma y Ficha Limpia. El impacto regulatorio es profundo: afecta el financiamiento de partidos, los plazos de campaña, la arquitectura del sistema electoral y el escenario político de las elecciones legislativas de 2027.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.ambito.com/politica/casa-rosada-envio-al-congreso-el-proyecto-reforma-electoral-el-texto-completo-n6269761" target="_blank">Ver nota</a>
-</div>
-</div>
+  <!-- BAJADA A CARTERA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — Perspectiva Compañía de Seguros</span>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Cartera en pesos vs. USD</div>
+      <div class="card-content">El sesgo actual hacia pesos por mandato regulatorio (SSRN exige cobertura en moneda de los pasivos) se mantiene razonable mientras el tipo de cambio esté anclado. Sin embargo, la apreciación real acumulada hace que la "cobertura" con activos en pesos implique riesgo de descalce si hay un salto discreto del tipo de cambio. El CCL en $1.474 vs. BNA en $1.400 señala que el mercado ya está pagando ~5% de prima de salida. Para una aseguradora con reservas técnicas en pesos de largo plazo, esto es manejable; para las reservas de corto plazo (siniestros esperados), el descalce es tolerable solo si el régimen no sufre un cambio brusco.</div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Instrumentos CER — Recomendación Táctica</div>
+      <div class="card-content">El tramo corto (-14% real) está sobrecomprado. Para una cartera de seguros que no puede asumir riesgo de precio alto con duration baja, el trade es <strong>rotar del tramo muy corto (hasta 6 meses) al tramo medio (TZXD6, TZXM7: 1 a 1,5 años de duration)</strong>. El tramo medio captura inflación real con mejor balance riesgo-retorno y soporta mejor una sorpresa inflacionaria. Mantener exposición CER como núcleo de la cartera pesos, pero no en el extremo corto sobrecomprado. <span class="tag gold">TÁCTICO</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Tasa fija — Evitar durations largas</div>
+      <div class="card-content">Evitar durations largas en tasa fija. Con inflación esperada convergiendo pero no garantizada, los bonos a tasa fija de más de 6 meses ofrecen una carry modesto pero exponen a pérdida de capital si la inflación sorprende al alza. Para liquidez táctica (menos de 3 meses), la tasa fija puede ser útil. Para reservas técnicas de mediano plazo, el CER es superior. <span class="tag gold">DEFENSA</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">USD-linked — Mantener cobertura mínima</div>
+      <div class="card-content">Bajo el régimen actual de tipo de cambio anclado en el piso de la banda, los instrumentos dollar-linked de corto plazo ofrecen carry casi nulo (el tipo de cambio apenas se mueve). Sin embargo, como cobertura estructural de una porción de la cartera técnica ligada a siniestros con componente importado (automóviles, electrónica), mantener una posición mínima de <strong>10-15% en dollar-linked de tramo corto</strong> es prudente como seguro ante un eventual ajuste del piso de la banda. <span class="tag">SEGURO</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Riesgo de liquidez — Colchón no negociable</div>
+      <div class="card-content">Los bancos están en modo refinanciación, no expansión de crédito. Si la aseguradora necesita liquidez rápida (siniestros extraordinarios, catástrofe), los activos CER de tramo medio pueden tener iliquidez transitoria. <strong>Mantener al menos un 20-25% de la cartera en activos con liquidez T+1 (cauciones, FCI money market, Lecaps de muy corto plazo)</strong> como colchón de liquidez no negociable. No asumir que la liquidez del mercado secundario CER en stress es la misma que en condiciones normales. <span class="tag neg">CRÍTICO</span></div>
+    </div>
+  </div>
 
-<div class="pf-card">
-<span class="pf-card-organismo">Poder Judicial · Reforma Laboral</span>
-<div class="pf-card-title">La Justicia volvió a frenar parte de la reforma laboral a pedido de un gremio minero</div>
-<div class="pf-card-body">El Juzgado Nacional del Trabajo N° 63 dictó una nueva cautelar —a pedido de un gremio del sector minero— que suspende artículos de la Ley Bases vinculados a la reforma laboral. La reiterada judicialización mantiene en suspenso disposiciones clave sobre contratación y desvinculación, con impacto directo sobre la formalización del empleo y la inversión en sectores regulados. La incertidumbre jurídica frena la adopción del nuevo marco por parte de las empresas y prolonga el conflicto gremial-judicial que condiciona el clima de negocios.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.ambito.com/politica/reforma-laboral-pedido-un-gremio-minero-la-justicia-volvio-frenar-parte-la-ley-n6269834" target="_blank">Ver nota</a>
-</div>
-</div>
+  <!-- FOOTER -->
+  <footer>
+    Análisis basado en noticias publicadas por El Cronista Comercial el 22 y 23 de abril de 2026<br/>
+    Cotizaciones de referencia: BNA $1.400 | Blue $1.415 | MEP $1.419 | CCL $1.474 | Riesgo País 535 bps<br/>
+    Hipotecario Seguros
+  </footer>
 
-<div class="pf-card">
-<span class="pf-card-organismo">Sistema Financiero · Salud · Gremios</span>
-<div class="pf-card-title">Paro en el BCRA el lunes 27; la CGT alerta por obras sociales al borde del default</div>
-<div class="pf-card-body">La Asociación Bancaria confirmó un paro de 24 horas para el lunes 27 de abril en el Banco Central, con riesgo de afectación en la carga de cajeros automáticos y operaciones financieras. Simultáneamente, la CGT advirtió que varias obras sociales sindicales se encuentran en situación "terminal", al borde del default por el aumento de prestaciones ante recursos insuficientes. El modelo de financiamiento de obras sociales y prepagas está ante un punto de quiebre que podría derivar en restricciones de cobertura médica para miles de afiliados.</div>
-<div class="pf-card-footer">
-<a class="pf-link pf-link--fuente" href="https://www.ambito.com/informacion-general/paro-el-bcra-la-asociacion-bancaria-confirmo-un-paro-24-horas-el-proximo-lunes-27-abril-n6269858" target="_blank">Ver nota</a>
-</div>
-</div>
-
-</section>
-
-<section class="pf-section">
-<div class="pf-section-head">
-<span class="pf-section-eyebrow">Bloque 03</span>
-<h2>Mercado al Cierre</h2>
-</div>
-<div class="pf-market-grid">
-<div class="pf-market-item">
-<span class="pf-market-label">Dólar BNA</span>
-<span class="pf-market-value">$1.400</span>
-<span class="pf-market-sub" style="color:var(--text-muted)">Venta · 0,00%</span>
-</div>
-<div class="pf-market-item">
-<span class="pf-market-label">Dólar Blue</span>
-<span class="pf-market-value">$1.415</span>
-<span class="pf-market-sub pf-pos">Venta · +0,35%</span>
-</div>
-<div class="pf-market-item">
-<span class="pf-market-label">Dólar MEP</span>
-<span class="pf-market-value">$1.419</span>
-<span class="pf-market-sub pf-neg">-0,05%</span>
-</div>
-<div class="pf-market-item">
-<span class="pf-market-label">Dólar Tarjeta</span>
-<span class="pf-market-value">$1.820</span>
-<span class="pf-market-sub" style="color:var(--text-muted)">0,00%</span>
-</div>
-<div class="pf-market-item">
-<span class="pf-market-label">S&P Merval</span>
-<span class="pf-market-value">2.898.691</span>
-<span class="pf-market-sub pf-neg">-1,41%</span>
-</div>
-<div class="pf-market-item">
-<span class="pf-market-label">Riesgo País</span>
-<span class="pf-market-value">532 pb</span>
-<span class="pf-market-sub pf-pos">-0,19%</span>
-</div>
-</div>
-</section>
-
-<footer class="pf-footer">
-<p>Resumen generado el jueves 23 de abril de 2026.</p>
-<p>Fuentes: Ámbito Financiero (ambito.com) · El Cronista (cronista.com) · Infobae (infobae.com)</p>
-<p>La Nación no estaba disponible como pestaña en el browser al momento de la recolección.</p>
-<p>Cotizaciones: última actualización disponible al cierre de la jornada.</p>
-</footer>
 </div>
 </body>
 </html>
