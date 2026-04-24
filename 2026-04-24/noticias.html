@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 24/04/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620;
+      --bg-2: #0F1E2B;
+      --bg-3: #17293A;
+      --line: #1E3447;
+      --ink: #F2F6F9;
+      --ink-2: #B5C5D3;
+      --ink-3: #7B91A3;
+      --accent: #34BBDA;
+      --gold: #E8B04A;
+      --pos: #5BD39A;
+      --neg: #EF6C6C;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%);
+      color: var(--ink);
+      padding: 40px 20px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 36px;
+      margin-bottom: 32px;
+      border-radius: 4px;
+    }
+    .header-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 8px;
+    }
+    .header-title {
+      font-family: 'Fraunces', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .header-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: .08em;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 28px;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+    }
+    .card-header {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      letter-spacing: .1em;
+      margin-bottom: 10px;
+    }
+    .card-content {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .card-content strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .card-content p {
+      margin-bottom: 10px;
+    }
+    .card-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ALERT CARD */
+    .card-alert {
+      border-left: 3px solid var(--neg);
+      background: rgba(239,108,108,.04);
+    }
+    .card-alert .card-header {
+      color: var(--neg);
+    }
+
+    /* RECOMMENDATION CARD */
+    .card-rec {
+      border-left: 3px solid var(--gold);
+      background: rgba(232,176,74,.04);
+    }
+    .card-rec .card-header {
+      color: var(--gold);
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .highlight strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* BULLETS */
+    .bullet-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .bullet-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      border-left: 2px solid var(--accent);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+    .bullet-list li:last-child {
+      margin-bottom: 0;
+    }
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 6px;
+      box-shadow: 0 0 6px rgba(52,187,218,.5);
+    }
+    .bullet-list strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* TAG */
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      background: rgba(52,187,218,.1);
+      color: var(--accent);
+      border: 1px solid rgba(52,187,218,.25);
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    .tag.neg {
+      background: rgba(239,108,108,.1);
+      color: var(--neg);
+      border-color: rgba(239,108,108,.25);
+    }
+    .tag.gold {
+      background: rgba(232,176,74,.1);
+      color: var(--gold);
+      border-color: rgba(232,176,74,.25);
+    }
+    .tag.pos {
+      background: rgba(91,211,154,.1);
+      color: var(--pos);
+      border-color: rgba(91,211,154,.25);
+    }
+
+    /* LISTA DE TENSIONES */
+    .tension-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .tension-list li {
+      margin-bottom: 16px;
+      padding-left: 0;
+    }
+    .tension-list li:last-child {
+      margin-bottom: 0;
+    }
+    .tension-item {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .tension-item strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      text-align: center;
+      letter-spacing: .06em;
+      line-height: 1.6;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      .header-title { font-size: 24px; }
+      .section-title { font-size: 18px; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 24px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial</div>
+    <div class="header-title">Carry en Crucero, pero el Viento Externo Empieza a Cambiar de Dirección</div>
+    <div class="header-meta">24 de abril de 2026 · Análisis regulatorio y financiero</div>
+  </div>
+
+  <!-- RESUMEN EJECUTIVO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El BCRA compró casi u$s 200 millones en una rueda</strong>, acumulando u$s 2.300 millones en abril —el mejor mes del año— con reservas brutas en u$s 46.167 millones y u$s 3.200 millones adicionales de ONs pendientes de liquidar. El ancla cambiaria sigue muy sólida en el corto plazo.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El dólar blue cotiza a $1.420 con brecha de apenas 1,06% contra el oficial</strong>, consolidando la convergencia. El tipo de cambio oficial permanece quieto en $1.405, por debajo del cierre de 2025 ($1.480). El carry en pesos sigue siendo el trade dominante.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Wall Street se pone cauteloso con Argentina de cara a 2027</strong>: fondos de Emerging Markets mantienen posiciones en soberanos pero evitan incrementarlas, en un contexto donde la compresión de spreads ya dejó poco margen y Kevin Warsh (chairman entrante de la Fed) señalizó un sesgo más hawkish.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La reforma laboral avanza en su implementación</strong> con la cautelar de la CGT levantada por la Cámara del Trabajo, lo que consolida el capítulo fiscal, pero la incertidumbre sobre la "Inocencia Fiscal" frena el ingreso de dólares informales.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Pluspetrol solicitó RIGI por u$s 12.000 millones en Vaca Muerta</strong>, la mayor solicitud al régimen hasta la fecha; Chubut colocó u$s 650 millones en Wall Street al 9,45% con demanda 3x. El pipeline de inversiones energéticas sigue siendo el motor real de reservas.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- LECTURA DE MERCADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Régimen de Carry Activo con Ancla Cambiaria Sostenida</div>
+      <div class="card-content">
+        <p>El régimen actual es claramente de <strong>carry activo con ancla cambiaria sostenida</strong>. Las reservas brutas superan los u$s 46.000 millones y la brecha cayó a mínimos históricos post-cepo (por debajo del 2%), lo que refuerza la narrativa oficial de "normalización". El BCRA está comprando sistemáticamente, y la oferta de divisas es estructural: liquidación del agro, ONs del sector corporativo, y en el horizonte los desembolsos del FMI y el flujo del RIGI.</p>
+        <p>Sin embargo, el mercado empieza a discriminar entre el corto plazo (sólido) y el mediano plazo (con más incertidumbre). La nota de Banco Comafi desde Nueva York es reveladora: <strong>los fondos globales mantienen pero no aumentan</strong>. Esto no es indiferencia; es una señal de que el upside en compresión de riesgo país ya fue capturado en gran parte.</p>
+        <p>La columna de la City captura bien el estado de ánimo dual: los traders de bonos y cambio están tranquilos (tasas bajando, dólar quieto, carry positivo), pero nadie ignora que el viento externo comenzó a soplar distinto. <strong>La Fed hawkish, la guerra Irán-EE.UU. como factor de risk-off, y el petróleo a u$s 106 son variables que pueden romper la correlación favorable que tuvo Argentina en el primer trimestre del año.</strong></p>
+        <p>El régimen es carry/tasa fija en pesos con cobertura cambiaria barata, pero <strong>la ventana empieza a tener fecha de vencimiento visible.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TENSIONES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li>
+        <div class="tension-item">
+          <strong>Tipo de cambio "barato" vs. competitividad real</strong>
+          El oficial está en $1.405, un 5% por debajo del cierre de 2025 ($1.480). El real brasileño se apreció +40% interanual en pesos, lo que mejora parcialmente el tipo de cambio multilateral, pero el peso sigue apreciándose en términos reales. Esta tensión no explota mientras haya superávit externo, pero se acumula silenciosamente.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Reservas brutas vs. netas</strong>
+          El titular de reservas brutas en u$s 46.000 millones es potente comunicacionalmente, pero las reservas netas (descontando DEGs, encajes, deuda con FMI y swap con China) siguen siendo sustancialmente menores. La diferencia importa porque el ancla cambiaria depende de la capacidad de intervención real, no del número bruto.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Carry positivo vs. Fed hawkish</strong>
+          La tasa de política monetaria en pesos (Tamar al 24,96% TEA) supera ampliamente la devaluación esperada (futuros a ~$1.600 a fin de año, implicando una depreciación de ~14%). Eso da un carry neto en dólares de entre 10 y 12 puntos. Pero si la Fed sube tasas bajo Warsh, el apetito por emergentes se comprime y el diferencial que hoy justifica el carry se hace menos atractivo.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Mora bancaria al alza vs. tasas activas cayendo</strong>
+          Los bancos están refinanciando activamente a deudores morosos (tarjetas, personales) con hasta 6 meses de gracia. Prevén que la mora siga subiendo hasta junio. Esto es una señal de estrés en el segmento de crédito al consumo que puede presionar la calidad de cartera en el sistema.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>Plan Colchón paralizado</strong>
+          La Inocencia Fiscal, que debería haber movilizado ahorros informales en dólares, está trabada por la falta de un dictamen de la Dirección Nacional de Impuestos. Los contadores aconsejan cautela y los contribuyentes no se mueven. Esto limita una fuente potencial de liquidez en dólares.
+        </div>
+      </li>
+      <li>
+        <div class="tension-item">
+          <strong>ANSES en el directorio de VALO</strong>
+          El FGS de ANSES ejerció voto acumulativo para ingresar al directorio del banco más vinculado al mercado de capitales. Es una señal de que el Estado vuelve a tener presencia activa en el sector financiero privado, con implicancias políticas.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- IMPACTO EN VARIABLES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Tipo de Cambio (oficial / MEP / CCL)</div>
+      <div class="card-content">El oficial permanece fijo en la banda inferior ($1.405), con el blue apenas a $1.420 (brecha de ~1%). El CCL y MEP están virtualmente alineados. La presión apreciadora es real: el BCRA compra dólares masivamente pero no deja subir el tipo de cambio, lo que implica que la competitividad relativa se erosiona gradualmente. A corto plazo, el ancla se sostiene. El riesgo de corrección es a 3-6 meses si se interrumpen los flujos de ONs y agro-exportaciones.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas (corto vs. largo)</div>
+      <div class="card-content">La curva en pesos muestra una lógica clara: las tasas cortas (Tamar + spreads) son atractivas en términos reales y en dólares. Los depósitos UVA crecen pero desde una base ínfima (menos del 2% del total). Las tasas de largo plazo en pesos son prácticamente inexistentes como mercado líquido. La duration en instrumentos CER tiene valor sólo si se acepta el riesgo de que la desinflación se detenga o que el escenario de carry se rompa.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada</div>
+      <div class="card-content">La reforma laboral empuja desinflación vía reducción de cargas impositivas (IVA energía eléctrica agroindustrial, impuestos internos eliminados, Ganancias en alquileres). Sin embargo, el petróleo a u$s 106 por barril (impulsado por la escalada Irán-EE.UU.) es un riesgo inflacionario importado no menor, especialmente en combustibles y transporte. La desinflación sigue su curso pero el piso puede estar más arriba de lo que el mercado espera.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Liquidez del Sistema</div>
+      <div class="card-content">Alta. La acumulación de reservas del BCRA y los ingresos de la cosecha gruesa aseguran liquidez en dólares. En pesos, la emisión por compras del BCRA es esterilizada parcialmente. La colocación del FCI cerrado de Mercado Libre (u$s 300 millones a Tamar +4,25%) indica que el mercado de capitales en pesos funciona con fluidez para instrumentos innovadores.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo Soberano</div>
+      <div class="card-content">El riesgo país trepó a 549 pb en la jornada de ayer, afectado por el risk-off global por la escalada Irán/petróleo. Esto es una corrección dentro del rango reciente (500-600 pb), no un quiebre. Los bonos cortos (GD29, GD30) son los preferidos por los fondos internacionales que operan en línea con otros emergentes. Los fondos no están saliendo, pero el apetito por agregar riesgo se frenó.</div>
+    </div>
+  </div>
+
+  <!-- IMPLICANCIAS DE POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Se Benefician</div>
+      <div class="card-content">Instrumentos de tasa fija en pesos a corto plazo (Lecaps, ON corporativas de corta duration) capturan carry en dólares de dos dígitos mientras el ancla aguante (máximo 90 días). ONs corporativas en dólares de empresas del sector energético/agro: el pipeline RIGI (Pluspetrol u$s 12.000 millones) valida el flujo de caja. Depósitos en dólares o instrumentos dollar-linked de corto plazo: brecha nula significa costo de cobertura mínimo. CEDEARs de energía/petróleo con petróleo a u$s 106. <span class="tag pos">POSITIVOS</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Se Perjudican</div>
+      <div class="card-content">Bonos soberanos argentinos de largo plazo (GD38, GD41, GD46) son los más afectados por risk-off global. La compresión de spreads a partir de 500 pb requiere catalizadores no visibles. Acciones argentinas en Wall Street (ADRs) cayeron hasta 6% en la última jornada y son las primeras en sufrir salidas con risk-off. Plazo fijo tradicional pierde atractivo frente a Tamar, ON corporativas y CEDEARs. <span class="tag neg">RIESGOSOS</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Pierden Sentido</div>
+      <div class="card-content">CER largo (bonos ajustados por inflación 2+ años) pierde versus tata fija corta si la desinflación sigue. Carry agresivo sin cobertura cambiaria más allá de 6 meses es imprudente: Fed hawkish, elecciones 2027 en horizonte, riesgos de sequía/cosecha hacen que sin stop-loss sea de alto riesgo.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Empieza a Tener Valor</div>
+      <div class="card-content">Dólar linked (corto plazo, Q4 2026) está subvalorado: brecha cero lo hace barato históricamente. Si tipo de cambio se mueve incluso levemente hacia banda superior, upside es asimétrico. Cobertura vía futuros de dólar a diciembre: mercado pricéa ~$1.600 a fin de año con bajo costo. Exposición a activos reales en dólares (ONs energía, fideicomisos RIGI) implican flujos de dólares reales atados a producción física. <span class="tag">VALOR RELATIVO</span></div>
+    </div>
+  </div>
+
+  <!-- ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas Ejecutivas</span>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Fed Hawkish (Warsh) como Viento en Contra Estructural</div>
+      <div class="card-content">Si la tasa del Treasury a 10 años sube hacia 4,5-5%, la compresión de spreads emergentes se detiene o revierte. Para Argentina, significa que riesgo país difícilmente perfore los 450 pb sin catalizador político/fiscal local muy potente. Monitorear declaraciones de la Fed en mayo. <span class="tag neg">RIESGO ESTRUCTURAL</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Petróleo a u$s 106 + Escalada Irán-EE.UU.</div>
+      <div class="card-content">Doble impacto: positivo para exportaciones energéticas argentinas (YPF, Pampa, Pan American Energy), pero negativo por inflación importada en combustibles y como factor de risk-off global que presiona activos emergentes. Si petróleo supera u$s 110/120, el escenario se bifurca agresivamente. <span class="tag neg">RIESGO DUAL</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Mora Bancaria al Alza hasta Junio</div>
+      <div class="card-content">La refinanciación masiva de deudores con tarjeta es señal de estrés crediticio no preciado. Si mora sube más de lo esperado o bancos no logran estabilizarla en H2, puede haber ajuste de tasas activas que frene crédito al consumo y retroalimente desaceleración del rebote. <span class="tag neg">RIESGO MEDIO-ALTO</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Plan Colchón Paralizado</div>
+      <div class="card-content">El dictamen de la DNI es el cuello de botella. Si en próximas semanas no se clarifica tratamiento impositivo para bienes muebles, autos y activos financieros, el flujo esperado de dólares informales no llega, y una de las "cuentas pendientes" del programa queda sin cerrar. <span class="tag neg">RIESGO MEDIO</span></div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Alert — Riesgo Electoral 2027 en Radar de Fondos</div>
+      <div class="card-content">La nota de Banco Comafi desde Nueva York es explícita: fondos evitan aumentar exposición "de cara a 2027". No es pánico, pero sí ancla el techo de compresión de riesgo país en el corto-mediano plazo. Cualquier señal de fractura en coalición de Milei puede detonar reversión de posiciones. <span class="tag neg">RIESGO POLÍTICO</span></div>
+    </div>
+  </div>
+
+  <!-- LO QUE NO ESTÁ PRECIADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight">
+      <strong>El dilema de la apreciación real silenciosa.</strong> El oficial en $1.405 está por debajo del cierre de 2025 ($1.480) en términos nominales, y el real brasileño se apreció +40% interanual en pesos. La mejora del tipo de cambio multilateral "tapiza" un problema que se acumula: la industria sustitutiva de importaciones y las economías regionales están cada vez más exprimidas por el peso fuerte. Esto no tiene precio en el mercado financiero, pero tiene precio en la economía real: la desaceleración de la actividad manufacturera puede convertirse en una bomba política antes de 2027.
+    </div>
+    <div class="highlight">
+      <strong>La trampa del carry exitoso.</strong> Cuanto más exitoso es el carry (brecha cero, inflación bajando, tasa real positiva), más incentivos hay a tomarlo agresivamente, y más sistémico se vuelve el riesgo de reversión. Si flujos externos cambian de dirección —por Fed hawkish, risk-off geopolítico, o sorpresa política— la salida del carry puede ser más desordenada de lo que los modelos sugieren. La Fed hawkish e Irán son eventos que acercan esta cola al centro del escenario.
+    </div>
+  </div>
+
+  <!-- BAJADA A CARTERA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — Compañía de Seguros</span>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Cartera en Pesos vs. USD</div>
+      <div class="card-content">El momento actual favorece <strong>sobreponderar pesos con duration corta (hasta 90 días)</strong>, aprovechando el carry real positivo mientras el ancla aguanta. La brecha prácticamente nula hace que el costo de oportunidad de estar en pesos sea mínimo en términos de riesgo cambiario de corto plazo. Sin embargo, para una aseguradora —cuya función de pérdidas está en pesos pero cuya solvencia de largo plazo depende de preservar valor real— <strong>mantener entre 15% y 25% de la cartera en activos dolarizados</strong> (ONs corporativas en USD, fideicomisos energéticos) es prudencia, no especulación. <span class="tag gold">TÁCTICO</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Instrumentos CER</div>
+      <div class="card-content">Los bonos CER de corta duration (hasta 12 meses) siguen siendo cobertura válida contra sorpresas inflacionarias, especialmente dado el riesgo del petróleo a u$s 106. Sin embargo, <strong>el CER largo (2+ años) tiene relación riesgo/retorno deteriorada</strong>: si desinflación sigue y carry en tasa fija supera al CER, la posición pierde. Recomendación: reducir CER largo a no más del 10% de cartera de inversiones, rotar hacia tasa fija corta (Lecaps 60-90 días) o Tamar. <span class="tag gold">DEFENSA</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Tasa Fija — Instrumento del Momento</div>
+      <div class="card-content"><strong>Lecaps y ON corporativas a tasa fija con vencimiento Q3/Q4 2026</strong> capturan el carry en entorno donde tipo de cambio está anclado e inflación baja. El riesgo es que si hay salto cambiario antes del vencimiento, posición pierde en términos de poder adquisitivo real. Mitigar con posiciones en tasa fija que no superen los 6 meses de plazo. <span class="tag gold">ATRACTIVO</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">USD Linked — Subvalorado</div>
+      <div class="card-content">Con la brecha en 1%, el costo de cobertura cambiaria es históricamente bajo. Para una aseguradora con pasivos en pesos pero exposición a insumos dolarizados (reaseguro, activos importados), tener un <strong>10-15% de cartera en instrumentos dollar-linked con vencimiento Q4 2026</strong> actúa como cobertura barata y asimétrica. Si tipo de cambio no se mueve, pérdida relativa es mínima; si hay corrección, upside es significativo. <span class="tag">SEGURO</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Riesgo de Duration — Máxima Alerta</div>
+      <div class="card-content">En contexto actual (Fed hawkish, riesgo político 2027, brecha cero volátil), <strong>la duration no es un amigo</strong>. Extender duration en pesos más allá de 6 meses o en dólares más allá de 3 años implica aceptar riesgos que retorno no compensa. La curva en pesos es prácticamente plana, con lo cual el incentivo para estirar duration es bajo. En soberanos en dólares, GD38/GD41/GD46 son los que más sufrieron en risk-off reciente. <span class="tag neg">CRÍTICO</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Riesgo de Liquidez — Moderado pero Relevante</div>
+      <div class="card-content">La nota sobre FCI cerrado de Mercado Libre (u$s 300 millones, 15 meses, sin ventana de salida) ilustra que parte de oferta atractiva viene con iliquidez incorporada. Para una aseguradora con compromisos de corto plazo (siniestros, rescates), destinar más del 10-12% a instrumentos cerrados es riesgo de calce que puede cristalizarse con stress. La mora bancaria al alza y posible corrección cambiaria son triggers plausibles. <strong>Mantener buffer de liquidez en T+0 o T+1 de al menos 20% del activo.</strong> <span class="tag neg">PRUDENCIA</span></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis elaborado en base a cobertura de El Cronista del 24 de abril de 2026 · Incluye economía política, finanzas, mercados, empresas y negocios<br/>
+    Cotizaciones de referencia: BNA $1.405 | Blue $1.420 | Official-Blue brecha 1,06% | Riesgo País 549 bps<br/>
+  </footer>
+
+</div>
+</body>
+</html>

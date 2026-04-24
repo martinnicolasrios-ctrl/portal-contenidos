@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consumo Argentina — Febrero 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620;
+      --bg-2: #0F1E2B;
+      --bg-3: #17293A;
+      --line: #1E3447;
+      --ink: #F2F6F9;
+      --ink-2: #B5C5D3;
+      --ink-3: #7B91A3;
+      --accent: #34BBDA;
+      --gold: #E8B04A;
+      --pos: #5BD39A;
+      --neg: #EF6C6C;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%);
+      color: var(--ink);
+      padding: 40px 20px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 36px;
+      margin-bottom: 32px;
+      border-radius: 4px;
+    }
+    .header-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 8px;
+    }
+    .header-title {
+      font-family: 'Fraunces', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .header-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: .08em;
+      line-height: 1.6;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 28px;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* KPI GRID */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .kpi {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 16px 18px;
+      text-align: center;
+      border-top: 2px solid var(--accent);
+    }
+    .kpi.neg {
+      border-top-color: var(--neg);
+    }
+    .kpi-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--ink-3);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .kpi-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-value.neg {
+      color: var(--neg);
+    }
+    .kpi-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-3);
+      line-height: 1.4;
+    }
+
+    /* TABLES */
+    .tbl-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    thead tr {
+      background: var(--bg-3);
+    }
+    thead th {
+      padding: 9px 12px;
+      text-align: left;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--ink-3);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(30,52,71,.3);
+      font-family: 'Inter', sans-serif;
+      color: var(--ink-2);
+    }
+    tbody tr:nth-child(even) {
+      background: rgba(52,187,218,.02);
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .neg-val { color: var(--neg); font-weight: 600; }
+    .pos-val { color: var(--pos); font-weight: 600; }
+    .warn-val { color: var(--gold); font-weight: 600; }
+
+    /* CARDS */
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+    }
+    .card-header {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      letter-spacing: .1em;
+      margin-bottom: 10px;
+    }
+    .card-content {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .card-content p {
+      margin-bottom: 12px;
+    }
+    .card-content p:last-child {
+      margin-bottom: 0;
+    }
+    .card-content strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ALERT CARD */
+    .card-alert {
+      border-left: 3px solid var(--neg);
+      background: rgba(239,108,108,.04);
+    }
+    .card-alert .card-header {
+      color: var(--neg);
+    }
+
+    /* ALERT ITEMS */
+    .alert-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .alert-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--neg);
+      border-radius: 4px;
+    }
+    .alert-item:last-child {
+      margin-bottom: 0;
+    }
+    .alert-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 3px;
+      background: var(--neg);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 0 6px rgba(239,108,108,.5);
+    }
+    .alert-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+    .alert-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* TAG */
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    .tag-neg {
+      background: rgba(239,108,108,.15);
+      color: var(--neg);
+      border: 1px solid rgba(239,108,108,.25);
+    }
+    .tag-warn {
+      background: rgba(232,176,74,.15);
+      color: var(--gold);
+      border: 1px solid rgba(232,176,74,.25);
+    }
+    .tag-pos {
+      background: rgba(91,211,154,.15);
+      color: var(--pos);
+      border: 1px solid rgba(91,211,154,.25);
+    }
+
+    /* CONCLUSION BOX */
+    .conclusion {
+      background: rgba(91,211,154,.08);
+      border: 1px solid rgba(91,211,154,.2);
+      border-left: 3px solid var(--pos);
+      border-radius: 4px;
+      padding: 18px 20px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .conclusion strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      text-align: center;
+      letter-spacing: .06em;
+      line-height: 1.6;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      .header-title { font-size: 24px; }
+      .section-title { font-size: 18px; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 24px; }
+      .card { padding: 16px 18px; }
+      .alert-item { flex-direction: column; }
+      thead th { font-size: 9px; }
+      tbody td { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis de Consumo — INDEC</div>
+    <div class="header-title">Consumo Argentina — Febrero 2026</div>
+    <div class="header-meta">
+      Informe Ejecutivo para Comité de Dirección<br/>
+      Fuentes: INDEC — Supermercados IT Vol.10 N16 · Mayoristas IT Vol.10 N17 · Centros Compras IT Vol.10 N15<br/>
+      Publicación: 23 de abril de 2026
+    </div>
+  </div>
+
+  <!-- KPI HIGHLIGHT -->
+  <div class="section">
+    <div class="kpi-grid">
+      <div class="kpi neg">
+        <div class="kpi-label">Supermercados</div>
+        <div class="kpi-value neg">-3,1%</div>
+        <div class="kpi-sub">Volumen i.a.</div>
+      </div>
+      <div class="kpi neg">
+        <div class="kpi-label">Mayoristas</div>
+        <div class="kpi-value neg">-1,2%</div>
+        <div class="kpi-sub">Volumen i.a.</div>
+      </div>
+      <div class="kpi neg">
+        <div class="kpi-label">Centros Compras</div>
+        <div class="kpi-value neg">-2,1%</div>
+        <div class="kpi-sub">Volumen i.a.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Diagnóstico de Consistencia</span>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Canal</th>
+            <th>i.a. Real</th>
+            <th>Acum. ene-feb</th>
+            <th>Desestac. m/m</th>
+            <th>Tend.-Ciclo</th>
+            <th>Corrientes i.a.</th>
+            <th>Diagnóstico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Supermercados</strong></td>
+            <td class="neg-val">-3,1%</td>
+            <td class="neg-val">-2,1%</td>
+            <td class="pos-val">+0,3%</td>
+            <td class="warn-val">~0,0%</td>
+            <td class="warn-val">~+55-60%</td>
+            <td><span class="tag tag-warn">INCONSISTENTE</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mayoristas</strong></td>
+            <td class="neg-val">-1,2%</td>
+            <td class="pos-val">+0,1%</td>
+            <td class="neg-val">-0,7%</td>
+            <td class="pos-val">+0,5%</td>
+            <td class="warn-val">~+55-60%</td>
+            <td><span class="tag tag-warn">INCONSISTENTE</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shoppings</strong></td>
+            <td class="neg-val">-2,1%</td>
+            <td class="neg-val">-1,1%</td>
+            <td class="neg-val">-1,8%</td>
+            <td class="pos-val">+0,2%</td>
+            <td class="pos-val">+17,9%</td>
+            <td><span class="tag tag-neg">CRÍTICO</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-header">Análisis de Datos</div>
+      <div class="card-content">
+        <p><span class="tag tag-warn">INCONSISTENTE</span> <strong>Supermercados:</strong> El rebote mensual desestacionalizado (+0,3%) contradice la tendencia-ciclo plana y la caída anual profunda (-3,1%). No es recuperación: es ruido dentro de una tendencia negativa. El acumulado ene-feb (-2,1%) confirma profundización versus enero.</p>
+        <p><span class="tag tag-warn">INCONSISTENTE</span> <strong>Mayoristas:</strong> Acumulado ene-feb positivo (+0,1%) vs. mes negativo (-1,2% i.a.) implica que enero fue excepcional y febrero corrigió con fuerza. La señal mensual (-0,7% desestacionalizado) contradice la tendencia-ciclo positiva (+0,5%).</p>
+        <p><span class="tag tag-neg">MÁXIMA ATENCIÓN</span> <strong>Shoppings:</strong> Brecha corrientes/constantes de ~20 p.p. revela inflación implícita del canal de ~20% i.a., muy por debajo del ~55-60% de supermercados. La tendencia-ciclo positiva (+0,2%) coexiste con una caída mensual desestacionalizada de -1,8%: la quiebre más llamativa del conjunto.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LECTURA CRUZADA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura Cruzada por Canal</span>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Canal</th>
+            <th>Rol en Ciclo</th>
+            <th>Dinámica</th>
+            <th>Señal Estructural</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mayoristas</strong></td>
+            <td><span class="tag tag-pos">GANADOR</span></td>
+            <td>Caída menor, tendencia positiva</td>
+            <td>Captura trade-down activo</td>
+          </tr>
+          <tr>
+            <td><strong>Supermercados</strong></td>
+            <td><span class="tag tag-warn">EN DISPUTA</span></td>
+            <td>Caída acelerada, rebote puntual</td>
+            <td>Pierde cuota vs. mayoristas</td>
+          </tr>
+          <tr>
+            <td><strong>Shoppings</strong></td>
+            <td><span class="tag tag-neg">PERDEDOR</span></td>
+            <td>Caída y aceleración mensual</td>
+            <td>Compresión de margen</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-header">Dinámicas de Mercado</div>
+      <div class="card-content">
+        <p><strong>Trade-down confirmado y medible:</strong> La brecha de 1,9 p.p. entre supermercados (-3,1%) y mayoristas (-1,2%) cuantifica la migración activa de demanda hacia formatos de mayor volumen y menor costo unitario. La tendencia-ciclo positiva de mayoristas (+0,5% m/m) es el dato más robusto que apoya un cambio de canal estructural.</p>
+        <p><strong>Shoppings: deterioro transversal de segmentos:</strong> Si el canal premium cae, la contracción del consumo ya traspasó la barrera del NSE bajo/medio. No hay bifurcación positiva en el consumo de alto ticket: la caída es uniforme en todos los segmentos.</p>
+        <p><strong>Migraciones identificadas:</strong> Supermercados → Mayoristas (optimización de gasto básico). Shoppings → canal online / proximidad (optimización de gasto discrecional).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRIVERS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Drivers del Crecimiento</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Diagnóstico Definitivo</div>
+      <div class="card-content">
+        <p><strong>100% precio, 0% volumen. No existe crecimiento real en ningún canal.</strong></p>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Canal</th>
+            <th>Nominal (est.)</th>
+            <th>Real i.a.</th>
+            <th>Inflación Implícita</th>
+            <th>Efecto Volumen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Supermercados</strong></td>
+            <td class="warn-val">~+58%</td>
+            <td class="neg-val">-3,1%</td>
+            <td class="neg-val">~61 p.p.</td>
+            <td class="neg-val">Destrucción</td>
+          </tr>
+          <tr>
+            <td><strong>Mayoristas</strong></td>
+            <td class="warn-val">~+57%</td>
+            <td class="neg-val">-1,2%</td>
+            <td class="neg-val">~58 p.p.</td>
+            <td class="warn-val">Cuasi-estabilización</td>
+          </tr>
+          <tr>
+            <td><strong>Shoppings</strong></td>
+            <td class="pos-val">+17,9%</td>
+            <td class="neg-val">-2,1%</td>
+            <td class="warn-val">~20 p.p.</td>
+            <td class="neg-val">Destrucción</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-header">Análisis de Distorsión</div>
+      <div class="card-content">
+        <p><strong>Distorsión nominal crítica:</strong> En supermercados y mayoristas, la inflación implícita supera al IPC general (~55% i.a. estimado), confirmando que alimentos y bebidas siguen siendo los rubros de mayor presión inflacionaria. En shoppings, la inflación implícita (~20%) muy inferior al general comprime márgenes operativos: los costos del centro comercial se ajustan al IPC, pero los ingresos por ventas crecen solo 17,9% nominal. Esto anticipa renegociaciones de contratos y posibles cierres de locales en H2 2026.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TENSIONES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Tensiones del Consumo</span>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <p><strong>Caída masiva del consumo básico:</strong> Supermercados -3,1% i.a. y acumulado ene-feb -2,1% muestran que las familias adquieren menos bienes esenciales que hace un año, con inflación del ~58-60% en alimentos. La combinación de menor volumen y mayor precio es la definición de deterioro del nivel de vida.</p>
+        <p><strong>Trade-down en aceleración:</strong> El diferencial Mayoristas/Supermercados de -1,9 p.p. y la tendencia-ciclo positiva de mayoristas indican migración activa y acelerando. En Argentina esto es históricamente un anticipador de recesión de consumo de 2-3 trimestres de duración.</p>
+        <p><strong>Sin bifurcación positiva en segmentos altos:</strong> La caída de shoppings (-2,1% real) cierra la hipótesis de un consumo en V segmentada donde el NSE alto compensa la caída del bajo. La contracción es transversal: todos los segmentos ajustan.</p>
+        <p><strong>Cambio de hábito de compra:</strong> El rebote mensual de supermercados (+0,3% desestacionalizado) en contexto de tendencia plana es consistente con aumento de frecuencia de visita pero menor ticket real por visita. Mayor fragmentación de la compra = menor canasta por viaje. Este patrón eleva costos operativos para el retail.</p>
+        <p><strong>Ciclo macro en contracción sincronizada:</strong> EMAE Feb-2026 -2,1% i.a. + Industria -4,0% i.a. + consumo -2,1% a -3,1% i.a. forman un cuadro de recesión técnica de demanda interna.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Alertas Tempranas</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <div class="alert-num">1</div>
+        <div class="alert-text"><strong>Inflación de alimentos resistente y por encima del IPC:</strong> Inflación implícita de supermercados (~61 p.p.) supera al IPC general. Con IPC marzo en +3,4% m/m, el ritmo de desinflación en alimentos es insuficiente para recuperar poder adquisitivo. Riesgo: reapertura de paritarias con demandas más altas si la inflación de alimentos no cede en Q2 2026.</div>
+      </li>
+      <li class="alert-item">
+        <div class="alert-num">2</div>
+        <div class="alert-text"><strong>Trade-down estructural irreversible:</strong> Mayoristas ya supera a supermercados en desempeño relativo por segundo mes. Si en marzo 2026 el diferencial se mantiene o amplifica, la migración de canal se volverá estructural y no coyuntural, con impacto permanente en la cuota de mercado del retail de supermercados.</div>
+      </li>
+      <li class="alert-item">
+        <div class="alert-num">3</div>
+        <div class="alert-text"><strong>Crisis de margen en shoppings para H2 2026:</strong> Ingresos nominales creciendo al 17,9% con costos operativos ajustando al ~55% i.a. crea una brecha de ~37 p.p. en la estructura de costos. Sin recuperación del tráfico real, los operadores enfrentarán renegociaciones masivas de contratos en el segundo semestre.</div>
+      </li>
+      <li class="alert-item">
+        <div class="alert-num">4</div>
+        <div class="alert-text"><strong>Primer trimestre 2026 cerrará en negativo:</strong> Ene-feb ya en terreno negativo en los tres canales. El dato de marzo (publicación mayo 2026) difícilmente revertirá la tendencia. Anticipar revisión a la baja del PBI Q1 2026.</div>
+      </li>
+      <li class="alert-item">
+        <div class="alert-num">5</div>
+        <div class="alert-text"><strong>Ciclo contractivo con riesgo de espiral:</strong> La sincronización de caída en consumo + producción industrial + actividad económica general abre el riesgo de retroalimentación negativa. El dato del EMAE de marzo será la prueba de fuego para determinar si el ciclo toca fondo o sigue deteriorándose.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CONCLUSIÓN -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Conclusión Ejecutiva</span>
+    </div>
+    <div class="conclusion">
+      <p>Febrero 2026 no ofrece ningún dato alentador: los tres canales del comercio minorista caen en volumen real, sin excepción ni bifurcación positiva por segmento. El crecimiento nominal es puro efecto precio, la brecha corrientes/constantes de shoppings revela un canal comprimido que no puede trasladar costos, y el trade-down hacia mayoristas confirma un consumidor bajo estrés de ingreso real.</p>
+      <p style="margin-top: 12px;"><strong>Recomendaciones para Comité:</strong><br/>(1) Recalibrar proyecciones de ventas para H1 2026 incorporando -2% a -3% en volumen para retail masivo.<br/>(2) Revisar estrategia de canal si se opera en supermercados, considerando la presión de mayoristas.<br/>(3) Monitorear marzo 2026 como dato pivote de confirmación o quiebre del ciclo contractivo antes de tomar decisiones de inversión o expansión.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Fuentes verificadas: INDEC — Encuesta Supermercados IT Vol.10 N16 (23/04/2026) | Encuesta Autoservicios Mayoristas IT Vol.10 N17 (23/04/2026) | Encuesta Nac. Centros de Compras IT Vol.10 N15 (23/04/2026) | EMAE Feb-2026 | IPC Mar-2026<br/>
+    Análisis económico propio sobre datos públicos del INDEC · www.indec.gob.ar<br/>
+  </footer>
+
+</div>
+</body>
+</html>
