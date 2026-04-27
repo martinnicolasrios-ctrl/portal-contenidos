@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis ETI — Turismo Internacional</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #0b1220;
+    --navy-mid:    #111c30;
+    --navy-card:   #152035;
+    --navy-border: #1e2f48;
+    --navy-hover:  #1a2d47;
+    --teal:        #00c2a8;
+    --teal-dim:    #009e89;
+    --teal-glow:   rgba(0,194,168,.12);
+    --amber:       #f5a623;
+    --amber-dim:   rgba(245,166,35,.15);
+    --red:         #e05252;
+    --red-dim:     rgba(224,82,82,.13);
+    --green:       #3ecf8e;
+    --green-dim:   rgba(62,207,142,.13);
+    --blue-acc:    #4a9eff;
+    --text-hi:     #e8edf5;
+    --text-mid:    #8fa3bf;
+    --text-lo:     #4a6080;
+    --mono:        'IBM Plex Mono', monospace;
+    --sans:        'IBM Plex Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-hi);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--navy-border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .brand {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .divider-v { width: 1px; height: 18px; background: var(--navy-border); }
+  .doc-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-hi);
+    letter-spacing: .03em;
+  }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .badge-source  { background: rgba(74,158,255,.12); color: var(--blue-acc); border: 1px solid rgba(74,158,255,.25); }
+  .badge-date    { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,166,35,.3); }
+  .badge-sector  { background: var(--teal-glow); color: var(--teal); border: 1px solid rgba(0,194,168,.25); }
+
+  /* ── MAIN ── */
+  .main { padding: 24px; max-width: 1100px; margin: 0 auto; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0 14px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: .1em;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--navy-border);
+  }
+
+  /* ── INTRO STRIP ── */
+  .intro-strip {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-left: 3px solid var(--teal);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 12.5px;
+    color: var(--text-mid);
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .intro-strip strong { color: var(--text-hi); font-style: normal; }
+
+  /* ── KPI ROW ── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .kpi-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    transition: border-color .2s;
+  }
+  .kpi-card:hover { border-color: var(--teal-dim); }
+  .kpi-label {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--text-lo);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .kpi-val {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-val.up   { color: var(--green); }
+  .kpi-val.down { color: var(--red); }
+  .kpi-val.neu  { color: var(--teal); }
+  .kpi-sub {
+    font-size: 10.5px;
+    color: var(--text-lo);
+  }
+  .kpi-sub span { color: var(--text-mid); }
+
+  /* ── BULLET CARDS ── */
+  .bullet-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .bullet-grid.single { grid-template-columns: 1fr; }
+  .bullet-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+  .bullet-card-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .bullet-list { list-style: none; }
+  .bullet-list li {
+    padding: 5px 0 5px 16px;
+    position: relative;
+    font-size: 12.5px;
+    color: var(--text-mid);
+    line-height: 1.55;
+    border-bottom: 1px solid rgba(30,47,72,.5);
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .bullet-list li strong { color: var(--text-hi); }
+  .bullet-list li em { color: var(--amber); font-style: normal; }
+  .bullet-list li .up   { color: var(--green); font-family: var(--mono); font-size: 11px; }
+  .bullet-list li .down { color: var(--red);   font-family: var(--mono); font-size: 11px; }
+  .bullet-list li .neu  { color: var(--teal);  font-family: var(--mono); font-size: 11px; }
+
+  /* ── DEMAND TABLE ── */
+  .demand-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .demand-table th {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    padding: 7px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .demand-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(30,47,72,.5);
+    color: var(--text-mid);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .demand-table tr:last-child td { border-bottom: none; }
+  .demand-table tr:hover td { background: var(--navy-hover); }
+  .demand-table td.ramo { color: var(--text-hi); font-weight: 600; font-size: 11.5px; }
+  .demand-table td.impact-up   { color: var(--green); font-family: var(--mono); font-size: 11px; font-weight: 500; }
+  .demand-table td.impact-down { color: var(--red);   font-family: var(--mono); font-size: 11px; font-weight: 500; }
+  .demand-table td.impact-neu  { color: var(--amber); font-family: var(--mono); font-size: 11px; font-weight: 500; }
+
+  /* ── INSIGHT CARDS ── */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .insight-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+  .insight-card.insight-teal::before  { background: var(--teal); }
+  .insight-card.insight-amber::before { background: var(--amber); }
+  .insight-card.insight-red::before   { background: var(--red); }
+  .insight-card.insight-blue::before  { background: var(--blue-acc); }
+  .insight-card.insight-green::before { background: var(--green); }
+  .insight-num {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .insight-card.insight-teal  .insight-num { color: var(--teal); }
+  .insight-card.insight-amber .insight-num { color: var(--amber); }
+  .insight-card.insight-red   .insight-num { color: var(--red); }
+  .insight-card.insight-blue  .insight-num { color: var(--blue-acc); }
+  .insight-card.insight-green .insight-num { color: var(--green); }
+  .insight-headline {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-hi);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .insight-body {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ── RECOM TABLE ── */
+  .recom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .recom-table th {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    padding: 7px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .recom-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(30,47,72,.5);
+    color: var(--text-mid);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .recom-table tr:last-child td { border-bottom: none; }
+  .recom-table tr:hover td { background: var(--navy-hover); }
+  .recom-table td.recom-accion { color: var(--text-hi); font-weight: 600; }
+  .recom-table td.recom-pri {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+  }
+  .recom-table td.pri-alta  { color: var(--red); }
+  .recom-table td.pri-media { color: var(--amber); }
+  .recom-table td.pri-baja  { color: var(--green); }
+
+  /* ── ALERT CARDS ── */
+  .alert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  .alert-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .alert-card.alert-red    { border-top: 2px solid var(--red);      }
+  .alert-card.alert-amber  { border-top: 2px solid var(--amber);    }
+  .alert-card.alert-blue   { border-top: 2px solid var(--blue-acc); }
+  .alert-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-hi);
+    margin-bottom: 7px;
+    line-height: 1.3;
+  }
+  .alert-card.alert-red   .alert-title { color: var(--red);      }
+  .alert-card.alert-amber .alert-title { color: var(--amber);    }
+  .alert-card.alert-blue  .alert-title { color: var(--blue-acc); }
+  .alert-body {
+    font-size: 11.5px;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+
+  /* ── MACRO BOX ── */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  .macro-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+  .macro-label {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    margin-bottom: 8px;
+  }
+  .macro-headline {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-hi);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .macro-body {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 36px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--navy-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-left {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-lo);
+    letter-spacing: .06em;
+  }
+  .footer-right {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-lo);
+  }
+
+  /* ── TABLE WRAPPER ── */
+  .table-wrap {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 800px) {
+    .kpi-row          { grid-template-columns: 1fr 1fr; }
+    .bullet-grid      { grid-template-columns: 1fr; }
+    .insight-grid     { grid-template-columns: 1fr; }
+    .macro-grid       { grid-template-columns: 1fr; }
+    .alert-grid       { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <span class="brand"></span>
+    <div class="divider-v"></div>
+    <span class="doc-title">Análisis Estratégico — Turismo Internacional</span>
+  </div>
+  <div class="header-right">
+    <span class="badge badge-source">INDEC · ETI</span>
+    <span class="badge badge-date">Marzo &amp; 1T 2026</span>
+    <span class="badge badge-sector">Industria Aseguradora</span>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- INTRO -->
+  <div class="intro-strip">
+    <strong>Uso interno — Nivel Comité Ejecutivo.</strong>
+    Análisis interpretativo elaborado sobre la ETI-INDEC publicada el 24/04/2026. No es un resumen del informe:
+    es una lectura estratégica orientada a <strong>decisiones de negocio, pricing y riesgo</strong> en el sector asegurador argentino.
+    Los datos son provisorios según la fuente.
+  </div>
+
+  <!-- ═══ BLOQUE 1: LECTURA EJECUTIVA ═══ -->
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">Lectura Ejecutiva</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">Receptivo · Marzo</div>
+      <div class="kpi-val up">+6,3%</div>
+      <div class="kpi-sub">509,6 mil turistas · <span>i.a.</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Emisivo · Marzo</div>
+      <div class="kpi-val down">−19,9%</div>
+      <div class="kpi-sub">1.061,8 mil turistas · <span>i.a.</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Emisivo Aéreo · Marzo</div>
+      <div class="kpi-val up">+12,8%</div>
+      <div class="kpi-sub">527,7 mil · <span>único segmento con cobertura asegurable real</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Gasto Receptivo · 1T</div>
+      <div class="kpi-val neu">USD 882M</div>
+      <div class="kpi-sub">vs USD 1.843M emisivo · <span>déficit turístico de cuenta</span></div>
+    </div>
+  </div>
+
+  <div class="bullet-grid single">
+    <div class="bullet-card">
+      <div class="bullet-card-title">Señales fuertes vs. ruido · Comportamiento estructural vs. coyuntural</div>
+      <ul class="bullet-list">
+        <li><strong>La asimetría receptivo/emisivo es tipo de cambio real disfrazado de estadística turística.</strong>
+            El argentino percibe el exterior como caro; el extranjero percibe Argentina como barata. El driver subyacente
+            no aparece en el informe. Mientras no haya ajuste cambiario, este patrón se mantiene.</li>
+        <li><strong>El derrumbe emisivo total (−19,9%) es engañoso.</strong> Está concentrado en vía terrestre
+            (<em>−41,1%</em>) — históricamente de bajo valor asegurable. El emisivo aéreo, donde vive el negocio asegurador,
+            crece <span class="up">+12,8%</span>. La lectura para el sector es: el mercado asegurable
+            <em>no cae</em> en la magnitud aparente.</li>
+        <li><strong>La tendencia-ciclo receptiva lleva 18 meses en expansión.</strong> No es ruido estacional.
+            Es un cambio estructural de flujo que el sector aún no monetizó desde el lado de la oferta local.</li>
+        <li><strong>El gasto del turista extranjero sube pero su estadía baja.</strong> Más visitas, más cortas,
+            más caras por noche. Para el seguro: tickets más cortos pero mayor recurrencia. El modelo de cobertura
+            por viaje puede estar subóptimo; el modelo por días gana relevancia.</li>
+        <li><strong>Córdoba aeropuerto: +70,3% emisivo interanual.</strong> No es error. Es una señal de
+            descentralización del flujo aéreo exterior que el mercado asegurador todavía ignora.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ BLOQUE 2: IMPLICANCIAS ASEGURADORAS ═══ -->
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">Implicancias para la Actividad Aseguradora</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- 2a Demanda -->
+  <div class="bullet-card" style="margin-bottom:10px">
+    <div class="bullet-card-title">2A — Demanda / Oportunidades Comerciales por Ramo</div>
+    <div class="table-wrap" style="border:none">
+      <table class="demand-table">
+        <thead>
+          <tr>
+            <th>Ramo</th>
+            <th>Señal</th>
+            <th>Impacto</th>
+            <th>Lectura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ramo">Seguro de Viaje / Asistencia</td>
+            <td class="impact-up">▲ POSITIVO</td>
+            <td class="impact-up">ALTO</td>
+            <td>Emisivo aéreo +12,8% expande la base contratante real. La caída del terrestre
+                (−41,1%) no erosiona prima: ese segmento tiene penetración aseguradora casi nula.
+                La mezcla de destinos cambia (menos Chile, más Brasil/EE.UU.) — implica
+                mayor costo unitario de siniestro y oportunidad de repricing.</td>
+          </tr>
+          <tr>
+            <td class="ramo">Asistencia al Turista No Residente</td>
+            <td class="impact-up">▲ OPORTUNIDAD</td>
+            <td class="impact-up">ALTO / SIN CAPTURAR</td>
+            <td>737K turistas receptivos en 1T con estadías de 14 noches = 10,4M noches de
+                exposición acumulada. La industria argentina trata este segmento como invisible.
+                Modelo B2B2C vía aerolíneas/plataformas tiene potencial inmediato.</td>
+          </tr>
+          <tr>
+            <td class="ramo">Accidentes Personales</td>
+            <td class="impact-neu">▲ MODERADO</td>
+            <td class="impact-neu">MEDIO</td>
+            <td>Turistas con actividades de riesgo moderado-alto (parques naturales 27,3%,
+                esparcimiento nocturno 26,8%). Exposición sin cobertura local.
+                Revisar convenios con prestadores de CABA donde se concentra el 50,6%
+                de pernoctaciones.</td>
+          </tr>
+          <tr>
+            <td class="ramo">Viaje Doméstico / Asistencia Interior</td>
+            <td class="impact-up">▲ OPORTUNIDAD</td>
+            <td class="impact-up">MEDIO-ALTO</td>
+            <td>El turista que dejó de cruzar a Chile o Paraguay no dejó de viajar:
+                desplazó demanda al interior. Patagonia (+16% pernoctaciones receptivas),
+                Cuyo (+55,5%) son destinos emergentes. Producto de asistencia doméstica
+                es el sustituto natural sin competidor desarrollado.</td>
+          </tr>
+          <tr>
+            <td class="ramo">RC Automotor / Frontera</td>
+            <td class="impact-down">▼ NEGATIVO</td>
+            <td class="impact-down">BAJO</td>
+            <td>Paso Cristo Redentor emisivo −63,4%. Impacto directo en cobertura RC
+                para Argentina-Chile. Nicho pequeño pero medible en portfolios de frontera.</td>
+          </tr>
+          <tr>
+            <td class="ramo">Cruceros / AP Marítimo</td>
+            <td class="impact-neu">◆ NICHO</td>
+            <td class="impact-neu">BAJO / A DESARROLLAR</td>
+            <td>Puerto de Buenos Aires: 53,3K turistas receptivos con estadía corta (6,1 noches)
+                y perfil de excursión de alto riesgo AP. Cobertura específica crucerista
+                inexistente en el mercado local.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2b Riesgo/Siniestralidad -->
+  <div class="bullet-grid">
+    <div class="bullet-card">
+      <div class="bullet-card-title">2B — Riesgo · Concentración &amp; Frecuencia</div>
+      <ul class="bullet-list">
+        <li><strong>Concentración geográfica crítica:</strong> el <em>50,6%</em> de todas las
+            pernoctaciones receptivas ocurre en CABA. Un evento de media magnitud en zona urbana
+            densa activa siniestralidad múltiple simultánea. Revisar acumulación en reaseguro de AP/Viaje.</li>
+        <li><strong>Pico de riesgo 1T confirmado:</strong> el primer trimestre concentra el mayor
+            flujo anual en ambas vías. El receptivo de 1T 2026 supera 1T 2025 en un 16%.
+            Si la siniestralidad correlaciona con flujo, debería haber frecuencia materialmente mayor.
+            Validar contra base propia.</li>
+        <li><strong>Turistas de larga estadía = mayor exposición temporal:</strong> europeos con
+            20+ noches de estadía. Si sus coberturas de origen tienen topes de días, la
+            responsabilidad residual cae sobre prestadores locales sin respaldo asegurador.
+            Verificar protocolo de recupero hospitalario.</li>
+        <li><strong>Alojamiento informal como brecha de cobertura:</strong> 33,8% del receptivo
+            se hospeda en casa de familiares. Estas estadías generan exposición a AP sin
+            cobertura de hotel. El riesgo existe; la prima no.</li>
+        <li><strong>Siniestralidad diferida en coberturas largas:</strong> estadías promedio de
+            14 noches implican que siniestros de 1T pueden liquidarse en 2T. Evaluar IBNR
+            específico para viaje con estadía extendida.</li>
+      </ul>
+    </div>
+    <div class="bullet-card">
+      <div class="bullet-card-title">2B — Cambios en Hábitos · Impacto en Contratación</div>
+      <ul class="bullet-list">
+        <li><strong>Digital como canal prioritario ya no es tendencia: es el mercado.</strong>
+            El 25-29% de los turistas usa alquiler temporal (Airbnb, etc.). Este perfil contrata
+            asistencia de viaje por el mismo canal digital que usa para alojamiento.
+            La distribución física pierde ese cliente.</li>
+        <li><strong>Descentralización del flujo aéreo hacia el interior:</strong>
+            Córdoba +70,3%, resto de aeropuertos +65% en emisivo. El modelo de distribución
+            concentrado en AMBA subrepresenta un mercado creciente de alto valor.</li>
+        <li><strong>Brasil como destino dominante (44,3% del emisivo 1T vía Ezeiza):</strong>
+            mayor exposición a costo hospitalario en reales, que sigue siendo elevado en USD.
+            Quienes no ajusten límites de cobertura para Brasil están asumiendo riesgo
+            de insuficiencia de suma asegurada.</li>
+        <li><strong>Uruguay vía Puerto: resiliencia del segmento medio:</strong>
+            turista que no puede costear un vuelo pero mantiene necesidad de ocio exterior.
+            Estadía promedio 11,4 noches. Es el segmento de mayor riesgo sin cobertura;
+            nadie lo está asegurando sistemáticamente.</li>
+        <li><strong>El turista europeo trae alta estadía pero baja propensión al reclamo frío:</strong>
+            el perfil de "visita a familiares" (32,4% del receptivo 1T) tiene mayor estadía
+            pero menor interacción con sistemas de salud locales. Oportunidad de
+            producto de baja siniestralidad histórica y prima razonable.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ BLOQUE 3: LECTURA ECONÓMICA ═══ -->
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">Lectura Económica Implícita</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="macro-grid">
+    <div class="macro-card">
+      <div class="macro-label">Poder Adquisitivo Real</div>
+      <div class="macro-headline">El emisivo aéreo revela concentración extrema del ingreso</div>
+      <div class="macro-body">
+        Un viaje emisivo aéreo de 14 noches implica ~USD 1.330 de gasto en destino por persona,
+        más vuelo. Para una familia de 3: USD 4.000+ de consumo discrecional. Esto coexiste
+        con salarios reales deprimidos en términos históricos. La única explicación consistente:
+        concentración creciente del ingreso o consumo financiado por ahorro previo en dólares.
+        El seguro de viaje premium no es un mercado masivo; es un mercado de nicho que crece.
+      </div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Consumo Discrecional</div>
+      <div class="macro-headline">Déficit turístico de USD 961M en un solo trimestre</div>
+      <div class="macro-body">
+        USD 882M de gasto receptivo vs USD 1.843M emisivo en 1T = déficit de cuenta turismo
+        de casi USD 961M. Este déficit presiona la cuenta corriente y no aparece en los titulares.
+        Para el sector seguros: la demanda de reaseguro en moneda dura para coberturas de viaje
+        está indexada a flujos que el BCRA debería estar monitoreando.
+        Una restricción de divisas puede afectar la capacidad de pago de siniestros en destino.
+      </div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Contradicciones &amp; Paradojas Macro</div>
+      <div class="macro-headline">El terrestre colapsa; el aéreo crece. Son dos economías distintas.</div>
+      <div class="macro-body">
+        La clase media que cruzaba la frontera en auto a Chile o Paraguay desapareció del mapa
+        estadístico (−41,1% terrestre emisivo). Simultáneamente, el segmento que toma vuelos
+        internacionales crece +12,8%. Argentina no tiene un mercado turístico; tiene dos mercados
+        paralelos que divergen. Cualquier producto asegurador que homogeneice esta realidad
+        destruye margen en el segmento equivocado.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BLOQUE 4: INSIGHTS ═══ -->
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">Insights Estratégicos</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-card insight-teal">
+      <div class="insight-num">Insight 01 · Segmentación de Producto</div>
+      <div class="insight-headline">El mercado de viaje tiene dos segmentos que divergen. Tratarlos igual destruye margen.</div>
+      <div class="insight-body">
+        Emisivo aéreo (creciente, ticket alto, destinos Brasil/EE.UU., estadías largas) y
+        emisivo terrestre/Puerto (colapsado, viajes cortos a Uruguay) requieren estrategias,
+        precios y canales completamente distintos. El pricing unificado actual subsidia
+        un segmento y pierde mercado en el otro.
+      </div>
+    </div>
+    <div class="insight-card insight-amber">
+      <div class="insight-num">Insight 02 · Segmento Invisible</div>
+      <div class="insight-headline">El turista extranjero en Argentina es el cliente que nadie está asegurando.</div>
+      <div class="insight-body">
+        737K turistas receptivos en 1T, estadías de 14 noches, actividades de riesgo moderado,
+        coberturas de origen con gaps en Argentina. La industria local trata este segmento
+        como invisible porque el contrato se origina afuera. El daño ocurre acá.
+        Modelo B2B2C con aerolíneas o plataformas de booking puede monetizar esta posición.
+      </div>
+    </div>
+    <div class="insight-card insight-green">
+      <div class="insight-num">Insight 03 · Flujo Desviado</div>
+      <div class="insight-headline">La caída del terrestre emisivo es una oportunidad de retención, no solo una pérdida.</div>
+      <div class="insight-body">
+        El argentino que dejó de cruzar a Chile no dejó de querer vacacionar: desplazó demanda
+        al interior. Patagonia (+16%), Cuyo (+55%) crecen en pernoctaciones receptivas.
+        Un producto de asistencia doméstica bien posicionado captura ese flujo.
+        Hoy nadie lo ofrece con la profundidad necesaria.
+      </div>
+    </div>
+    <div class="insight-card insight-blue">
+      <div class="insight-num">Insight 04 · Actuarial</div>
+      <div class="insight-headline">La paradoja de la estadía: quien más tiempo pasa tiene la peor relación actuarial.</div>
+      <div class="insight-body">
+        El turista en casa de familiares (33,8% del receptivo) tiene GDPP más bajo (USD 46,5)
+        pero estadía más larga. Para el seguro: baja prima, alta exposición temporal acumulada.
+        Si el pricing es por viaje y no por días de cobertura efectiva, se está asumiendo
+        riesgo sin retribución proporcional.
+      </div>
+    </div>
+    <div class="insight-card insight-red" style="grid-column: 1 / -1;">
+      <div class="insight-num">Insight 05 · Alerta Estratégica · Córdoba Hub</div>
+      <div class="insight-headline">Córdoba creció +70,3% en emisivo aéreo. Es un mercado, no una anomalía estadística.</div>
+      <div class="insight-body">
+        El interior argentino está generando flujo aéreo exterior propio, sin pasar por Buenos Aires.
+        Córdoba, Mendoza (+1,8% receptivo), resto de aeropuertos (+65% emisivo) indican
+        descentralización real del mercado. La distribución aseguradora concentrada en AMBA
+        ya está dejando dinero sobre la mesa. Quién llegue primero a ese canal tiene ventaja
+        de primer movimiento en un mercado que seguirá creciendo independientemente del ciclo.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BLOQUE 5: RECOMENDACIONES ═══ -->
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">Recomendaciones Concretas — Nivel CFO / Comité</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="recom-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Acción</th>
+          <th>Área</th>
+          <th>Prioridad</th>
+          <th>Fundamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:var(--mono);color:var(--text-lo);font-size:11px">01</td>
+          <td class="recom-accion">Repricing del seguro de viaje emisivo aéreo por destino</td>
+          <td style="color:var(--text-mid);font-size:11.5px">Actuaría · Producto</td>
+          <td class="recom-pri pri-alta">ALTA</td>
+          <td>La mezcla de destinos cambió: menos Chile, más Brasil y EE.UU.
+              El costo hospitalario en destino varía significativamente. Un pricing con tablas
+              2023-24 puede estar subprecificando coberturas a Brasil (R$ altos en USD)
+              y sobrecobrando a destinos que ya no concentran flujo. Encomendar revisión
+              actuarial antes del próximo ciclo de renovación masiva.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono);color:var(--text-lo);font-size:11px">02</td>
+          <td class="recom-accion">Desarrollar producto de asistencia para turistas no residentes</td>
+          <td style="color:var(--text-mid);font-size:11.5px">Desarrollo · Comercial</td>
+          <td class="recom-pri pri-alta">ALTA</td>
+          <td>Formato B2B2C: acuerdo con aerolíneas, agencias receptivas o plataformas de
+              booking. Mercado objetivo: 737K turistas de 1T, mayormente con coberturas
+              de origen con gaps en Argentina (redes, idioma, recupero).
+              Modelo de comisión simple, bajo capital requerido, alto volumen potencial.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono);color:var(--text-lo);font-size:11px">03</td>
+          <td class="recom-accion">Lanzar asistencia de viaje doméstico con distribución 100% digital</td>
+          <td style="color:var(--text-mid);font-size:11.5px">Producto · Digital</td>
+          <td class="recom-pri pri-media">MEDIA</td>
+          <td>Flujo desviado del terrestre emisivo hacia destinos internos. Patagonia y Cuyo
+              como corredores MVP. Ticket bajo, contratación digital, foco en cancelación
+              y emergencia médica. Sin competidor desarrollado en el segmento hoy.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono);color:var(--text-lo);font-size:11px">04</td>
+          <td class="recom-accion">Revisar programa de reaseguro por acumulación en CABA</td>
+          <td style="color:var(--text-mid);font-size:11.5px">Reaseguro · Riesgo</td>
+          <td class="recom-pri pri-media">MEDIA</td>
+          <td>50,6% de pernoctaciones receptivas concentradas en CABA. El programa de AP/Viaje
+              debe contemplar escenarios de acumulación por evento en zona urbana densa
+              (incidentes de seguridad, cortes de servicio, eventos de salud pública).
+              Verificar si el reaseguro actual tiene cláusula de evento catastrófico urbano.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono);color:var(--text-lo);font-size:11px">05</td>
+          <td class="recom-accion">Activar distribución aseguradora en aeropuertos del interior</td>
+          <td style="color:var(--text-mid);font-size:11.5px">Distribución · Comercial</td>
+          <td class="recom-pri pri-baja">MEDIA-BAJA</td>
+          <td>Córdoba +70,3% emisivo. Mendoza +1,8% receptivo. Resto aeropuertos +65% emisivo.
+              La concentración AMBA en distribución ya pierde mercado. Evaluar acuerdo
+              con agencias de viaje del interior o distribución digital geolocalizada
+              para capturar viajero aéreo del interior antes de que lo haga la competencia.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ BLOQUE 6: ALERTAS ═══ -->
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">Alertas y Riesgos a Monitorear</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="alert-grid">
+    <div class="alert-card alert-red">
+      <div class="alert-title">Reversión cambiaria y boom emisivo repentino</div>
+      <div class="alert-body">
+        Si el tipo de cambio real se deprecia significativamente, el terrestre y el
+        aéreo emisivo pueden rebotar con fuerza en pocos meses. Una industria sin
+        capacidad de respuesta rápida en producto (por demoras regulatorias o
+        procesos internos) perderá el ciclo alcista. Preparar el producto
+        <em>antes</em> del mercado, no en reacción.
+      </div>
+    </div>
+    <div class="alert-card alert-red">
+      <div class="alert-title">Restricciones de divisas y pago de siniestros en exterior</div>
+      <div class="alert-body">
+        El déficit turístico de USD 961M en 1T presiona reservas. Si el BCRA
+        reimplanta limitaciones al pago de asistencias en el exterior — como
+        ocurrió en ciclos anteriores — la capacidad de liquidación de siniestros
+        en destino queda comprometida. Tener protocolo de contingencia documentado.
+      </div>
+    </div>
+    <div class="alert-card alert-amber">
+      <div class="alert-title">Siniestralidad diferida · IBNR subvaluado</div>
+      <div class="alert-body">
+        Estadías promedio de 14 noches implican que siniestros de viajes de 1T
+        pueden liquidarse en 2T. Si hay subestimación del IBNR en viaje,
+        el impacto en resultado aparecerá con lag. Revisar factor de desarrollo
+        para pólizas de estadía extendida en próxima valuación trimestral.
+      </div>
+    </div>
+    <div class="alert-card alert-amber">
+      <div class="alert-title">Insuficiencia de suma asegurada en Brasil</div>
+      <div class="alert-body">
+        Brasil es el destino dominante (44,3% del emisivo aéreo 1T).
+        El costo hospitalario brasileño en USD sigue siendo alto. Límites de
+        cobertura médica diseñados para el destino promedio pueden ser insuficientes
+        para internaciones en San Pablo o Río. Revisar topes por destino
+        antes de la temporada de invierno.
+      </div>
+    </div>
+    <div class="alert-card alert-blue">
+      <div class="alert-title">Indicadores complementarios a monitorear</div>
+      <div class="alert-body">
+        Para validar esta lectura se necesita cruzar con:
+        contratación propia de viaje por canal y destino (1T 2026 vs 1T 2025) ·
+        siniestralidad por destino del portfolio emisivo ·
+        datos de tarjeta de crédito en exterior como proxy de poder adquisitivo real ·
+        ocupación hotelera CABA (EOH-INDEC) ·
+        tipo de cambio real multilateral como variable explicativa omitida.
+      </div>
+    </div>
+    <div class="alert-card alert-blue">
+      <div class="alert-title">Información faltante para análisis de mayor profundidad</div>
+      <div class="alert-body">
+        El informe ETI no provee: datos de turismo receptivo por canal de distribución ·
+        penetración de seguro de viaje sobre flujo total (estimada en menos del 20%) ·
+        desglose de siniestralidad por destino en el mercado local ·
+        evolución del tipo de cambio real implícito en los datos de gasto.
+        Sin estas variables el análisis actuarial es parcial.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
+    USO INTERNO · NIVEL COMITÉ EJECUTIVO · 2026-04-27
+  </div>
+  <div class="footer-right">
+    Fuente: INDEC — ETI Marzo &amp; 1T 2026 (publicación 24/04/2026 · datos provisorios)
+  </div>
+</footer>
+
+</body>
+</html>
