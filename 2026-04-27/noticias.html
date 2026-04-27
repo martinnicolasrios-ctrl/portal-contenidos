@@ -3,303 +3,69 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Análisis Cronista — 27/04/2026</title>
+  <title>Análisis Cronista — 27/04/2026 · Hipotecario Seguros</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0B1620;
-      --bg-2: #0F1E2B;
-      --bg-3: #17293A;
-      --line: #1E3447;
-      --ink: #F2F6F9;
-      --ink-2: #B5C5D3;
-      --ink-3: #7B91A3;
-      --accent: #34BBDA;
-      --gold: #E8B04A;
-      --pos: #5BD39A;
-      --neg: #EF6C6C;
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
     }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%);
-      color: var(--ink);
-      padding: 40px 20px 80px;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
     .container { max-width: 1040px; margin: 0 auto; }
 
-    /* HEADER */
-    .header {
-      background: var(--bg-3);
-      border-bottom: 1px solid var(--line);
-      padding: 28px 36px;
-      margin-bottom: 32px;
-      border-radius: 4px;
-    }
-    .header-eyebrow {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--ink-3);
-      margin-bottom: 8px;
-    }
-    .header-title {
-      font-family: 'Fraunces', serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .header-meta {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: var(--ink-3);
-      letter-spacing: .08em;
-    }
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 16px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; }
 
-    /* SECTIONS */
-    .section {
-      margin-bottom: 28px;
-    }
-    .section-head {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-    }
-    .section-num {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      white-space: nowrap;
-    }
-    .section-title {
-      font-family: 'Fraunces', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--ink);
-    }
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
 
-    /* CARDS */
-    .card {
-      background: var(--bg-2);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 20px 24px;
-      margin-bottom: 14px;
-    }
-    .card-header {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--ink-3);
-      letter-spacing: .1em;
-      margin-bottom: 10px;
-    }
-    .card-content {
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--ink-2);
-    }
-    .card-content strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-    .card-content p {
-      margin-bottom: 10px;
-    }
-    .card-content p:last-child {
-      margin-bottom: 0;
-    }
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
 
-    /* ALERT CARD */
-    .card-alert {
-      border-left: 3px solid var(--neg);
-      background: rgba(239,108,108,.04);
-    }
-    .card-alert .card-header {
-      color: var(--neg);
-    }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
 
-    /* RECOMMENDATION CARD */
-    .card-rec {
-      border-left: 3px solid var(--gold);
-      background: rgba(232,176,74,.04);
-    }
-    .card-rec .card-header {
-      color: var(--gold);
-    }
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
 
-    /* HIGHLIGHT BOX */
-    .highlight {
-      background: var(--bg-3);
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--accent);
-      border-radius: 4px;
-      padding: 16px 20px;
-      margin-bottom: 14px;
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--ink-2);
-    }
-    .highlight strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-radius: 4px; border-left: 2px solid var(--accent); font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
 
-    /* BULLETS */
-    .bullet-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .bullet-list li {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-      padding: 14px 16px;
-      background: var(--bg-3);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      border-left: 2px solid var(--accent);
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--ink-2);
-    }
-    .bullet-list li:last-child {
-      margin-bottom: 0;
-    }
-    .bullet-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      margin-top: 6px;
-      box-shadow: 0 0 6px rgba(52,187,218,.5);
-    }
-    .bullet-list strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
 
-    /* TAG */
-    .tag {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 3px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 9px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      background: rgba(52,187,218,.1);
-      color: var(--accent);
-      border: 1px solid rgba(52,187,218,.25);
-      margin-right: 6px;
-      margin-bottom: 4px;
-    }
-    .tag.neg {
-      background: rgba(239,108,108,.1);
-      color: var(--neg);
-      border-color: rgba(239,108,108,.25);
-    }
-    .tag.gold {
-      background: rgba(232,176,74,.1);
-      color: var(--gold);
-      border-color: rgba(232,176,74,.25);
-    }
-    .tag.pos {
-      background: rgba(91,211,154,.1);
-      color: var(--pos);
-      border-color: rgba(91,211,154,.25);
-    }
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; }
 
-    /* LISTA DE TENSIONES */
-    .tension-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .tension-list li {
-      margin-bottom: 16px;
-      padding-left: 0;
-    }
-    .tension-list li:last-child {
-      margin-bottom: 0;
-    }
-    .tension-item {
-      background: var(--bg-3);
-      border: 1px solid var(--line);
-      border-left: 2px solid var(--accent);
-      border-radius: 4px;
-      padding: 14px 16px;
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--ink-2);
-    }
-    .tension-item strong {
-      display: block;
-      color: var(--ink);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 6px; margin-bottom: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
 
-    /* ALERT LIST */
-    .alert-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .alert-list li {
-      margin-bottom: 16px;
-      padding-left: 0;
-    }
-    .alert-list li:last-child {
-      margin-bottom: 0;
-    }
-    .alert-item {
-      background: var(--bg-3);
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--neg);
-      border-radius: 4px;
-      padding: 14px 16px;
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--ink-2);
-    }
-    .alert-item strong {
-      color: var(--neg);
-      font-weight: 600;
-    }
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
 
-    /* FOOTER */
-    footer {
-      margin-top: 48px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: var(--ink-3);
-      text-align: center;
-      letter-spacing: .06em;
-      line-height: 1.6;
-    }
-
-    /* RESPONSIVE */
     @media (max-width: 720px) {
       .header-title { font-size: 24px; }
       .section-title { font-size: 18px; }
@@ -314,12 +80,12 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial</div>
-    <div class="header-title">El Carry Trade se Cierra, la Mora Sube, y el Gobierno Necesita Crédito Subsidiado</div>
-    <div class="header-meta">27 de abril de 2026 · Análisis regulatorio y financiero</div>
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial · Edición N° 10.848</div>
+    <div class="header-title">El Carry en CER Llegó a su Límite: el Mercado Rota hacia Hard-Dollar</div>
+    <div class="header-meta">27 de abril de 2026 · Análisis regulatorio y financiero para CEO · Hipotecario Seguros</div>
   </div>
 
-  <!-- RESUMEN EJECUTIVO -->
+  <!-- § 01 RESUMEN -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 01</span>
@@ -328,28 +94,28 @@
     <ul class="bullet-list">
       <li>
         <div class="bullet-dot"></div>
-        <div><strong>El carry trade en CER alcanzó su pico (~18% en USD) y entra en fase de desarme</strong>: Banco Comafi confirma toma de ganancias y rotación hacia hard-dollar. El retorno asimétrico se evaporó con el tipo de cambio real en mínimos comparables a 2017 y tasas reales en terreno marcadamente negativo.</div>
+        <div><strong>El carry trade en CER acumuló ~18% en USD desde febrero y entra en fase de desarme</strong>: Banco Comafi confirma toma de ganancias y rotación hacia hard-dollar (AO28, AN29). La ecuación riesgo-retorno se agotó: tipo de cambio real apreciado más de 5,5% y tasas reales profundamente negativas.</div>
       </li>
       <li>
         <div class="bullet-dot"></div>
-        <div><strong>La tasa de caución a 1 día opera en torno al 20% TNA —su nivel más bajo desde la eliminación de las LEFIs—</strong> como resultado del relajamiento de encajes y las inyecciones de pesos vía compras de dólares del BCRA, no de una decisión administrativa de tasa.</div>
+        <div><strong>La tasa de caución opera al 20% TNA como resultado de mercado</strong>, no de una decisión administrativa. Surgió del relajamiento de encajes y reaparición del BCRA en repos A3. Analistas esperan tasas estables hasta mediados de mayo, cuando los vencimientos de Ganancias podrían tensionar levemente.</div>
       </li>
       <li>
         <div class="bullet-dot"></div>
-        <div><strong>Mora familiar alcanzó 11,2% en febrero</strong> (vs. 2,94% un año atrás): préstamos personales 13,2%, tarjetas 11%, otros 31,9%. Las deudas promedio de hogares equivalen a 3,46 salarios RIPTE. El crédito crece pero la calidad se deteriora agresivamente.</div>
+        <div><strong>La mora familiar alcanzó el 11,2% en febrero</strong> (era 2,94% un año atrás): personales 13,2%, tarjetas 11%, otros 31,9%. Los hogares acumulan deudas equivalentes a 3,46 salarios RIPTE. El crédito bancario creció al 13,6% del PBI pero la calidad de cartera se deteriora aceleradamente.</div>
       </li>
       <li>
         <div class="bullet-dot"></div>
-        <div><strong>Caputo busca reactivar vía crédito subsidiado y obras</strong>: Banco Nación lanzará líneas para pymes a tasas <20% TNA ($500M cupo inicial); se licitarán 9.000 km de rutas. El Gobierno reconoce implícitamente que la reactivación espontánea tiene tracción insuficiente.</div>
+        <div><strong>Caputo gira hacia herramientas de estímulo</strong>: Banco Nación lanzará créditos a tasas menores al 20% TNA para pymes ($500M de cupo inicial); se anunció licitación de 9.000 km de rutas. El Gobierno reconoce implícitamente que la reactivación espontánea no tiene tracción suficiente.</div>
       </li>
       <li>
         <div class="bullet-dot"></div>
-        <div><strong>Tesoro captura hasta u$s 900 millones</strong> en próxima licitación Bonares 2027/2028 para prefin volcimientos julio. Estrategia es alargar duration en pesos e incrementar fondeo en dólares doméstico.</div>
+        <div><strong>El Tesoro llama a licitación para renovar $7,9 billones</strong>: estrategia dual de alargar duration en pesos (vencimientos 2028-2029) y aumentar fondeo en dólares doméstico (hasta u$s 900 millones en Bonares 2027/2028 si la demanda lo acompaña).</div>
       </li>
     </ul>
   </div>
 
-  <!-- LECTURA DE MERCADO -->
+  <!-- § 02 LECTURA -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 02</span>
@@ -358,66 +124,57 @@
     <div class="card">
       <div class="card-header">Régimen de Carry Comprimido en Fase de Agotamiento</div>
       <div class="card-content">
-        <p>El régimen vigente es de <strong>carry comprimido en proceso de agotamiento, con transición forzada hacia cobertura hard-dollar y equity</strong>. No hay un evento disruptivo puntual: la ecuación riesgo-retorno del carry simplemente dejó de ser asimétrica. El tipo de cambio real regresó a niveles de 2017, las tasas reales son profundamente negativas, y el BCRA inyecta pesos vía compras de dólares que el Tesoro luego absorbe con rollover superior al 100%.</p>
-        <p>La narrativa que el mercado está construyendo es: <strong>"el ancla cambiaria aguanta, la macro mejora gradualmente, pero el costo social y financiero del ajuste empieza a aparecer en los balances"</strong>. El dato de mora familiar (11,2%) y el EMAE de febrero (-2,1% interanual) hacen ruido en un contexto en que el gobierno comunica que todo está bien.</p>
-        <p>El modelo de funding es <strong>100% doméstico por ahora</strong>, con el Tesoro colocando en dólares locales y en pesos en cada ventana disponible. Eso significa que el riesgo de rollover es real y estructural: el Gobierno no saldrá a mercados internacionales porque el riesgo político de 2027 mantiene el spread elevado (~530 bps).</p>
+        <p>El régimen vigente es de <strong>carry comprimido en proceso de agotamiento, con transición gradual hacia cobertura hard-dollar y equity</strong>. No hubo un evento disruptivo puntual: la ecuación riesgo-retorno del carry en CER simplemente dejó de ser asimétrica. El tipo de cambio real está en mínimos comparables a los de 2017, las tasas reales son profundamente negativas y el BCRA inyecta pesos vía compras de dólares que el Tesoro luego absorbe con rollover superior al 100%. Ese circuito es sostenible solo mientras la cosecha gruesa liquide (mayo-junio).</p>
+        <p>La narrativa que el mercado está construyendo es: <strong>"la macro está ordenada, el ancla cambiaria aguanta, pero el costo social y financiero del ajuste empieza a aparecer en los balances."</strong> El dato de mora familiar (11,2%) y el EMAE de febrero (-2,1% interanual) hacen ruido. El propio viceministerio reconoció que los bancos tardarán en sanear esa mora: el problema está en los balances y es real.</p>
+        <p>Furiase (asesor de Caputo, director del BICE) fue explícito: el Gobierno <strong>no saldrá a los mercados internacionales</strong> porque el financiamiento doméstico resulta más barato y el riesgo político de 2027 mantiene el spread elevado en torno a los 530 puntos básicos. El modelo de funding es 100% doméstico, con el Tesoro colocando en dólares locales y en pesos en cada ventana disponible.</p>
+        <p>La confianza de los consumidores cayó 5,7% en abril (Di Tella). Milei lo reconoció: <strong>"la gente está mal por el freno de la actividad."</strong> La respuesta del Gobierno es pragmática: crédito subsidiado, infraestructura vial y señales de que el RIGI empieza a concretarse.</p>
       </div>
     </div>
   </div>
 
-  <!-- TENSIONES CLAVE -->
+  <!-- § 03 TENSIONES -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 03</span>
       <span class="section-title">Tensiones Clave</span>
     </div>
     <ul class="tension-list">
-      <li>
-        <div class="tension-item">
-          <strong>Tasas reales vs. tipo de cambio real</strong>
-          Con tasas reales en mínimos negativos y el CCL apreciado más de 5,5% en las últimas semanas, el carry en pesos ya no compensa el riesgo de corrección cambiaria. La ventana de 4-5 semanas de cosecha es real pero acotada.
-        </div>
+      <li class="tension-item">
+        <strong>Tasas reales vs. tipo de cambio real</strong>
+        Las tasas reales están en mínimos negativos y el CCL se apreció más del 5,5% en las últimas semanas. El margen para seguir en carry ya no compensa el riesgo de corrección cambiaria. La ventana de 4-5 semanas tranquilas de cosecha es real pero acotada.
       </li>
-      <li>
-        <div class="tension-item">
-          <strong>Mora creciente vs. crédito en expansión</strong>
-          El stock de préstamos al sector privado duplicó el nivel de Milei (de 5,2% a 13,6% del PBI), pero la irregularidad cuadruplicó. El sistema bancario reporta cobertura 90% con previsiones, pero la rentabilidad futura sobre esas carteras crecidas se reduce. Los bancos refinancian a deudores morosos en tarjetas.
-        </div>
+      <li class="tension-item">
+        <strong>Mora creciente vs. crédito en expansión</strong>
+        El crédito bancario al sector privado pasó del 5,2% al 13,6% del PBI, pero la irregularidad casi se cuadruplicó. Los bancos refinancian a deudores morosos, lo que solo patea el problema hacia adelante. Las billeteras virtuales registran mora del 26,7% en febrero, casi tres veces la mora bancaria.
       </li>
-      <li>
-        <div class="tension-item">
-          <strong>Reactivación en K vs. narrativa de rebote</strong>
-          La industria mostró repunte en marzo (+0,7% interanual), cortando 8 meses negativos. Pero el EMAE fue -2,1% interanual. Los sectores ganadores (energía, agro, finanzas) generan poco empleo. Los perdedores (manufactura, comercio, construcción) son empleadores masivos. Esto limita el derrame.
-        </div>
+      <li class="tension-item">
+        <strong>Reservas netas vs. compras del BCRA</strong>
+        El Central compró u$s 4.386 millones en lo que va del año, pero eso no se tradujo en mejora de reservas netas por pagos de BOPREAL, compromisos con organismos y caída en tenencias de entidades. Más gráficamente: el BCRA compra pero no retiene.
       </li>
-      <li>
-        <div class="tension-item">
-          <strong>Tesoro vs. mercado de deuda local</strong>
-          El Tesoro necesita renovar fuerte y alargar. Si la licitación de u$s 900M falla o el rollover baja de 100%, presión sobre tipo de cambio se activa. La dependencia de fondeo doméstico en dólares es vulnerabilidad estructural.
-        </div>
+      <li class="tension-item">
+        <strong>Reactivación en K vs. narrativa de rebote</strong>
+        La industria repuntó en marzo (+0,7% i.a. según IPI Ferreres), cortando ocho meses de caídas, pero el acumulado Q1 2026 sigue siendo -3,1% i.a. Los sectores que crecen (energía, finanzas, agro) generan poco empleo; los que emplean masivamente (industria manufacturera, construcción, comercio) no se recuperan.
       </li>
-      <li>
-        <div class="tension-item">
-          <strong>Reforma laboral vs. CGT/Corte</strong>
-          La Cámara del Trabajo habilitó la reforma. La CGT va a recusar y evalúa la Corte. Riesgo de suspensión judicial de 80+ artículos añade incertidumbre regulatoria laboral para empresas.
-        </div>
+      <li class="tension-item">
+        <strong>Tesoro vs. mercado de deuda local</strong>
+        La licitación del martes es un test de renovación de $7,9 billones. El Tesoro tiene $8,2 billones de colchón en el BCRA, pero si el rollover cae debajo del 100%, la señal es negativa. La dependencia de Bonares como financiamiento doméstico en dólares es vulnerabilidad estructural.
       </li>
-      <li>
-        <div class="tension-item">
-          <strong>Fed hawkish (Warsh) vs. carry emergente</strong>
-          La probable confirmación de Kevin Warsh con sesgo contractivo comprime spreads emergentes y endurece la competencia de Treasuries. Para Argentina, reduce el margen de error.
-        </div>
+      <li class="tension-item">
+        <strong>Reforma laboral vs. CGT y Poder Judicial</strong>
+        La Cámara del Trabajo habilitó la reforma. La CGT recusará al juez y analiza elevar el caso a la Corte Suprema. Una eventual suspensión de 80+ artículos genera incertidumbre regulatoria laboral concreta para empresas.
       </li>
-      <li>
-        <div class="tension-item">
-          <strong>Paro bancario 27/04</strong>
-          La Bancaria declaró huelga 24hs. Los 21 tesoros no operan. Impacto en liquidez operativa, traslado de efectivo e interbancarias. Señal de paritarias bancarias estancadas y presión salarial en sector de squeezed margins.
-        </div>
+      <li class="tension-item">
+        <strong>Fed hawkish (Warsh) vs. emergentes</strong>
+        El mercado pateó los recortes de tasas hacia marzo-abril de 2027. Los rendimientos del UST 10Y subieron al 4,31%. Para Argentina, esto reduce el margen de error y hace más lenta cualquier compresión de spreads.
+      </li>
+      <li class="tension-item">
+        <strong>Paro bancario 27/04</strong>
+        La Bancaria declaró huelga de 24 horas. Los 21 tesoros bancarios no operan. Impacto en traslado de efectivo e interbancarias. Señal de paritarias estancadas y presión salarial en el sector con márgenes comprimidos.
       </li>
     </ul>
   </div>
 
-  <!-- IMPACTO EN VARIABLES -->
+  <!-- § 04 IMPACTO VARIABLES -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 04</span>
@@ -425,27 +182,27 @@
     </div>
     <div class="card">
       <div class="card-header">Tipo de Cambio (oficial / MEP / CCL)</div>
-      <div class="card-content">Oficial BNA $1.420 (+0,35%), Blue $1.420, MEP $1.440,89 (+0,18%). La banda cambiaria aguanta con cosecha gruesa fluyendo. El tipo de cambio real está apreciado ~20% por debajo techo de banda. Presión al alza es latente pero no inminente en próximas 4-5 semanas. Mayor riesgo es post-cosecha, cuando flujos se agotan.</div>
+      <div class="card-content">BNA $1.420 (+0,35%). Blue $1.420 (sin cambios). MEP $1.440,89 (+0,18%). La banda aguanta sostenida por la cosecha gruesa. El TC real está apreciado, más del 20% por debajo del techo de banda. La presión al alza es latente pero no inminente en 4-5 semanas. El mayor riesgo es post-cosecha, cuando los flujos se agotan y la absorción de pesos vía licitaciones del Tesoro pierde su contraparte en compras del BCRA.</div>
     </div>
     <div class="card">
       <div class="card-header">Curva de Tasas (corto vs. largo)</div>
-      <div class="card-content">Caución opera al 20% TNA (piso BCRA). LECAPs cortas rinden ~2% TEM o menos. Curva CER con pendiente positiva marcada y tasas reales profundamente negativas en tramo corto. Mercado empieza ver valor en tramo largo LECAPs (apuesta a desinflación) y duales (TTD26 mejor risk-reward según Research Mariva). BONTE 2030 como instrumento de upside (26% rendimiento potencial año según Adcap).</div>
+      <div class="card-content">La caución al 20% TNA es resultado de mercado, no tasa de política. LECAPs cortas rinden ~2% TEM o menos. Curva CER con pendiente positiva marcada y tasas reales muy negativas en el tramo corto. Mercado identifica valor en LECAPs largas (breakeven implícito 30% vs. proyección privada 22,4%). Nuevo dual CER/TAMAR (TXMJ9 a junio 2029) concentra expectativa de demanda elevada en la licitación.</div>
     </div>
     <div class="card">
       <div class="card-header">Inflación Esperada</div>
-      <div class="card-content">IPC marzo 3,4% (por encima expectativas). IPC abril: consenso 2,7%-3,1%. Breakevens cortos en 2,3%-2,4%. Si dato abril confirma desinflación retomada, CER corto sufre y LECAPs largos se benefician. Riesgo: inflación no ceda e IPC abril salga arriba del breakeven.</div>
+      <div class="card-content">IPC marzo: 3,4% (por encima de expectativas). IPC abril: consenso 2,7%-3,1%. Breakevens cortos en 2,3%-2,4%. Si abril confirma desinflación, CER corto sufre y LECAPs largas se benefician. El riesgo clave es que el dato de abril salga por encima del breakeven, reactivando volatilidad en la curva de pesos.</div>
     </div>
     <div class="card">
       <div class="card-header">Liquidez del Sistema</div>
-      <div class="card-content">BCRA compra dólares cosecha e inyecta pesos (temporalmente). Tesoro absorbe con rollover >100%. Piso tasas 20% se mantiene. Inyección neta baja o nula mediano plazo. Presión sube hacia mayo-junio con vencimientos Ganancias y desaceleración cosecha.</div>
+      <div class="card-content">BCRA compra dólares de cosecha e inyecta pesos temporariamente. Tesoro absorbe con rollover >100%. Piso de caución en 20% TNA se sostiene. Liquidez neta efectiva neutral o levemente positiva en el margen. La presión sube hacia mayo-junio con vencimientos de Ganancias y desaceleración de liquidación agraria.</div>
     </div>
     <div class="card">
       <div class="card-header">Riesgo Soberano</div>
-      <div class="card-content">Riesgo país estabilizado ~530 bps. Gobierno no sale a mercados internacionales. Compresión de spread está frenada por ciclo electoral 2027. Factor desbloqueador sería acumulación sostenida de reservas netas, que empresas usan para girar dividendos (u$s 870M marzo). Reservas netas siguen negativas o exiguas.</div>
+      <div class="card-content">Riesgo país estabilizado ~530 bps. El Gobierno no sale a mercados internacionales; el funding es 100% doméstico. El factor desbloqueador para comprimir significativamente sería la acumulación sostenida de reservas netas, que hoy no ocurre: el BCRA compra pero los drenajes por BOPREAL, organismos y utilidades giradas (u$s 870M en marzo) se llevan lo comprado.</div>
     </div>
   </div>
 
-  <!-- IMPLICANCIAS -->
+  <!-- § 05 POSICIONAMIENTO -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 05</span>
@@ -453,23 +210,23 @@
     </div>
     <div class="card">
       <div class="card-header">Se Benefician</div>
-      <div class="card-content">Acciones argentinas con exposición Oil & Gas, bancos y materiales (upside 30%-50% en compresión riesgo país B-). Bonos hard-dollar tramo largo (GD41 según Balanz; AO28/AN29 según Comafi). BONTE 2030 para inversores mayor apetito riesgo. <span class="tag pos">POSITIVOS</span></div>
+      <div class="card-content">Bonos hard-dollar tramo largo (AO28, AN29 según Comafi; GD41 según Balanz). Acciones Oil & Gas, bancos y materiales con potencial 30%-50% en compresión de riesgo país a niveles B-. Tasa fija tramo largo (Boncap T30A7 al 28,5% TNA) si desinflación mayor al breakeven implícito. BONTE 2030 para mayor apetito de riesgo (26% retorno potencial estimado al cierre de año, Adcap). <span class="tag pos">POSITIVOS</span></div>
     </div>
     <div class="card">
-      <div class="card-header">Instrumentos Duales y LECAPs</div>
-      <div class="card-content">Duales TTD26: mejor ratio riesgo-retorno en pesos contexto actual (Research Mariva). Ofrece cobertura si tipo de cambio se mueve, carry si no lo hace. LECAPs tramo largo: atractivas si desinflación sostenida por debajo breakeven (30% implícito vs. 22,4% privada). Boncap T30A7 rinde 28,5% según Adcap. <span class="tag pos">VALOR</span></div>
+      <div class="card-header">Nuevo Instrumento — Dual CER/TAMAR (TXMJ9 · junio 2029)</div>
+      <div class="card-content">La novedad más relevante de la licitación del martes. Combina cobertura por inflación y tasa variable en plazo más largo. Para inversores institucionales, es el instrumento que mejor resuelve la incertidumbre entre desinflación y corrección cambiaria. Adcap lo destaca con expectativa de demanda elevada. <span class="tag blue">NOVEDAD</span></div>
     </div>
     <div class="card">
       <div class="card-header">Empeoran o Pierden Sentido</div>
-      <div class="card-content">CER corto (tasas reales muy negativas, poco upside). Carry trade puro en CER (ya dio retorno, riesgo reversión cambiaria no compensado). Posiciones largas duration en pesos sin cobertura tipo de cambio. <span class="tag neg">RIESGOSOS</span></div>
+      <div class="card-content">CER corto (tasas reales muy negativas, poco upside). Carry trade puro en CER (ya acumuló ~18% en USD desde febrero; el riesgo de reversión cambiaria ya no está compensado). Posiciones largas de duration en CER sin cobertura de tipo de cambio. <span class="tag neg">RIESGOSOS</span></div>
     </div>
     <div class="card">
-      <div class="card-header">Empieza a Tener Valor</div>
-      <div class="card-content">Dolarización mediano plazo vía CCL o bonos hard-dollar. Bonos duales con componente dólar. Equity argentino sesgo exportador (se beneficia corrección cambiaria + desinflación costos pesos). Sector bancario: vigilar mora (11,2% familias) implica previsiones mayores. <span class="tag">COBERTURA</span></div>
+      <div class="card-header">Cobertura que Empieza a Tener Valor</div>
+      <div class="card-content">Dolarización de mediano plazo vía CCL o bonos hard-dollar. Equity argentino con sesgo exportador (se beneficia de eventual corrección cambiaria). Para carteras en pesos, instrumentos con componente dual o tasa variable (TAMAR) ganan atractivo relativo frente al CER corto. <span class="tag">VALOR RELATIVO</span></div>
     </div>
   </div>
 
-  <!-- ALERTAS -->
+  <!-- § 06 ALERTAS -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 06</span>
@@ -477,41 +234,41 @@
     </div>
     <ul class="alert-list">
       <li class="alert-item">
-        <strong>⚠️ Dato de inflación de abril (publicación en mayo):</strong> Si sale arriba de 3%, curva CER se mantiene cara corto, LECAPs cortas caen y expectativas desinflación se desanclan. Es gatillo más inmediato de cambio régimen. <span class="tag neg">CRÍTICO</span>
+        <strong>Dato de inflación de abril (publicación en mayo):</strong> Si supera el 3%, la desinflación no se retoma, la curva CER se mantiene cara en el tramo corto y las expectativas vuelven a desanclarse. Es el gatillo más inmediato de cambio de régimen en pesos. <span class="tag neg">CRÍTICO</span>
       </li>
       <li class="alert-item">
-        <strong>⚠️ Licitación Tesoro (u$s 900M Bonares 2027/2028):</strong> Si rollover falla o demanda débil, mercado reyee riesgo rollover julio y tipo de cambio recibe presión. Monitorear resultado esta semana. <span class="tag neg">ALTO</span>
+        <strong>Licitación del Tesoro del martes ($7,9 billones):</strong> El test es renovar con rollover de mercado privado. Si el resultado es débil, el mercado reyee el riesgo de los vencimientos de julio y el tipo de cambio puede recibir presión. <span class="tag neg">ALTO</span>
       </li>
       <li class="alert-item">
-        <strong>⚠️ Post-cosecha (junio-julio):</strong> Flujo liquidación agraria que estabiliza cambio y tasa tiene horizonte 4-5 semanas. Pasado pico, tipo de cambio queda más expuesto. Vencimientos julio son próximo stress test fiscal. <span class="tag neg">ALTO</span>
+        <strong>Ventana post-cosecha (junio-julio):</strong> El flujo de liquidación agraria que sostiene el tipo de cambio tiene horizonte de 4-5 semanas. Pasado ese pico, el mercado cambiario queda más expuesto. Los vencimientos de julio son el próximo stress test fiscal. <span class="tag neg">ALTO</span>
       </li>
       <li class="alert-item">
-        <strong>⚠️ Reforma laboral en Justicia:</strong> CGT va recusar y analiza Corte. Si Corte revierte fallo que habilitó 80+ artículos, empresas enfrentan pasivos contingentes significativos. Riesgo jurídico real. <span class="tag neg">MEDIO-ALTO</span>
+        <strong>Reforma laboral en la Justicia:</strong> La CGT va a recusar al juez Pesino y analiza la Corte Suprema. Una eventual suspensión de 80+ artículos genera pasivos contingentes concretos para empresas que ya ajustaron estructuras laborales. <span class="tag neg">MEDIO-ALTO</span>
       </li>
       <li class="alert-item">
-        <strong>⚠️ Fed Hawkish (Warsh) + contexto global:</strong> Eventual confirmación sesgo restrictivo eleva Treasuries 10 años (ya 4,31%) y comprime demanda emergentes. Para Argentina, hace más cara eventual apertura mercados internacionales. <span class="tag neg">ESTRUCTURAL</span>
+        <strong>Fed hawkish (Warsh) + entorno global:</strong> La señal del Senado fue percibida como más restrictiva de lo esperado. El mercado pateó recortes hacia marzo-abril de 2027. Para Argentina, reduce el margen de error doméstico y hace más lenta cualquier compresión de spreads soberanos. <span class="tag neg">ESTRUCTURAL</span>
       </li>
     </ul>
   </div>
 
-  <!-- LO QUE NO ESTÁ PRECIADO -->
+  <!-- § 07 NO PRICEADO -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 07</span>
       <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
     </div>
     <div class="highlight">
-      <strong>La mora del 26,7% en billeteras virtuales (febrero)</strong> es casi tres veces la mora bancaria. El sistema de pagos digitales, motor de inclusión financiera últimos dos años, tiene tasa irregularidad sistémica. Si corrección regulatoria o demanda crédito informal, consumo sufre antes de tasas bajas compensen.
+      <strong>La mora del 26,7% en billeteras virtuales</strong> es casi tres veces la mora bancaria. Si hay corrección regulatoria o freno de demanda de crédito informal, el consumo sufre antes de que la baja de tasas pueda compensarlo. El Congreso tiene 18 proyectos de emergencia crediticia y la nueva conducción de la Cámara Fintech (Paula Arregui, Mercado Pago) tiene como agenda número uno frenarlo. El choque entre regulación y expansión crediticia está latente.
     </div>
     <div class="highlight">
-      <strong>El efecto K en el empleo:</strong> Sectores que más crecen (finanzas +26%, agro +41%, minería +17%) son los que menos empleo generan. Brecha entre sectores ganadores y perdedores implica "rebote generalizado" 2026 puede ser estadísticamente correcto pero socialmente irrelevante. Implicancia política clara cara a 2027.
+      <strong>El RIGI como variable de reservas:</strong> Las mineras y petroleras ingresadas al régimen demorarán el capex fuerte hasta ver las encuestas de comienzos de 2027. "Vamos haciendo los caminos, pero las trituradoras por ahora no se traen." Si esa inversión no fluye antes del ciclo electoral, la acumulación de reservas netas no tiene un driver alternativo potente.
     </div>
     <div class="highlight">
-      <strong>Dependencia del RIGI para sostener escenario inversor:</strong> Mineras y petroleras anotadas al RIGI (Pluspetrol, Pampa) demoran desembolsos fuertes. Si cierre calendario electoral genera incertidumbre antes capex fluya, acumulación reservas se complica.
+      <strong>El efecto K en el empleo como riesgo político 2027:</strong> Los sectores que crecen (intermediación financiera +26%, agro +41%, minería +17%) son los que menos empleo generan o directamente lo reducen. La brecha entre ganadores y perdedores implica que el rebote puede ser estadísticamente correcto pero socialmente irrelevante para la mayoría de los trabajadores. Eso tiene traducción electoral directa que el mercado aún no incorpora en la prima de riesgo política.
     </div>
   </div>
 
-  <!-- BAJADA CFO -->
+  <!-- § 08 CFO -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">§ 08</span>
@@ -519,32 +276,33 @@
     </div>
     <div class="card card-rec">
       <div class="card-header">Cartera en Pesos vs. USD</div>
-      <div class="card-content">El riesgo de estar largo en CER corto es hoy <strong>asimétrico negativamente</strong>: tasas reales profundamente negativas y activo subyacente (inflación abril) puede decepcionar. Para aseguradora con pasivos CER implícitos, calce es razonable en pasivos, pero inversión activa en CER corto no ofrece diferencial real positivo. <strong>Migración hacia pesos tasa fija (LECAPs largas / Boncap T30A7)</strong> tiene sentido si compañía toma cierto riesgo inflación upside. Boncap T30A7 al 28,5% TNA en contexto desinflación 22-24%. <span class="tag gold">TÁCTICO</span></div>
+      <div class="card-content">El riesgo de estar largo en CER corto es hoy <strong>asimétrico negativamente</strong>: tasas reales profundamente negativas e inflación de abril que puede decepcionar a la baja. Para una aseguradora con pasivos CER implícitos, el calce es razonable por el lado de los pasivos, pero la inversión activa en CER corto ya no ofrece diferencial real positivo. <span class="tag gold">TÁCTICO</span></div>
     </div>
     <div class="card card-rec">
-      <div class="card-header">Bonos Duales — Instrumento de Cobertura Natural</div>
-      <div class="card-content"><strong>TTD26 es el instrumento de cobertura natural para aseguradoras:</strong> si tipo de cambio se mantiene, rinde como tasa fija; si sube, ajustan por oficial. Dado TC real apreciado 20% bajo techo banda, riesgo corrección post-cosecha es real, duales son hedge más eficiente para reservas técnicas pesos con exposición inflación o TC. <span class="tag">SEGURO</span></div>
-    </div>
-    <div class="card card-rec">
-      <div class="card-header">CER, Tasa Fija, USD-Linked — Guía Táctica</div>
+      <div class="card-header">CER, Tasa Fija y Duales — Guía Táctica</div>
       <div class="card-content">
-        <p><strong>CER corto: REDUCIR.</strong> Tasas reales muy negativas, carry real negativo forward. Solo mantener si pasivos CER que calzar directamente.</p>
-        <p><strong>CER largo (3-5 años): MANTENER selectivamente.</strong> Algo de pendiente pero riesgo duration si inflación desacelera. <span class="tag gold">PRUDENCIA</span></p>
-        <p><strong>Tata fija (LECAPs tramo largo, BONTE 2030): INCORPORAR gradualmente.</strong> Apuesta: breakeven implícito 30% sobreestima inflación real (22%-24% privada). Hay alpha si desinflación se consolida. <span class="tag gold">OPORTUNIDAD</span></p>
-        <p><strong>USD-linked / duales: SOBREPONDERAR.</strong> TTD26 es top-pick para institucionales con necesidad cobertura TC sin resignar carry pesos. <span class="tag gold">CORE</span></p>
-        <p><strong>Hard-dollar (Bonares / Globales): INCORPORAR tramo largo</strong> (AO28, GD41) como diversificación y cobertura ante corrección cambiaria. Momento de rotar carry CER → hard-dollar es este. <span class="tag">DIVERSIFICACIÓN</span></p>
+        <p><strong>CER corto: REDUCIR.</strong> Tasas reales muy negativas, carry real negativo en términos forward. Solo mantener si hay pasivos CER directos que calzar.</p>
+        <p><strong>CER largo (3-5 años): MANTENER con selectividad.</strong> Algo de pendiente, pero riesgo de duration si desinflación acelera más de lo esperado.</p>
+        <p><strong>Tata fija (LECAPs largas, Boncap T30A7 al 28,5%): INCORPORAR gradualmente.</strong> Breakeven implícito 30% sobreestima inflación real (22%-24% consenso privado). Hay alfa si desinflación se consolida. <span class="tag gold">OPORTUNIDAD</span></p>
+        <p><strong>Nuevo dual CER/TAMAR (TXMJ9 · junio 2029): EVALUAR en la licitación del martes.</strong> Combina cobertura por inflación y tasa variable. Atractivo para carteras institucionales con necesidad de calzar plazos medianos. <span class="tag blue">NOVEDAD</span></p>
+        <p><strong>Hard-dollar (AO28, GD41): INCORPORAR en tramo largo</strong> como diversificación y cobertura ante eventual corrección cambiaria. El momento de rotar parcialmente desde CER corto hacia hard-dollar es el actual. <span class="tag">COBERTURA</span></p>
       </div>
     </div>
     <div class="card card-rec">
-      <div class="card-header">Riesgo de Duration y Liquidez</div>
-      <div class="card-content">Mayor riesgo duration está en tramo largo CER: si inflación converge rápido, curva se aplana y precios CER largos suben, pero tasa real negativa corto implica pérdida real. <strong>Reducir duration CER corto, alargar con selectividad tasa fija.</strong> Duration máxima recomendable pesos: 18 meses. <span class="tag neg">CRÍTICO</span><br/><br/>Para riesgo liquidez: paro bancario hoy (27/04) impacta tesorerías. En mediano plazo, riesgo liquidez mayor en crédito corporativo e instrumentos menor liquidez secundaria. <strong>Mantener 20-25% cartera en activos liquidación <48hs (LECAPs cortas, caucionados, Letras Tesoro).</strong> Deterioro mora billeteras virtuales (26,7%) anticipa corrección demanda crédito privado. <span class="tag neg">PRUDENCIA</span></div>
+      <div class="card-header">Riesgo de Duration</div>
+      <div class="card-content">El mayor riesgo está en CER largo: si la inflación converge más rápido de lo esperado, la curva se aplana y el carry real del tramo corto sigue siendo negativo. <strong>Reducir duration en CER corto, alargar con selectividad en tata fija.</strong> Duration máxima recomendable en pesos: 18 meses, salvo para el nuevo dual CER/TAMAR que extiende a junio 2029 y compensa con la cláusula variable. En hard-dollar, la duration larga (GD41, 15+ años) es un trade de compresión de riesgo país, no de tasa. <span class="tag neg">CRÍTICO</span></div>
+    </div>
+    <div class="card card-rec">
+      <div class="card-header">Riesgo de Liquidez y Alerta Caución</div>
+      <div class="card-content">El paro bancario de hoy (27/04) impacta en la operatoria del día: los 21 tesoros bancarios no operan. La liquidez operativa del día debe estar cubierta. En el mediano plazo, mayor riesgo de liquidez en instrumentos de mercado secundario más estrecho (duales, Boncaps largos). <strong>Mantener al menos 20-25% de la cartera en activos de liquidación rápida</strong> (LECAPs cortas, pases activos, Letras del Tesoro).<br/><br/><strong>Alerta especial para seguros de crédito y caución:</strong> la mora en billeteras virtuales al 26,7% y en otros préstamos al 31,9% anticipa deterioro en la cadena de pagos del segmento pyme y consumidores medios-bajos. Revisar límites de suscripción y reaseguro en ese segmento. <span class="tag neg">PRUDENCIA</span></div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    Análisis elaborado sobre relevamiento El Cronista 26-27 de abril de 2026<br/>
-    Cotizaciones cierre 26/04: BNA $1.420 | Blue $1.420 | MEP $1.440,89 | Tarjeta $1.846 | Riesgo País ~530 bps | Caución 20% TNA<br/>
+    Análisis elaborado sobre relevamiento exhaustivo de El Cronista, 25-27 de abril de 2026 · Edición N° 10.848<br/>
+    Cotizaciones cierre 26/04: BNA $1.420 | Blue $1.420 | MEP $1.440,89 | Tarjeta $1.846 | Riesgo País ~530 bps | Caución ~20% TNA<br/>
+    Hipotecario Seguros
   </footer>
 
 </div>
