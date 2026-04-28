@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial — Análisis Regulatorio — 28/04/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B1620;
+  --bg-2: #0F1E2B;
+  --bg-3: #17293A;
+  --line: #1E3447;
+  --ink: #F2F6F9;
+  --ink-2: #B5C5D3;
+  --ink-3: #7B91A3;
+  --accent: #34BBDA;
+  --gold: #E8B04A;
+  --pos: #5BD39A;
+  --neg: #EF6C6C;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: radial-gradient(ellipse 120% 60% at 0% 0%, rgba(52,187,218,0.06) 0%, transparent 60%), var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.wrapper {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 48px 40px;
+}
+
+/* HEADER */
+header {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.header-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.header-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-2);
+  margin-bottom: 4px;
+}
+
+.header-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* SECTION HEADERS */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  margin-top: 48px;
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* CARDS */
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.card-urgent {
+  border-left: 2px solid var(--neg);
+}
+
+.card-novelty {
+  border-left: 2px solid var(--accent);
+}
+
+.card-financial {
+  border-left: 2px solid var(--gold);
+}
+
+.card-norma {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.card-norma-urgent { color: var(--neg); }
+.card-norma-novelty { color: var(--accent); }
+.card-norma-financial { color: var(--gold); }
+
+.card-organism {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.card-links {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.card-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.card-link:hover { opacity: 0.75; }
+
+.link-urgent {
+  color: var(--neg);
+  border: 1px solid rgba(239,108,108,.3);
+}
+
+.link-novelty {
+  color: var(--accent);
+  border: 1px solid rgba(52,187,218,.3);
+}
+
+.link-financial {
+  color: var(--gold);
+  border: 1px solid rgba(232,176,74,.3);
+}
+
+.link-kronos {
+  color: var(--ink-3);
+  border: 1px solid rgba(123,145,163,.3);
+}
+
+/* VENCIMIENTOS */
+.chips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.chip {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 16px 20px;
+}
+
+.chip-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.chip-desc {
+  font-size: 13px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.chip-action {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* EMPTY STATE */
+.empty-state {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-3);
+  padding: 20px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .wrapper { padding: 28px 18px; }
+  .header-logo { font-size: 22px; }
+  .section-title { font-size: 20px; }
+  .card-title { font-size: 16px; }
+  .card-links { justify-content: flex-start; }
+  .chips-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-logo"></div>
+    <div class="header-sub">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="header-date">28 de Abril de 2026 &nbsp;·&nbsp; Edición N° 35.406</div>
+  </header>
+
+  <!-- SECCIÓN 1 — URGENTE (omitida: no hay ítems urgentes hoy) -->
+
+  <!-- SECCIÓN 2 — NOVEDADES REGULATORIAS -->
+  <div class="section-header">
+    <span class="section-num">§ 01</span>
+    <span class="section-title">Novedades Regulatorias</span>
+    <span class="section-line"></span>
+  </div>
+
+  <!-- CNV RG 1130 -->
+  <div class="card card-novelty">
+    <div class="card-norma card-norma-novelty">RESGC-2026-1130-APN-DIR#CNV</div>
+    <div class="card-organism">Comisión Nacional de Valores</div>
+    <div class="card-title">RG CNV 1130/2026 — Régimen informativo de indicadores financieros para ALyC (Normas NT 2013)</div>
+    <div class="card-desc">
+      La CNV modifica el Título VII, Capítulo II de las Normas (N.T. 2013 y mod.) para los Agentes de Liquidación y Compensación (ALyC). Introduce nuevas definiciones operativas —entre ellas "Cauciones Tomadoras Netas"— e incorpora un régimen informativo renovado: los ALyC deberán presentar estados contables anuales dentro de los 70 días corridos del cierre del ejercicio, con informe de auditoría de contador público independiente. Se agregan artículos en los Títulos VII, XV y XVIII de las Normas, y el nuevo marco entra en vigencia a partir del día siguiente a esta publicación (29/04/2026). Para aseguradoras que operen como inversores en mercado de capitales con ALyC como contraparte, la mayor exigencia de reporting a dichos agentes mejora la visibilidad de riesgo contraparte; no impone obligaciones directas a las aseguradoras, pero refuerza el ecosistema de control del mercado donde se gestionan inversiones de reservas técnicas.
+    </div>
+    <div class="card-links">
+      <a class="card-link link-novelty" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341243/20260428" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- BCRA Com B 13165 -->
+  <div class="card card-novelty">
+    <div class="card-norma card-norma-novelty">COM. BCRA "B" 13165/2026</div>
+    <div class="card-organism">Banco Central de la República Argentina</div>
+    <div class="card-title">Actualización de tasas de referencia — Garantía de depósitos (Circular OPASI 2)</div>
+    <div class="card-desc">
+      El BCRA actualiza, con efecto desde el 24/04/2026, los valores de las tasas de referencia aplicables en el marco de la Circular OPASI 2 relativa a la garantía de los depósitos del sistema financiero. Estas tasas son el piso de rendimiento de ciertos instrumentos elegibles en la cartera de inversiones de las aseguradoras (en particular los plazos fijos y cauciones computables para acreditar inversiones de reservas técnicas). La actualización puede afectar la comparación rendimiento/tasa de descuento en el cálculo de posición financiera de las reservas. Las series históricas y referencias metodológicas están disponibles en www.bcra.gob.ar.
+    </div>
+    <div class="card-links">
+      <a class="card-link link-novelty" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341248/20260428" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- BNA Tasas Activas -->
+  <div class="card card-novelty">
+    <div class="card-norma card-norma-novelty">AVISO OFICIAL BNA — 28/04/2026</div>
+    <div class="card-organism">Banco de la Nación Argentina</div>
+    <div class="card-title">Publicación de Tasa Activa Cartera General — Referencia para cálculo de intereses regulatorios</div>
+    <div class="card-desc">
+      El BNA publica las tasas de su Cartera General (préstamos) con valores nominales y efectivos, tanto adelantados como vencidos. La Tasa Activa del BNA es referencia legal en múltiples cuerpos normativos del sector asegurador para el cálculo de intereses en demoras de liquidación de siniestros, recargos financieros y actualizaciones de deuda. Su seguimiento es obligatorio para los equipos de reservas técnicas y finanzas de cualquier aseguradora. Los niveles vigentes se consultan en www.bna.com.ar.
+    </div>
+    <div class="card-links">
+      <a class="card-link link-novelty" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341247/20260428" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3 — IMPACTO FINANCIERO -->
+  <div class="section-header">
+    <span class="section-num">§ 02</span>
+    <span class="section-title">Impacto Financiero</span>
+    <span class="section-line"></span>
+  </div>
+
+  <!-- Decreto 283/2026 — BID Préstamo -->
+  <div class="card card-financial">
+    <div class="card-norma card-norma-financial">DECTO-2026-283-APN-PTE</div>
+    <div class="card-organism">Poder Ejecutivo Nacional</div>
+    <div class="card-title">Decreto 283/2026 — Aprobación de Contrato de Préstamo BID N° 6119/OC-AR (Línea CCLIP AR-O0032, hasta USD 700 MM)</div>
+    <div class="card-desc">
+      El PEN aprueba un contrato de préstamo con el BID por hasta USD 700.000.000, en el marco de la Línea de Crédito Condicional (CCLIP AR-O0032) para "Revitalización Urbana y Mejoramiento del Hábitat". Plazo de utilización: 15 años desde la entrada en vigencia. El impacto sectorial asegurador es indirecto: la inyección de fondos BID para programas de hábitat puede dinamizar la cobertura obligatoria de incendio en créditos hipotecarios (Ley 17.418, art. 85), generando mayor volumen de primas en el ramo Incendio y potencial incremento de suscripción para aseguradoras con acuerdos bancarios. Las aseguradoras de crédito hipotecario y daños deben monitorear la implementación de los proyectos vinculados.
+    </div>
+    <div class="card-links">
+      <a class="card-link link-financial" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341225/20260428" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- Ministerio de Economía Resolución 543/2026 — AySA -->
+  <div class="card card-financial">
+    <div class="card-norma card-norma-financial">RESOL-2026-543-APN-MEC</div>
+    <div class="card-organism">Ministerio de Economía</div>
+    <div class="card-title">Resolución 543/2026 — Empresa AySA (Agua y Saneamientos Argentinos S.A.)</div>
+    <div class="card-desc">
+      El Ministerio de Economía dicta medidas en relación a AySA (Agua y Saneamientos Argentinos S.A.), empresa pública proveedora de agua potable y cloacas para CABA y partidos del GBA. El contexto normativo incluye leyes 23.696, 26.100, 26.221 y 27.742, y decretos del período 2024–2025. Si bien el contenido específico refiere a aspectos de gestión empresarial, tiene relevancia para aseguradoras que tengan en cartera bonos o instrumentos de deuda de empresas del Estado o sus vinculadas, en tanto la situación financiera y regulatoria de AySA puede afectar el valor y calificación de dichos activos computables en la cartera de inversiones de reservas técnicas.
+    </div>
+    <div class="card-links">
+      <a class="card-link link-financial" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341232/20260428" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4 — PRÓXIMOS VENCIMIENTOS -->
+  <div class="section-header">
+    <span class="section-num">§ 03</span>
+    <span class="section-title">Próximos Vencimientos</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="chips-grid">
+
+    <div class="chip">
+      <div class="chip-date">29 ABR 2026 — Inmediato</div>
+      <div class="chip-desc">Entrada en vigencia de RG CNV 1130/2026: nuevo régimen informativo para ALyC (indicadores financieros).</div>
+      <div class="chip-action">Confirmar con custodios y gestores de cartera el cumplimiento de sus obligaciones informativas.</div>
+    </div>
+
+    <div class="chip">
+      <div class="chip-date">HASTA 05 MAY 2026</div>
+      <div class="chip-desc">Vencimiento de publicación de edictos cambiarios BCRA (Sumarios N° 26365/26, 26366/26, 26410/26). Avisos de apercibimiento en el BORA.</div>
+      <div class="chip-action">Sin acción requerida para aseguradoras.</div>
+    </div>
+
+    <div class="chip">
+      <div class="chip-date">RECURRENTE — MENSUAL</div>
+      <div class="chip-desc">Tasas BCRA (OPASI 2) y Tasa Activa BNA: actualizadas con efectividad desde 24/04/2026.</div>
+      <div class="chip-action">Actualizar tablas de referencia para cálculo de intereses en demoras de siniestros y rendimiento de cartera de reservas.</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Generado automáticamente &nbsp;·&nbsp; 28/04/2026 &nbsp;·&nbsp; Fuente: Boletín Oficial de la República Argentina &nbsp;·&nbsp; boletinoficial.gob.ar
+  </footer>
+
+</div>
+</body>
+</html>

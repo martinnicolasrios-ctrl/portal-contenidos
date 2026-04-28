@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 28/04/2026 · Hipotecario Seguros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 12px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; line-height: 1.7; }
+    .header-nota { margin-top: 14px; padding: 12px 16px; background: rgba(52,187,218,.06); border: 1px solid rgba(52,187,218,.15); border-radius: 4px; font-size: 12px; color: var(--ink-3); line-height: 1.55; }
+
+    /* SECTION */
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+
+    /* CARDS */
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
+    .card-pos { border-left: 3px solid var(--pos); background: rgba(91,211,154,.04); }
+    .card-pos .card-header { color: var(--pos); }
+
+    /* BULLETS */
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
+
+    /* HIGHLIGHT BOXES */
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
+    .highlight-neg { background: rgba(239,108,108,.04); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-neg strong { color: var(--ink); font-weight: 600; }
+    .highlight-pos { background: rgba(91,211,154,.04); border: 1px solid var(--line); border-left: 3px solid var(--pos); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-pos strong { color: var(--ink); font-weight: 600; }
+
+    /* SCENARIO TABLE */
+    .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .scenario-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .scenario-card-header { padding: 10px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    .scenario-card-header.base { background: rgba(52,187,218,.15); color: var(--accent); border-bottom: 1px solid rgba(52,187,218,.2); }
+    .scenario-card-header.adv { background: rgba(232,176,74,.15); color: var(--gold); border-bottom: 1px solid rgba(232,176,74,.2); }
+    .scenario-card-header.tail { background: rgba(239,108,108,.15); color: var(--neg); border-bottom: 1px solid rgba(239,108,108,.2); }
+    .scenario-prob { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; padding: 12px 16px 6px; font-variant-numeric: tabular-nums; }
+    .scenario-prob.base { color: var(--accent); }
+    .scenario-prob.adv { color: var(--gold); }
+    .scenario-prob.tail { color: var(--neg); }
+    .scenario-body { padding: 0 16px 14px; font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .scenario-body strong { color: var(--ink); font-weight: 600; }
+    .scenario-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(30,52,71,.4); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-variant-numeric: tabular-nums; }
+    .scenario-row:last-child { border-bottom: none; }
+    .scenario-row .label { color: var(--ink-3); }
+    .scenario-row .val { color: var(--ink); font-weight: 500; }
+
+    /* TENSION ITEMS */
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+
+    /* ALERT LIST */
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; }
+    .alert-item .mecanism { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-3); font-family: 'IBM Plex Mono', monospace; }
+
+    /* POSITIONING CARDS */
+    .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pos-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 16px 18px; }
+    .pos-card.neg-top { border-top-color: var(--neg); }
+    .pos-card.gold-top { border-top-color: var(--gold); }
+    .pos-card.pos-top { border-top-color: var(--pos); }
+    .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .pos-ticker { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+    .pos-text { font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .pos-text strong { color: var(--ink); font-weight: 600; }
+
+    /* MONITORING TABLE */
+    .monitor-table { width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .monitor-table th { background: var(--bg-3); color: var(--ink-3); font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+    .monitor-table td { padding: 9px 12px; border-bottom: 1px solid rgba(30,52,71,.4); color: var(--ink-2); vertical-align: top; font-size: 12px; line-height: 1.5; }
+    .monitor-table tr:last-child td { border-bottom: none; }
+    .monitor-table tr:nth-child(even) td { background: rgba(52,187,218,.02); }
+    .monitor-table .fecha { font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-weight: 600; white-space: nowrap; }
+    .monitor-table .evento { font-weight: 600; color: var(--ink); }
+    .monitor-table .umbral { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gold); }
+
+    /* INSURANCE SECTION */
+    .insurance-tab-header { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid var(--line); }
+    .ins-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 10px 20px; border-radius: 4px 4px 0 0; margin-bottom: -1px; }
+    .ins-label.danos { background: rgba(52,187,218,.15); color: var(--accent); border: 1px solid rgba(52,187,218,.2); border-bottom: 1px solid var(--bg-2); }
+    .ins-label.vida { background: rgba(91,211,154,.12); color: var(--pos); border: 1px solid rgba(91,211,154,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-label.caucion { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-body { background: var(--bg-2); border: 1px solid var(--line); border-radius: 0 4px 4px 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .ins-section-title { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; margin-top: 14px; }
+    .ins-section-title:first-child { margin-top: 0; }
+    .ins-text { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 10px; }
+    .ins-text:last-child { margin-bottom: 0; }
+    .ins-text strong { color: var(--ink); font-weight: 600; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 5px; margin-top: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
+
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
+
+    @media (max-width: 720px) {
+      .header-title { font-size: 22px; }
+      .section-title { font-size: 18px; }
+      .scenario-grid { grid-template-columns: 1fr; }
+      .pos-grid { grid-template-columns: 1fr; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 22px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial · Versión comité de inversiones</div>
+    <div class="header-title">El Carry Trade se Cierra por Precio, no por Pánico: Tres Escenarios para las Próximas Dos Semanas</div>
+    <div class="header-meta">
+      28 de abril de 2026 · Análisis regulatorio y financiero para CEO · Hipotecario Seguros
+    </div>
+    <div class="header-nota">
+      Este análisis distingue explícitamente entre: (a) hechos verificados en las noticias del día, (b) inferencias con respaldo en datos, y (c) hipótesis que requieren validación adicional. Las recomendaciones de cartera incluyen precio de entrada, horizonte y condición de reversión. La sección de aseguradora distingue entre ramas y marcos regulatorios aplicables.
+    </div>
+  </div>
+
+  <!-- § 01 RESUMEN EJECUTIVO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El riesgo país cerró el lunes en 582 pb (+10% en la semana), con bonos largos liderando las caídas.</strong> Descomposición estimada: ~40-50 pb corresponden al shock EM global y ~30-40 pb son prima idiosincrática local. Esta proporción importa: el primero no lo controla el Gobierno; el segundo sí.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El BNA subió $20 en el día (+1,41%), una velocidad 40 veces el ritmo diario implícito de un crawling del 1% mensual.</strong> No es ruido: o el BCRA está acelerando el crawling, o hubo intervención asimétrica. Es la señal más relevante del día y no está explicada públicamente.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El cierre del carry trade es demand-driven, no supply-driven.</strong> Con tasas reales en el tramo corto de -15%, caución en 20% TNA y el oficial subiendo 1,4% en un día, la ecuación aritmética del carry dejó de ser positiva para quien entró hace menos de 30 días. El exceso de pesos amplifica el riesgo de salida desordenada si se concentra.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Furiase anticipa el BONTE 2030 y confirma que no hay plan de salir al mercado internacional.</strong> El Gobierno tiene u$s 1.800 MM de tenencias externas en pesos (vs. u$s 34.000 MM en 2018) — base demasiado pequeña para absorber una emisión relevante sin el mercado local. La estrategia de extensión de duration depende críticamente de que la inflación siga bajando.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La confianza en Milei marcó su mínimo histórico de gestión (ICG: 2,42, -12,1% en abril), con todos los subíndices en rojo.</strong> El canal al riesgo financiero no es directo, pero opera vía percepción de continuidad del programa fiscal, especialmente en semana de informe de gestión al Congreso.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 02 HIPÓTESIS Y ESCENARIOS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Hipótesis Central y Tres Escenarios</span>
+    </div>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-card-header base">Escenario Base</div>
+        <div class="scenario-prob base">60%</div>
+        <div class="scenario-body">
+          <div class="scenario-row"><span class="label">Riesgo País</span><span class="val">560–620 pb</span></div>
+          <div class="scenario-row"><span class="label">TC Oficial</span><span class="val">$1.450–$1.480</span></div>
+          <div class="scenario-row"><span class="label">MEP / CCL</span><span class="val">$1.470–$1.510</span></div>
+          <div class="scenario-row"><span class="label">Inflación mayo</span><span class="val">3,0–3,5%</span></div>
+          <div class="scenario-row"><span class="label">GD30</span><span class="val">estable / leve suba</span></div>
+          <div class="scenario-row"><span class="label">Driver</span><span class="val">Agro + Fed pausa</span></div>
+          <br><strong>CER tramo medio outperforma tasa fija</strong>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-card-header adv">Escenario Adverso</div>
+        <div class="scenario-prob adv">30%</div>
+        <div class="scenario-body">
+          <div class="scenario-row"><span class="label">Riesgo País</span><span class="val">640–720 pb</span></div>
+          <div class="scenario-row"><span class="label">TC Oficial</span><span class="val">$1.490–$1.540</span></div>
+          <div class="scenario-row"><span class="label">MEP / CCL</span><span class="val">$1.520–$1.600</span></div>
+          <div class="scenario-row"><span class="label">Inflación mayo</span><span class="val">3,5–4,2%</span></div>
+          <div class="scenario-row"><span class="label">GD30</span><span class="val">-3 a -5%</span></div>
+          <div class="scenario-row"><span class="label">Driver</span><span class="val">Fed hawkish + carry salida</span></div>
+          <br><strong>Dollar-linked outperforma todo</strong>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-card-header tail">Escenario de Cola</div>
+        <div class="scenario-prob tail">10%</div>
+        <div class="scenario-body">
+          <div class="scenario-row"><span class="label">Riesgo País</span><span class="val">750–820 pb</span></div>
+          <div class="scenario-row"><span class="label">TC Oficial</span><span class="val">$1.580+</span></div>
+          <div class="scenario-row"><span class="label">MEP / CCL</span><span class="val">$1.650+</span></div>
+          <div class="scenario-row"><span class="label">Inflación mayo</span><span class="val">4,5%+</span></div>
+          <div class="scenario-row"><span class="label">GD30</span><span class="val">-8 a -12%</span></div>
+          <div class="scenario-row"><span class="label">Driver</span><span class="val">YPF + Fed + carry simultáneo</span></div>
+          <br><strong>Requiere cobertura explícita</strong>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">Nota sobre las probabilidades</div>
+      <div class="card-content">Las probabilidades son subjetivas y deben ser revisadas tras la decisión de la Fed el miércoles 30 de abril. La distinción entre transición de régimen y punto de quiebre es operativamente relevante: en una transición, el posicionamiento defensivo tiene costo de oportunidad; en un punto de quiebre, el costo de no cubrirse es irreversible. Los datos del día son consistentes con transición, no con quiebre.</div>
+    </div>
+  </div>
+
+  <!-- § 03 LECTURA DE MERCADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Transición de Régimen — No Punto de Quiebre</div>
+      <div class="card-content">
+        <p>El Merval subió 0,4% en dólares. Los ADR cerraron mixtos con varias subas moderadas (Cresud +2%, IRSA +1,7%). El MEP cedió apenas 0,15%. Ninguno de estos movimientos indica pánico. Lo que indican es que el mercado está <strong>repriceando el costo del carry hacia adelante</strong>, no liquidando posiciones en Argentina.</p>
+        <p>El problema estructural que emerge con claridad es diferente: hay una <strong>brecha creciente entre la macro financiera y la economía real</strong> que el Gobierno no tiene instrumentos fiscales para cerrar. El crédito subsidiado del BNA/Bapro a tasas por debajo del 20% TNA es el sustituto, pero con tres limitaciones serias:</p>
+        <p><strong>Primero,</strong> el canal de transmisión es lento: un crédito pyme tarda semanas en aprobarse y meses en impactar en actividad. No resuelve el problema de corto plazo.</p>
+        <p><strong>Segundo,</strong> el costo lo absorbe el Estado de Resultados del banco público, lo que deteriora la rentabilidad del BNA/Bapro en un contexto donde la mora ya es una preocupación declarada.</p>
+        <p><strong>Tercero,</strong> la "tragedia fiscal" que describe Caputo es real y cuantificable: hasta el 60% del costo financiero total son tributos (IVA 21% + IIBB 9% + Tasas municipales 7,5% + Sellos 1,2%). Bajar la tasa del banco público de 25% a 19% no resuelve el problema si la carga impositiva sobre el crédito permanece intacta. Es una medida cosmética con efecto electoral, no una reforma estructural.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 04 TENSIONES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li class="tension-item">
+        <strong>Crawling peg vs. inflación núcleo</strong>
+        Si el oficial subió 1,41% en un día y la caución está en 20% TNA (1,67% mensual), el tipo de cambio está corriendo más rápido que la tasa de corto plazo. Eso invierte la lógica del carry. La pregunta no explicitada: ¿el BCRA aceleró el crawling deliberadamente? Si sí, es señal de política; si no, es volatilidad que el BCRA dejó pasar, lo que también es una señal.
+      </li>
+      <li class="tension-item">
+        <strong>Reservas nominales vs. reservas netas</strong>
+        El análisis celebra que el BCRA lleva comprados u$s 6.500 MM y que las reservas brutas son robustas. Pero la meta del FMI es sobre reservas netas (descontando swaps, encajes en moneda extranjera y otros pasivos). El waiver por incumplimiento de meta de reservas mencionado es materialmente importante: el BCRA puede estar acumulando reservas brutas mientras las netas están por debajo de la meta del programa.
+      </li>
+      <li class="tension-item">
+        <strong>BONTE 2030 como señal dual</strong>
+        El Gobierno lo interpreta como señal de normalización de la curva y confianza. El mercado puede interpretarlo como necesidad de financiamiento ante vencimientos que no pueden rollearse en el tramo corto. La diferencia de lectura puede generar volatilidad en el momento de la licitación, especialmente si la tasa de corte sorprende al alza.
+      </li>
+      <li class="tension-item">
+        <strong>Confianza política y continuidad fiscal</strong>
+        El ICG en mínimo histórico (2,42) no opera directamente sobre los bonos, pero sí a través de un canal concreto: si el deterioro de imagen se profundiza antes de las elecciones legislativas, aumenta la presión para relajar el ancla fiscal. El propio Furiase lo reconoce indirectamente cuando habla de "ruido político" como factor que limita la baja del riesgo país.
+      </li>
+      <li class="tension-item">
+        <strong>CNV sobre ALyC — estrés sistémico no publicado</strong>
+        La Resolución General 1130 (límite de apalancamiento 5x patrimonio neto para ALyC) no se emite en el vacío. Típicamente, este tipo de regulación reactiva se implementa cuando el regulador detecta posiciones problemáticas en algún intermediario específico. Es una hipótesis de trabajo que el equipo de riesgo de una aseguradora debería verificar con sus contrapartes en los próximos días.
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 05 IMPACTO EN VARIABLES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Tipo de Cambio (oficial / MEP / CCL)</div>
+      <div class="card-content">La suba de $20 en el BNA en un día equivale a un ritmo anualizado del ~600%, incompatible con un crawling del 1% mensual. Hay tres explicaciones posibles mutuamente excluyentes: (a) el BCRA aceleró el crawling deliberadamente como señal de ajuste pre-electoral; (b) hubo un ajuste técnico de spread compra-venta; (c) hay presión real de demanda que el BCRA no intervino completamente. La brecha Blue/MEP-Oficial prácticamente cero es anómala históricamente: o el oficial sube hasta los financieros, o los financieros suben, o convergen. <strong>En todos los casos, el dollar-linked gana.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas</div>
+      <div class="card-content">La curva de pesos tiene una topografía peligrosa. El tramo corto (hasta 6 meses) tiene tasas reales de hasta -15%. El tramo largo (2028-2029) también tiene rendimientos nominales negativos o marginalmente positivos en términos reales. La única zona con valor relativo claro es el <strong>CER tramo medio (TZX27 a CER +1,5%)</strong>, donde el break-even implícito del mercado está por debajo de las proyecciones privadas de inflación.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada</div>
+      <div class="card-content">Los precios de importación subieron 5,8% i.a. en Q1 y el dólar oficial aceleró hoy. Las paritarias siguen activas (comercio cerró con bono extra de abril; un gremio acordó básico de $3.914.000). El consenso de desinflación hacia el 2,5-3,0% mensual puede estar siendo demasiado optimista para mayo-junio. <strong>Este es el riesgo más subestimado en el análisis de El Cronista del día.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo Soberano — Descomposición</div>
+      <div class="card-content">Descomponiendo los 582 pb: el EMBI Latam y el CDX HY global subieron en la semana, explicando estimativamente 40-50 pb. Los 530-540 pb restantes son el floor idiosincrático. En contextos de baja incertidumbre global, Argentina operó entre 480-530 pb. El exceso actual de ~50-80 pb es la "prima política" + "posición técnica sucia". Si el shock global se disipa y la posición técnica se limpia, <strong>hay 50-80 pb de compresión potencial en el escenario base.</strong></div>
+    </div>
+  </div>
+
+  <!-- § 06 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid" style="margin-bottom:14px;">
+      <div class="pos-card pos-top">
+        <div class="pos-label">CER Tramo Medio</div>
+        <div class="pos-ticker">TZXO6 / TZX27</div>
+        <div class="pos-text">Entrar si break-even implícito está por debajo del 3,0% mensual. <strong>Horizonte:</strong> 3-6 meses. <strong>Salida:</strong> inflación abril por debajo de 2,5% o anuncio de baja agresiva de tasas. Tamaño: hasta el máximo regulatorio en reservas técnicas. <span class="tag pos">CORE</span></div>
+      </div>
+      <div class="pos-card gold-top">
+        <div class="pos-label">Dollar-Linked</div>
+        <div class="pos-ticker">D30A6 / TZV27</div>
+        <div class="pos-text"><strong>Condición de entrada:</strong> oficial supera $1.470 en 5 días hábiles o BCRA anuncia aceleración formal del crawling. <strong>Horizonte:</strong> 2-3 meses. <strong>Salida:</strong> brecha MEP-Oficial supera el 15%. Tamaño: 5-8% de la cartera libre. <span class="tag gold">TÁCTICA</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">GD30 ley NY (posición defensiva)</div>
+        <div class="pos-ticker">GD30 / GD35+</div>
+        <div class="pos-text">Mantener GD30 como reserva de liquidez en USD. <strong>No acumular GD35+</strong> hasta que riesgo país perfore 540 pb (base) o llegue a 640 pb (adverso → punto de entrada con horizonte 6 meses). <span class="tag blue">HOLD</span></div>
+      </div>
+      <div class="pos-card neg-top">
+        <div class="pos-label">Lecap Tasa Fija</div>
+        <div class="pos-ticker">S30A6 / T30J6+</div>
+        <div class="pos-text"><strong>Reducir</strong> en tramos superiores a 3 meses. Mantener solo para calce de liquidez de corto plazo (pasivos con vencimiento en los próximos 60 días). No es un activo de retorno en este contexto. <span class="tag neg">REDUCIR</span></div>
+      </div>
+    </div>
+    <div class="card card-alert">
+      <div class="card-header">Activos que Pierden Sentido Hoy</div>
+      <div class="card-content">Caución activa (colocar pesos a 20% TNA cuando el oficial sube 1,4% en un día). Lecap a más de 6 meses a tasa fija sin ajuste CER. Posición larga en bonos provinciales sin liquidez en mercado secundario. Bioceres y papeles con alta sensibilidad al riesgo de tasa local (-5,4% en el día).</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Equity — Límites Regulatorios Aplicables</div>
+      <div class="card-content">Goldman Sachs y UBS ven +25% en USD en acciones argentinas seleccionadas. Para una aseguradora, la exposición a acciones está limitada regulatoriamente. En la porción permitida, las <strong>acciones con ingresos en USD (energéticas, agro) son el mejor hedge natural</strong> contra depreciación del peso. La suba del Merval en dólares (+0,4%) y los ADR mixtos confirman que no hay pánico, solo repricing.</div>
+    </div>
+  </div>
+
+  <!-- § 07 ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Alertas con Mecanismo de Transmisión</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <strong>Fed del martes-miércoles (evento asimétrico de alto impacto):</strong> Si la Fed mantiene y da señal dovish, Argentina puede recuperar 30-40 pb de riesgo país. Si sorprende hawkish ("higher for longer"): el US10Y sube, el high yield se ensancha y los bonos largos argentinos pierden 3-5% de precio en GD35+.
+        <div class="mecanism">Cada 50 bps de suba en la curva base USD implica aprox. -2,5% de precio en GD30 y -4% en GD38.</div>
+      </li>
+      <li class="alert-item">
+        <strong>Informe de gestión de Adorni al Congreso esta semana:</strong> No es evento de mercado directo, pero una recepción adversa suma ruido al canal político-soberano.
+        <div class="mecanism">Monitorear spread GD30-GD35 como proxy de cambio en percepción de riesgo corto vs. largo.</div>
+      </li>
+      <li class="alert-item">
+        <strong>Licitación BONTE 2030 (próxima semana):</strong> Si la tasa de corte es materialmente más alta que los niveles actuales de la curva, marca a mercado todas las posiciones existentes.
+        <div class="mecanism">Verificar calendario de vencimientos y montos antes de extender duration en pesos.</div>
+      </li>
+      <li class="alert-item">
+        <strong>Salida acelerada de tenencias externas (u$s 1.800 MM en pesos):</strong> Si 20-30% decide salir en una semana, implica demanda de u$s 360-540 MM que el mercado puede no absorber sin presión visible sobre el MEP.
+        <div class="mecanism">Monitorear volumen operado en MEP en los próximos 5 días hábiles como indicador temprano.</div>
+      </li>
+      <li class="alert-item">
+        <strong>Juicio YPF (evento binario, horizonte indeterminado):</strong> Un fallo adverso en la etapa de reconocimiento de activos puede bloquear cuentas del BCRA o activos de YPF en jurisdicción NY. Efecto estimado: -5 a -10% en precio de bonos soberanos, principalmente ley NY.
+        <div class="mecanism">Cobertura recomendada: preferir ley Argentina sobre ley NY en la porción de bonos que no requiera liquidez internacional.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 08 LO QUE NO ESTÁ PRICEADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight">
+      <strong>La mora bancaria como indicador líder de siniestralidad.</strong> Los propios artículos del día incluyen citas de banqueros diciendo "no paga la mora" en referencia a los tomadores potenciales de los nuevos créditos pyme. Si la mora sube en el segmento pyme en mayo-junio, el impacto no es solo bancario: es en seguros de caución, crédito y garantías. Este riesgo no está siendo discutido en ningún análisis del mercado hoy.
+    </div>
+    <div class="highlight">
+      <strong>El costo real del crédito después de impuestos.</strong> El cupo del programa BNA/Bapro es de $500.000 millones. El PBI mensual es del orden de $30 billones: estamos hablando de menos del 2% del PBI mensual. El impacto macroeconómico es marginal; el impacto político puede ser mayor. El mercado todavía no sabe si este programa es una política o una declaración.
+    </div>
+    <div class="highlight">
+      <strong>La posibilidad de que el crawling se haya acelerado deliberadamente.</strong> Si el BCRA decidió moverse más rápido para evitar una apreciación real excesiva que erosione el superávit comercial, eso es una señal positiva de coherencia. Si fue involuntario, es preocupante. La diferencia es la variable más importante para el posicionamiento cambiario de los próximos 30 días y no está disponible en los datos de hoy.
+    </div>
+  </div>
+
+  <!-- § 09 AGENDA DE MONITOREO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 09</span>
+      <span class="section-title">Agenda de Monitoreo — Próximos 7 Días Hábiles</span>
+    </div>
+    <table class="monitor-table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Evento</th>
+          <th>Variable a monitorear</th>
+          <th>Umbral de acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fecha">Mar 29/4</td>
+          <td class="evento">Reunión Fed (día 1)</td>
+          <td>Lenguaje del comunicado</td>
+          <td class="umbral">"Higher for longer" → revisar posición GD30</td>
+        </tr>
+        <tr>
+          <td class="fecha">Mié 30/4</td>
+          <td class="evento">Decisión Fed</td>
+          <td>US10Y, EMBI Latam</td>
+          <td class="umbral">Suba >10 pb US10Y → alerta en bonos largos ARG</td>
+        </tr>
+        <tr>
+          <td class="fecha">Jue 1/5</td>
+          <td class="evento">Feriado local</td>
+          <td>Sin operatoria</td>
+          <td class="umbral">Seguir ADR y mercados externos</td>
+        </tr>
+        <tr>
+          <td class="fecha">Sem 5/5</td>
+          <td class="evento">Licitación Tesoro</td>
+          <td>Tasa de corte BONTE / Lecap</td>
+          <td class="umbral">Tasa >2,2% TEM → señal de estrés en curva pesos</td>
+        </tr>
+        <tr>
+          <td class="fecha">Sem 5/5</td>
+          <td class="evento">INDEC inflación abril</td>
+          <td>CPI mensual</td>
+          <td class="umbral">>3,5% → trigger para aumentar posición CER</td>
+        </tr>
+        <tr>
+          <td class="fecha">Continuo</td>
+          <td class="evento">Volumen MEP diario</td>
+          <td>Presión de salida de carry</td>
+          <td class="umbral">Volumen >200% del promedio → alerta de salida concentrada</td>
+        </tr>
+        <tr>
+          <td class="fecha">Continuo</td>
+          <td class="evento">Riesgo país</td>
+          <td>Nivel y velocidad de cambio</td>
+          <td class="umbral">Perforación de 640 pb → revisar todo el portafolio</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- § 10 CFO ASEGURADORA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 10</span>
+      <span class="section-title">Bajada a Cartera — CFO de Aseguradora</span>
+    </div>
+
+    <!-- Daños -->
+    <div class="insurance-tab-header">
+      <div class="ins-label danos">Daños · Patrimoniales · ART · Caución</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-section-title">Perfil de pasivos</div>
+      <div class="ins-text">Cortos (6-18 meses en promedio). Necesidad de liquidez alta. Prioridad: calce de duration, no retorno.</div>
+
+      <div class="ins-section-title">Reservas técnicas (inversiones obligatorias — límites SSN)</div>
+      <div class="ins-text"><strong>Reducir Lecap tramo largo (>90 días) y migrar a CER corto (TZXO6):</strong> el break-even implícito del mercado está por debajo de la proyección de inflación de mayo-junio. El CER corto calza mejor con los pasivos de corto plazo y protege contra la sorpresa inflacionaria. Verificar que el instrumento esté dentro de los títulos públicos admisibles con calificación AAA.</div>
+      <div class="ins-text"><strong>Mantener Lecap muy corto (<30 días) para calce de liquidez inmediata:</strong> no extender porque las tasas reales son muy negativas, pero la liquidez es no negociable.</div>
+      <div class="ins-text"><strong>Dollar-linked (5% máximo de reservas técnicas, sujeto a límite SSN):</strong> iniciar posición si el oficial supera $1.470. Condición de salida: reversión de la señal de crawling o brecha MEP-Oficial por encima del 15%.</div>
+
+      <div class="ins-section-title">Excedente de capital (inversiones libres)</div>
+      <div class="ins-text">GD30 ley NY: hasta 10% del excedente como reserva de liquidez en USD. No extender en GD35+ hasta que el riesgo país perfore 540 pb o la Fed dé señal dovish. Tasa fija a más de 6 meses: evitar. <strong>El BONTE 2030 NO es apropiado para reservas técnicas de daños. Solo en excedente de capital, posición pequeña, horizonte 12 meses mínimo.</strong></div>
+
+      <div class="ins-section-title">Riesgo de liquidez</div>
+      <div class="ins-text">La regulación CNV sobre ALyC (límite 5x) puede reducir la oferta de financiamiento en cauciones. Asegurar que las operaciones de caución activa tienen contrapartes con bajo apalancamiento. Diversificar contrapartes de FCI.</div>
+    </div>
+
+    <!-- Vida -->
+    <div class="insurance-tab-header" style="margin-top:16px;">
+      <div class="ins-label vida">Vida · Retiro</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-section-title">Perfil de pasivos</div>
+      <div class="ins-text">Largos (5-20 años según cartera). Necesidad de duration alta. El riesgo principal es el reinvestment risk en escenarios de baja de tasas.</div>
+
+      <div class="ins-section-title">Reservas técnicas</div>
+      <div class="ins-text"><strong>CER tramo medio-largo (TZX27 a CER +1,5%):</strong> instrumento más consistente con el perfil de pasivos. Protege contra inflación, tiene duration adecuada y tiene valor relativo claro frente a tasa fija. Verificar el porcentaje máximo de exposición en un solo emisor que permite la SSN para el ramo.</div>
+      <div class="ins-text"><strong>BONTE 2030 (cuando se emita):</strong> sí es relevante para vida, pero entrar a tasa de mercado (no subescribir si la tasa de corte implica marcación adversa en la cartera existente). Horizonte: 4 años, consistente con pasivos de vida.</div>
+      <div class="ins-text"><strong>Dollar-linked:</strong> menor relevancia relativa dado que los pasivos en vida son nominados en pesos. Solo como cobertura parcial (5%) contra escenario de aceleración del crawling.</div>
+
+      <div class="ins-section-title">Riesgo de reinversión</div>
+      <div class="ins-text">Si la curva de tasa fija en pesos sigue comprimiéndose (Lecap a menos de 2% TEM), los instrumentos que vencen en los próximos 6 meses se reinvierten a tasas reales negativas. <strong>La migración a CER es la única defensa estructural contra este riesgo en el contexto actual.</strong> Construir posición gradualmente (en dos o tres licitaciones) para no concentrar el riesgo de entrada.</div>
+    </div>
+
+    <!-- Caución específica -->
+    <div class="insurance-tab-header" style="margin-top:16px;">
+      <div class="ins-label caucion">Caución — Alerta Específica</div>
+    </div>
+    <div class="ins-body" style="border-left: 3px solid var(--neg); background: rgba(239,108,108,.03);">
+      <div class="ins-text">La mora pyme que emerge como preocupación en los artículos del día es un riesgo directo para las carteras de caución. Si el crédito subsidiado llega a tomadores de alto riesgo crediticio (que es el perfil que los bancos privados rechazan), la siniestralidad de caución puede aumentar en 6-12 meses.</div>
+      <div class="ins-text"><strong>Recomendación:</strong> revisar las reservas de IBNR (incurred but not reported) en caución pyme. Si la cartera tiene exposición alta a pymes con acceso reciente a crédito bancario público, considerar incrementar la reserva preventiva en un <strong>10-15% sobre el nivel actual.</strong></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis elaborado sobre la base de la cobertura del 27-28 de abril de 2026 en El Cronista (Finanzas y Mercados, Economía y Política, columnas editoriales)<br/>
+    Las probabilidades asignadas a escenarios son subjetivas y deben actualizarse tras la decisión de la Fed del miércoles 30 de abril<br/>
+    Este documento no reemplaza el análisis de los estados contables de la compañía ni la verificación de los límites regulatorios SSN vigentes al momento de cada decisión de inversión<br/>
+    Cotizaciones cierre 28/04: BNA $1.420+$20 | Riesgo País 582 bps | Caución ~20% TNA · Hipotecario Seguros
+  </footer>
+
+</div>
+</body>
+</html>

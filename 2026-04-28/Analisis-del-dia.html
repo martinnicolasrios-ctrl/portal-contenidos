@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lectura Crítica BCRA — Marzo 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+    --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+    --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  body{
+    background:
+      radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%),
+      var(--bg);
+    min-height:100vh;
+    padding:40px 20px 80px;
+  }
+  .container{max-width:1040px;margin:0 auto}
+
+  /* HEADER */
+  .header{
+    background:var(--bg-3);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:32px 28px;
+    margin-bottom:48px;
+  }
+  .header-eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    color:var(--ink-3);
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    margin-bottom:14px;
+  }
+  .header-title{
+    font-family:'Fraunces',serif;
+    font-size:32px;
+    font-weight:700;
+    line-height:1.18;
+    color:var(--ink);
+    margin-bottom:14px;
+    letter-spacing:-.01em;
+  }
+  .header-meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-3);
+  }
+
+  /* SECTION HEAD */
+  .section{margin-bottom:52px}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:22px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .section-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    font-weight:500;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:.14em;
+  }
+  .section-title{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-.005em;
+  }
+
+  /* §01 — BULLETS */
+  .bullet-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .bullet-list li{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:16px 18px;
+  }
+  .bullet-dot{
+    width:6px;height:6px;
+    background:var(--accent);
+    border-radius:50%;
+    flex-shrink:0;
+    margin-top:8px;
+    box-shadow:0 0 8px rgba(52,187,218,.7);
+  }
+  .bullet-list li > div:last-child{
+    font-size:14px;line-height:1.6;color:var(--ink-2);
+  }
+  .bullet-list strong{color:var(--ink);font-weight:600}
+
+  /* §02 — SIGNAL PANEL */
+  .signal-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .signal-card{
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:18px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .signal-header{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    color:var(--ink-3);
+    text-transform:uppercase;
+    letter-spacing:.14em;
+  }
+  .signal-row{display:flex;align-items:center;gap:10px}
+  .signal-dot{
+    width:10px;height:10px;border-radius:50%;
+    flex-shrink:0;
+  }
+  .signal-dot.verde{background:var(--pos);box-shadow:0 0 8px rgba(91,211,154,.6)}
+  .signal-dot.amarillo{background:var(--gold);box-shadow:0 0 8px rgba(232,176,74,.6)}
+  .signal-dot.rojo{background:var(--neg);box-shadow:0 0 8px rgba(239,108,108,.6)}
+  .signal-status{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+  }
+  .signal-status.verde{color:var(--pos)}
+  .signal-status.amarillo{color:var(--gold)}
+  .signal-status.rojo{color:var(--neg)}
+  .signal-body{
+    font-size:13px;
+    color:var(--ink-2);
+    line-height:1.65;
+  }
+
+  /* §03 — READING GRID */
+  .reading-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .reading-card{
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:18px 18px 20px;
+  }
+  .reading-fact{border-top:2px solid var(--accent)}
+  .reading-signal{border-top:2px solid var(--gold)}
+  .reading-impl{border-top:2px solid var(--neg)}
+  .reading-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--ink-3);
+    margin-bottom:14px;
+  }
+  .reading-card ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .reading-card li{
+    font-size:13px;
+    color:var(--ink-2);
+    line-height:1.6;
+    padding-left:14px;
+    position:relative;
+  }
+  .reading-card li::before{
+    content:'';
+    position:absolute;
+    left:0;top:8px;
+    width:4px;height:4px;
+    border-radius:50%;
+    background:var(--ink-3);
+  }
+  .reading-card strong{color:var(--ink);font-weight:600}
+
+  /* §04 — INCONSISTENCIES */
+  .inconsistency-grid{display:flex;flex-direction:column;gap:12px}
+  .inconsistency-card{
+    background:rgba(239,108,108,.04);
+    border:1px solid var(--line);
+    border-left:3px solid var(--neg);
+    border-radius:4px;
+    padding:16px 18px;
+  }
+  .inconsistency-header{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--neg);
+    margin-bottom:8px;
+    font-weight:500;
+  }
+  .inconsistency-body{
+    font-size:13.5px;
+    color:var(--ink-2);
+    line-height:1.6;
+  }
+  .inconsistency-body strong{color:var(--ink);font-weight:600}
+
+  /* §05 — IMPLICANCIAS */
+  .implication-grid{display:flex;flex-direction:column;gap:12px}
+  .implication-card{
+    background:rgba(232,176,74,.04);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    border-radius:4px;
+    padding:18px 20px;
+  }
+  .implication-header{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--gold);
+    margin-bottom:10px;
+    font-weight:500;
+  }
+  .implication-body{
+    font-size:13.5px;
+    color:var(--ink-2);
+    line-height:1.6;
+    margin-bottom:12px;
+  }
+  .implication-body strong{color:var(--ink);font-weight:600}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    padding:4px 8px;
+    border-radius:3px;
+    border:1px solid;
+    font-weight:500;
+  }
+  .tag.pos{color:var(--pos);background:rgba(91,211,154,.08);border-color:rgba(91,211,154,.35)}
+  .tag.neg{color:var(--neg);background:rgba(239,108,108,.08);border-color:rgba(239,108,108,.35)}
+  .tag.gold{color:var(--gold);background:rgba(232,176,74,.08);border-color:rgba(232,176,74,.35)}
+  .tag.blue{color:var(--accent);background:rgba(52,187,218,.08);border-color:rgba(52,187,218,.35)}
+
+  /* §06 — MONITOR */
+  .monitor-grid{display:flex;flex-direction:column;gap:12px}
+  .monitor-item{
+    display:flex;gap:14px;
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:14px 18px;
+    align-items:flex-start;
+  }
+  .monitor-dot{
+    width:8px;height:8px;border-radius:50%;
+    flex-shrink:0;
+    margin-top:6px;
+  }
+  .monitor-dot.rojo{background:var(--neg);box-shadow:0 0 8px rgba(239,108,108,.6)}
+  .monitor-dot.amarillo{background:var(--gold);box-shadow:0 0 8px rgba(232,176,74,.6)}
+  .monitor-dot.cyan{background:var(--accent);box-shadow:0 0 8px rgba(52,187,218,.6)}
+  .monitor-content{flex:1}
+  .monitor-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--ink-3);
+    margin-bottom:6px;
+  }
+  .monitor-text{
+    font-size:13px;
+    color:var(--ink-2);
+    line-height:1.6;
+  }
+  .monitor-text strong{color:var(--ink);font-weight:600}
+
+  /* §07 — HIGHLIGHTS */
+  .highlight,.highlight-neg,.highlight-pos{
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:18px 20px;
+    margin-bottom:12px;
+    font-size:14px;
+    color:var(--ink-2);
+    line-height:1.6;
+  }
+  .highlight{border-left:3px solid var(--accent)}
+  .highlight-neg{border-left:3px solid var(--neg);background:rgba(239,108,108,.04)}
+  .highlight-pos{border-left:3px solid var(--pos);background:rgba(91,211,154,.04)}
+  .highlight strong,.highlight-neg strong,.highlight-pos strong{
+    color:var(--ink);font-weight:600;display:block;margin-bottom:6px;
+    font-family:'Fraunces',serif;font-size:15px;
+  }
+  .highlight strong{color:var(--accent)}
+  .highlight-neg strong{color:var(--neg)}
+  .highlight-pos strong{color:var(--pos)}
+
+  /* FOOTER */
+  footer{
+    margin-top:60px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-3);
+    text-align:center;
+    line-height:1.7;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:720px){
+    body{padding:24px 14px 60px}
+    .header{padding:24px 18px}
+    .header-title{font-size:24px}
+    .signal-grid{grid-template-columns:repeat(2,1fr)}
+    .reading-grid{grid-template-columns:1fr}
+    .section-title{font-size:19px}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis BCRA — Mercado de Cambios y Balance Cambiario</div>
+    <div class="header-title">El esquema cambiario respira con pulmón ajeno: deuda corporativa, stock agro residual y financiamiento puntual</div>
+    <div class="header-meta">Marzo 2026 · Análisis para equipo de Inversiones</div>
+  </div>
+
+  <!-- §01 TOP LINE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Top Line Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Asimetría compras vs reservas:</strong> el BCRA compra USD 1.671 M pero las reservas caen USD 3.514 M. Por cada dólar adquirido, salen 2,1 por otras vías. La narrativa de acumulación oculta un drenaje neto del sistema.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Cuenta corriente neutra solo en apariencia:</strong> el resultado de –USD 88 M en el mes de mayor estacionalidad agrícola revela debilidad estructural. Si marzo apenas equilibra, los meses bajos enfrentarán déficits sin colchón.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El sector real ex-agro no aporta dólares genuinos:</strong> sus ventas netas de USD 1.222 M son endeudamiento (USD 1.618 M vía deuda y otros), no flujo comercial. El "superávit corporativo" es carry trade institucionalizado.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Demanda minorista supera oferta agrícola:</strong> personas humanas compran USD 2.470 M netos vs USD 2.166 M de oleaginosas y cereales. Sin endeudamiento del SPNF, el mercado sería estructuralmente deficitario.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Cobertura activa en futuros:</strong> volumen a término de USD 34.831 M (~5x el cobro de exportaciones del mes) y bancos extranjeros con posición vendedora creciente. El mercado profesional se cubre mientras el discurso transmite calma.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- §02 PANEL DE SEÑALES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Panel de Señales</span>
+    </div>
+    <div class="signal-grid">
+
+      <div class="signal-card">
+        <div class="signal-header">Reservas</div>
+        <div class="signal-row">
+          <div class="signal-dot rojo"></div>
+          <div class="signal-status rojo">Presión</div>
+        </div>
+        <div class="signal-body">Caída neta de USD 3.514 M con compras del BCRA decrecientes (–43% i.a.). La acumulación es contable, no genuina; depende de operaciones puntuales (REPO, colocaciones).</div>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-header">Sector Privado</div>
+        <div class="signal-row">
+          <div class="signal-dot amarillo"></div>
+          <div class="signal-status amarillo">Liquidación inercial</div>
+        </div>
+        <div class="signal-body">Agro liquida stock retenido post-shock retenciones 0%. Sector real ex-agro aporta vía deuda externa, no comercio. Flujo genuino casi nulo.</div>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-header">Personas Humanas</div>
+        <div class="signal-row">
+          <div class="signal-dot rojo"></div>
+          <div class="signal-status rojo">Dolarización activa</div>
+        </div>
+        <div class="signal-body">1,5 millones de compradores vs 750 mil vendedores. USD 600 M mensuales acumulándose en depósitos: oferta latente que se vuelve demanda inmediata si la confianza cede.</div>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-header">Cuenta Financiera</div>
+        <div class="signal-row">
+          <div class="signal-dot rojo"></div>
+          <div class="signal-status rojo">Dependencia</div>
+        </div>
+        <div class="signal-body">Déficit de USD 2.255 M sostenido por endeudamiento corporativo récord (USD 1.800 M en préstamos). Variable más procíclica del balance, primera en cerrarse ante stress.</div>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-header">Régimen Cambiario</div>
+        <div class="signal-row">
+          <div class="signal-dot amarillo"></div>
+          <div class="signal-status amarillo">Transición tensa</div>
+        </div>
+        <div class="signal-body">Bandas con ajuste vinculado a inflación T-2. Volumen a término en USD 34.831 M y banca extranjera vendedora: cobertura institucional al alza.</div>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-header">Ingreso Primario</div>
+        <div class="signal-row">
+          <div class="signal-dot rojo"></div>
+          <div class="signal-status rojo">Drenaje recurrente</div>
+        </div>
+        <div class="signal-body">Egresos por utilidades de USD 869 M (máximo histórico) tras habilitación de Com. A 8226. Demanda permanente que neutraliza el superávit de bienes.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- §03 LECTURA ENTRE LÍNEAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Lectura entre Líneas</span>
+    </div>
+    <div class="reading-grid">
+
+      <div class="reading-card reading-fact">
+        <div class="reading-label">Qué dice el informe</div>
+        <ul>
+          <li><strong>BCRA comprador neto</strong> en el MLC por USD 1.671 M.</li>
+          <li><strong>Cuenta corriente</strong> casi equilibrada (–USD 88 M).</li>
+          <li><strong>Agro liquida</strong> 26% más que marzo 2025.</li>
+          <li><strong>SPNF superavitario</strong> en cuenta financiera (+USD 643 M).</li>
+        </ul>
+      </div>
+
+      <div class="reading-card reading-signal">
+        <div class="reading-label">Qué sugiere realmente</div>
+        <ul>
+          <li>El BCRA <strong>intermedia un drenaje</strong>: salida neta de reservas duplica sus compras.</li>
+          <li>La cuenta corriente neutra <strong>en mes de cosecha</strong> es alarma estructural.</li>
+          <li>Agro <strong>vacía stock retenido</strong>, no genera flujo nuevo sostenible.</li>
+          <li>El "superávit" del SPNF es <strong>endeudamiento externo</strong>, no inversión real.</li>
+        </ul>
+      </div>
+
+      <div class="reading-card reading-impl">
+        <div class="reading-label">Qué implica para el mercado</div>
+        <ul>
+          <li><strong>Reservas netas</strong> bajo presión sostenida en próximos trimestres.</li>
+          <li><strong>Tipo de cambio</strong> con sesgo al techo de banda en meses bajos.</li>
+          <li><strong>Carry trade corporativo</strong> es la variable bisagra del régimen.</li>
+          <li><strong>Cobertura cambiaria</strong> deja de ser opcional para portafolios largos en pesos.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- §04 INCONSISTENCIAS CRÍTICAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Inconsistencias Críticas</span>
+    </div>
+    <div class="inconsistency-grid">
+
+      <div class="inconsistency-card">
+        <div class="inconsistency-header">Compras BCRA vs Caída de Reservas</div>
+        <div class="inconsistency-body">USD +1.671 M comprados al mercado conviven con USD –3.514 M de reservas totales. La diferencia se explica por valuación, BOPREAL y organismos: <strong>la acumulación es nominal, no real</strong>.</div>
+      </div>
+
+      <div class="inconsistency-card">
+        <div class="inconsistency-header">Cuenta Corriente Neutra vs Cuenta Financiera Deficitaria</div>
+        <div class="inconsistency-body">CC en –88 M y CF en –2.255 M revelan que <strong>el ajuste no proviene del sector real</strong>: drenan utilidades, intereses y pago de pasivos públicos. El frente externo se sostiene con financiamiento, no con flujo.</div>
+      </div>
+
+      <div class="inconsistency-card">
+        <div class="inconsistency-header">Oferta Exportadora vs Demanda Privada</div>
+        <div class="inconsistency-body">Agro liquida USD 2.166 M; personas humanas compran USD 2.470 M. <strong>El minorista ya excede al complejo cerealero</strong>. La oferta estructural es deficitaria sin la muleta del endeudamiento corporativo.</div>
+      </div>
+
+      <div class="inconsistency-card">
+        <div class="inconsistency-header">Mejora de Flujos Comerciales vs Pérdida de Reservas</div>
+        <div class="inconsistency-body">Cobros de exportaciones suben 38% i.a., pero reservas igual caen USD 3.514 M. <strong>La mejora del comercio no alcanza para compensar pagos de capital, dividendos y BOPREAL</strong>: el modelo necesita más que un buen mes agrícola.</div>
+      </div>
+
+      <div class="inconsistency-card">
+        <div class="inconsistency-header">Compras del BCRA Cayendo en Mercado en Expansión</div>
+        <div class="inconsistency-body">El volumen total del MLC sube 35% i.a. mientras el BCRA reduce su intervención 43%. <strong>El Central pierde peso relativo en un mercado más profundo</strong>, lo que implica menor capacidad de sostener cotización ante shocks.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- §05 IMPLICANCIAS PARA INVERSIONES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias para Inversiones</span>
+    </div>
+    <div class="implication-grid">
+
+      <div class="implication-card">
+        <div class="implication-header">ARS vs USD</div>
+        <div class="implication-body">El equilibrio cambiario depende de un flujo financiero procíclico. La recompensa por mantenerse en pesos comprime contra un riesgo asimétrico: <strong>un evento de cierre del carry produce ajuste discreto, no gradual</strong>. Reducir exposición direccional pura a pesos en plazos largos.</div>
+        <div class="tag-row">
+          <span class="tag neg">REDUCIR ARS LARGO</span>
+          <span class="tag blue">COBERTURA</span>
+        </div>
+      </div>
+
+      <div class="implication-card">
+        <div class="implication-header">Tasa Fija vs CER</div>
+        <div class="implication-body">Si el régimen depende de mostrar desinflación, hay incentivo político a contener IPC vía ancla cambiaria. Pero el atraso hace que <strong>una eventual corrección eleve inflación de pass-through</strong>. CER protege en el escenario de quiebre, tasa fija solo sirve si el carry se sostiene.</div>
+        <div class="tag-row">
+          <span class="tag gold">TÁCTICA</span>
+          <span class="tag pos">SOBREPONDERAR CER</span>
+        </div>
+      </div>
+
+      <div class="implication-card">
+        <div class="implication-header">Duration Corta vs Larga</div>
+        <div class="implication-body">El régimen vive mes a mes con operaciones financieras puntuales (REPO, letras). <strong>Visibilidad limitada más allá de 2-3 meses</strong>. Duration larga en pesos castiga ante cualquier shock de tasa. Privilegiar tramos cortos hasta que se confirme acumulación genuina sostenida.</div>
+        <div class="tag-row">
+          <span class="tag pos">CORTA</span>
+          <span class="tag neg">REDUCIR LARGA</span>
+        </div>
+      </div>
+
+      <div class="implication-card">
+        <div class="implication-header">Cobertura Cambiaria</div>
+        <div class="implication-body">Volumen a término en USD 34.831 M y bancos extranjeros vendedores son señales claras. La cobertura institucional ya está activa; <strong>los costos de futuros reflejan la presión, pero pagar la prima es más barato que el evento</strong>. Considerar bandas comprador en porciones de cartera dolarizable.</div>
+        <div class="tag-row">
+          <span class="tag blue">COBERTURA</span>
+          <span class="tag gold">TÁCTICA</span>
+        </div>
+      </div>
+
+      <div class="implication-card">
+        <div class="implication-header">Exposición a Soberanos USD</div>
+        <div class="implication-body">El Tesoro volvió a colocar deuda en dólares (letra USD 910 M en diciembre) y operó REPO por USD 3.000 M. Hay roll-over funcionando, pero el cupón duro vendrá con vencimientos 2027-2028. <strong>Sweet spot: tramos cortos a medios con baja duration</strong>; evitar largos hasta consolidación de reservas netas.</div>
+        <div class="tag-row">
+          <span class="tag pos">CORTOS USD</span>
+          <span class="tag neg">REDUCIR LARGOS</span>
+          <span class="tag gold">TÁCTICA</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- §06 SEÑALES A MONITOREAR -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Señales a Monitorear</span>
+    </div>
+    <div class="monitor-grid">
+
+      <div class="monitor-item">
+        <div class="monitor-dot rojo"></div>
+        <div class="monitor-content">
+          <div class="monitor-label">Flujo de préstamos financieros del SPNF</div>
+          <div class="monitor-text">Variable bisagra del régimen. Si los <strong>USD 1.800 M mensuales</strong> caen por encarecimiento global o riesgo país, el déficit de cuenta financiera queda expuesto sin contrapartida.</div>
+        </div>
+      </div>
+
+      <div class="monitor-item">
+        <div class="monitor-dot rojo"></div>
+        <div class="monitor-content">
+          <div class="monitor-label">Posición de bancos extranjeros en futuros</div>
+          <div class="monitor-text">Pasaron a posición vendedora (USD –194 M) divergiendo de banca nacional. <strong>Ampliación de la divergencia</strong> es termómetro temprano de stress cambiario percibido por jugadores informados.</div>
+        </div>
+      </div>
+
+      <div class="monitor-item">
+        <div class="monitor-dot amarillo"></div>
+        <div class="monitor-content">
+          <div class="monitor-label">Stock de depósitos en USD de personas humanas</div>
+          <div class="monitor-text">USD 600 M mensuales acumulándose son <strong>oferta latente</strong>. Frenó del flujo o caída de stock anticipa cambio de régimen de ahorro a demanda inmediata.</div>
+        </div>
+      </div>
+
+      <div class="monitor-item">
+        <div class="monitor-dot amarillo"></div>
+        <div class="monitor-content">
+          <div class="monitor-label">Ratio liquidación agro / FOB</div>
+          <div class="monitor-text">Marzo encadena seis meses de liquidación de stock retenido. Cuando el ratio caiga <strong>por debajo del 100%</strong>, se acaba la ventana de oferta extra y queda solo el flujo corriente, mucho menor.</div>
+        </div>
+      </div>
+
+      <div class="monitor-item">
+        <div class="monitor-dot cyan"></div>
+        <div class="monitor-content">
+          <div class="monitor-label">Posición del tipo de cambio dentro de la banda</div>
+          <div class="monitor-text">El informe lo omite. <strong>Acercamiento al techo</strong> con compras del BCRA cayendo es señal de agotamiento del régimen actual y disparador de ajuste del sistema de bandas.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- §07 CIERRE ESTRATÉGICO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Cierre Estratégico</span>
+    </div>
+
+    <div class="highlight">
+      <strong>Escenario base</strong>
+      Régimen cambiario continúa funcionando 4-6 meses sostenido por endeudamiento corporativo y operaciones financieras puntuales. Reservas netas se mantienen estancadas o levemente decrecientes; tipo de cambio dentro de banda con tendencia al techo en meses estacionales bajos. Carry trade en pesos sigue rentable mientras el spread con devaluación esperada compense la prima de riesgo.
+    </div>
+
+    <div class="highlight-neg">
+      <strong>Principal riesgo</strong>
+      Concentración de la oferta en deuda corporativa de corto plazo. Un cierre del flujo de "Préstamos financieros SPNF" —por suba de Fed, deterioro de riesgo país o agotamiento del trade— produce reversión asimétrica: las empresas pasan en 30-60 días de oferentes a demandantes por amortización. El déficit de cuenta corriente queda sin financiamiento y el ajuste sería discreto. Riesgo secundario: corrida sobre los USD 600 M mensuales acumulados en depósitos minoristas.
+    </div>
+
+    <div class="highlight-pos">
+      <strong>Oportunidad táctica</strong>
+      El mercado refleja parcialmente esta fragilidad pero no totalmente. Hay valor en posicionarse en tramos cortos CER, en cobertura cambiaria con futuros mientras la prima sea razonable, y en soberanos USD en tramos cortos antes de que el deterioro fiscal/cambiario se haga visible. La asimetría del trade —pierdo poco si todo sigue, gano mucho si quiebra— justifica reasignación gradual de cartera defensiva.
+    </div>
+  </div>
+
+  <footer>
+    Análisis interpretativo basado en información pública del BCRA · No constituye recomendación de inversión<br/>
+    Fuente: BCRA — Evolución del Mercado de Cambios y Balance Cambiario, Marzo 2026
+  </footer>
+
+</div>
+</body>
+</html>
