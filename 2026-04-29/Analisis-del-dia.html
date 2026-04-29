@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INDEC Informa Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a1628;
+  --bg-2: #0f1d33;
+  --bg-3: #142847;
+  --ink: #e8eef7;
+  --ink-mute: #94a3b8;
+  --ink-dim: #64748b;
+  --gold: #d4a955;
+  --gold-soft: #c9a14a;
+  --green: #4ade80;
+  --green-soft: #22c55e;
+  --red: #f87171;
+  --red-soft: #ef4444;
+  --amber: #fbbf24;
+  --line: rgba(212,169,85,0.18);
+  --line-strong: rgba(212,169,85,0.4);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter Tight', -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  font-size: 15px;
+  background-image:
+    radial-gradient(ellipse at top, rgba(20,40,71,0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(15,29,51,0.4) 0%, transparent 50%);
+  min-height: 100vh;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+/* HEADER */
+header {
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0 24px;
+  background: linear-gradient(180deg, rgba(15,29,51,0.6) 0%, transparent 100%);
+}
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-mark {
+  width: 38px; height: 38px;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+.brand-text {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+.brand-text strong { color: var(--ink); font-weight: 600; }
+.meta-row {
+  display: flex;
+  gap: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.meta-row span strong { color: var(--gold); font-weight: 500; }
+
+/* HERO */
+.hero { padding: 56px 0 40px; }
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: ''; display: inline-block;
+  width: 28px; height: 1px; background: var(--gold);
+}
+h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 20px;
+  max-width: 24ch;
+}
+h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.subtitle {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink-mute);
+  max-width: 64ch;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* TLDR BOX */
+.tldr {
+  margin: 40px 0 56px;
+  padding: 32px 36px;
+  background: linear-gradient(135deg, rgba(212,169,85,0.06) 0%, rgba(212,169,85,0.02) 100%);
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--gold);
+  position: relative;
+}
+.tldr::before {
+  content: 'VEREDICTO';
+  position: absolute;
+  top: -10px; left: 24px;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+}
+.tldr p {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 400;
+}
+.tldr p + p { margin-top: 14px; }
+.tldr strong { color: var(--gold); font-weight: 600; }
+
+/* SECTION */
+section { padding: 48px 0; border-top: 1px solid var(--line); }
+section:first-of-type { border-top: none; }
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 14px;
+  max-width: 32ch;
+}
+.section-lead {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 16px;
+  margin-bottom: 36px;
+  max-width: 68ch;
+  line-height: 1.55;
+}
+
+/* KPI GRID */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  margin-bottom: 36px;
+  border: 1px solid var(--line);
+}
+.kpi {
+  background: var(--bg-2);
+  padding: 22px 24px;
+}
+.kpi-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 10px;
+}
+.kpi-val {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.kpi-delta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.kpi-delta.up { color: var(--green); }
+.kpi-delta.down { color: var(--red); }
+.kpi-delta.neutral { color: var(--amber); }
+.kpi-note {
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-top: 6px;
+  font-style: italic;
+  font-family: 'Fraunces', serif;
+}
+
+/* Body text in sections */
+.body-text {
+  max-width: 76ch;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.body-text p { margin-bottom: 16px; }
+.body-text p strong { color: var(--gold); font-weight: 600; }
+
+/* Implication callout */
+.implication {
+  margin: 28px 0;
+  padding: 22px 26px;
+  background: var(--bg-2);
+  border-left: 2px solid var(--gold);
+  font-family: 'Fraunces', serif;
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.implication::before {
+  content: 'LECTURA PARA INVERSIONES';
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.implication strong { color: var(--ink); font-weight: 600; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 24px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  font-family: 'Inter Tight', sans-serif;
+}
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--line-strong);
+  background: var(--bg-2);
+}
+th:not(:first-child) { text-align: right; }
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+td:first-child { font-weight: 500; color: var(--ink); }
+td:not(:first-child) {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+tr:hover td { background: rgba(212,169,85,0.03); }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+
+/* Pull quote / non-utility callout */
+.callout {
+  margin: 32px 0;
+  padding: 26px 32px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--ink-dim);
+  margin-bottom: 10px;
+}
+.callout p {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* MATRIX (semáforo) */
+.matrix {
+  margin: 28px 0;
+  border: 1px solid var(--line);
+}
+.matrix-row {
+  display: grid;
+  grid-template-columns: 220px 60px 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 18px 20px;
+  gap: 20px;
+}
+.matrix-row:last-child { border-bottom: none; }
+.matrix-row .ramo {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ink);
+}
+.signal {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.signal.green { background: var(--green); box-shadow: 0 0 12px rgba(74,222,128,0.4); }
+.signal.amber { background: var(--amber); box-shadow: 0 0 12px rgba(251,191,36,0.4); }
+.signal.red { background: var(--red); box-shadow: 0 0 12px rgba(248,113,113,0.4); }
+.matrix-row .read {
+  font-size: 14px;
+  color: var(--ink-mute);
+  line-height: 1.5;
+}
+.matrix-row .read strong { color: var(--ink); font-weight: 600; }
+
+/* Footer */
+footer {
+  margin-top: 60px;
+  padding: 32px 0 48px;
+  border-top: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+footer .tag { color: var(--gold); }
+
+@media (max-width: 720px) {
+  .container { padding: 0 20px; }
+  .matrix-row { grid-template-columns: 1fr; gap: 8px; }
+  .matrix-row .signal { margin: 0; }
+  .meta-row { font-size: 10px; gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand-row">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text"><strong></strong>Inteligencia de Mercado</div>
+      </div>
+      <div class="meta-row">
+        <span>EMISIÓN <strong>29 ABR 2026</strong></span>
+        <span>FUENTE <strong>INDEC INFORMA Nº4</strong></span>
+        <span>DESTINATARIO <strong>EQUIPO INVERSIONES</strong></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero" style="border:none; padding-top:56px;">
+    <div class="eyebrow">Lectura para Inversiones</div>
+    <h1>INDEC Informa Abril 2026: <em>qué dice y qué no</em> para una cartera aseguradora</h1>
+    <p class="subtitle">Es el documento de coyuntura más completo del sistema estadístico argentino, pero <strong style="color:var(--ink); font-style:normal; font-weight:500;">no es un boletín de seguros</strong>. Esta nota traduce los datos relevantes del informe a implicancias concretas sobre primas, siniestralidad y los activos en cartera.</p>
+  </section>
+
+  <div class="tldr">
+    <p><strong>¿Es útil para la actividad aseguradora?</strong> Parcialmente — y no por las razones obvias. El INDEC no publica datos del sector seguros (eso es SSN/AACS), pero sí publica los <strong>drivers</strong> que determinan crecimiento de primas, severidad de siniestros y rendimiento de los activos invertibles. La edición de Abril 2026 ofrece tres lecturas accionables.</p>
+    <p><strong>Conclusión operativa:</strong> el cuadro macro muestra desinflación que se estancó en marzo (IPC +3,4% m/m, mayor desde octubre), industria en recaída (IPI -8,7% i.a. en febrero), construcción que se enfrió tras un 2025 fuerte, y un consumo privado que crece pero pierde momentum. Para una compañía de seguros, esto se traduce en <strong>menor crecimiento real de primas en ramos vinculados a actividad</strong>, presión sobre la inflación de siniestros (vehículos +29% i.a. al productor) y un escenario de tasas reales que sigue justificando duration en CER selectiva.</p>
+  </div>
+
+  <!-- ============ SECCIÓN 1 ============ -->
+  <section>
+    <div class="section-num">01 / DESINFLACIÓN ESTANCADA</div>
+    <h2>El IPC de marzo rompe la tendencia: implicancia directa en pricing y reservas</h2>
+    <p class="section-lead">Tras seis meses entre 1,9% y 2,8% mensual, marzo escala al 3,4% (GBA). El número en sí mismo no es alarmante — sí lo es la dinámica de los componentes que importan al negocio.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">IPC GBA Mar 26</div>
+        <div class="kpi-val">3,4%</div>
+        <div class="kpi-delta down">▲ vs 2,6% feb</div>
+        <div class="kpi-note">Mayor registro desde oct-25</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Salud — Prepagas</div>
+        <div class="kpi-val">2,9%</div>
+        <div class="kpi-delta neutral">⟶ ritmo sostenido</div>
+        <div class="kpi-note">+2,3 a +2,9% últimos 4m</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Transporte</div>
+        <div class="kpi-val">4,7%</div>
+        <div class="kpi-delta down">▲ aceleración</div>
+        <div class="kpi-note">Combustibles +7,0% m/m</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Vivienda + Energía</div>
+        <div class="kpi-val">3,6%</div>
+        <div class="kpi-delta down">▲ regulados al alza</div>
+        <div class="kpi-note">Electricidad/gas +4,7%</div>
+      </div>
+    </div>
+
+    <div class="body-text">
+      <p>La aceleración de marzo no es homogénea: <strong>los componentes regulados (vivienda, energía, transporte público) explican la mayor parte del repunte</strong>. El núcleo (IPC sin estacionales ni regulados) sigue moderado pero perdió la tendencia bajista. La variación interanual del nivel general nacional, calculada sobre los índices base diciembre 2016, se ubica en torno al 32,5% i.a. — el menor registro en años, pero con la curva aplanándose en lugar de seguir cayendo.</p>
+
+      <p>Para el negocio, hay tres vectores distintos que conviene separar:</p>
+    </div>
+
+    <div class="implication">
+      <strong>1. Severidad de siniestros automotor.</strong> El IPP de vehículos automotores, carrocerías y repuestos sube <strong style="color:var(--gold);">29,1% i.a. en marzo</strong>, muy por encima del IPC general. Esto impacta directo en el costo medio de siniestros materiales y robo total: cualquier suma asegurada calculada hace 12 meses está significativamente subasegurada. Acción concreta: revisar la cláusula de actualización automática de sumas y los factores de inflación aplicados en reservas IBNR de automotor.<br><br>
+      <strong>2. Siniestros de salud.</strong> Prepagas suben 2,9% m/m sostenido, alineado con el IPC general. La división Salud crece <strong style="color:var(--gold);">3,0% mensual</strong>. El driver de costo médico no se ha despegado del IPC, lo que sugiere que el loss ratio en seguro de salud puede sostenerse — pero hay que monitorear "Productos medicinales" (+2,8%), que pega en daños patrimoniales con coberturas de salud complementaria.<br><br>
+      <strong>3. Reservas técnicas y matemáticas.</strong> Con IPC interanual estabilizándose en torno a 30-33%, el ajuste por CER acumulado de los últimos 12 meses en cartera sigue siendo el principal vehículo de preservación de capital frente a una inflación que no se rinde.
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 2 ============ -->
+  <section>
+    <div class="section-num">02 / ACTIVIDAD: SEÑALES MIXTAS</div>
+    <h2>El PIB cerró 2025 en +4,4%, pero los datos enero-febrero 2026 son frágiles</h2>
+    <p class="section-lead">El año pasado fue un rebote sectorial; el inicio de 2026 muestra una industria que vuelve a contraerse y una construcción que se enfría. Los seguros patrimoniales sienten esto con un rezago de uno a dos trimestres.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">PIB 2025 vs 2024</div>
+        <div class="kpi-val">+4,4%</div>
+        <div class="kpi-delta up">recuperación</div>
+        <div class="kpi-note">Total año, vs −1,3% en 2024</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">PIB 4T 25 i.a.</div>
+        <div class="kpi-val">+2,1%</div>
+        <div class="kpi-delta neutral">desaceleración</div>
+        <div class="kpi-note">vs +6,4% pico 2T 25</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">IPI Industria Feb 26</div>
+        <div class="kpi-val">−8,7%</div>
+        <div class="kpi-delta down">i.a. negativo</div>
+        <div class="kpi-note">Acum. ene-feb: −6,0%</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Capacidad instalada</div>
+        <div class="kpi-val">54,6%</div>
+        <div class="kpi-delta down">▼ 4 p.p. i.a.</div>
+        <div class="kpi-note">Feb 26 vs 58,6% feb 25</div>
+      </div>
+    </div>
+
+    <div class="body-text">
+      <p>El PIB consolidó un rebote del 4,4% en 2025, liderado por <strong>Intermediación financiera (+24,7%)</strong>, Formación bruta de capital fijo (+16,4%), Pesca (-15,2%, contracción), Construcción (+4,3%) y Comercio (+3,6%). La Industria manufacturera apenas creció 0,8% en el año y volvió a terreno negativo en el cuarto trimestre (-5,0% i.a.).</p>
+
+      <p>Lo más relevante para una compañía de seguros es la composición de ese crecimiento: el sector financiero vuela, lo que sostiene la demanda de seguros de caución, garantías y D&O; el sector real (industria, hoteles, comercio en 4T) muestra fatiga, lo que limita el crecimiento real de primas en riesgos del trabajo, incendio y RC industrial.</p>
+    </div>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:18px; font-weight:500; color:var(--ink); margin: 30px 0 14px;">PIB sectorial 2025 — variación porcentual respecto a 2024</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Sector (CIIU)</th>
+            <th>2024</th>
+            <th>2025</th>
+            <th>4T 25 i.a.</th>
+            <th>Lectura para seguros</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Intermediación financiera</td><td class="neg">−4,7</td><td class="pos">+24,7</td><td class="pos">+17,2</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">Driver principal de seguros corporativos</td></tr>
+          <tr><td>FBKF (inversión)</td><td class="neg">−17,2</td><td class="pos">+16,4</td><td class="neg">−2,1</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">Pico de obra, ya enfriándose</td></tr>
+          <tr><td>Hoteles y restaurantes</td><td class="pos">+5,3</td><td class="pos">+7,4</td><td class="neg">−0,7</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">RC y patrimoniales: volumen estable</td></tr>
+          <tr><td>Construcción</td><td class="neg">−17,5</td><td class="pos">+4,3</td><td class="pos">+0,9</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">Caución de obra pública en pausa</td></tr>
+          <tr><td>Comercio</td><td class="neg">−7,2</td><td class="pos">+3,6</td><td class="neg">−2,2</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">Robo, incendio: rezago de 1-2 T</td></tr>
+          <tr><td>Transporte y comunicaciones</td><td class="pos">+0,8</td><td class="pos">+2,2</td><td class="pos">+2,2</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">Cargas y RC profesional crecen</td></tr>
+          <tr><td>Industria manufacturera</td><td class="neg">−8,8</td><td class="pos">+0,8</td><td class="neg">−5,0</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">ART e incendio bajo presión</td></tr>
+          <tr><td>Servicios sociales y de salud</td><td class="neg">−0,2</td><td class="neg">−0,2</td><td class="pos">+0,3</td><td style="text-align:left; font-family:'Inter Tight'; color:var(--ink-mute);">Salud privada: estancamiento real</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="implication">
+      El dato más importante de la tabla no es el +24,7% de Intermediación financiera (esperable), sino el <strong>−2,1% de FBKF en el cuarto trimestre 2025</strong>: el motor de crecimiento de 2025 ya se apagó. La inversión es procíclica y el seguro de caución de obra pública la sigue con rezago. Esperar contracción de pipeline en 2T-3T 2026, con potencial de presión sobre primas (caída de cartera vigente vs. nuevas pólizas).
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 3 ============ -->
+  <section>
+    <div class="section-num">03 / CONSTRUCCIÓN — INDICADOR ADELANTADO</div>
+    <h2>El ICC y el ISAC marcan el techo: enfriamiento confirmado</h2>
+    <p class="section-lead">Construcción es el termómetro más fino del seguro técnico, caución de obra y todo riesgo construcción. Los tres indicadores convergen en una misma señal: el rebote de 2025 ya cedió.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">ICC Mar 26 m/m</div>
+        <div class="kpi-val">+2,5%</div>
+        <div class="kpi-delta neutral">↗ aceleración mano obra</div>
+        <div class="kpi-note">Mano de obra +3,4%</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">ISAC Feb 26 i.a.</div>
+        <div class="kpi-val">−0,7%</div>
+        <div class="kpi-delta down">▼ primer signo negativo</div>
+        <div class="kpi-note">vs +26,5% abril 2025</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">ISAC Acum. 26</div>
+        <div class="kpi-val">+0,3%</div>
+        <div class="kpi-delta neutral">⟶ casi plano</div>
+        <div class="kpi-note">Ene-feb 26 vs ene-feb 25</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">PIB Construcción 4T 25</div>
+        <div class="kpi-val">+0,9%</div>
+        <div class="kpi-delta neutral">desaceleración</div>
+        <div class="kpi-note">vs +10,4% en 2T 25</div>
+      </div>
+    </div>
+
+    <div class="body-text">
+      <p>El ISAC pasó de crecer dos dígitos durante todo 2025 a registrar caídas marginales en febrero 2026. El ICC, en cambio, sigue acelerando — particularmente en el ítem mano de obra (+3,4% solo en marzo) y gastos generales (+1,8-4,5% mensual). <strong>La combinación es típica de fin de ciclo: actividad cae, pero costos siguen subiendo.</strong></p>
+
+      <p>Para el negocio aseguro técnico esto implica un margen comprimido: las primas tienden a fijarse sobre presupuestos de obra anteriores, mientras que la siniestralidad se materializa con costos actuales más altos. El rebote del ICC mano de obra acumulado en los últimos doce meses supera ampliamente al IPC general, lo que valida la importancia de cláusulas de ajuste por ICC y no por IPC en pólizas de obra civil de plazo prolongado.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 4 ============ -->
+  <section>
+    <div class="section-num">04 / EMPLEO Y POBREZA — DEMANDA DE SEGURO DE PERSONAS</div>
+    <h2>La pobreza cae al 28,2%: mejora estructural en la base de afiliación potencial</h2>
+    <p class="section-lead">Es el dato más positivo del informe y el menos comentado en circuitos financieros. El mercado direccionable para seguros de vida individual, sepelio y AP creció en términos reales por primera vez en años.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Pobreza II-S 25 personas</div>
+        <div class="kpi-val">28,2%</div>
+        <div class="kpi-delta up">▼ desde 38,1%</div>
+        <div class="kpi-note">II-S 24 → II-S 25</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Indigencia II-S 25</div>
+        <div class="kpi-val">6,3%</div>
+        <div class="kpi-delta up">▼ desde 8,2%</div>
+        <div class="kpi-note">Caída sostenida</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Tasa empleo 4T 25</div>
+        <div class="kpi-val">45,0%</div>
+        <div class="kpi-delta up">↗ máximos serie</div>
+        <div class="kpi-note">31 aglomerados</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Desocupación 4T 25</div>
+        <div class="kpi-val">7,5%</div>
+        <div class="kpi-delta neutral">⟶ estable</div>
+        <div class="kpi-note">CABA 4,8% — interior 6,2%</div>
+      </div>
+    </div>
+
+    <div class="body-text">
+      <p>La pobreza por ingresos en personas cayó casi 10 puntos porcentuales en doce meses (de 38,1% a 28,2%), nivel más bajo desde el primer semestre de 2023. La indigencia bajó de 8,2% a 6,3%. Estos números son consistentes con la recuperación del salario real y la moderación de la inflación.</p>
+
+      <p>Para el negocio asegurador, la lectura es estructural más que coyuntural: <strong>el universo de hogares con capacidad de pago para una prima de seguro de personas básico se amplía</strong>. El crecimiento de salarios brutos en supermercados (+36% i.a. en cajeros y administrativos) muestra que el sueldo formal en el segmento bajo del mercado laboral creció en línea con el IPC, lo que mantiene el poder adquisitivo y, por extensión, la capacidad de absorber primas.</p>
+    </div>
+
+    <div class="implication">
+      <strong>Oportunidad de cartera:</strong> el seguro de vida colectivo y los productos masivos (sepelio, AP individual) tienen vientos de cola en la base de la pirámide. La tasa de empleo en máximos de serie y la caída de pobreza sugieren que iniciativas de venta a través de canales bancarios y retail tienen mejor base hoy que hace 18 meses. Es el momento adecuado para revisar la oferta de productos masivos de baja prima y alta penetración.
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 5 ============ -->
+  <section>
+    <div class="section-num">05 / SECTOR EXTERNO Y RESERVAS</div>
+    <h2>Cuenta corriente con superávit en 4T 25, después de un año en rojo</h2>
+    <p class="section-lead">El dato matiza el ruido reciente sobre dolarización: el flujo comercial se reequilibró sobre el cierre del año.</p>
+
+    <div class="body-text">
+      <p>La balanza de pagos publicada por el INDEC muestra una <strong>cuenta corriente que pasó a superávit de USD 2.294 millones en el cuarto trimestre 2025</strong>, tras tres trimestres consecutivos en déficit. La cuenta de bienes y servicios cerró con superávit de USD 4.470 millones en 4T (vs USD 217 millones en 2T). Las reservas internacionales del BCRA aumentaron USD 11.455 millones en el año.</p>
+
+      <p>Para una cartera de inversiones de aseguradora, dos lecturas: <strong>(i)</strong> la capacidad del BCRA de defender el tipo de cambio mejoró al cierre de 2025 — el riesgo de salto cambiario brusco en el corto plazo es menor que el percibido a mediados de año; <strong>(ii)</strong> el déficit de la cuenta financiera (otra inversión) de USD -17.548 millones en el año refleja salidas y reestructuraciones, pero las reservas se recompusieron por flujos comerciales y de inversión directa, no por endeudamiento.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 6 — SEMÁFORO ============ -->
+  <section>
+    <div class="section-num">06 / SEMÁFORO POR RAMO</div>
+    <h2>Implicancias por línea de negocio</h2>
+    <p class="section-lead">Síntesis ejecutiva del impacto del cuadro macro INDEC sobre cada ramo. El verde indica viento de cola; ámbar, neutro o señales mixtas; rojo, presión sobre resultado técnico o crecimiento real de primas.</p>
+
+    <div class="matrix">
+      <div class="matrix-row">
+        <div class="ramo">Vida Individual / Colectivo</div>
+        <div><div class="signal green"></div></div>
+        <div class="read"><strong>Viento de cola.</strong> Caída de pobreza al 28,2%, empleo en máximos, salarios reales en recuperación. Ampliación del universo direccionable.</div>
+      </div>
+      <div class="matrix-row">
+        <div class="ramo">Automotor</div>
+        <div><div class="signal amber"></div></div>
+        <div class="read"><strong>Cuidado con severidad.</strong> IPP vehículos +29,1% i.a. supera al IPC. Revisar sumas aseguradas y reservas IBNR — riesgo de subseguro y aumento del costo medio de siniestro.</div>
+      </div>
+      <div class="matrix-row">
+        <div class="ramo">ART</div>
+        <div><div class="signal red"></div></div>
+        <div class="read"><strong>Presión sobre crecimiento real.</strong> Industria −8,7% i.a. en febrero, capacidad instalada −4 p.p. i.a. Masa salarial industrial a la baja contrae base imponible.</div>
+      </div>
+      <div class="matrix-row">
+        <div class="ramo">Caución (obra pública/privada)</div>
+        <div><div class="signal red"></div></div>
+        <div class="read"><strong>Pico de ciclo ya pasó.</strong> FBKF cayó 2,1% en 4T 25, ISAC en febrero −0,7% i.a. Pipeline en contracción. Margen para anticipar caída de cartera vigente en 2T-3T.</div>
+      </div>
+      <div class="matrix-row">
+        <div class="ramo">Salud / Accidentes</div>
+        <div><div class="signal amber"></div></div>
+        <div class="read"><strong>Loss ratio en línea.</strong> Prepagas +2,9% m/m alineado con IPC. Servicios sociales y de salud −0,2% en 2025: estancamiento real del sector limita crecimiento orgánico.</div>
+      </div>
+      <div class="matrix-row">
+        <div class="ramo">Incendio / Combinado familiar</div>
+        <div><div class="signal amber"></div></div>
+        <div class="read"><strong>Severidad por costo de reposición.</strong> ICC mano de obra acelerando, pero ISAC se enfría. Revisar índice de actualización de sumas: cláusulas con ICC, no con IPC.</div>
+      </div>
+      <div class="matrix-row">
+        <div class="ramo">Cartera de inversiones</div>
+        <div><div class="signal green"></div></div>
+        <div class="read"><strong>CER mantiene atractivo relativo.</strong> Inflación se estancó en torno a 30-33% i.a. con tendencia plana. Tasas reales positivas siguen siendo el principal vehículo de preservación de capital frente a duración.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 7 — LIMITACIONES ============ -->
+  <section>
+    <div class="section-num">07 / LIMITACIONES DEL INFORME</div>
+    <h2>Lo que el INDEC Informa <em style="font-style:italic; color:var(--gold);">no</em> dice</h2>
+
+    <div class="callout">
+      <div class="callout-label">CONTEXTO METODOLÓGICO</div>
+      <p>El INDEC Informa es una compilación de coyuntura, no un análisis sectorial de seguros. Para el equipo de inversiones, sus límites son tan importantes como sus aportes.</p>
+    </div>
+
+    <div class="body-text">
+      <p>Tres ausencias relevantes que conviene tener presentes al consumir estos datos:</p>
+
+      <p><strong>1. No hay datos del sector seguros.</strong> Producción de primas, siniestralidad, resultados técnicos y financieros, ranking de compañías, inversiones admisibles — todo eso lo publica la SSN (mensual) y la AACS (trimestral, con mayor detalle por ramo). El INDEC aporta los <em style="font-style:italic;">drivers</em> macro, no las variables del sector.</p>
+
+      <p><strong>2. Lag temporal asimétrico.</strong> El IPC y los precios mayoristas son de marzo 2026; la actividad industrial y construcción, de febrero 2026; el PIB y la balanza de pagos, hasta el cuarto trimestre 2025; la pobreza, segundo semestre 2025; el mercado de trabajo, cuarto trimestre 2025. Cualquier conclusión sobre coyuntura debe ponderar esta heterogeneidad.</p>
+
+      <p><strong>3. Faltan datos automotores y de patentamientos.</strong> El número clave para automotor (patentamientos mensuales, mix segmento alto/bajo) se obtiene de ACARA, no del INDEC. El IPC adquisición de vehículos (-0,7% en marzo) es un proxy pero no reemplaza el dato real de unidades.</p>
+    </div>
+
+    <div class="implication">
+      <strong>Recomendación de uso operativo:</strong> incorporar el INDEC Informa al ciclo de revisión mensual del equipo como capa de validación macro de los supuestos de pricing. Cruzar cada vez con SSN (siniestralidad y producción), AACS (sector), BCRA (variables monetarias) y ACARA (patentamientos). Es la fuente canónica para cualquier discusión que involucre escenarios macro, pero rara vez es la única fuente que se necesita.
+    </div>
+  </section>
+
+  <footer>
+    <div>INTELIGENCIA DE MERCADO</div>
+    <div><span class="tag">●</span> ELABORACIÓN PROPIA &middot; FUENTE PRIMARIA: INDEC INFORMA AÑO 31 N°4</div>
+    <div>USO INTERNO &middot; EQUIPO DE INVERSIONES</div>
+  </footer>
+
+</main>
+</body>
+</html>

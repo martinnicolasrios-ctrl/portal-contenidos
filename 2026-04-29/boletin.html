@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial – Análisis Regulatorio Asegurador · 29/04/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 60%), var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 28px;
+    margin-bottom: 48px;
+  }
+  .header-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .header-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+    margin-bottom: 4px;
+  }
+  .header-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .section-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    margin-left: 8px;
+    align-self: center;
+  }
+  .section-block {
+    margin-bottom: 52px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .card-urgent {
+    border-left: 2px solid var(--neg);
+  }
+  .card-regulatory {
+    border-left: 2px solid var(--accent);
+  }
+  .card-financial {
+    border-left: 2px solid var(--gold);
+  }
+
+  .card-norm {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .card-norm-urgent { color: var(--neg); }
+  .card-norm-regulatory { color: var(--accent); }
+  .card-norm-financial { color: var(--gold); }
+
+  .card-organism {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  /* CARD FOOTER LINKS */
+  .card-links {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .card-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .link-bora-urgent {
+    color: var(--neg);
+    border: 1px solid rgba(239,108,108,.3);
+  }
+  .link-bora-urgent:hover { background: rgba(239,108,108,.08); }
+  .link-bora-regulatory {
+    color: var(--accent);
+    border: 1px solid rgba(52,187,218,.3);
+  }
+  .link-bora-regulatory:hover { background: rgba(52,187,218,.08); }
+  .link-bora-financial {
+    color: var(--gold);
+    border: 1px solid rgba(232,176,74,.3);
+  }
+  .link-bora-financial:hover { background: rgba(232,176,74,.08); }
+  .link-kronos {
+    color: var(--ink-3);
+    border: 1px solid rgba(123,145,163,.3);
+  }
+  .link-kronos:hover { background: rgba(123,145,163,.08); }
+
+  /* VENCIMIENTOS CHIPS */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+  .chip-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .chip-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .chip-action {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .chip-empty {
+    color: var(--ink-3);
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    margin-top: 48px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .wrapper { padding: 28px 20px; }
+    .header-logo { font-size: 22px; }
+    .section-title { font-size: 20px; }
+    .chips-grid { grid-template-columns: 1fr; }
+    .card-links { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo"></div>
+    <div class="header-subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="header-date">29 de Abril de 2026 · Edición N° publicada</div>
+  </header>
+
+  <!-- SECCIÓN 1: URGENTE -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 01</span>
+      <span class="section-title">Urgente</span>
+      <span class="section-line"></span>
+    </div>
+
+    <!-- UIF - Nueva Presidencia -->
+    <div class="card card-urgent">
+      <div class="card-norm card-norm-urgent">Decreto 291/2026 · DECTO-2026-291-APN-PTE</div>
+      <div class="card-organism">PODER EJECUTIVO NACIONAL · UNIDAD DE INFORMACIÓN FINANCIERA</div>
+      <div class="card-title">Cambio de conducción en la UIF: se designa nuevo Presidente</div>
+      <div class="card-desc">
+        El Poder Ejecutivo designó al Dr. Matías Gabriel Álvarez como Presidente de la Unidad de Información Financiera (UIF), en reemplazo del Dr. Paulo Starc (cuya renuncia fue aceptada por Decreto 45/26). El cambio de autoridad en el principal organismo antilavado del país es de atención inmediata para las aseguradoras: en su carácter de sujetos obligados bajo la Ley 25.246, deben mantener relación directa con la UIF para la presentación de Reportes de Operaciones Sospechosas (ROS), actualizaciones de sus Manuales de Prevención de LD/FT y toda comunicación vinculada al sistema ALD/CFT. Un nuevo presidente puede significar cambios de criterio normativo, nuevas disposiciones o refuerzo de la fiscalización sobre el sector asegurador en el corto plazo.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-bora-urgent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341274/20260429" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 2: NOVEDADES REGULATORIAS -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 02</span>
+      <span class="section-title">Novedades Regulatorias</span>
+      <span class="section-line"></span>
+    </div>
+
+    <!-- SSN 194/2026 -->
+    <div class="card card-regulatory">
+      <div class="card-norm card-norm-regulatory">Resolución Sintetizada 194/2026 · RESOL-2026-194-APN-SSN#MEC</div>
+      <div class="card-organism">SUPERINTENDENCIA DE SEGUROS DE LA NACIÓN · Fecha: 27/04/2026</div>
+      <div class="card-title">SSN: Inscripciones y ampliación geográfica en el Registro de Productores Asesores (REPAS)</div>
+      <div class="card-desc">
+        La SSN inscribe en el Registro de Productores Asesores de Seguros a nuevas personas humanas para ejercer intermediación en todo el territorio nacional y en todas las ramas del seguro, conforme el Anexo IF-2026-39483281-APN-GAYR#SSN. Adicionalmente, amplía el ámbito de actuación geográfica del PAS Gastón Luis Liaudat (Matrícula N° 54.246) a cobertura nacional y todos los ramos. Para el área comercial y de compliance de la aseguradora, este acto implica actualizar la nómina de intermediarios habilitados que pueden operar en todos los ramos de Vida/Personas y Patrimoniales/Incendio. Los nuevos números de matrícula son consultables en el sistema REPAS.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-bora-regulatory" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341304/20260429" target="_blank">→ Ver en BORA</a>
+        <a class="card-link link-kronos" href="https://kronos.ssn.gob.ar/" target="_blank">→ Kronos SSN · Res. 194</a>
+      </div>
+    </div>
+
+    <!-- CNV RG 1131/2026 -->
+    <div class="card card-regulatory">
+      <div class="card-norm card-norm-regulatory">Resolución General 1131/2026 · RESGC-2026-1131-APN-DIR#CNV</div>
+      <div class="card-organism">COMISIÓN NACIONAL DE VALORES · Fecha: 27/04/2026</div>
+      <div class="card-title">CNV reforma integralmente el régimen de investigación y sanciones (Título XIII, N.T. 2013)</div>
+      <div class="card-desc">
+        La CNV modifica en forma integral el Título XIII de las Normas (N.T. 2013 y mod.), que regula los procedimientos de fiscalización, investigación y sanción de sujetos bajo su competencia. Los cambios incluyen: incorporación del requisito de ratificación de denuncias online, simplificación del trámite de notificación al denunciante y racionalización de etapas sancionatorias. Para las aseguradoras que operan en el mercado de capitales como inversores institucionales y mantienen valores negociables en cartera, este marco regulatorio define las reglas de conducta ante eventuales investigaciones de la CNV sobre sus operaciones de inversión en títulos de oferta pública.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-bora-regulatory" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341302/20260429" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3: IMPACTO FINANCIERO -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 03</span>
+      <span class="section-title">Impacto Financiero</span>
+      <span class="section-line"></span>
+    </div>
+
+    <!-- Res. Conjunta 23/2026 - Licitación Deuda -->
+    <div class="card card-financial">
+      <div class="card-norm card-norm-financial">Resolución Conjunta 23/2026 · RESFC-2026-23-APN-SH#MEC</div>
+      <div class="card-organism">MEC — SECRETARÍA DE FINANZAS Y SECRETARÍA DE HACIENDA · Fecha: 28/04/2026</div>
+      <div class="card-title">Licitación de deuda soberana: nuevos instrumentos CER, TAMAR y dólar-linked disponibles para carteras de inversión</div>
+      <div class="card-desc">
+        El Tesoro Nacional dispone la emisión y/o ampliación de los siguientes instrumentos elegibles para la cartera de activos regulados de aseguradoras: (1) Letra del Tesoro capitalizable en pesos vto. 12/06/2026 (hasta $6 bn); (2) Bono TAMAR vto. 31/08/2028 (hasta $5 bn); (3) Bono Dual CER/TAMAR vto. 29/06/2029 (hasta $5,8 bn); (4) ampliación BONCER TZX Sep-2028; (5) Letra USD Linked vto. Sep-2026 (hasta USD 3.620 M); (6) Bonos USD 6% vtos. Oct-2027 y Oct-2028 (hasta USD 450 M c/u). Adicionalmente, se habilita una licitación de conversión (canje) de instrumentos próximos a vencer (TZV26, TTD26, LETAMAR M31G6, TZXD6) hacia instrumentos más largos (TZV28, TMF28, TZXM8). La liquidación de instrumentos se efectúa el 04/05/2026 (T+3). Todos los instrumentos gozan de exenciones impositivas vigentes. Para el área de Finanzas, esta licitación representa la principal oportunidad de reinversión o extensión de duration de corto plazo en la cartera de renta fija soberana.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-bora-financial" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341303/20260429" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Decreto 292/2026 - Bono Previsional -->
+    <div class="card card-financial">
+      <div class="card-norm card-norm-financial">Decreto 292/2026 · DECTO-2026-292-APN-PTE</div>
+      <div class="card-organism">PODER EJECUTIVO NACIONAL · SEGURIDAD SOCIAL · Fecha: 28/04/2026</div>
+      <div class="card-title">Bono Extraordinario Previsional de hasta $70.000 para mayo 2026: referencia de prestaciones mínimas del sistema público</div>
+      <div class="card-desc">
+        El PEN otorga un bono extraordinario previsional de hasta $70.000 a liquidarse en mayo de 2026 para jubilados y pensionados del SIPA con haberes en o cerca del mínimo garantizado. Si bien no afecta directamente las reservas técnicas ni la cartera de inversiones, constituye una referencia relevante para el área de renta vitalicia previsional y seguros de retiro: el monto del bono ($70.000) establece el piso de referencia del sistema público de cara al posicionamiento comercial de productos de renta diferida del ramo Vida. Asimismo, refleja continuidad del régimen de actualizaciones mensuales por IPC (Dto. 274/24).
+      </div>
+      <div class="card-links">
+        <a class="card-link link-bora-financial" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341273/20260429" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BNA - Tasas de referencia -->
+    <div class="card card-financial">
+      <div class="card-norm card-norm-financial">Aviso Oficial · BNA — Tasas activas vigentes</div>
+      <div class="card-organism">BANCO DE LA NACIÓN ARGENTINA · Publicación: 29/04/2026</div>
+      <div class="card-title">Actualización de tasas TAMAR de referencia: impacto en valuación de instrumentos de cartera</div>
+      <div class="card-desc">
+        El BNA publica las tasas activas vigentes referenciadas en TAMAR: para el período 28/04/2026 la tasa de descuento aplicada es del 25,61% TNA adelantada (30 días) y 29,54% efectiva anual vencida. La tasa TAMAR es la referencia de remuneración de los Bonos TAMAR emitidos por el Tesoro (ver Res. Conjunta 23/2026) y sirve como benchmark para la valuación a mercado de los instrumentos de tasa variable en la cartera de inversiones de la aseguradora. Su evolución determina el rendimiento corriente de los BONO TAMAR (TMF28, bonos TAMAR 2028) que la Res. Conjunta 23/2026 pone a disposición en la licitación de hoy.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-bora-financial" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341333/20260429" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4: PRÓXIMOS VENCIMIENTOS -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 04</span>
+      <span class="section-title">Próximos Vencimientos</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="chips-grid">
+
+      <div class="chip">
+        <div class="chip-date">30/04/2026</div>
+        <div class="chip-desc">Fecha de emisión de los instrumentos licitados por la Res. Conjunta 23/2026 (LETAM 12Jun26, BONO TAMAR Ago28, BONO DUAL CER/TAMAR Jun29, ampliaciones CER/USD).</div>
+        <div class="chip-action">Liquidación efectiva: 04/05/2026. Confirmar participación y acreditación en CRYL/BCRA.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">30/04/2026 · hasta 17:00 hs</div>
+        <div class="chip-desc">Plazo límite para transferencia de Títulos Elegibles en la operación de conversión (canje TZV26, TTD26, LETAMAR M31G6, TZXD6) al Tesoro — Cuenta Secretaría de Finanzas 99990-01 en CRYL.</div>
+        <div class="chip-action">Asegurarse de que los títulos elegibles estén en CRYL antes del cierre. Incumplimiento se salda con débito en pesos a TCR del día.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">04/05/2026</div>
+        <div class="chip-desc">Liquidación (T+3) de todas las operaciones de licitación y conversión de la Res. Conjunta 23/2026. La CRYL acredita los nuevos instrumentos (TZV28, TMF28, TZXM8) en las cuentas de los participantes adjudicados.</div>
+        <div class="chip-action">Verificar acreditación en CRYL/BCRA y registrar en cartera de inversiones reguladas al valor de adjudicación.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">Mayo 2026</div>
+        <div class="chip-desc">Pago del Bono Extraordinario Previsional de hasta $70.000 (Decreto 292/2026) a beneficiarios ANSES. Referencia para análisis de producto de rentas vitalicias/retiro.</div>
+        <div class="chip-action">Sin acción directa requerida. Monitorear impacto en posicionamiento de productos previsionales propios.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    Generado automáticamente · 29/04/2026 · Fuente: Boletín Oficial de la República Argentina · boletinoficial.gob.ar
+  </footer>
+
+</div>
+</body>
+</html>
