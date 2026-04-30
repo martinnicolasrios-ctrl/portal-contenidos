@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 30/04/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+
+    /* CARDS */
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
+
+    /* BULLETS */
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
+
+    /* HIGHLIGHTS */
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
+    .highlight-neg { background: rgba(239,108,108,.04); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-neg strong { color: var(--ink); font-weight: 600; }
+    .highlight-pos { background: rgba(91,211,154,.04); border: 1px solid var(--line); border-left: 3px solid var(--pos); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-pos strong { color: var(--ink); font-weight: 600; }
+
+    /* TENSIONS */
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+
+    /* ALERTS */
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; display: block; margin-bottom: 4px; }
+
+    /* TC GRID */
+    .tc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+    .tc-card { background: var(--bg-3); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 12px 16px; }
+    .tc-card.neg-top { border-top-color: var(--neg); }
+    .tc-card.gold-top { border-top-color: var(--gold); }
+    .tc-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+    .tc-value { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+    .tc-value.neg { color: var(--neg); }
+    .tc-value.pos { color: var(--pos); }
+    .tc-var { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-3); }
+
+    /* POS GRID */
+    .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pos-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 16px 18px; }
+    .pos-card.neg-top { border-top-color: var(--neg); }
+    .pos-card.gold-top { border-top-color: var(--gold); }
+    .pos-card.pos-top { border-top-color: var(--pos); }
+    .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .pos-text { font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .pos-text strong { color: var(--ink); font-weight: 600; }
+
+    /* ALLOC TABLE */
+    .alloc-table { width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-top: 12px; }
+    .alloc-table th { background: var(--bg-3); color: var(--ink-3); font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 9px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+    .alloc-table td { padding: 9px 14px; border-bottom: 1px solid rgba(30,52,71,.4); color: var(--ink-2); font-size: 12px; }
+    .alloc-table tr:last-child td { border-bottom: none; }
+    .alloc-table tr:nth-child(even) td { background: rgba(52,187,218,.02); }
+    .alloc-table .ticker { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--accent); }
+    .alloc-table .pct { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+    /* INSURANCE */
+    .ins-label { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 8px 18px; border-radius: 4px 4px 0 0; margin-bottom: -1px; }
+    .ins-label.pesos { background: rgba(52,187,218,.15); color: var(--accent); border: 1px solid rgba(52,187,218,.2); border-bottom: 1px solid var(--bg-2); }
+    .ins-label.usd { background: rgba(91,211,154,.12); color: var(--pos); border: 1px solid rgba(91,211,154,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-label.riesgo { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-body { background: var(--bg-2); border: 1px solid var(--line); border-radius: 0 4px 4px 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .ins-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; margin-top: 14px; }
+    .ins-sub:first-child { margin-top: 0; }
+    .ins-text { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 8px; }
+    .ins-text:last-child { margin-bottom: 0; }
+    .ins-text strong { color: var(--ink); font-weight: 600; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 5px; margin-top: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
+
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
+
+    @media (max-width: 720px) {
+      .header-title { font-size: 22px; }
+      .section-title { font-size: 18px; }
+      .pos-grid, .tc-grid { grid-template-columns: 1fr; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 22px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial · Mié 29 / Jue 30 de abril de 2026</div>
+    <div class="header-title">El Régimen de Bandas Está Blindado Políticamente, pero el Mercado Empieza a Cobrar por la Falta de Programa Financiero</div>
+    <div class="header-meta">30 de abril de 2026 · Análisis regulatorio y financiero</div>
+  </div>
+
+  <!-- § 01 RESUMEN -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Bausili (BCRA) cerró el debate cambiario</strong>: el dólar está un 20% por debajo del techo de la banda, la política es "no negociable" y el propio presidente del BCRA anticipó que el próximo balance será el mejor en más de 10 años. La señal es de estabilidad sostenida.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Prat Gay lanzó tres alertas críticas desde Expo EFI</strong>: (1) la caída de la recaudación amenaza el ancla fiscal — "la vaca sagrada del Gobierno"; (2) el programa económico carece de un programa financiero; (3) la Carta Orgánica del BCRA sigue siendo la de CFK — Bausili opera sin mandato constitucional de defender el valor de la moneda.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La Fed mantuvo su tasa en la votación más dividida en 25 años</strong>: el contexto externo cierra el grifo para baja de tasas globales y deja a Argentina con carry atractivo pero sin soporte externo. Los bonos soberanos quedaron rezagados respecto del rally global que no se produjo.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Visa adquirió Prisma Medios de Pago + Newpay por u$s 1.509 millones</strong> — mayor M&A en la historia del sistema financiero argentino. La operación reestructura todo el ecosistema de pagos: procesamiento de tarjetas + adquirencia + cuenta a cuenta en tiempo real en una sola empresa internacional.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Los bancos bajaron la tasa de plazo fijo al 15% anual</strong> mientras el BCRA impulsa remonetización. La curva de tasa fija se comprime activamente y aparecen alternativas de liquidez inmediata con mayor rendimiento.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 02 LECTURA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Ganó el Debate Cambiario, Perdió el Debate de Sostenibilidad</div>
+      <div class="card-content">
+        <p>El día está articulado en torno a un solo eje: el Gobierno ganó el debate cambiario a corto plazo, pero perdió el debate sobre la sostenibilidad del modelo. Bausili cerró la cancha diciendo que la banda está "fuera de discusión" — mensaje diseñado para anclar expectativas antes del final del mes.</p>
+        <p>El problema es que simultáneamente, tres economistas de primer nivel (Prat Gay, Dujovne, y el editorial de Walter Brown en El Cronista) señalan el mismo vacío: hay un programa monetario-cambiario, <strong>pero no hay un programa financiero ni de crecimiento</strong>. Prat Gay lo dijo con nombre y apellido: "falta un programa financiero". Dujovne marcó que forzar la depreciación sería un error porque destruiría poder adquisitivo. Ambos confluyen en que la política actual puede sostener la estabilidad pero no genera las condiciones para crecer.</p>
+        <p>Los bonos argentinos están rezagados precisamente porque el mercado internacional no les está dando el viento de cola que necesitarían para comprimir el spread. La adjudicación del gasoducto GNL de Vaca Muerta (primer gasoducto para exportar GNL) es la noticia estructuralmente más relevante que el mercado no está pricificando por el ruido del caso Adorni.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li class="tension-item">
+        <strong>Tasa vs. dólar</strong>
+        Los bancos bajan el plazo fijo al 15% anual mientras el CCL cotiza a $1.494 (+0,42%) y el BNA/Blue a $1.415 (-1,05%). La brecha CCL/oficial se está ensanchando levemente (~5,6%). No es estrés, pero muestra que el mercado financiero está ligeramente más caro en dólares que el oficial.
+      </li>
+      <li class="tension-item">
+        <strong>Ancla fiscal vs. caída de recaudación</strong>
+        Prat Gay señala explícitamente que la recaudación cayendo amenaza el superávit primario. Si el ancla fiscal cede, toda la narrativa de desinflación colapsa. Riesgo no priceado todavía.
+      </li>
+      <li class="tension-item">
+        <strong>BCRA sin Carta Orgánica reformada</strong>
+        El BCRA no tiene mandato legal explícito de defender el valor de la moneda. Es una vulnerabilidad institucional en cualquier escenario de estrés. La crítica de Prat Gay es técnicamente correcta y políticamente explosiva.
+      </li>
+      <li class="tension-item">
+        <strong>Remonetización vs. baja de tasas</strong>
+        El BCRA quiere remonetización (más pesos en la economía) mientras bajan las tasas de corto. Esta combinación es inconsistente si la inflación no baja sostenidamente. Bausili reconoció que el dato de IPC de los últimos meses "generó debate".
+      </li>
+      <li class="tension-item">
+        <strong>Visa/Prisma sin aprobación regulatoria</strong>
+        La operación de u$s 1.509M está pendiente. Una empresa internacional controlando el 100% del procesamiento y adquirencia local es un riesgo regulatorio/competitivo latente que puede generar incertidumbre sobre todo el ecosistema de pagos.
+      </li>
+      <li class="tension-item">
+        <strong>Bonos en pausa — Fed condicionó</strong>
+        Los soberanos no mostraron mejora relevante mientras Wall Street espera decisión de la Fed. Argentina quedó rezagada porque la Fed condicionó explícitamente, lo que cierra el carry externo.
+      </li>
+      <li class="tension-item">
+        <strong>Reforma laboral con respaldo judicial pero conflicto con CGT</strong>
+        El poder judicial avaló la reforma, pero la CGT no desistirá. El riesgo de un paro nacional o escalada sindical afectaría la narrativa de normalización laboral.
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 04 VARIABLES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+
+    <!-- TC grid -->
+    <div class="tc-grid">
+      <div class="tc-card">
+        <div class="tc-label">BNA / Blue</div>
+        <div class="tc-value">$1.415</div>
+        <div class="tc-var">-1,05% en el día · dentro de banda</div>
+      </div>
+      <div class="tc-card gold-top">
+        <div class="tc-label">MEP</div>
+        <div class="tc-value" style="color:var(--gold);">$1.437</div>
+        <div class="tc-var">+0,12% · leve suba de cobertura</div>
+      </div>
+      <div class="tc-card neg-top">
+        <div class="tc-label">CCL (GD30)</div>
+        <div class="tc-value neg">$1.494</div>
+        <div class="tc-var">+0,42% · brecha CCL/oficial ~5,6%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">Lectura Cambiaria</div>
+      <div class="card-content">El oficial cae (BCRA interviene suavemente), el CCL sube levemente. La divergencia es contenida pero indica <strong>presión latente de salida de pesos al dólar financiero</strong>. El dólar tarjeta en $1.839 implica una brecha tarjeta/oficial de ~30%.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas</div>
+      <div class="card-content">Tasa de plazo fijo bancario comprimida al 15% anual (~1,25% mensual) — rendimiento real negativo con inflación actual. La LECAP a junio fue la más demandada en la licitación del Tesoro (rollover 102%). <strong>El mercado está acortando duration sistemáticamente.</strong> Esto es inconsistente con un régimen de carry sostenido y refleja desconfianza latente sobre la segunda mitad del año.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada</div>
+      <div class="card-content">Bausili admitió que el IPC de los últimos meses fue mayor a lo deseado, pero lo califica de "temporal" (carne). La baja de tasas de plazo fijo al 15% sugiere que el BCRA proyecta inflación bajando a niveles de ~1,2-1,5% mensual. Eso sería un logro enorme si se sostiene, pero la discordancia con la inflación actual es el riesgo principal.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Liquidez y Remonetización</div>
+      <div class="card-content">Tesoro colocó $8,11 billones con rollover de 102%: el sistema está en exceso de liquidez relativa y la demanda de LECAP corta es muy alta. La remonetización que anuncia Bausili implica que el BCRA dejará vencer LECAPs sin renovarlas completamente, inyectando pesos. <strong>Riesgo: si la remonetización es más rápida de lo que la inflación absorbe, puede presionar el dólar.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo Soberano</div>
+      <div class="card-content">Los bonos están en pausa. La Fed más hawkish de lo esperado cierra el ciclo de compresión de spreads. Argentina sigue siendo un activo de alto carry que necesita el viento de cola externo para comprimir. La pregunta del mercado: ¿las acciones se sostienen si caen los bonos?</div>
+    </div>
+  </div>
+
+  <!-- § 05 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card pos-top">
+        <div class="pos-label">Se Benefician</div>
+        <div class="pos-text"><strong>LECAP junio (muy corto):</strong> la demanda institucional está confirmada con rollover 102%. <strong>Acciones energéticas/infraestructura:</strong> adjudicación del gasoducto GNL de Vaca Muerta beneficia YPF, TGS, Pampa. <strong>Bancos:</strong> Bausili explicitó el rol de los bancos en absorber pesos del Tesoro y volcarlos a crédito. <strong>Fintech incumbentes:</strong> consolidación Visa/Prisma crea el ecosistema más robusto pero concentrado. <span class="tag pos">POSITIVOS</span></div>
+      </div>
+      <div class="pos-card neg-top">
+        <div class="pos-label">Se Perjudican</div>
+        <div class="pos-text"><strong>Bonos soberanos duration media/larga:</strong> Fed en pausa + alerta de Prat Gay + shortening duration del mercado = presión sobre el tramo largo. <strong>Plazo fijo convencional:</strong> con bancos en 15%, el rendimiento real es claramente negativo. <strong>Competidores de Prisma:</strong> concentración de pagos en Visa elimina competencia a escala. <span class="tag neg">RIESGOSOS</span></div>
+      </div>
+      <div class="pos-card gold-top">
+        <div class="pos-label">Coberturas con Valor</div>
+        <div class="pos-text"><strong>CER corto (hasta 6 meses):</strong> si la inflación no baja al 1,2% mensual que pricean los bancos con el plazo fijo al 15%, el CER corto gana. Es la cobertura asimétrica más barata. <strong>Opciones/forwards de CCL:</strong> la brecha CCL/oficial puede ampliarse si la remonetización va más rápido. <strong>Posición en Vaca Muerta/energía</strong> como hedge de largo plazo contra riesgo fiscal. <span class="tag gold">COBERTURA</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Pierden Sentido</div>
+        <div class="pos-text"><strong>Carry en pesos de mediano plazo (180-360 días):</strong> con la curva achatada e inflación incierta, el riesgo/retorno se deteriora. El carry solo tiene sentido muy corto (30-60 días). <strong>Dólar linked ante tipo de cambio estático:</strong> la banda está "fuera de discusión" según Bausili. Comprar dólar linked cuando el oficial puede seguir cayendo dentro de la banda es pagar cobertura cara para un riesgo que el Gobierno prometió no tomar. <span class="tag neg">REDUCIR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 06 ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas Ejecutivas</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <strong>Caída de recaudación vs. ancla fiscal</strong>
+        Si en los próximos 2-3 datos fiscales el superávit primario se deteriora, toda la narrativa de desinflación se pone en jaque. Es el único ancla real del programa. Monitorear publicación INDEC y Ministerio de Economía.
+      </li>
+      <li class="alert-item">
+        <strong>La Fed condicionó con votación récord de disidentes</strong>
+        La próxima movida puede ser en cualquier dirección. Argentina no puede contar con viento de cola externo para comprimir spreads. Los bonos soberanos en este entorno son más vulnerables de lo que el precio actual sugiere.
+      </li>
+      <li class="alert-item">
+        <strong>Remonetización vs. tipo de cambio</strong>
+        Bausili abrió la "ventana de remonetización". Si los pesos inyectados no encuentran demanda genuina de actividad, van a dólar. La brecha CCL/oficial en 5,6% ya muestra señal temprana. Monitorear semanalmente.
+      </li>
+      <li class="alert-item">
+        <strong>Carta Orgánica del BCRA sin reformar</strong>
+        La crítica de Prat Gay es técnicamente correcta y políticamente explosiva. Si el Gobierno no reforma la carta orgánica, el BCRA queda expuesto ante cualquier demanda judicial o escenario de crisis. Riesgo institucional subestimado.
+      </li>
+      <li class="alert-item">
+        <strong>Aprobación regulatoria de Visa/Prisma pendiente</strong>
+        La operación de u$s 1.509M no está cerrada. Si la CNV, el BCRA o el Ministerio de Economía no aprueban o condicionan, genera incertidumbre sobre todo el ecosistema de medios de pago.
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 07 NO PRICEADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight">
+      <strong>El gasoducto GNL de Vaca Muerta como activo de largo plazo.</strong> La adjudicación del primer gasoducto para exportar GNL al mundo es un hito que pasa desapercibido por el ruido del caso Adorni. Pero es el activo estructural más relevante del país para la próxima década: divisas genuinas, sin dependencia del FMI, y con demanda global asegurada.
+    </div>
+    <div class="highlight">
+      <strong>El agotamiento del carry a tasas bajas.</strong> Con la tasa de plazo fijo en 15% anual y la inflación todavía por encima del 2,5% mensual, hay un punto de quiebre en el cual el sistema no puede seguir achatando la curva sin que los inversores en pesos roten a dólares. El mercado aún no está pricificando ese punto de ruptura.
+    </div>
+  </div>
+
+  <!-- § 08 CFO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — CFO de Aseguradora</span>
+    </div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-header">Contexto del sector</div>
+      <div class="card-content">El sector de seguros opera con pasivos en pesos indexados (jubilaciones, siniestros, primas técnicas) y activos que deben rendir por encima de la inflación para no destruir capital. En este entorno de remonetización + baja de tasas, la presión es máxima.</div>
+    </div>
+
+    <!-- Pesos -->
+    <div style="margin-bottom: 4px;">
+      <div class="ins-label pesos">Cartera en Pesos</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">CER — posición tácticamente más atractiva hoy</div>
+      <div class="ins-text">Si la inflación no baja al ritmo que el BCRA proyecta (y Bausili admitió que el IPC "generó debate"), el CER corto supera a la tata fija. <strong>Aumentar exposición a CER 3-6 meses.</strong></div>
+
+      <div class="ins-sub">Tasa fija — reducir exposure</div>
+      <div class="ins-text">Con plazo fijo bancario al 15% anual, el rendimiento real es negativo con inflación al 2,5-3% mensual (~30-36% anual). La LECAP muy corta (junio) tiene lógica solo como instrumento de liquidez, no de rendimiento. <strong>Reducir exposure a tata fija de más de 60 días.</strong></div>
+
+      <div class="ins-sub">USD Linked — reducir o salir</div>
+      <div class="ins-text">El dólar oficial está bajando dentro de la banda y Bausili dijo explícitamente que la política cambiaria "está fuera de discusión". <strong>Comprar USD linked hoy es pagar por un riesgo que el Gobierno prometió no ejercer. Reducir o salir hasta que haya señales de tensión en la banda.</strong></div>
+
+      <div class="ins-sub">Riesgo de duration — CRÍTICO</div>
+      <div class="ins-text">El mercado shortea duration consistentemente (LECAP junio fue la más demandada). Una aseguradora con duration alta en pesos está tomando un riesgo que el mercado ya no está dispuesto a tomar. <strong>Duration máxima recomendada en pesos: 90 días.</strong></div>
+    </div>
+
+    <!-- USD -->
+    <div style="margin-bottom: 4px; margin-top: 16px;">
+      <div class="ins-label usd">Cartera en USD</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">Activos dolarizados — mantener sin aumentar</div>
+      <div class="ins-text">El CCL en $1.494 (+0,42%) y el Blue estable en $1.415 sugieren que la posición en activos dolarizados (ON corporativas, FCI dólar, bonos ley Nueva York cortos) sigue siendo la mejor cobertura ante el riesgo de ruptura del ancla. <strong>No aumentar, pero tampoco reducir.</strong></div>
+    </div>
+
+    <!-- Riesgo liquidez -->
+    <div style="margin-bottom: 4px; margin-top: 16px;">
+      <div class="ins-label riesgo">Riesgo de Liquidez y Estructura Táctica</div>
+    </div>
+    <div class="ins-body" style="border-left: 3px solid var(--neg); background: rgba(239,108,108,.03);">
+      <div class="ins-sub">Alerta de liquidez</div>
+      <div class="ins-text">Con rollover al 102%, el sistema tiene liquidez aparente. Pero es liquidez concentrada en LECAPs muy cortas. Si hay un evento de estrés (dato fiscal malo, conflicto político, shock externo), la liquidez de corto plazo puede evaporarse rápidamente. <strong>Mantener al menos 15-20% de la cartera en instrumentos de liquidez inmediata (FCI money market, cauciones overnight).</strong></div>
+
+      <div class="ins-sub">El riesgo de liquidez más relevante es el pasivo</div>
+      <div class="ins-text">Si hay un evento de siniestros masivos o un shock de rescates, el portafolio con duration alta en pesos es ilíquido al precio que necesita. Acortar duration no es solo un trade: es gestión del balance.</div>
+
+      <div class="ins-sub">Estructura táctica recomendada</div>
+      <table class="alloc-table">
+        <thead>
+          <tr>
+            <th>Segmento</th>
+            <th>Instrumento</th>
+            <th>Asignación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CER 3-6 meses</td>
+            <td class="ticker">TX26 / TZX26</td>
+            <td class="pct">40%</td>
+          </tr>
+          <tr>
+            <td>LECAP muy corta (&lt;60 días)</td>
+            <td class="ticker">S30A6 / S23M6</td>
+            <td class="pct">35%</td>
+          </tr>
+          <tr>
+            <td>Liquidez inmediata</td>
+            <td class="ticker">FCI money market</td>
+            <td class="pct">15%</td>
+          </tr>
+          <tr>
+            <td>ON corporativas dólar cortas</td>
+            <td class="ticker">YPF / TGS / Vista</td>
+            <td class="pct">10%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ins-text" style="margin-top:10px;">Esta estructura acorta duration en pesos a un máximo de 90 días, mantiene cobertura CER para el pasivo técnico, y cero exposición a tata fija de mediano plazo y a USD linked hasta nuevo aviso.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis basado en noticias publicadas el 29-30 de abril de 2026 en El Cronista<br/>
+    Cotizaciones al cierre del miércoles 29/04/2026 · BNA $1.415 | MEP $1.437 | CCL $1.494 | Tarjeta $1.839<br/>
+    No constituye asesoramiento financiero
+  </footer>
+
+</div>
+</body>
+</html>

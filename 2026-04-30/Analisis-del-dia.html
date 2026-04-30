@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comercio Exterior Q1 2026 — Lectura Estratégica | Vista Jornada</title>
+<style>
+  :root {
+    --navy-deep: #0a1628;
+    --navy-mid: #122236;
+    --navy-light: #1a2f4a;
+    --navy-border: #2a4060;
+    --accent-cyan: #4fd1c5;
+    --accent-amber: #f6ad55;
+    --accent-red: #fc8181;
+    --accent-green: #68d391;
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --text-muted: #718096;
+    --text-bright: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+    background: var(--navy-deep);
+    color: var(--text-primary);
+    line-height: 1.65;
+    font-size: 15px;
+    padding: 32px 24px 80px;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 1px solid var(--navy-border);
+    padding-bottom: 20px;
+    margin-bottom: 32px;
+  }
+  .doc-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 14px;
+  }
+  .doc-meta .tag {
+    color: var(--accent-cyan);
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text-bright);
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  /* TL;DR */
+  .tldr {
+    background: linear-gradient(135deg, rgba(79, 209, 197, 0.08), rgba(79, 209, 197, 0.02));
+    border-left: 3px solid var(--accent-cyan);
+    padding: 22px 26px;
+    margin: 28px 0 36px;
+    border-radius: 0 6px 6px 0;
+  }
+  .tldr-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    letter-spacing: 1.8px;
+    margin-bottom: 8px;
+  }
+  .tldr p {
+    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* Sections */
+  h2 {
+    font-size: 21px;
+    color: var(--text-bright);
+    font-weight: 600;
+    margin: 44px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--navy-border);
+    letter-spacing: -0.2px;
+  }
+  h2 .num {
+    color: var(--accent-cyan);
+    font-weight: 700;
+    margin-right: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+  h3 {
+    font-size: 16px;
+    color: var(--text-bright);
+    font-weight: 600;
+    margin: 24px 0 10px;
+  }
+  p { margin-bottom: 14px; color: var(--text-primary); }
+  p + p { margin-top: -2px; }
+
+  strong { color: var(--text-bright); font-weight: 600; }
+  em { color: var(--accent-cyan); font-style: normal; font-weight: 500; }
+
+  /* KPI Grid */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 24px 0 32px;
+  }
+  .kpi {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-bright);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 4px;
+  }
+  .kpi-delta {
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi-delta.up { color: var(--accent-green); }
+  .kpi-delta.down { color: var(--accent-red); }
+  .kpi-delta.neutral { color: var(--text-secondary); }
+  .kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Drivers table */
+  .drivers {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0 24px;
+  }
+  .drivers-head {
+    background: var(--navy-light);
+    padding: 12px 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .driver-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 130px 100px;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--navy-border);
+    gap: 16px;
+  }
+  .driver-row:last-child { border-bottom: none; }
+  .driver-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    font-variant-numeric: tabular-nums;
+  }
+  .driver-name { font-size: 14px; }
+  .driver-name strong { display: block; margin-bottom: 2px; }
+  .driver-name span { color: var(--text-muted); font-size: 12px; }
+  .driver-value {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+  .driver-delta {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+  .driver-delta.up { color: var(--accent-green); }
+  .driver-delta.down { color: var(--accent-red); }
+
+  /* Callout boxes */
+  .callout {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin: 20px 0;
+  }
+  .callout.warn {
+    border-left: 3px solid var(--accent-amber);
+  }
+  .callout.alert {
+    border-left: 3px solid var(--accent-red);
+  }
+  .callout.insight {
+    border-left: 3px solid var(--accent-cyan);
+  }
+  .callout-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin-bottom: 10px;
+  }
+  .callout.warn .callout-title { color: var(--accent-amber); }
+  .callout.alert .callout-title { color: var(--accent-red); }
+  .callout.insight .callout-title { color: var(--accent-cyan); }
+
+  /* Bilateral table */
+  .bilateral {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 24px;
+    font-size: 13px;
+  }
+  .bilateral th {
+    background: var(--navy-light);
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: right;
+    padding: 10px 14px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .bilateral th:first-child { text-align: left; }
+  .bilateral td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--navy-border);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .bilateral td:first-child { text-align: left; font-weight: 500; }
+  .bilateral tr:hover { background: rgba(79, 209, 197, 0.04); }
+  .pos { color: var(--accent-green); font-weight: 600; }
+  .neg { color: var(--accent-red); font-weight: 600; }
+
+  /* Sector implications */
+  .sector-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 18px 0 24px;
+  }
+  .sector-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .sector-card h4 {
+    font-size: 14px;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .sector-card p { font-size: 14px; line-height: 1.6; }
+  .sector-tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+  .tag-watch { background: rgba(246, 173, 85, 0.15); color: var(--accent-amber); }
+  .tag-action { background: rgba(252, 129, 129, 0.15); color: var(--accent-red); }
+  .tag-monitor { background: rgba(79, 209, 197, 0.15); color: var(--accent-cyan); }
+
+  /* Bottom line box */
+  .bottomline {
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin: 36px 0 20px;
+  }
+  .bottomline-label {
+    font-size: 12px;
+    color: var(--accent-cyan);
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin-bottom: 12px;
+  }
+  .bottomline p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .bottomline p:last-child { margin-bottom: 0; }
+
+  /* Footer */
+  .doc-footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--navy-border);
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  ul.clean {
+    list-style: none;
+    margin: 12px 0;
+  }
+  ul.clean li {
+    padding: 8px 0 8px 22px;
+    position: relative;
+    border-bottom: 1px solid rgba(42, 64, 96, 0.4);
+  }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li:before {
+    content: "▸";
+    position: absolute;
+    left: 4px;
+    color: var(--accent-cyan);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 20px 14px 60px; font-size: 14px; }
+    h1 { font-size: 24px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .sector-grid { grid-template-columns: 1fr; }
+    .driver-row { grid-template-columns: 40px 1fr 90px; gap: 10px; padding: 12px 14px; }
+    .driver-delta { display: none; }
+    .bilateral { font-size: 12px; }
+    .bilateral th, .bilateral td { padding: 8px 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="doc-header">
+    <div class="doc-meta">
+      <span class="tag">Vista Jornada · Comex</span>
+      <span>30 de abril de 2026</span>
+    </div>
+    <h1>El superávit comercial Q1 2026 es estructuralmente más débil de lo que sugiere el titular</h1>
+    <p class="subtitle">Tres factores excepcionales —oro, ventana China y compresión importadora— explican aproximadamente el 70% de la mejora del saldo. Lectura estratégica del informe INDEC Comercio Exterior, datos preliminares Q1 2026.</p>
+  </header>
+
+  <div class="tldr">
+    <div class="tldr-label">Lectura ejecutiva</div>
+    <p>Argentina cerró Q1 2026 con saldo comercial de USD 5.508 M (vs USD 1.061 M un año atrás). El relato oficial enfatiza exportaciones +16,9%. La composición revela otra historia: <strong>el oro no monetario, la ventana geopolítica con China y la caída de importaciones por menor actividad industrial</strong> aportan la mayor parte de la mejora. Ninguno de los tres es estructural. Para el flujo de divisas BCRA es buena noticia táctica; para evaluar sostenibilidad del modelo externo argentino, exige cautela.</p>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">Exportaciones</div>
+      <div class="kpi-value">21.853</div>
+      <div class="kpi-delta up">▲ +16,9% YoY</div>
+      <div class="kpi-sub">USD millones · FOB</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Importaciones</div>
+      <div class="kpi-value">16.345</div>
+      <div class="kpi-delta down">▼ –7,3% YoY</div>
+      <div class="kpi-sub">USD millones · CIF</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Saldo comercial</div>
+      <div class="kpi-value">+5.508</div>
+      <div class="kpi-delta up">▲ vs +1.061 (Q1'25)</div>
+      <div class="kpi-sub">USD millones</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Intercambio total</div>
+      <div class="kpi-value">38.198</div>
+      <div class="kpi-delta up">▲ +5,1% YoY</div>
+      <div class="kpi-sub">USD millones</div>
+    </div>
+  </div>
+
+  <h2><span class="num">01</span>Los tres motores no estructurales del superávit</h2>
+
+  <p>Tres dinámicas excepcionales explican el grueso de la mejora interanual del saldo (≈ USD +4.450 M). Cada una responde a factores que pueden revertirse en trimestres siguientes:</p>
+
+  <div class="drivers">
+    <div class="drivers-head">Aporte estimado al cambio del saldo Q1 2026 vs Q1 2025</div>
+    <div class="driver-row">
+      <div class="driver-num">01</div>
+      <div class="driver-name">
+        <strong>Oro no monetario y minería metalífera</strong>
+        <span>HS 710812 · 261610 (plata) · 283691 (litio)</span>
+      </div>
+      <div class="driver-value">+USD ~900 M</div>
+      <div class="driver-delta up">+68% / +168% / +129%</div>
+    </div>
+    <div class="driver-row">
+      <div class="driver-num">02</div>
+      <div class="driver-name">
+        <strong>Ventana exportadora China</strong>
+        <span>Saldo bilateral mejoró USD +1.205 M YoY</span>
+      </div>
+      <div class="driver-value">+USD ~1.200 M</div>
+      <div class="driver-delta up">Export +86,0%</div>
+    </div>
+    <div class="driver-row">
+      <div class="driver-num">03</div>
+      <div class="driver-name">
+        <strong>Compresión importadora</strong>
+        <span>Combustibles –39,9% · Maq. eléctrica –28,5% · Caucho –28,8%</span>
+      </div>
+      <div class="driver-value">+USD ~1.290 M</div>
+      <div class="driver-delta down">Imports –7,3%</div>
+    </div>
+  </div>
+
+  <p>El residual —ciclo triguero favorable, mejora de carne bovina, recuperación de aluminio— sí refleja factores algo más estructurales, pero representa una porción menor de la mejora total.</p>
+
+  <h2><span class="num">02</span>El shock China: leer el dato sin sobreinterpretarlo</h2>
+
+  <p>Las exportaciones a China crecieron <strong>+86,0% YoY</strong> alcanzando USD 1.770 M. Es el dato más llamativo del informe. Pero hay que descomponerlo con cuidado:</p>
+
+  <table class="bilateral">
+    <thead>
+      <tr>
+        <th>Socio comercial</th>
+        <th>Export Q1'26</th>
+        <th>Import Q1'26</th>
+        <th>Saldo Q1'26</th>
+        <th>Saldo Q1'25</th>
+        <th>Δ saldo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>China</td>
+        <td>1.770</td>
+        <td>3.969</td>
+        <td class="neg">–2.198</td>
+        <td class="neg">–3.403</td>
+        <td class="pos">+1.205</td>
+      </tr>
+      <tr>
+        <td>Brasil</td>
+        <td>2.721</td>
+        <td>3.535</td>
+        <td class="neg">–814</td>
+        <td class="neg">–1.387</td>
+        <td class="pos">+573</td>
+      </tr>
+      <tr>
+        <td>Estados Unidos</td>
+        <td>2.202</td>
+        <td>1.424</td>
+        <td class="pos">+778</td>
+        <td class="pos">+25</td>
+        <td class="pos">+753</td>
+      </tr>
+      <tr>
+        <td>Paraguay</td>
+        <td>365</td>
+        <td>931</td>
+        <td class="neg">–567</td>
+        <td class="neg">–397</td>
+        <td class="neg">–170</td>
+      </tr>
+      <tr>
+        <td>India</td>
+        <td>1.391</td>
+        <td>269</td>
+        <td class="pos">+1.123</td>
+        <td class="pos">+655</td>
+        <td class="pos">+468</td>
+      </tr>
+      <tr>
+        <td>UE-27</td>
+        <td>2.023</td>
+        <td>2.270</td>
+        <td class="neg">–247</td>
+        <td class="neg">–984</td>
+        <td class="pos">+737</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 12px; color: var(--text-muted); margin-top: -12px;">USD millones. Saldo bilateral comercial.</p>
+
+  <div class="callout insight">
+    <div class="callout-title">Lo que cambió con China</div>
+    <p style="margin-bottom: 0;">China volvió a comprar agro argentino con fuerza —probablemente soja, aceite y cebada— en el contexto de la intensificación del conflicto comercial USA-China. Es un viento de cola <strong>geopolítico, no estructural</strong>. Si Washington y Beijing avanzan hacia un acuerdo, el flujo retrocede. China sigue siendo, además, el mayor déficit bilateral argentino por amplio margen (USD –2.198 M).</p>
+  </div>
+
+  <h2><span class="num">03</span>El dato que no está en los titulares: USA +41%</h2>
+
+  <p>USMCA pasó de saldo –USD 177 M en Q1 2025 a <strong>+USD 790 M en Q1 2026</strong>. Las exportaciones a Estados Unidos crecieron 41% (USD 2.202 M) y desplazan la geografía exportadora tradicional. La composición combina:</p>
+
+  <ul class="clean">
+    <li>Oro no monetario refinado (subpartida 710812 explica buena parte del salto)</li>
+    <li>Aluminio sin alear (760110) y aleaciones (760120) —recuperación post-restricciones</li>
+    <li>Carne bovina deshuesada congelada (020230) +53,2%, con cuota Hilton/481 funcionando</li>
+  </ul>
+
+  <p>Si esta dinámica se sostiene en Q2-Q3, modifica de forma no trivial la matriz exportadora argentina hacia mayor exposición a USA y menor dependencia relativa de Brasil. Es una historia que merece seguimiento dedicado.</p>
+
+  <h2><span class="num">04</span>Mercosur: la grieta industrial se ensancha</h2>
+
+  <p>Las importaciones argentinas desde Brasil cayeron <strong>–16,5%</strong> (USD –696 M). El saldo bilateral mejoró, pero la lectura estructural preocupa: refleja menor actividad industrial argentina demandando insumos brasileños (autopartes, químicos, plásticos). Brasil sigue siendo el principal proveedor industrial; menos importaciones desde allí equivalen a <em>menos producción local de bienes que usan esos insumos</em>. Es desinventario, no competitividad recuperada.</p>
+
+  <div class="callout warn">
+    <div class="callout-title">El dato anómalo: Paraguay +39,4%</div>
+    <p style="margin-bottom: 0;">Las importaciones desde Paraguay crecieron 39,4% (USD 931 M, 6% del total importado). Es soja sin moler que cruza la frontera para procesamiento argentino: la subpartida 120190 creció +33,7%. <strong>El complejo aceitero argentino está cubriendo capacidad ociosa con materia prima importada porque el productor local retiene la cosecha.</strong> Es un síntoma directo de la brecha entre el dólar exportador y la expectativa de devaluación: el productor agrícola está optando por mantener la mercadería en silos.</p>
+  </div>
+
+  <h2><span class="num">05</span>El boom silencioso: autos eléctricos e híbridos</h2>
+
+  <p>Las importaciones de vehículos cayeron en agregado, pero la composición rotó dramáticamente:</p>
+
+  <table class="bilateral">
+    <thead>
+      <tr>
+        <th>Subpartida</th>
+        <th>Descripción</th>
+        <th>Q1'26</th>
+        <th>Q1'25</th>
+        <th>Var YoY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>870340</td>
+        <td>Híbridos no enchufables</td>
+        <td>242</td>
+        <td>79</td>
+        <td class="pos">+206,1%</td>
+      </tr>
+      <tr>
+        <td>870360</td>
+        <td>Híbridos enchufables</td>
+        <td>89</td>
+        <td>2</td>
+        <td class="pos">+5.548%</td>
+      </tr>
+      <tr>
+        <td>870380</td>
+        <td>Eléctricos puros</td>
+        <td>59</td>
+        <td>2</td>
+        <td class="pos">+3.320%</td>
+      </tr>
+      <tr>
+        <td>870321</td>
+        <td>Nafta ≤ 1.000 cm³</td>
+        <td>150</td>
+        <td>255</td>
+        <td class="neg">–41,4%</td>
+      </tr>
+      <tr>
+        <td>870322</td>
+        <td>Nafta 1.000-1.500 cm³</td>
+        <td>455</td>
+        <td>350</td>
+        <td class="pos">+30,0%</td>
+      </tr>
+      <tr>
+        <td>870323</td>
+        <td>Nafta 1.500-3.000 cm³</td>
+        <td>312</td>
+        <td>325</td>
+        <td class="neg">–4,0%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 12px; color: var(--text-muted); margin-top: -12px;">USD millones · Importaciones CIF Q1.</p>
+
+  <p>El consumidor argentino con poder de compra está rotando hacia segmentos de mayor valor agregado y tecnología. La importación total de vehículos para transporte de personas creció en valor, no cayó. <strong>Esto tiene implicaciones operativas directas para el sector seguros que se desarrollan abajo.</strong></p>
+
+  <h2><span class="num">06</span>Implicaciones sectoriales</h2>
+
+  <div class="sector-grid">
+    <div class="sector-card">
+      <span class="sector-tag tag-action">Acción técnica</span>
+      <h4>Auto · Severidad y nuevos riesgos</h4>
+      <p>El stock automotor nuevo crece en segmentos premium e híbrido/eléctrico. Pricing: ¿están calibradas las primas para reposición de baterías de tracción, talleres especializados y costos de chapa/pintura de vehículos importados nuevos? El IPIM mayorista de vehículos sigue corriendo por encima del IPC general, y la importación de autopartes (870829, –20,7%) sugiere stock de repuestos en compresión.</p>
+    </div>
+
+    <div class="sector-card">
+      <span class="sector-tag tag-action">Presión de costos</span>
+      <h4>Salud · Importaciones farmacéuticas</h4>
+      <p>El capítulo 30 (productos farmacéuticos) creció +19% YoY: inmunológicos (300215) +21,5%, medicamentos terapéuticos genéricos (300490) +42,9%. La presión sobre costos de prestaciones medicamentosas en seguros de salud y ART por insumos importados se intensifica. Capítulo 90 (instrumental médico) cayó –5,4%, lo que sugiere desinversión en equipamiento que puede pesar en plazos de atención.</p>
+    </div>
+
+    <div class="sector-card">
+      <span class="sector-tag tag-monitor">Monitoreo</span>
+      <h4>ART · Ciclo de capital industrial</h4>
+      <p>Capítulo 84 (maquinaria mecánica) cayó –12,5% y capítulo 85 (eléctrica) –28,5%. La inversión productiva sigue contraída. Menos puestos industriales nuevos = menor crecimiento de la base imponible para SRT/ART en términos de masa salarial industrial. Compensa parcialmente la caída de severidad esperada por menor exposición a riesgos pesados.</p>
+    </div>
+
+    <div class="sector-card">
+      <span class="sector-tag tag-watch">Vigilancia</span>
+      <h4>Inversiones · Flujo de divisas BCRA</h4>
+      <p>El saldo Q1 2026 aporta liquidación potencial de ~USD 1.800 M/mes. Es favorable para la dinámica de reservas pero <em>insuficiente</em> para los compromisos de deuda 2026-2027 sin financiamiento externo. Para posicionamiento en hard-dollar argentino, la fragilidad compositiva del superávit (oro + China + compresión import) sugiere mantener cautela frente a optimismo de narrativa oficial.</p>
+    </div>
+  </div>
+
+  <h2><span class="num">07</span>Lo que mira el inversor de bonos soberanos</h2>
+
+  <p>El saldo de USD 5.508 M es el segundo mejor primer trimestre desde 2009 (excluyendo Q1 2024, récord por ajuste recesivo). Pero la calidad del saldo importa tanto como la cantidad:</p>
+
+  <div class="callout alert">
+    <div class="callout-title">Composición frágil del superávit</div>
+    <ul class="clean" style="margin: 0;">
+      <li>~USD 1.500 M dependientes de oro y precios de commodities mineros (factor exógeno: precio internacional del oro y del litio)</li>
+      <li>~USD 1.200 M dependientes de la ventana China abierta por la disputa comercial con USA (factor geopolítico: reversible)</li>
+      <li>~USD 1.290 M de mejora por compresión importadora (factor cíclico: revierte cuando recupera la actividad)</li>
+      <li>El ciclo triguero favorable y carne bovina aportan <em>algo</em> de mejora estructural, pero su peso en el total es menor</li>
+    </ul>
+  </div>
+
+  <p>La pregunta que un comité de inversiones debe poder responder antes de tomar exposición soberana adicional: <strong>¿qué pasa con el flujo comercial cuando el oro corrija, China resuelva con USA, y la actividad recupere demanda de importaciones?</strong> El superávit estructural argentino —agro + energía + Vaca Muerta— debería poder sostener saldos del orden de USD 12-15 mil millones anuales, pero el superávit Q1 2026 anualizado proyecta cifras superiores que probablemente no se sostengan.</p>
+
+  <div class="bottomline">
+    <div class="bottomline-label">Bottom line · Para el comité</div>
+    <p>El titular oficial es engañosamente optimista. El superávit Q1 2026 es <strong>táctico, no estructural</strong>: descansa en oro, ventana geopolítica China y compresión importadora cíclica. Las tres son reversibles en horizonte de 2-4 trimestres.</p>
+    <p>Operativamente bueno para el flujo BCRA en el corto plazo. Estratégicamente, el modelo externo argentino sigue dependiendo de factores exógenos más que de competitividad sistémica recuperada. Para sectores específicos —auto insurance, salud, ART— las dinámicas observadas (rotación a vehículos premium e híbridos, presión farmacéutica, contracción de inversión productiva) requieren ajustes técnicos en pricing y reservas dentro de los próximos dos trimestres.</p>
+    <p style="margin-bottom: 0;">El dato a vigilar en los próximos releases: si la exportación a China desacelera junto con la corrección del precio del oro, el saldo Q2-Q3 podría ser sustancialmente más débil de lo que sugiere la trayectoria anualizada del Q1.</p>
+  </div>
+
+  <footer class="doc-footer">
+    <span>Fuente · INDEC, Comercio Exterior Vol. 10 nº 8 (Informes técnicos Vol. 10 nº 108)</span>
+    <span>Vista Jornada · 30/04/2026</span>
+  </footer>
+
+</div>
+</body>
+</html>

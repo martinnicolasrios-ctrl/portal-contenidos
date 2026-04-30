@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis Regulatorio — Boletín Oficial 30/04/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 55%), var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 48px 20px;
+  }
+
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* HEADER */
+  header {
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+
+  .date-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* SECTION HEADINGS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .section-wrap {
+    margin-bottom: 56px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .card-urgente {
+    border-left: 2px solid var(--neg);
+  }
+
+  .card-novedad {
+    border-left: 2px solid var(--accent);
+  }
+
+  .card-financiero {
+    border-left: 2px solid var(--gold);
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .card-num-neg { color: var(--neg); }
+  .card-num-accent { color: var(--accent); }
+  .card-num-gold { color: var(--gold); }
+
+  .card-organismo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .card-links {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .card-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+
+  .card-link:hover { opacity: 0.75; }
+
+  .link-neg {
+    color: var(--neg);
+    border: 1px solid rgba(239,108,108,.3);
+  }
+
+  .link-accent {
+    color: var(--accent);
+    border: 1px solid rgba(52,187,218,.3);
+  }
+
+  .link-gold {
+    color: var(--gold);
+    border: 1px solid rgba(232,176,74,.3);
+  }
+
+  .link-dim {
+    color: var(--ink-3);
+    border: 1px solid rgba(123,145,163,.3);
+  }
+
+  /* VENCIMIENTOS */
+  .vencimientos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+
+  .chip-fecha {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .chip-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .chip-accion {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .container { padding: 0 16px; }
+    body { padding: 24px 8px; }
+    .logo { font-size: 22px; }
+    .section-title { font-size: 20px; }
+    .vencimientos-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo"></div>
+    <div class="subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="date-header">Edición del 30 de Abril de 2026</div>
+  </header>
+
+  <!-- SECCIÓN 1 — URGENTE -->
+  <section class="section-wrap">
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Urgente</span>
+    </div>
+
+    <!-- Card 1: Decreto 302/2026 -->
+    <div class="card card-urgente">
+      <div class="card-meta">
+        <span class="card-num card-num-neg">DECRETO 302/2026</span>
+        <span class="card-organismo">Poder Ejecutivo Nacional</span>
+      </div>
+      <div class="card-title">Actualización de impuestos a combustibles líquidos — vigencia 1° de mayo de 2026</div>
+      <div class="card-desc">
+        Modifica el Decreto N° 617/2025 e incorpora incrementos de impuesto sobre combustibles líquidos (ICL) e impuesto al dióxido de carbono con efecto desde el 1° y hasta el 31 de mayo de 2026. Los montos aprobados son: nafta sin plomo $10.398/litro + CO2 $0.637; gasoil $9.269 + diferencial patagónico $5.019 + CO2 $1.056. Los hechos imponibles se perfeccionan desde el primer día hábil de mayo. Este incremento impacta directamente en el costo de siniestros del ramo Automotores (insumos de taller, logística de peritaje), en el costo operativo de la aseguradora y en las coberturas de flotas. Se recomienda revisar la suficiencia de las reservas de siniestros pendientes en el ramo Automotores/Transporte y comunicar a suscripción el efecto sobre la tarifa vigente.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341357/20260430" class="card-link link-neg" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Card 2: BCRA Com A 8425 -->
+    <div class="card card-urgente">
+      <div class="card-meta">
+        <span class="card-num card-num-neg">COM. "A" 8425/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Modificación en régimen informativo de operaciones en moneda extranjera — vigencia 1° de mayo</div>
+      <div class="card-desc">
+        Introduce una aclaración en las normas de procedimiento del RI Contable Mensual (RUNOR 1-1956) sobre la identificación del origen del fondeo de financiaciones en moneda extranjera otorgadas por entidades financieras locales. Se agrega el inciso d) en el punto 23.2.1.4 y se incorpora el Anexo V con pautas de integración. Vigencia: operaciones cursadas desde el 01/05/2026. Para aseguradoras que mantienen activos en moneda extranjera (ON, depósitos en ME, títulos públicos USD), esta norma puede afectar la disponibilidad o condiciones de financiación de contraparte bancaria. Verificar impacto en la liquidez de la cartera de inversiones en moneda extranjera.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341426/20260430" class="card-link link-neg" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 2 — NOVEDADES REGULATORIAS -->
+  <section class="section-wrap">
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Novedades Regulatorias</span>
+    </div>
+
+    <!-- Card: BCRA Com A 8421 -->
+    <div class="card card-novedad">
+      <div class="card-meta">
+        <span class="card-num card-num-accent">COM. "A" 8421/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Adecuaciones en el Régimen Informativo Contable Mensual — Operaciones de Cambio</div>
+      <div class="card-desc">
+        Con referencia a la Circular CONAU 1-1720 y RUNOR 1-1955 (R.I. Contable Mensual "Operaciones de Cambios"), se restablece el código de concepto P17 "Registro de refinanciación de deuda financiera con contraparte vinculada en el marco del punto 8.2 de la Com. A 8417", con vigencia desde el 10/04/2026. Se actualizan las normas de procedimiento del punto 3.32. Aplica para presentaciones desde el 16/04/2026; rectificativas bajo modalidad de lote completo o por registro. Las aseguradoras que mantienen operaciones de cambio o deuda financiera con vinculadas deben verificar el correcto registro bajo el nuevo código P17 en sus reportes BCRA.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341425/20260430" class="card-link link-accent" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Card: BCRA Com A 8429 -->
+    <div class="card card-novedad">
+      <div class="card-meta">
+        <span class="card-num card-num-accent">COM. "A" 8429/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Adecuaciones al Régimen Informativo de Prevención de Lavado de Activos (LAFT)</div>
+      <div class="card-desc">
+        Actualiza el Régimen Informativo de Prevención del Lavado de Activos, Financiamiento del Terrorismo y Otras Actividades Ilícitas (Circular CONAU 1-1724) como consecuencia de la Resolución UIF N° 200/24. Incorpora a empresas no financieras emisoras de tarjetas de crédito/compra, proveedores no financieros de crédito y proveedores de servicios de pago al régimen. Aunque dirigida a entidades financieras, sus implicancias refuerzan el estándar PLA/FT del BCRA al cual el sector asegurador responde paralelamente ante la UIF. Revisar consistencia de los procedimientos internos AML frente a los nuevos requisitos.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341427/20260430" class="card-link link-accent" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Card: Ministerio Economía Res 50 -->
+    <div class="card card-novedad">
+      <div class="card-meta">
+        <span class="card-num card-num-accent">RESOLUCIÓN 50/2026</span>
+        <span class="card-organismo">Ministerio de Economía — Secretaría de Agricultura, Ganadería y Pesca</span>
+      </div>
+      <div class="card-title">Normativa de Agricultura, Ganadería y Pesca — publicación con anexos</div>
+      <div class="card-desc">
+        Resolución RESOL-2026-50-APN-SAGYP#MEC publicada con anexos. Materia pendiente de confirmación de contenido específico. Relevancia potencial para aseguradoras con cartera de seguros agrícolas, granizo o seguros de cosecha. Se recomienda revisar el texto completo para evaluar impacto en coberturas de riesgo agropecuario.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341394/20260430" class="card-link link-accent" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3 — IMPACTO FINANCIERO -->
+  <section class="section-wrap">
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Impacto Financiero</span>
+    </div>
+
+    <!-- Card: BCRA Com B 13166 Tasas -->
+    <div class="card card-financiero">
+      <div class="card-meta">
+        <span class="card-num card-num-gold">COM. "B" 13166/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Tasas de referencia para garantía de depósitos — actualización OPASI 2</div>
+      <div class="card-desc">
+        Comunica, en el Anexo, los valores actualizados de las tasas de referencia aplicables a partir de la fecha indicada en el mismo, bajo la Circular OPASI 2 (garantía de los depósitos). Estas tasas de referencia son utilizadas como base para la valuación de activos de renta fija a tasa variable en la cartera de inversiones de las aseguradoras, en particular depósitos a plazo fijo y colocaciones en entidades financieras. Su actualización puede impactar en el cálculo del valor técnico de las inversiones computables para la cobertura de deuda con asegurados y en la comparación contra la tasa mínima exigida por la SSN para activos computables. Verificar el Anexo para extraer el valor numérico de las nuevas tasas y actualizar modelos de valuación.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341428/20260430" class="card-link link-gold" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Card: Decreto 302 financiero -->
+    <div class="card card-financiero">
+      <div class="card-meta">
+        <span class="card-num card-num-gold">DECRETO 302/2026</span>
+        <span class="card-organismo">Poder Ejecutivo Nacional — Efecto financiero complementario</span>
+      </div>
+      <div class="card-title">Incremento de impuestos a combustibles: efecto sobre siniestralidad y reservas técnicas</div>
+      <div class="card-desc">
+        Los nuevos valores del ICL (nafta $10.398/litro; gasoil $9.269/litro) entran en vigor el 01/05/2026 y representan un aumento significativo en el costo de insumos de taller de chapa y pintura, transporte de vehículos dañados y gestión de siniestros en el ramo Automotores. El área de Finanzas debe estimar el impacto en las reservas de siniestros pendientes (IBNR e IBNeR) y evaluar si el factor de desarrollo de siniestros vigente refleja adecuadamente el nuevo nivel de precios. También se recomienda alertar a la Gerencia de Reaseguros sobre un posible deterioro en la siniestralidad esperada en programas de XL de ramos patrimoniales.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341357/20260430" class="card-link link-gold" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Card: Ministerio Salud Res 543 -->
+    <div class="card card-financiero">
+      <div class="card-meta">
+        <span class="card-num card-num-gold">RESOLUCIÓN 543/2026</span>
+        <span class="card-organismo">Ministerio de Salud</span>
+      </div>
+      <div class="card-title">Normativa del Ministerio de Salud — posible impacto en coberturas de Vida/Personas</div>
+      <div class="card-desc">
+        Resolución RESOL-2026-543-APN-MS. El contenido específico requiere verificación del texto completo. Las resoluciones del Ministerio de Salud frecuentemente incorporan prestaciones al PMO o modifican parámetros de coberturas de salud que en algunos casos operan como referencia para la tarificación o diseño de productos de Vida con cobertura de Salud o Accidentes Personales. Se recomienda revisar el texto para evaluar si hay modificaciones en el PMO o en obligaciones de prestadores que puedan afectar la siniestralidad esperada del ramo Vida/Personas.
+      </div>
+      <div class="card-links">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341396/20260430" class="card-link link-gold" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4 — PRÓXIMOS VENCIMIENTOS -->
+  <section class="section-wrap">
+    <div class="section-header">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Próximos Vencimientos</span>
+    </div>
+    <div class="vencimientos-grid">
+
+      <div class="chip">
+        <div class="chip-fecha">01/05/2026</div>
+        <div class="chip-desc">Vigencia BCRA Com. "A" 8425/2026 — Operaciones en moneda extranjera. Nuevas reglas de registro para fondeo en ME.</div>
+        <div class="chip-accion">Verificar cartera de activos en ME y procedimientos contables</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-fecha">01/05/2026</div>
+        <div class="chip-desc">Vigencia Decreto 302/2026 — Nuevos importes de ICL e Impuesto CO2 para nafta y gasoil (todo mayo 2026).</div>
+        <div class="chip-accion">Revisar reservas de siniestros pendientes — ramo Automotores</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-fecha">Inmediato</div>
+        <div class="chip-desc">BCRA Com. "B" 13166/2026 — Nuevas tasas de referencia OPASI 2 publicadas con Anexo.</div>
+        <div class="chip-accion">Actualizar modelos de valuación de inversiones en renta fija</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-fecha">16/04/2026 (retroactivo)</div>
+        <div class="chip-desc">BCRA Com. "A" 8421/2026 — Código P17 en RI Contable Mensual CONAU/RUNOR. Rectificativas hasta 31/05/2026.</div>
+        <div class="chip-accion">Confirmar registro P17 en reportes BCRA; presentar rectificativas si corresponde</div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Generado automáticamente · 30/04/2026 · Fuente: Boletín Oficial de la República Argentina
+  </footer>
+
+</div>
+</body>
+</html>
