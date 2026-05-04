@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 04/05/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+
+    /* CARDS */
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
+    .card-pos { border-left: 3px solid var(--pos); background: rgba(91,211,154,.04); }
+    .card-pos .card-header { color: var(--pos); }
+
+    /* BULLETS */
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
+
+    /* HIGHLIGHTS */
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
+    .highlight-neg { background: rgba(239,108,108,.04); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-neg strong { color: var(--ink); font-weight: 600; }
+
+    /* TENSIONS */
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+
+    /* TC GRID */
+    .tc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+    .tc-card { background: var(--bg-3); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 12px 16px; }
+    .tc-card.neg-top { border-top-color: var(--neg); }
+    .tc-card.gold-top { border-top-color: var(--gold); }
+    .tc-card.pos-top { border-top-color: var(--pos); }
+    .tc-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+    .tc-value { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+    .tc-value.neg { color: var(--neg); }
+    .tc-value.gold { color: var(--gold); }
+    .tc-var { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-3); }
+
+    /* ALERTS */
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; display: block; margin-bottom: 4px; }
+
+    /* POS GRID */
+    .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pos-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 16px 18px; }
+    .pos-card.neg-top { border-top-color: var(--neg); }
+    .pos-card.gold-top { border-top-color: var(--gold); }
+    .pos-card.pos-top { border-top-color: var(--pos); }
+    .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .pos-text { font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .pos-text strong { color: var(--ink); font-weight: 600; }
+
+    /* INSURANCE */
+    .ins-tab { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 8px 18px; border-radius: 4px 4px 0 0; margin-bottom: -1px; }
+    .ins-tab.pesos { background: rgba(52,187,218,.15); color: var(--accent); border: 1px solid rgba(52,187,218,.2); border-bottom: 1px solid var(--bg-2); }
+    .ins-tab.cer { background: rgba(155,138,224,.12); color: #9B8AE0; border: 1px solid rgba(155,138,224,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-tab.riesgo { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-body { background: var(--bg-2); border: 1px solid var(--line); border-radius: 0 4px 4px 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .ins-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; margin-top: 14px; }
+    .ins-sub:first-child { margin-top: 0; }
+    .ins-text { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 8px; }
+    .ins-text strong { color: var(--ink); font-weight: 600; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 5px; margin-top: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
+
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
+
+    @media (max-width: 720px) {
+      .header-title { font-size: 22px; }
+      .section-title { font-size: 18px; }
+      .tc-grid, .pos-grid { grid-template-columns: 1fr; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 22px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial · Finanzas · Economía · Empresas · Regulación</div>
+    <div class="header-title">El Carry Trade Murió. El Mercado Migra a Cobertura pero los Soberanos No Acompañan: Argentina Atrapada entre la Mejora Macro y la Prima de Riesgo Estructural</div>
+    <div class="header-meta">4 de mayo de 2026 · Análisis regulatorio y financiero</div>
+  </div>
+
+  <!-- § 01 RESUMEN EJECUTIVO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El cuatrimestre cerró con una rotación definitiva:</strong> carry trade en pesos perdió atractivo (TAMAR comprimió ~13,7% en abril), mientras bonos CER cortos y acciones energéticas (YPF +18%, Vista +51%, Adecoagro +79%) dominaron los retornos. Quien no rotó pagó el costo.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El riesgo país no puede perforar los 500 bps</strong> a pesar de la mejora fiscal. El mercado está pidiendo ver las divisas antes del pago de deuda soberana — esa es la razón número uno de la lateralización de soberanos.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El BCRA acumuló ~USD 7.000 MM en compras en el año</strong> pero el tipo de cambio (A3500) cayó 5,28% en el acumulado, con el peso argentino siendo la peor moneda en LatAm en abril (+1% CCL, depreciación relativa). Hay tensión entre la acumulación de reservas y el atraso cambiario.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Regulación: el BCRA endurece supervisión del ecosistema fintech</strong> (Comunicación A 8432): nueva figura PSPCP como Servicio, más info a declarar y 4 causales nuevas de baja forzada. Es la tercera norma restrictiva al sector en el año.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Señal geopolítica dominante:</strong> bloqueo del Estrecho de Ormuz mantiene el WTI por encima de USD 100/barril (+67,8% YTD). Eso beneficia directamente a Vaca Muerta y a las exportadoras locales, pero también presiona inflación global y tasas internacionales — que frenan el apetito por emergentes.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 02 LECTURA DE MERCADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Transición desde Carry hacia Cobertura Mixta</div>
+      <div class="card-content">
+        <p>El mercado argentino está viviendo una transición de régimen que la narrativa oficial todavía no termina de reconocer explícitamente. El carry trade está técnicamente en retirada. La evidencia es múltiple y consistente: compresión de la TAMAR, rotación hacia CER corto, interés renovado por acciones energéticas dolarizadas, y un tipo de cambio oficial que acumula apreciación real con inflación que no cede al ritmo esperado.</p>
+        <p>La mejora macro es real pero está siendo priceada con un descuento estructural. El mercado ve los fundamentos (superávit fiscal, acumulación de reservas, baja de nominalidad) pero exige como condición para comprimir riesgo país que el gobierno muestre cómo va a honrar los vencimientos soberanos en dólares. Mientras ese interrogante persiste, la curva soberana en USD queda atrapada: la parte corta penalizada por el riesgo de pago, la parte larga por el riesgo político pre-2027.</p>
+        <p>La narrativa implícita: <strong>"Argentina mejora, pero no lo suficientemente rápido como para que la ecuación riesgo/retorno en soberanos sea clara frente a otras opciones regionales."</strong> Brasil, con el efecto electoral Bolsonaro (real apreciándose 4,6% en abril), compite por flujos de LatAm. El Merval local premia casi exclusivamente al sector energético.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li class="tension-item">
+        <strong>Tipo de cambio vs. Inflación</strong>
+        El oficial acumula caída real del 5,28% en el año. Los precios de alimentos, carnes y tarifas reguladas siguen presionando. Si la inflación de abril sale más baja, el diferencial real se amplía más y la pregunta sobre el nivel de tipo de cambio se vuelve insostenible para la segunda mitad del año.
+      </li>
+      <li class="tension-item">
+        <strong>Reservas vs. Vencimientos soberanos</strong>
+        El BCRA compró ~USD 7.000 MM pero el mercado pregunta si eso alcanza para los próximos vencimientos de deuda soberana en dólares. La última licitación del Tesoro mostró que el AO28 salió a TIR del 8,77% — el mercado cobra prima por extender duration soberana.
+      </li>
+      <li class="tension-item">
+        <strong>Drenaje turístico vs. Liquidación del agro</strong>
+        Se fueron más de USD 1.000 MM por viajes en el cuatrimestre. El Mundial 2026 en EE.UU. amplificará este efecto en junio-julio, justo cuando baja la liquidación de la cosecha gruesa.
+      </li>
+      <li class="tension-item">
+        <strong>Empleo en PyMEs vs. discurso de Caputo</strong>
+        Hay señales de PyMEs que contradicen el pronóstico de recuperación del empleo en los próximos 18 meses. El consumo que se esperaba recuperar no termina de despegar: 8 de cada 10 argentinos resignaron gastos en el período.
+      </li>
+      <li class="tension-item">
+        <strong>Tarifas de transporte vs. Ancla inflacionaria</strong>
+        El gobierno bonaerense autorizó un aumento del 11% en colectivos a partir de hoy. Este aumento de regulados se suma a la presión inflacionaria que el gobierno nacional busca controlar, generando conflicto entre ajuste fiscal y ancla de precios.
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 04 IMPACTO EN VARIABLES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="tc-grid">
+      <div class="tc-card">
+        <div class="tc-label">BNA Oficial</div>
+        <div class="tc-value">$1.410</div>
+        <div class="tc-var">-0,35% · acumula apreciación real -5,28% en el año</div>
+      </div>
+      <div class="tc-card gold-top">
+        <div class="tc-label">MEP</div>
+        <div class="tc-value gold">$1.474,51</div>
+        <div class="tc-var">+2,71% hoy · demanda de cobertura</div>
+      </div>
+      <div class="tc-card neg-top">
+        <div class="tc-label">Blue</div>
+        <div class="tc-value neg">$1.400</div>
+        <div class="tc-var">-1,06% · brecha MEP-blue inusual</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">Lectura Cambiaria</div>
+      <div class="card-content">La brecha MEP-oficial se amplió hoy (+4,6%). Inicio de semana con presión sobre alternos. La entrada a mayo, mes de alta liquidación agrícola, podría tensionar la brecha a la baja en las próximas semanas — pero el efecto Mundial puede contra-restarlo. El peso fue la peor moneda de LatAm en abril, relativo al real brasileño.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas</div>
+      <div class="card-content">La TAMAR comprimió ~13,7% en abril. El carry en pesos se agotó como trade de retorno. La Lecap más demandada en la última licitación fue la de junio (S12J6) — el mercado quiere corto. Los CER cortos son los grandes ganadores silenciosos: curva con sesgo positivo en tramos de 3-9 meses. La TIR del AO28 al 8,77% implica prima de riesgo elevada para el largo. <strong>La curva soberana en USD está invertida o muy plana en términos de riesgo ajustado.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada</div>
+      <div class="card-content">Una consultora sorprendió con una proyección de inflación de abril aún menor que el consenso. Sin embargo: tarifas reguladas siguen ajustando (colectivos +11% desde hoy), carnes siguen presionando, y la expectativa de inflación resistente a la baja se mantiene por alimentos y servicios. <strong>Dato de abril podría sorprender a la baja puntualmente, pero mayo-junio tiene presiones renovadas por regulados.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo Soberano</div>
+      <div class="card-content">Riesgo país por encima de 500 bps sin poder perforar ese piso. Las cuatro razones identificadas por el mercado: (1) incertidumbre sobre la fuente de divisas para vencimientos soberanos; (2) lateralización política pre-2027; (3) contexto global restrictivo (Fed de Warsh sin recortes en todo 2026); (4) competencia regional por flujos (Brasil con efecto electoral). El gobierno cerró un paso clave para los últimos juicios del default (holdouts), pero el mercado lo valoró positivamente sin compresión de riesgo país.</div>
+    </div>
+  </div>
+
+  <!-- § 05 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card pos-top">
+        <div class="pos-label">Se Benefician</div>
+        <div class="pos-text">Acciones del sector energético (YPF +18%, Vista +51%, Tenaris, Adecoagro +79%), bonos CER de tramo corto (6-12 meses), Lecaps de corto plazo (hasta junio), activos vinculados a Vaca Muerta como tesis de largo plazo. El real brasileño como cobertura regional alternativa. <span class="tag pos">CORE</span></div>
+      </div>
+      <div class="pos-card neg-top">
+        <div class="pos-label">Se Perjudican</div>
+        <div class="pos-text">Posiciones de carry en pesos de mediano plazo, bonos soberanos en USD de duration larga (AO35, GD35), cualquier activo que requiera compresión de riesgo país para apreciar, acciones de sectores no energéticos sin catalizador propio. <span class="tag neg">REDUCIR</span></div>
+      </div>
+      <div class="pos-card gold-top">
+        <div class="pos-label">Coberturas con Valor</div>
+        <div class="pos-text">Exposición a energía como cobertura real ante inflación de combustibles global. Dólar linked de corto plazo ante eventual reconfiguración del tipo de cambio en H2 2026. Diversificación en activos brasileños ante el diferencial de desempeño cambiario de LatAm. <span class="tag gold">COBERTURA</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Pierden Sentido</div>
+        <div class="pos-text">Mantener Lecaps largas o CER de tramo largo como apuesta principal. El mercado migró a cobertura corta. El carry trade clásico (CER largo + dólar estable) tiene vida útil limitada. <span class="tag neg">SALIR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 06 ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas Ejecutivas</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <strong>Vencimientos soberanos en USD — próximos meses</strong>
+        El mercado está esperando ver si el Tesoro acumula las divisas necesarias. Cualquier señal de debilidad en compras del BCRA o caída de reservas brutas puede disparar la parte corta de la curva soberana. <span class="tag neg">CRÍTICO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Inflación de abril + datos de mayo</strong>
+        Si el dato de abril sorprende a la baja pero mayo muestra rebote por tarifas (transporte +11%, energía), el mercado puede haberse posicionado prematuramente en tasa fija corta. Riesgo de reconfiguración de la curva CER. <span class="tag neg">ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Mundial 2026 + turismo emisivo</strong>
+        La salida de más de USD 1.000 MM en viajes en el cuatrimestre puede acelerarse en junio-julio. Compite directamente con la acumulación de reservas en el período post-cosecha. Es el riesgo no evidente más importante del trimestre. <span class="tag neg">ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Cambio de Fed con Warsh (asume 15 de mayo)</strong>
+        Si el tono inicial del nuevo presidente de la Fed resulta más hawkish que el descontado, la parte larga de la curva global sube, emergentes sufren y el riesgo país argentino se ancla más arriba. Monitorear primeras declaraciones. <span class="tag neg">MEDIO-ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Estrecho de Ormuz — resolución o escalada</strong>
+        Una reapertura del estrecho desinflaría el petróleo abruptamente, golpeando a YPF, Vista y Tenaris (los grandes ganadores del año). Una escalada lo llevaría por encima de USD 110, con impacto inflacionario global que frenaría la remonetización local. <span class="tag gold">BINARIO</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 07 NO PRICEADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight">
+      <strong>La presión del Mundial 2026 sobre las reservas.</strong> Argentina va a jugar en EE.UU. en junio-julio. El turismo emisivo ya fue USD 1.000 MM en el cuatrimestre; el efecto Mundial puede agregar otros USD 500-800 MM de salida entre pasajes, estadías y gastos en dólares. Esto coincide con el período de mayor demanda de divisas estacional y con los vencimientos de deuda soberana. El mercado no está diferenciando este riesgo porque parece puntual, pero la combinación temporal es la más delicada del año.
+    </div>
+    <div class="highlight">
+      <strong>El deterioro del consumo como signal político pre-2027.</strong> Que 8 de cada 10 argentinos resignen gastos y que Milei muestre desgaste en índices de aprobación sensibles no es ruido — es un dato que anticipa el frame con el que se va a disputar la elección de medio término. Si el consumo no recupera antes de julio-agosto, el riesgo político de 2027 se empieza a pricear antes de lo que el mercado espera.
+    </div>
+  </div>
+
+  <!-- § 08 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — Compañía de Seguros</span>
+    </div>
+
+    <!-- Pesos y USD -->
+    <div style="margin-bottom:4px;">
+      <div class="ins-tab pesos">Cartera en Pesos vs. USD</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">Pesos — sesgo correcto: CER corto</div>
+      <div class="ins-text">La nominalidad no va a cero — las tarifas siguen ajustando, las carnes siguen presionando, y la inflación del primer trimestre fue mayor de lo esperado. El CER corto protege y da retorno positivo en términos reales en el escenario base. La Lecap de junio (S12J6) es el instrumento más demandado del mercado: el mercado no quiere tomar duration. <strong>Una aseguradora tampoco debería.</strong></div>
+
+      <div class="ins-sub">USD — posicionamiento quirúrgico</div>
+      <div class="ins-text">Las acciones energéticas (YPF, Vista, Tenaris a través de CEDEARs) tienen fundamento fuerte pero son volátiles y el riesgo de reversión del petróleo es real. Para una aseguradora que necesita liquidez y certeza, la exposición a estas acciones debería ser acotada (<strong>máximo 10-15% de la cartera de inversión</strong>) y gestionada activamente. Los soberanos en USD no son atractivos a estos niveles de riesgo país para una entidad que no puede absorber volatilidad mark-to-market.</div>
+    </div>
+
+    <!-- CER, tasa fija, USD linked -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab cer">CER · Tasa Fija · USD Linked</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">CER — COMPRAR tramo corto</div>
+      <div class="ins-text"><strong>TZXM6, TZXD6.</strong> Evitar tramo 2027+ hasta que se aclare el escenario fiscal post-electoral. La inflación de regulados que arranca hoy con transporte (+11%) garantiza que el CER tenga sustento en los próximos 60-90 días.</div>
+
+      <div class="ins-sub">Tasa Fija (Lecaps) — solo liquidez muy corta</div>
+      <div class="ins-text">Útiles para liquidez de muy corto plazo (hasta 60 días), pero como estrategia de plazo medio ya fueron. La TAMAR comprimió 13,7% en un mes — ese trade está cerrado. <strong>Reducir exposición en tata fija más larga de 90 días.</strong></div>
+
+      <div class="ins-sub">USD Linked — construir posición gradualmente</div>
+      <div class="ins-text">El DVAXX6 o similares de tramo corto son una cobertura razonable para una compañía que tiene pasivos en pesos pero reservas técnicas que deben mantener valor real. Empezar a construir posición gradualmente — no es urgente hoy, pero esperar puede ser caro.</div>
+    </div>
+
+    <!-- Riesgo duration y liquidez -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab riesgo">Riesgo de Duration · Liquidez</div>
+    </div>
+    <div class="ins-body" style="border-left:3px solid var(--neg);background:rgba(239,108,108,.03);">
+      <div class="ins-sub">Duration — ALERTA MÁXIMA</div>
+      <div class="ins-text">El mercado está cobrándonos 8,77% de TIR para extender duration soberana al 2028. La curva está invertida en términos de riesgo ajustado: más duration = más riesgo sin compensación adecuada. El riesgo de duration en este contexto es <strong>asimétrico al alza</strong> (si el riesgo país sube, las pérdidas en posiciones largas son grandes; si baja, la ganancia incremental es moderada).<br/><br/><strong>Duration de activos debe mantenerse por debajo de la duration de pasivos.</strong> Si los pasivos son mayormente anuales, la cartera de activos no debería tener duration promedio superior a 12-18 meses.</div>
+
+      <div class="ins-sub">Liquidez — período de máximo riesgo: junio-julio</div>
+      <div class="ins-text">La norma del BCRA sobre PSPs (Comunicación A 8432) puede generar fricción transitoria en canales de liquidación. El período junio-julio (Mundial + vencimientos soberanos + fin de cosecha) es el de mayor probabilidad de evento de stress de liquidez. <strong>No es el momento para tener posiciones ilíquidas o concentradas en instrumentos de baja profundidad.</strong><br/><br/>Mantener al menos 15-20% de la cartera en activos de liquidez inmediata (FCI money market o cauciones).</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis elaborado a partir de la cobertura de El Cronista del 4 de mayo de 2026<br/>
+    Datos de mercado al cierre del viernes 1 de mayo y apertura del lunes 4 de mayo<br/>
+    No constituye asesoramiento financiero
+  </footer>
+
+</div>
+</body>
+</html>

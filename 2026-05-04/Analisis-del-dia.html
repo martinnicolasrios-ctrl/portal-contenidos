@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis BCRA — Implicancias para el Sector Asegurador</title>
+<style>
+  :root {
+    --bg-deep:    #0B1620;
+    --bg-mid:     #0F1E2B;
+    --bg-card:    #17293A;
+    --bg-card2:   #1C3347;
+    --border:     rgba(52,187,218,0.15);
+    --accent:     #34BBDA;
+    --gold:       #E8B04A;
+    --pos:        #5BD39A;
+    --neg:        #EF6C6C;
+    --warn:       #F0A045;
+    --text:       #E2EAF0;
+    --muted:      #7A99B0;
+    --label:      #4A7A99;
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-mono:  'IBM Plex Mono', 'Courier New', monospace;
+    --font-sans:  'Inter', system-ui, sans-serif;
+    --r:          4px;
+    --max:        1040px;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--bg-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px 24px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .report-header .brand {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .report-header h1 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 26px;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .report-header .subtitle {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .report-header .meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .report-header .meta-item {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--label);
+    letter-spacing: .05em;
+  }
+  .report-header .meta-item span {
+    color: var(--muted);
+    margin-left: 6px;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0 16px;
+  }
+  .section-label .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .1em;
+  }
+  .section-label h2 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text);
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── CARDS GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 18px 20px;
+  }
+  .card.accent-left { border-left: 3px solid var(--accent); }
+  .card.gold-left   { border-left: 3px solid var(--gold); }
+  .card.pos-left    { border-left: 3px solid var(--pos); }
+  .card.neg-left    { border-left: 3px solid var(--neg); }
+  .card.warn-left   { border-left: 3px solid var(--warn); }
+  .card.full        { grid-column: 1/-1; }
+
+  .card .card-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--label);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card .card-title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .card p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .card p + p { margin-top: 8px; }
+
+  /* ── STAT BOXES ── */
+  .stat-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .stat-box .stat-val {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .stat-box .stat-val.pos { color: var(--pos); }
+  .stat-box .stat-val.neg { color: var(--neg); }
+  .stat-box .stat-val.gold { color: var(--gold); }
+  .stat-box .stat-val.accent { color: var(--accent); }
+  .stat-box .stat-label {
+    font-size: 11px;
+    color: var(--label);
+    line-height: 1.3;
+  }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .data-table th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--label);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 8px 12px;
+    color: var(--muted);
+    border-bottom: 1px solid rgba(52,187,218,0.06);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: rgba(52,187,218,0.03); }
+  .data-table td.val { font-family: var(--font-mono); font-size: 12px; color: var(--text); white-space: nowrap; }
+  .data-table td.val.pos { color: var(--pos); }
+  .data-table td.val.neg { color: var(--neg); }
+  .data-table td.val.gold { color: var(--gold); }
+  .data-table td strong { color: var(--text); font-weight: 500; }
+
+  /* ── ALERT STRIP ── */
+  .alert {
+    border-radius: var(--r);
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .alert .icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+  .alert p { color: var(--muted); }
+  .alert p strong { color: var(--text); font-weight: 500; }
+  .alert.alert-warn  { background: rgba(240,160,69,0.08);  border: 1px solid rgba(240,160,69,0.25); }
+  .alert.alert-pos   { background: rgba(91,211,154,0.07);  border: 1px solid rgba(91,211,154,0.22); }
+  .alert.alert-neg   { background: rgba(239,108,108,0.07); border: 1px solid rgba(239,108,108,0.22); }
+  .alert.alert-info  { background: rgba(52,187,218,0.07);  border: 1px solid rgba(52,187,218,0.20); }
+
+  /* ── BRANCH MATRIX ── */
+  .branch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .branch-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 14px 12px;
+  }
+  .branch-card .bname {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .branch-card .bitem {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    line-height: 1.45;
+  }
+  .branch-card .bitem strong { color: var(--text); font-weight: 500; }
+  .branch-card .bitem.pos strong { color: var(--pos); }
+  .branch-card .bitem.neg strong { color: var(--neg); }
+  .branch-card .bitem.warn strong { color: var(--warn); }
+
+  /* ── SCENARIO TABLE ── */
+  .scenario-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .scenario-table th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--label);
+    letter-spacing:.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+  .scenario-table td { padding: 10px 14px; border-bottom: 1px solid rgba(52,187,218,0.06); color: var(--muted); line-height:1.5; }
+  .scenario-table td:first-child { color: var(--text); font-weight: 500; }
+  .scenario-table .prob { font-family: var(--font-mono); font-size: 13px; }
+  .prob-bull { color: var(--pos); }
+  .prob-base { color: var(--gold); }
+  .prob-bear { color: var(--neg); }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+  /* ── FOOTNOTE ── */
+  .footnote {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--label);
+    line-height: 1.7;
+  }
+  .footnote a { color: var(--accent); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .container, .report-header { padding: 20px 18px; }
+    .grid-2, .grid-3, .grid-4, .branch-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="report-header">
+  <div class="brand">Análisis Especial</div>
+  <h1>BCRA — Tres Informes: Implicancias para el Sector Asegurador</h1>
+  <div class="subtitle">Deuda Externa Privada (dic-25) · Inclusión Financiera (abr-26) · Pagos Minoristas (mar-26)</div>
+  <div class="meta">
+    <div class="meta-item">FECHA <span>05 · 05 · 2026</span></div>
+    <div class="meta-item">FUENTE <span>BCRA / Informes Institucionales</span></div>
+    <div class="meta-item">AUDIENCIA <span>Comité de Inversiones · CFO</span></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- § 01 SÍNTESIS EJECUTIVA -->
+  <div class="section-label">
+    <span class="num">§ 01</span>
+    <h2>Síntesis Ejecutiva</h2>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:12px;">
+    <div class="card accent-left">
+      <div class="card-label">Lectura central</div>
+      <div class="card-title">Deuda privada cae pero la deuda financiera crece — señal estructural</div>
+      <p>El stock de deuda externa privada retrocedió USD 4.715 M en el 4T25, pero el componente financiero avanzó USD 4.602 M. El sector Oil & Gas explica el 36% del stock financiero y encabeza la dinámica de re-endeudamiento largo. Para el portafolio asegurador esto valida posiciones en ONs corporativas de energía, pero exige monitoreo de duration ante re-pricing de crédito post-electoral.</p>
+    </div>
+    <div class="card gold-left">
+      <div class="card-label">Lectura central</div>
+      <div class="card-title">Digitalización financiera redefine el riesgo de distribución y el pricing de ART/Vida</div>
+      <p>37,8 M de personas con cuenta, pagos electrónicos creciendo al 10,7% i.a. y QR con 67% de expansión interanual. El canal digital desplaza efectivo y reconfigura la economía informal. Para ART, la formalización incremental mejora la base imponible de riesgos; para Vida/Retiro, la expansión de plazos fijos y FCD habilita oferta de productos de ahorro largo.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <span class="icon">⚠</span>
+    <p><strong>Riesgo no descontado:</strong> La tasa de cheques rechazados por falta de fondos acumula +103% i.a. en cantidades y +125% en montos. La mora de PNFC tradicionales cayó 14 p.p. en 2025. Ambos vectores apuntan a deterioro de calidad de cartera de crédito en el segmento PyME — relevante para <strong>Caución</strong> y para la solvencia de asegurados de <strong>ART</strong> en sectores intensivos en mano de obra.</p>
+  </div>
+
+  <!-- § 02 DEUDA EXTERNA PRIVADA -->
+  <div class="section-label">
+    <span class="num">§ 02</span>
+    <h2>Deuda Externa Privada — 4T 2025</h2>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:14px;">
+    <div class="stat-box">
+      <div class="stat-val neg">−4.715</div>
+      <div class="stat-label">Variación trimestral total<br>(MM USD)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val accent">112.991</div>
+      <div class="stat-label">Stock total deuda privada<br>al 31.12.25 (MM USD)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val pos">+4.602</div>
+      <div class="stat-label">Incremento deuda<br>financiera (MM USD)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val neg">−9.317</div>
+      <div class="stat-label">Cancelación deuda<br>comercial (MM USD)</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <div class="card-label">Composición del stock al 31.12.25</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tipo de deuda</th>
+          <th>Stock (MM USD)</th>
+          <th>Var. trimestral</th>
+          <th>Lectura para el asegurador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Importaciones de bienes</strong></td>
+          <td class="val">37.163</td>
+          <td class="val neg">−2.409</td>
+          <td>Automotriz (22% del total): caída afecta prima de prendarios y seguros de transporte. Prioridad de monitoreo.</td>
+        </tr>
+        <tr>
+          <td><strong>Préstamos financieros</strong></td>
+          <td class="val">31.037</td>
+          <td class="val pos">+1.120</td>
+          <td>Crecimiento concentrado en Oil & Gas. Soporte a ONs energéticas en portafolio.</td>
+        </tr>
+        <tr>
+          <td><strong>Títulos de deuda (no residentes)</strong></td>
+          <td class="val">19.664</td>
+          <td class="val pos">+3.532</td>
+          <td>El mayor incremento del trimestre. Expansión de mercado de capitales corporativo — oportunidad de inversión para reservas técnicas en USD.</td>
+        </tr>
+        <tr>
+          <td><strong>Servicios</strong></td>
+          <td class="val">13.219</td>
+          <td class="val neg">−342</td>
+          <td>IT (10%) y transporte aéreo (8%) son los principales rubros. Riesgo de crédito sectorial acotado.</td>
+        </tr>
+        <tr>
+          <td><strong>Exportaciones de bienes</strong></td>
+          <td class="val">8.555</td>
+          <td class="val neg">−6.566</td>
+          <td><strong>Caída abrupta:</strong> adelantos del agro cancelados post-Decreto 682/2025 (retenciones 0%). Efecto de base favorable para 1T26 pero menor liquidez del sector en el corto plazo.</td>
+        </tr>
+        <tr>
+          <td><strong>Otra deuda financiera</strong></td>
+          <td class="val">3.351</td>
+          <td class="val neg">−50</td>
+          <td>Impacto marginal.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:12px;">
+    <div class="card accent-left">
+      <div class="card-label">Perfil de vencimientos — dato clave</div>
+      <div class="card-title">Alargamiento de duration en deuda financiera</div>
+      <p>El perfil 2025 muestra mayor peso de vencimientos a 5 años o más respecto de 2024. El 41% de la deuda financiera vence en el año siguiente, contra el 96% de la deuda comercial. Esto implica que el riesgo de refinanciamiento en el segmento corporativo está diferido — positivo para la estabilidad de emisores privados en cartera.</p>
+    </div>
+    <div class="card warn-left">
+      <div class="card-label">Concentración sectorial — riesgo</div>
+      <div class="card-title">Oil & Gas + Manufactura = 71% del stock total</div>
+      <p>Industria manufacturera (USD 38.035 M), minería y canteras (USD 29.177 M), comercio (USD 13.085 M) concentran 71% de la deuda. El apalancamiento inter-company es dominante (50% del stock). La dependencia del ciclo exportador agropecuario y de commodities energéticos como fuente de repago exige vigilancia ante shocks externos de precios.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-info">
+    <span class="icon">◈</span>
+    <p><strong>Foco inversiones:</strong> El incremento de USD 3.532 M en títulos en manos de no residentes señala mejora de confianza en el crédito corporativo argentino. Las ONs de Oil & Gas (YPF, Pampa, Vista, Tecpetrol) mantienen respaldo de flujo exportador. Los vencimientos a 5+ años del sector favorecen posicionamiento en tramos medios de la curva corporativa en USD.</p>
+  </div>
+
+  <!-- § 03 INCLUSIÓN FINANCIERA -->
+  <div class="section-label">
+    <span class="num">§ 03</span>
+    <h2>Inclusión Financiera — Dic 2025</h2>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:14px;">
+    <div class="stat-box">
+      <div class="stat-val accent">37,8 M</div>
+      <div class="stat-label">Personas con cuenta<br>(+600K i.a.)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val pos">54,7%</div>
+      <div class="stat-label">Adultos con crédito<br>en el SFA (dic-25)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val gold">74,6%</div>
+      <div class="stat-label">MiPyMEs con<br>financiamiento</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val pos">+32%</div>
+      <div class="stat-label">Saldo crédito MiPyME<br>i.a. (máx. histórico)</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:12px;">
+    <div class="card">
+      <div class="card-label">Pagos electrónicos — dinámica estructural</div>
+      <div class="card-title">QR y transferencias dominan; débito retrocede por primera vez desde 2016</div>
+      <p>Pagos inmediatos alcanzan 18,6 operaciones/adulto/mes contra 6 de tarjeta débito — brecha 3x. Los PCT por QR crecieron 67% i.a. en marzo-26. El efectivo no pierde monto (las personas retiran menos veces pero más plata) pero su participación en transacciones retrocede.</p>
+      <p style="margin-top:10px;">Para seguros de <strong>transporte y automotor</strong>: el retroceso del débito (-15% i.a.) refleja menor frecuencia de compras en comercios físicos — señal de cambio de hábito de consumo presencial que puede afectar la exposición de comercios adheridos.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Crédito — expansión con alerta de calidad</div>
+      <div class="card-title">20,3 M deudores y saldo promedio en máximos desde 2020</div>
+      <p>Saldo promedio por deudor: $4,1 M a precios constantes (+24,7% anual). Créditos hipotecarios: 180.000 deudores (recuperación clara). Prendarios: +39% deudores (autos motos). El 76% de nuevos prendarios pasó por financieras vinculadas a automotrices.</p>
+      <p style="margin-top:10px;"><strong>Para Caución:</strong> la regularidad de PNFC fintech cae −7 p.p. en 2025 y la de PNFC tradicionales −14 p.p. Mayor tensión de pago en el segmento de menores ingresos. Riesgo incremental en garantías sobre créditos al consumo.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <div class="card-label">Ahorro — estructura y oportunidades de producto</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Saldo / Cobertura</th>
+          <th>Variación</th>
+          <th>Implicancia aseguradora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Fondos Comunes de Dinero (FCD)</strong></td>
+          <td class="val accent">26,5 M cuentas</td>
+          <td class="val pos">+18,3% i.a.</td>
+          <td>Saldo promedio muy bajo — ahorro mayormente transaccional. No compite con seguros de vida/ahorro largo todavía. Canal para distribuir seguros de vida simples.</td>
+        </tr>
+        <tr>
+          <td><strong>Plazos fijos en pesos</strong></td>
+          <td class="val">2,8 M titulares</td>
+          <td class="val pos">+34% i.a. (saldo real)</td>
+          <td>92% concentrado en 30-44 días. Baja conversión a largo plazo. Brecha entre trabajadores formales (12,9 M) y tenedores de PF (2,8 M) = oportunidad de distribución de Vida/Retiro.</td>
+        </tr>
+        <tr>
+          <td><strong>Plazos fijos en USD</strong></td>
+          <td class="val">278K certificados</td>
+          <td class="val pos">+92% i.a. (cantidad)</td>
+          <td>Refleja liberalización del mercado de cambios. Ahorro en dólares del segmento medio en expansión — respaldo potencial para reservas técnicas de seguros en moneda extranjera.</td>
+        </tr>
+        <tr>
+          <td><strong>Créditos hipotecarios</strong></td>
+          <td class="val">180K deudores</td>
+          <td class="val pos">43K altas brutas 2025</td>
+          <td>Concentración en CABA (28%) y Pcia. Buenos Aires (34%). 63% tiene 35-49 años. Alta correlación con <strong>Incendio y Combinado Familiar</strong>. Demanda de seguro hipotecario en recuperación sostenida.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert alert-pos">
+    <span class="icon">◆</span>
+    <p><strong>Oportunidad Vida/Retiro:</strong> De 12,9 M de trabajadores formales, solo 2,8 M tienen plazo fijo. La base de cuentas digitales activas (30,8 M) y la maduración de los FCD como hábito de ahorro crean la plataforma de distribución para productos de vida individual digital. El segmento 35-49 años activo en hipotecarios es el target natural.</p>
+  </div>
+
+  <!-- § 04 PAGOS MINORISTAS -->
+  <div class="section-label">
+    <span class="num">§ 04</span>
+    <h2>Pagos Minoristas — Marzo 2026</h2>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:14px;">
+    <div class="stat-box">
+      <div class="stat-val pos">+25,6%</div>
+      <div class="stat-label">Transferencias inmediatas<br>push i.a. (cantidad)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val accent">+62,7%</div>
+      <div class="stat-label">PCT interoperables<br>i.a. (cantidad)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val neg">−36,2%</div>
+      <div class="stat-label">Extracciones ATM<br>i.a. (cantidad)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val warn">+103%</div>
+      <div class="stat-label">Cheques rechazados<br>sin fondos i.a. (cantidad)</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:12px;">
+    <div class="card pos-left">
+      <div class="card-label">Señal estructural positiva</div>
+      <div class="card-title">QR y transferencias consolidan la economía formal digital</div>
+      <p>76% de las transferencias push involucran una CVU. El 53,5% de clientes en QR paga desde CVU (billeteras), señalando que los PSP son ya el canal dominante de pago cotidiano. MP concentra el 68% de saldos en cuentas de pago y el 88% de fondos invertidos en FCI. Esta concentración es un riesgo sistémico de liquidez ante un escenario de stress del actor dominante.</p>
+    </div>
+    <div class="card neg-left">
+      <div class="card-label">Señal de alerta</div>
+      <div class="card-title">Cheques rechazados: +103% i.a. — el mayor deterioro desde 2022</div>
+      <p>La tasa de rechazo por fondos insuficientes asciende al 2,2% en cantidad y 1,6% en monto. La tendencia viene acelerando desde dic-24. El ECHEQ ya representa el 83% en montos compensados — el deterioro afecta instrumento de calidad. Para <strong>Caución</strong>, la presión sobre la capacidad de pago de PyMEs demandantes de garantías es un vector de mayor siniestralidad en el corto plazo.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <div class="card-label">Normativa relevante — Com. A 8406 (marzo 2026)</div>
+    <div class="card-title">Cobro con Transferencia (CCT): habilitación de débito automático 2.0 desde agosto-26</div>
+    <p style="font-size:13px;color:var(--muted);">El BCRA creó el CCT como modalidad de transferencias inmediatas para cobros recurrentes, basado en consentimiento OAuth 2.0. Desde el 31/08/26 deberá estar disponible para cobro de cuotas de préstamos. <strong>Para las aseguradoras:</strong> esta infraestructura habilita la cobranza de primas en cuotas por transferencia directa desde billeteras y cuentas bancarias — reducción del riesgo de incobrabilidad y potencial eliminación de costos de tarjeta en la cadena de pago de primas. Requiere preparación técnica del proceso de cobranza.</p>
+  </div>
+
+  <!-- § 05 IMPLICANCIAS POR RAMA -->
+  <div class="section-label">
+    <span class="num">§ 05</span>
+    <h2>Implicancias por Rama de Seguro</h2>
+  </div>
+
+  <div class="branch-grid" style="margin-bottom:12px;">
+    <div class="branch-card">
+      <div class="bname">Daños / Automotor</div>
+      <div class="bitem"><strong>Prendarios +39%</strong> — demanda de seguro obligatorio en recuperación. 76% via financieras automotrices.</div>
+      <div class="bitem warn"><strong>Riesgo:</strong> Deuda de importaciones automotrices cayó −USD 398 M. Restricciones de oferta de insumos pueden presionar costos de reparación.</div>
+      <div class="bitem pos"><strong>Oportunidad:</strong> QR en transporte público (24 M viajes/mes) valida oferta de micro-seguros de viaje por evento.</div>
+    </div>
+    <div class="branch-card">
+      <div class="bname">Incendio / Combinado</div>
+      <div class="bitem pos"><strong>Hipotecarios en expansión:</strong> 43K altas brutas en 2025, concentradas en CABA y Pcia. BA. Demanda de seguro de incendio obligatorio crece en línea.</div>
+      <div class="bitem"><strong>Perfil del asegurado:</strong> 63% de 35-49 años, ingresos medios-altos, digitalizados. Canal digital viable para cotización y emisión.</div>
+      <div class="bitem warn"><strong>Monitoreo:</strong> Concentración geográfica en CABA (28%) = acumulación de riesgo catastrófico.</div>
+    </div>
+    <div class="branch-card">
+      <div class="bname">ART</div>
+      <div class="bitem"><strong>Formalización en curso:</strong> 37,8 M cuentahabientes activos + expansión de crédito laboral. Mejora de base asegurable en sectores formales.</div>
+      <div class="bitem neg"><strong>Alerta:</strong> Asalariados privados registrados cayeron −1,2% i.a. Desocupación subió a 7,5%. Contracción de la base imponible en sectores intensivos en mano de obra.</div>
+      <div class="bitem warn"><strong>Sectores críticos:</strong> Manufactura (38 MM USD deuda externa) y comercio (13 MM USD) bajo presión de competitividad.</div>
+    </div>
+    <div class="branch-card">
+      <div class="bname">Caución</div>
+      <div class="bitem neg"><strong>Cheques rechazados +103% i.a.</strong> (cant.) La calidad de cartera PyME se deteriora. Mayor probabilidad de ejecución de garantías.</div>
+      <div class="bitem neg"><strong>Regularidad PNFC trad. −14 p.p.</strong> Los tomadores de crédito en el segmento más riesgoso muestran deterioro acelerado.</div>
+      <div class="bitem pos"><strong>Contrapeso:</strong> MiPyMEs con crédito +2,9 p.p. — mayor financiamiento bancario puede mejorar la calidad de garantías exigibles.</div>
+    </div>
+  </div>
+
+  <div class="branch-grid">
+    <div class="branch-card">
+      <div class="bname">Vida Individual</div>
+      <div class="bitem pos"><strong>12,9 M trabajadores formales</strong> con solo 2,8 M en plazos fijos = brecha de cobertura de ahorro-protección masiva.</div>
+      <div class="bitem pos"><strong>FCD y billeteras</strong> como canal de distribución: 26,5 M cuentas con saldo en FCD, hábito de ahorro digital establecido.</div>
+      <div class="bitem warn"><strong>Tasas nominales bajas</strong> post-diciembre: la TEA de préstamos personales bajó a niveles de inicio de 2025. Contexto de tasas reales comprimidas puede afectar rentabilidad de productos de ahorro con garantía de capital.</div>
+    </div>
+    <div class="branch-card">
+      <div class="bname">Retiro / Previsional</div>
+      <div class="bitem"><strong>PF en USD +92% i.a.</strong> (278K cert.) — ahorro en dólares en expansión. Oportunidad de productos de renta vitalicia dolarizados.</div>
+      <div class="bitem"><strong>Concentración corto plazo:</strong> 92% de PF en 30-44 días. La conversión a largo plazo requiere incentivo diferencial que los seguros de retiro pueden ofrecer.</div>
+      <div class="bitem pos">Banca pública financia el 56% de hipotecarios nuevos — relación con clientes del perfil 35-49 potencialmente asegurado.</div>
+    </div>
+    <div class="branch-card">
+      <div class="bname">Portafolio / Inversiones</div>
+      <div class="bitem pos"><strong>ONs corporativas:</strong> títulos de no residentes +USD 3.532 M sugiere mejora de spreads y liquidez en papeles de Oil & Gas.</div>
+      <div class="bitem warn"><strong>Duration:</strong> alargamiento de deuda financiera corporativa avala posicionamiento en tramos medios (3-5 años).</div>
+      <div class="bitem neg"><strong>Riesgo crédito PyME:</strong> exposición a cheques / descuento de documentos requiere revisión de calidad de cartera ante deterioro de ECHEQs.</div>
+    </div>
+    <div class="branch-card">
+      <div class="bname">Créditos / Garantías</div>
+      <div class="bitem pos"><strong>CCT (Com. A 8406):</strong> cobranza de primas por transferencia desde ago-26. Reducción de costos operativos de recaudación.</div>
+      <div class="bitem pos"><strong>Interoperabilidad QR:</strong> primas de ramos masivos pueden integrarse al ecosistema de pagos inmediatos. Mejora de conversión y retención.</div>
+      <div class="bitem warn">Concentración de saldos en MP (68% en cuentas de pago, 88% en FCI) como riesgo sistémico de contraparte.</div>
+    </div>
+  </div>
+
+  <!-- § 06 ESCENARIOS -->
+  <div class="section-label">
+    <span class="num">§ 06</span>
+    <h2>Escenarios y Probabilidades</h2>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <table class="scenario-table">
+      <thead>
+        <tr>
+          <th>Escenario</th>
+          <th>Prob.</th>
+          <th>Drivers</th>
+          <th>Impacto portafolio asegurador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Expansión ordenada</td>
+          <td class="val prob prob-bull">45%</td>
+          <td>Continuidad de formalización financiera, tasas reales positivas sostenidas, recuperación del crédito hipotecario, Oil & Gas como ancla exportadora.</td>
+          <td>Crecimiento de primas en Incendio, Prendarios y Vida. ONs corporativas con compresión de spread. Créditos hipotecarios y prendarios como colateral de calidad.</td>
+        </tr>
+        <tr>
+          <td>Estabilización frágil</td>
+          <td class="val prob prob-base">40%</td>
+          <td>Volatilidad electoral residual, deterioro gradual de PyMEs, tasas nominales que comprimen márgenes financieros, desocupación estacionaria en 7-8%.</td>
+          <td>Siniestralidad de Caución presionada al alza. Primas de ART estables pero con menor base salarial. Portafolio defensivo en títulos públicos CER y ON corta energía.</td>
+        </tr>
+        <tr>
+          <td>Estrés de crédito</td>
+          <td class="val prob prob-bear">15%</td>
+          <td>Shock externo (commodities, tipo de cambio), aceleración de cheques rechazados, refinanciamiento de deuda corporativa en condiciones adversas, crisis de PSP dominante.</td>
+          <td>Ejecuciones masivas en Caución. Siniestros patrimoniales en alza. Concentración en MP (68% del ecosistema) como riesgo de contraparte sistémico. Revisión de límites de exposición a crédito privado.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- § 07 AGENDA DE MONITOREO -->
+  <div class="section-label">
+    <span class="num">§ 07</span>
+    <h2>Agenda de Monitoreo</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Próximas publicaciones críticas</div>
+      <div class="card-title">Datos con potencial de relectura de posiciones</div>
+      <table class="data-table" style="margin-top:8px;">
+        <thead>
+          <tr><th>Dato</th><th>Frecuencia / Fuente</th><th>Umbral de acción</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cheques rechazados sin fondos</strong></td>
+            <td class="val">Mensual · BCRA</td>
+            <td>Superación del 3% en montos → revisión límites Caución</td>
+          </tr>
+          <tr>
+            <td><strong>Deuda externa privada 1T26</strong></td>
+            <td class="val">Trimestral · BCRA</td>
+            <td>Incremento financiero Oil & Gas confirma tesis ON larga</td>
+          </tr>
+          <tr>
+            <td><strong>Tasa préstamos personales</strong></td>
+            <td class="val">Mensual · BCRA</td>
+            <td>Rebote por encima del 80% TNA → presión siniestralidad PNFC</td>
+          </tr>
+          <tr>
+            <td><strong>Altas hipotecarias por provincia</strong></td>
+            <td class="val">Trimestral · BCRA-IIF</td>
+            <td>Expansion a Patagonia confirma diversificación de riesgo Incendio</td>
+          </tr>
+          <tr>
+            <td><strong>PCT-QR interoperables</strong></td>
+            <td class="val">Mensual · BCRA</td>
+            <td>Desaceleración sostenida → revisión estrategia cobranza digital primas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label">Acciones recomendadas</div>
+      <div class="card-title">Para el equipo de inversiones y suscripción</div>
+      <div class="alert alert-info" style="margin-bottom:8px; margin-top:8px;">
+        <span class="icon">1</span>
+        <p><strong>Inversiones:</strong> Mantener exposición a ONs Oil & Gas en tramo 3-5 años. El alargamiento de duration en la deuda corporativa privada y el flujo exportador de energía son fundamentos sólidos. Monitorear spread ante re-pricing post-electoral.</p>
+      </div>
+      <div class="alert alert-warn" style="margin-bottom:8px;">
+        <span class="icon">2</span>
+        <p><strong>Caución / Crédito:</strong> Revisar límites de exposición a garantías sobre cheques de PyMEs. El deterioro de cheques rechazados (+103% i.a.) es la señal de mayor urgencia de los tres informes.</p>
+      </div>
+      <div class="alert alert-pos" style="margin-bottom:8px;">
+        <span class="icon">3</span>
+        <p><strong>Producto:</strong> Iniciar análisis de producto de Vida digital orientado al segmento 35-49 años bancarizado con hipoteca. La base de 180K deudores hipotecarios con bancos públicos (56% del total) es el canal de entrada con menor costo de adquisición.</p>
+      </div>
+      <div class="alert alert-info">
+        <span class="icon">4</span>
+        <p><strong>Cobranza:</strong> Preparar infraestructura técnica para adhesión al CCT (Com. A 8406). Habilitación en agosto-26 para cobros recurrentes por transferencia. Oportunidad de reducir comisiones de tarjeta en primas de ramos masivos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTNOTE -->
+  <div class="footnote">
+    <p><strong>Fuentes:</strong> BCRA — Informe sobre Deuda Externa Privada al 31 de diciembre de 2025 (publicación abril 2026) · Informe de Inclusión Financiera abril 2026 · Informe Mensual de Pagos Minoristas marzo 2026. Los datos macroeconómicos de contexto (PIB, empleo, salarios) provienen de INDEC y Ministerio de Capital Humano citados en dichas publicaciones.</p>
+    <p style="margin-top:6px;">Elaborado por el equipo de Análisis Económico y Financiero. Para uso interno del Comité de Inversiones. Documento sujeto a revisión ante publicaciones oficiales posteriores.</p>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
