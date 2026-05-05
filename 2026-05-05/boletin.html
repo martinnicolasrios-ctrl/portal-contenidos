@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial — Análisis Regulatorio — 05/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 55%);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  @media (max-width: 720px) {
+    .wrapper { padding: 24px 16px; }
+  }
+
+  /* ── HEADER ─────────────────────────────────────────── */
+  header {
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--ink-2);
+    margin-bottom: 4px;
+  }
+
+  .header-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* ── SECTION HEADER ──────────────────────────────────── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  section { margin-bottom: 52px; }
+
+  /* ── CARDS ───────────────────────────────────────────── */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 22px 16px;
+    margin-bottom: 14px;
+  }
+
+  .card-urgent  { border-left: 2px solid var(--neg); }
+  .card-news    { border-left: 2px solid var(--accent); }
+  .card-finance { border-left: 2px solid var(--gold); }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-norm-urgent  { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--neg); }
+  .card-norm-news    { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent); text-transform: uppercase; }
+  .card-norm-finance { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--gold); text-transform: uppercase; }
+
+  .card-org {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  /* ── CARD LINKS ──────────────────────────────────────── */
+  .card-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    transition: opacity 0.15s;
+  }
+  .card-link:hover { opacity: 0.75; }
+
+  .link-urgent  { color: var(--neg);    border: 1px solid rgba(239,108,108,.3); }
+  .link-news    { color: var(--accent); border: 1px solid rgba(52,187,218,.3);  }
+  .link-finance { color: var(--gold);   border: 1px solid rgba(232,176,74,.3);  }
+  .link-kronos  { color: var(--ink-3);  border: 1px solid rgba(123,145,163,.3); }
+
+  /* ── CHIPS (Vencimientos) ────────────────────────────── */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+
+  @media (max-width: 720px) { .chips-grid { grid-template-columns: 1fr; } }
+
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+
+  .chip-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .chip-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+
+  .chip-action {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .chip-empty {
+    color: var(--ink-3);
+    font-size: 13px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    margin-top: 48px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* ── NO-SSN notice ───────────────────────────────────── */
+  .no-ssn-notice {
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--ink-3);
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo"></div>
+    <div class="subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="header-date">Edición del 5 de Mayo de 2026</div>
+  </header>
+
+  <!-- SECCIÓN 2 — NOVEDADES REGULATORIAS -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Novedades Regulatorias</span>
+    </div>
+
+    <div class="no-ssn-notice">SSN — Sin publicaciones en esta edición. No se registraron resoluciones de la Superintendencia de Seguros de la Nación en el BORA del 05/05/2026.</div>
+
+    <!-- CNV 1132 -->
+    <div class="card card-news">
+      <div class="card-meta">
+        <span class="card-norm-news">CNV · RG 1132/2026</span>
+        <span class="card-org">Comisión Nacional de Valores</span>
+      </div>
+      <div class="card-title">EPN: Oferta Pública con Autorización Automática — Mediano Impacto Ampliado</div>
+      <div class="card-body">
+        La CNV abre consulta pública (Elaboración Participativa de Normas) sobre un proyecto que amplía los montos máximos del régimen de autorización automática para emisiones de acciones y obligaciones negociables de mediano impacto. Las emisiones bajo el nuevo umbral quedarían sujetas al régimen informativo pleno del Régimen General, preservando transparencia y protección al inversor. Para carteras de aseguradoras, esto podría ampliar el universo de instrumentos elegibles de acceso simplificado, impactando la política de inversiones y los criterios de due diligence.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-news" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341599/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- CNV 1133 -->
+    <div class="card card-news">
+      <div class="card-meta">
+        <span class="card-norm-news">CNV · RG 1133/2026</span>
+        <span class="card-org">Comisión Nacional de Valores</span>
+      </div>
+      <div class="card-title">EPN: Actualización Regímenes de Oferta Pública de Fideicomisos Financieros con Autorización Automática</div>
+      <div class="card-body">
+        Consulta pública sobre actualización de los regímenes de autorización automática para Fideicomisos Financieros (FF). Los FF de consumo e inversión son activos elegibles frecuentes en carteras aseguradoras. Una simplificación del proceso de autorización y eventual ampliación de montos podría aumentar la oferta disponible de este tipo de instrumentos, con implicancias directas en la diversificación de cartera regulatoria.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-news" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341600/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- CNV 1134 -->
+    <div class="card card-news">
+      <div class="card-meta">
+        <span class="card-norm-news">CNV · RG 1134/2026</span>
+        <span class="card-org">Comisión Nacional de Valores</span>
+      </div>
+      <div class="card-title">EPN: Procedimiento de Autorización Automática de Oferta Pública de FCI Abiertos</div>
+      <div class="card-body">
+        Consulta pública sobre autorización automática de oferta pública para Fondos Comunes de Inversión Abiertos. Los FCI son vehículo de inversión habitual para reservas técnicas de aseguradoras. La flexibilización del proceso de autorización podría expandir la disponibilidad de nuevos fondos o compartimentos, con potencial impacto en opciones de colocación de activos líquidos.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-news" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341601/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- CNV 1135 -->
+    <div class="card card-news">
+      <div class="card-meta">
+        <span class="card-norm-news">CNV · RG 1135/2026</span>
+        <span class="card-org">Comisión Nacional de Valores</span>
+      </div>
+      <div class="card-title">EPN: Autorización Automática de Oferta Pública de Fondos Comunes de Inversión Cerrados</div>
+      <div class="card-body">
+        Consulta pública para simplificar la autorización de FCI Cerrados. Estos instrumentos, de mayor plazo y menor liquidez, son elegibles para inversión de ciertos tramos de reservas. Una ampliación del régimen automático podría diversificar la oferta de activos de mediano y largo plazo para carteras de compañías de seguros de Vida.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-news" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341602/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- CNV 1136 -->
+    <div class="card card-news">
+      <div class="card-meta">
+        <span class="card-norm-news">CNV · RG 1136/2026</span>
+        <span class="card-org">Comisión Nacional de Valores</span>
+      </div>
+      <div class="card-title">EPN: Actualización de Prospectos y Eliminación de Autorización Previa en Programas Globales, Emisores Frecuentes y Régimen PyME</div>
+      <div class="card-body">
+        Consulta pública sobre modificaciones al régimen de prospectos para programas globales de ON y al régimen PyME. La eliminación de la autorización previa para emisores frecuentes agilizaría la emisión de instrumentos de deuda, potencialmente ampliando la oferta de ON elegibles para carteras aseguradoras con ventanas de emisión más cortas.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-news" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341603/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- CNV 1137 -->
+    <div class="card card-news">
+      <div class="card-meta">
+        <span class="card-norm-news">CNV · RG 1137/2026</span>
+        <span class="card-org">Comisión Nacional de Valores</span>
+      </div>
+      <div class="card-title">EPN: Tokenización — Oferta Automática y Prórroga Sandbox</div>
+      <div class="card-body">
+        Consulta pública sobre un proyecto de regulación de activos tokenizados (blockchain) en el mercado de capitales, con autorización automática de oferta pública y prórroga del entorno regulatorio sandbox. Aunque hoy los activos tokenizados no integran mayoritariamente carteras de aseguradoras, este marco normativo anticiparía su eventual elegibilidad regulatoria, relevante para estrategia de inversiones de mediano plazo.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-news" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341604/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3 — IMPACTO FINANCIERO -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Impacto Financiero</span>
+    </div>
+
+    <!-- BCRA Com A 8431 -->
+    <div class="card card-finance">
+      <div class="card-meta">
+        <span class="card-norm-finance">BCRA · Com. "A" 8431/2026</span>
+        <span class="card-org">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">No objeción a la adquisición del Bono Internacional Provincia de Chubut (VN USD 650 millones)</div>
+      <div class="card-body">
+        El BCRA no formula observaciones para que entidades financieras adquieran el bono internacional emitido por la Provincia del Chubut, por hasta VN USD 650.000.000, al amparo de las Leyes provinciales II 292 y II 312 (LISOL 1-1140, OPRAC 1-1309). Se establece que la suscripción no podrá computar capacidad de préstamo de depósitos en ME. Para aseguradoras, este instrumento de deuda soberana provincial en dólares amplía el universo elegible de activos en moneda extranjera para diversificación del portafolio, debiendo evaluarse elegibilidad conforme al Reglamento General de la Actividad Aseguradora (RGAA) y normativa SSN vigente sobre inversiones en el exterior y límites por emisor.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-finance" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341592/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA Com B 13167 -->
+    <div class="card card-finance">
+      <div class="card-meta">
+        <span class="card-norm-finance">BCRA · Com. "B" 13167/2026</span>
+        <span class="card-org">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Actualización de Tasas de Referencia — Garantía de Depósitos (OPASI 2)</div>
+      <div class="card-body">
+        Publicación periódica de las tasas de referencia aplicables al régimen de garantía de depósitos (Circular OPASI 2). Si bien se dirige a entidades financieras, las tasas de referencia BCRA son parámetro relevante para la valuación de activos de renta fija, cálculo de descuentos en inversiones reguladas y para contratos de seguros con componente de ahorro o tasa garantizada. El valor actualizado debe incorporarse a los modelos de valuación de activos y pasivos del área de Finanzas.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-finance" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341593/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA Com C 101787 -->
+    <div class="card card-finance">
+      <div class="card-meta">
+        <span class="card-norm-finance">BCRA · Com. "C" 101787/2026</span>
+        <span class="card-org">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Fe de erratas — Régimen Informativo Contable Mensual: Efectivo Mínimo y Aplicación de Recursos (R.I. – E.M. – A.R.)</div>
+      <div class="card-body">
+        Correcciones formales a la Comunicación A 8420 sobre el Régimen Informativo Contable Mensual. Las adecuaciones afectan los archivos EFVOMIN.TXT (moneda extranjera) — con aclaraciones en controles 115, 120, 176 y 538 — y SALDOSPROMEDIO.TXT (moneda pesos) — renumeración y eliminación de controles 121-125. Si bien este régimen se dirige a entidades financieras, es importante monitorear su alcance para las aseguradoras que actúan como cuentas de inversión en el sistema financiero o tienen obligaciones de reporte cruzado con el BCRA por sus inversiones en activos financieros regulados.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-finance" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341594/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BNA Tasas -->
+    <div class="card card-finance">
+      <div class="card-meta">
+        <span class="card-norm-finance">BNA · Aviso Oficial — Tasas de Referencia</span>
+        <span class="card-org">Banco de la Nación Argentina</span>
+      </div>
+      <div class="card-title">Tasas Activas de Referencia BNA — Período 28/04/2026 al 05/05/2026 (TAMAR)</div>
+      <div class="card-body">
+        El BNA publica las tasas activas vigentes (cartera general y préstamos con caución de certificados de obra). Para el 04/05 al 05/05/2026 la tasa nominal anual adelantada a 30 días es del 25,04% y la efectiva anual adelantada del 22,35%. Las tasas BNA (TAMAR) son referencia de mercado para valuación de carteras de crédito, instrumentos ligados a tasa activa y contratos de seguros de crédito, siendo insumo para el cálculo de reservas y márgenes financieros del área de Finanzas.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-finance" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341588/20260505" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4 — PRÓXIMOS VENCIMIENTOS -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Próximos Vencimientos</span>
+    </div>
+    <div class="chips-grid">
+
+      <div class="chip">
+        <div class="chip-date">Plazo abierto desde hoy</div>
+        <div class="chip-desc">CNV RG 1132-1137/2026 — Elaboración Participativa de Normas (6 proyectos: ON/Acciones mediano impacto, FF, FCI Abiertos, FCI Cerrados, Prospectos, Tokenización). Los plazos para presentar opiniones se publicarán en el expediente disponible en argentina.gob.ar/cnv.</div>
+        <div class="chip-action">Acción: Revisar cada expediente en argentina.gob.ar/cnv y evaluar impacto operativo/inversiones para participar en consulta pública.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">Vigencia inmediata</div>
+        <div class="chip-desc">BCRA Com. "A" 8431/2026 — Ventana de suscripción del Bono Provincia Chubut USD 650M. La norma es efectiva desde su publicación (05/05/2026).</div>
+        <div class="chip-action">Acción: Evaluar elegibilidad del instrumento conforme al RGAA y límites SSN. Consultar con Gerencia de Inversiones.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">Aplicación mensual</div>
+        <div class="chip-desc">BCRA Com. "C" 101787/2026 — Fe de erratas EFVOMIN.TXT y SALDOSPROMEDIO.TXT. Las correcciones rigen para el período informativo en curso.</div>
+        <div class="chip-action">Acción: Verificar con Contaduría/Sistemas si los archivos de reporting a BCRA se ven afectados por las correcciones de controles.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Generado automáticamente &middot; 05/05/2026 &middot; Fuente: Boletín Oficial de la República Argentina (boletinoficial.gob.ar)
+  </footer>
+
+</div>
+</body>
+</html>

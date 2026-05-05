@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 05/05/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+
+    /* CARDS */
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
+    .card-pos { border-left: 3px solid var(--pos); background: rgba(91,211,154,.04); }
+    .card-pos .card-header { color: var(--pos); }
+
+    /* KPI STRIP */
+    .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .kpi { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; }
+    .kpi.neg-top { border-top-color: var(--neg); }
+    .kpi.gold-top { border-top-color: var(--gold); }
+    .kpi.pos-top { border-top-color: var(--pos); }
+    .kpi-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+    .kpi-value { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+    .kpi-value.neg { color: var(--neg); }
+    .kpi-value.gold { color: var(--gold); }
+    .kpi-note { font-size: 11px; color: var(--ink-3); line-height: 1.4; }
+
+    /* BULLETS */
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
+
+    /* HIGHLIGHTS */
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
+    .highlight-neg { background: rgba(239,108,108,.04); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-neg strong { color: var(--ink); font-weight: 600; }
+
+    /* TENSIONS */
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+
+    /* ALERTS */
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; display: block; margin-bottom: 4px; }
+
+    /* POS GRID */
+    .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pos-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 16px 18px; }
+    .pos-card.neg-top { border-top-color: var(--neg); }
+    .pos-card.gold-top { border-top-color: var(--gold); }
+    .pos-card.pos-top { border-top-color: var(--pos); }
+    .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .pos-text { font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .pos-text strong { color: var(--ink); font-weight: 600; }
+
+    /* INSURANCE SECTIONS */
+    .ins-tab { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 8px 18px; border-radius: 4px 4px 0 0; margin-bottom: -1px; }
+    .ins-tab.pesos { background: rgba(52,187,218,.15); color: var(--accent); border: 1px solid rgba(52,187,218,.2); border-bottom: 1px solid var(--bg-2); }
+    .ins-tab.cer { background: rgba(155,138,224,.12); color: #9B8AE0; border: 1px solid rgba(155,138,224,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-tab.riesgo { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-body { background: var(--bg-2); border: 1px solid var(--line); border-radius: 0 4px 4px 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .ins-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; margin-top: 14px; }
+    .ins-sub:first-child { margin-top: 0; }
+    .ins-text { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 8px; }
+    .ins-text strong { color: var(--ink); font-weight: 600; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 5px; margin-top: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
+
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
+
+    @media (max-width: 720px) {
+      .header-title { font-size: 22px; }
+      .section-title { font-size: 18px; }
+      .kpi-strip { grid-template-columns: 1fr 1fr; }
+      .pos-grid { grid-template-columns: 1fr; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 22px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial</div>
+    <div class="header-title">La Estabilización Avanza, pero el Sistema Financiero Absorbe sus Propios Costos: Mora Récord, Tasas Pegajosas y Cobertura Cambiaria en Colapso</div>
+    <div class="header-meta">5 de mayo de 2026 · Análisis regulatorio y financiero</div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi neg-top">
+      <div class="kpi-label">Mora Sistémica</div>
+      <div class="kpi-value neg">13,2%</div>
+      <div class="kpi-note">Nivel más alto desde la salida de la convertibilidad</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">BNA Oficial</div>
+      <div class="kpi-value">$1.425</div>
+      <div class="kpi-note">Sin movimiento · CCL $1.492</div>
+    </div>
+    <div class="kpi gold-top">
+      <div class="kpi-label">MEP</div>
+      <div class="kpi-value gold">$1.437</div>
+      <div class="kpi-note">Brecha MEP/oficial ~0,8% · mínima histórica</div>
+    </div>
+    <div class="kpi neg-top">
+      <div class="kpi-label">Blue</div>
+      <div class="kpi-value neg">$1.405</div>
+      <div class="kpi-note">Por debajo del oficial — situación anómala</div>
+    </div>
+  </div>
+
+  <!-- § 01 RESUMEN EJECUTIVO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La morosidad bancaria alcanzó el 10,6% en promedio (13,2% en febrero según Fidelitas/BCRA)</strong>, el nivel más alto desde la salida de la convertibilidad — superando la crisis subprime (2008) y la pandemia. El crédito creció del 5% al 12% del PBI en 18 meses, pero el riesgo crediticio acompaña ese crecimiento.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Los bancos no trasladan la baja de tasas pasivas al costo del crédito activo</strong>: la irregularidad de carteras actúa como piso estructural de las tasas activas, desacoplando la política monetaria del BCRA del costo financiero real de la economía.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La demanda de cobertura cambiaria colapsó y la posición del BCRA en dólar futuro se redujo drásticamente</strong>: señal de que el mercado dejó de apostar contra el tipo de cambio oficial, pero también de que el carry trade sigue siendo el régimen dominante sin cuestionamiento.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El Gobierno acelera privatizaciones</strong> (Aerolíneas, ferrocarriles, correo) en el "Bimestre de oro", con resolución de disputas bajo legislación local — sin CIADI — lo que limita el atractivo para inversores externos pero prioriza control político.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El blanqueo no impactó como se esperaba</strong> (menos de u$s 1.000M en depósitos): la desconfianza estructural persiste. El régimen "Inocencia Fiscal" puede excluir a quienes blanquearon, generando incertidumbre fiscal adicional.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 02 LECTURA DE MERCADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Carry Consolidado con Tensión Crediticia Creciente</div>
+      <div class="card-content">
+        <p>El mercado está en un régimen de <strong>carry consolidado con tensión crediticia creciente por debajo de la superficie</strong>. La narrativa oficial es la de una desinflación exitosa con ancla cambiaria sostenida, baja de tasas y reactivación del crédito. El mercado financiero está "comprando" esa narrativa — la caída de la demanda de cobertura en futuros y el tipo de cambio estable lo demuestran. Pero la realidad del sistema bancario cuenta otra historia: el crédito creció explosivamente, la mora lo siguió, y ahora los bancos están atrapados entre tasas pasivas que bajan por mandato y tasas activas que no pueden bajar porque el riesgo crediticio real no cedió.</p>
+        <p>El efecto global también suma: el dólar se apreció entre 0,3% y 1% contra todas las monedas del mundo, lo que indica que la suba del dólar financiero local de inicio de mes fue más ruido externo que señal local de stress.</p>
+        <p>La narrativa implícita que el mercado está construyendo: <strong>"Argentina estabilizó, el carry tiene vida todavía, pero hay que monitorear el crédito como variable de riesgo sistémico latente."</strong> Las privatizaciones y el FGS/ANSES invirtiendo en hipotecas UVA son señales de que el Gobierno necesita capital fresco para sostener la agenda reformista.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li class="tension-item">
+        <strong>Tasas pasivas bajan, tasas activas no</strong>
+        La política monetaria está siendo literalmente bloqueada por la calidad de cartera. El BCRA puede bajar la tasa de política, pero el spread bancario se amplía. Esto no es solucionable con más baja de tasas; requiere saneamiento de cartera o quitas.
+      </li>
+      <li class="tension-item">
+        <strong>Mora en 13,2% vs. narrativa de estabilización</strong>
+        El número supera todos los picos históricos. El 71% de la mora está en situaciones 3, 4 y 5 (recupero incierto a irrecuperable). Los hogares pagan la estabilización en cuotas que ya no pueden honrar; las empresas resisten mejor.
+      </li>
+      <li class="tension-item">
+        <strong>El BCRA desarmó posición en dólar futuro</strong>
+        Esto libera presupuesto de intervención, pero también elimina una señal de commitment sobre el tipo de cambio. El mercado puede leer esto como positivo (confianza en el ancla) o como reducción del "seguro" implícito.
+      </li>
+      <li class="tension-item">
+        <strong>Blanqueo fracasado como fuente de reservas</strong>
+        Menos de u$s 1.000M en depósitos, muy por debajo de expectativas. Se agrega la trampa fiscal del régimen "Inocencia Fiscal": quienes blanquearon podrían quedar excluidos, lo que genera litigiosidad y desconfianza adicional.
+      </li>
+      <li class="tension-item">
+        <strong>Privatizaciones sin CIADI</strong>
+        El Gobierno elige legislación local para disputas en privatizaciones. Esto espanta al inversor extranjero institucional y concentra el pool de compradores en capital local/blanqueado. Comprime valuaciones y aumenta el riesgo de conflictos post-venta.
+      </li>
+      <li class="tension-item">
+        <strong>FGS como comprador de hipotecas y presión previsional</strong>
+        La tendencia de aportantes por jubilado hacia 2050 es insostenible. La discusión sobre el FGS comprando hipotecas es la primera señal de que se empieza a usar el stock de reservas previsionales para financiar la política económica.
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 04 IMPACTO EN VARIABLES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Tipo de Cambio</div>
+      <div class="card-content">Oficial en $1.425 sin movimiento. MEP y CCL levemente a la baja (-0,23% y -0,13%), en línea con la apreciación global del dólar. La brecha MEP/oficial en ~0,8% es mínima histórica en este ciclo, confirmando el dominio del carry y la ausencia de presión devaluatoria inmediata. El blue a $1.405 opera por debajo del oficial — situación técnicamente anómala que refleja el exceso de oferta de dólares físicos post-blanqueo.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas</div>
+      <div class="card-content">El corto se comprime por mandato del BCRA (baja de tasas pasivas). El largo todavía no cede porque los bancos no pueden reducir márgenes activos sin absorber la mora. Esto genera una curva potencialmente <strong>invertida en términos reales</strong>: el costo del crédito al consumo queda alto, mientras que los instrumentos de inversión en pesos rinden menos. Riesgo de desincentivo al ahorro en pesos y de fuga hacia UVA.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada</div>
+      <div class="card-content">El mercado anticipa dato de abril a la baja. Las tarifas de gas de mayo tienen descuento del 25%, des-inflacionario en el corto plazo pero crea un subsidio implícito que complica el balance fiscal futuro. El riesgo inflacionario de mediano plazo está en la dinámica salarial (paritarias pendientes) y en cómo el crédito impago se procese — si hay condonaciones masivas, hay impulso monetario latente.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Liquidez y Riesgo Soberano</div>
+      <div class="card-content">El blanqueo no aportó la liquidez esperada en dólares. En pesos, la baja de encajes libera liquidez bancaria que no está siendo canalizada a crédito nuevo porque el riesgo de cartera inhibe la originación. Inversores de Wall Street recomiendan acciones argentinas (5 recomendaciones de compra, +34% en USD), lo que implica que el riesgo soberano percibido externamente sigue comprimido.</div>
+    </div>
+  </div>
+
+  <!-- § 05 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card pos-top">
+        <div class="pos-label">Se Benefician</div>
+        <div class="pos-text">Acciones bancarias si la mora empieza a estabilizarse (el mercado puede leer el "pico de mora" como punto de inflexión positivo). Instrumentos UVA en tramo corto-medio. Hipotecas UVA en el ecosistema secundario si el FGS entra como comprador. Activos reales (real estate en USD) dada la baja de tasas. Acciones de empresas de energía/servicios que serán privatizadas. <span class="tag pos">POSITIVOS</span></div>
+      </div>
+      <div class="pos-card neg-top">
+        <div class="pos-label">Empeoran</div>
+        <div class="pos-text">Carteras con exposición a crédito al consumo (cuotificado, personal, tarjetas) por mora 13,2% en ascenso. Posiciones en bancos medianos con exposición a provincias del interior (La Rioja, Santa Cruz, Catamarca, Santiago del Estero tienen mora estructuralmente alta). <span class="tag neg">RIESGOSOS</span></div>
+      </div>
+      <div class="pos-card gold-top">
+        <div class="pos-label">Empieza a Tener Valor</div>
+        <div class="pos-text">Cobertura en CER para el tramo de 6-18 meses si la inflación de mayo/junio sorprende al alza. USD linked en sector privado ante privatizaciones y mayor actividad exportadora. Crédito hipotecario UVA como activo si hay securitización con ANSES como ancla compradora. <span class="tag gold">COBERTURA</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Pierden Sentido</div>
+        <div class="pos-text">Cobertura cambiaria vía dólar futuro corto (el BCRA ya no sostiene ese mercado y la demanda colapsó). Posiciones en tata fija largo plazo en pesos si la mora obliga a los bancos a mantener márgenes activos altos a pesar de la política monetaria. <span class="tag neg">SALIR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 06 ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas Ejecutivas</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <strong>Mora bancaria sistémica — posible programa de saneamiento</strong>
+        Con 13,2% de irregularidad y 71% irrecuperable, el sistema podría requerir un programa de saneamiento de cartera. Si el BCRA baja tasas más agresivamente sin resolver la mora, el spread se amplía aún más y el crédito se contrae. <span class="tag neg">CRÍTICO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Privatizaciones sin CIADI</strong>
+        Si los compradores locales no pueden financiar las adquisiciones o los precios son considerados bajos, puede surgir conflicto post-venta que genere incertidumbre sobre el régimen de inversiones. <span class="tag neg">MEDIO-ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>FGS como comprador de hipotecas</strong>
+        Usar el fondo de garantía de sustentabilidad para activos ilíquidos como hipotecas UVA concentra riesgo en el sistema previsional. Si hay un stress inmobiliario o salarial, el FGS pierde valor. <span class="tag neg">MEDIO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Blanqueo fallido + Inocencia Fiscal</strong>
+        La combinación de bajo impacto del blanqueo y el riesgo de exclusión del nuevo régimen fiscal puede generar una ola de litigios y una nueva desconfianza en instrumentos de regularización impositiva. <span class="tag neg">MEDIO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Dato de inflación de abril</strong>
+        Si el número no es tan bajo como anticipan los especialistas, el carry en pesos se deteriora abruptamente y puede haber rotación rápida hacia activos en USD o CER. <span class="tag neg">ALTO</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 07 NO PRICEADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight-neg">
+      <strong>La mora bancaria en 13,2% no está reflejada en los precios de acciones bancarias ni en el spread crediticio implícito en el mercado de bonos corporativos.</strong> El mercado sigue leyendo el boom del crédito como señal de expansión, no como acumulación de riesgo. Cuando la mora deje de "subir" y empiece a "realizarse" (castigos contables, exigencias de provisiones, restricciones del BCRA), el impacto sobre el capital bancario puede ser no lineal.
+    </div>
+    <div class="highlight">
+      <strong>El costo fiscal de sostener el descuento del 25% en tarifas de gas y la presión previsional de PAMI</strong> son dos ítems que pueden complicar la consolidación fiscal del segundo semestre y que el mercado todavía no está incorporando en la prima de riesgo soberano.
+    </div>
+  </div>
+
+  <!-- § 08 CFO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — CFO de Aseguradora en Argentina</span>
+    </div>
+
+    <!-- Pesos vs USD -->
+    <div style="margin-bottom:4px;">
+      <div class="ins-tab pesos">Cartera en Pesos vs. USD</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">Pesos — punto de inflexión en rendimiento</div>
+      <div class="ins-text">La baja de tasas pasivas comprime el rendimiento de plazo fijo y Lecap/Letes cortas. El carry todavía es positivo en términos reales (si la inflación de abril confirma la baja), pero el horizonte de rendimiento se acorta. Con tasas pasivas cayendo, el escenario de reinversión empeora. <strong>Acortar duration en tata fija, no renovar automáticamente en Lecap larga; concentrar en tramo 30-90 días mientras se observa el dato de inflación.</strong></div>
+
+      <div class="ins-sub">USD — oportunidad de dolarización táctica</div>
+      <div class="ins-text">El blue por debajo del oficial y CCL comprimido ofrecen oportunidades de dolarización táctica a precios históricamente bajos en términos de spread. Las privatizaciones pueden ofrecer activos con flujo en USD (concesiones, utilities). <strong>Aprovechar la brecha comprimida para aumentar posición USD en activos reales o bonos soberanos hard dollar tramo 2027-2029 mientras el riesgo soberano está bajo.</strong></div>
+    </div>
+
+    <!-- CER, tasa fija, USD linked -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab cer">CER · Tasa Fija · USD Linked</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">CER — mantener posición estructural</div>
+      <div class="ins-text">Para seguros con pasivos indexados (reservas ajustadas por CER), el matching natural sigue siendo CER en tramo 180-360 días. La desaceleración de inflación beneficia el CER en términos de cupón real. <strong>No modificar esta posición estructural.</strong></div>
+
+      <div class="ins-sub">Tasa fija — reducir exposición larga</div>
+      <div class="ins-text">Con tasas pasivas bajando y bancos incapaces de trasladar esa baja (por mora), el spread activo-pasivo se mantiene alto. Favorece instrumentos de tata fija a corto plazo (hasta 60 días) pero castiga posiciones largas. <strong>Reducir exposición a tata fija larga >6 meses.</strong></div>
+
+      <div class="ins-sub">USD Linked — posicionamiento moderado como cobertura asimétrica</div>
+      <div class="ins-text">Con el tipo de cambio oficial estático y la brecha en mínimos, el USD linked pierde atractivo de corto plazo. Sin embargo, si las privatizaciones generan flujos en USD y el Gobierno necesita mantener competitividad cambiaria post-acuerdo, el tipo de cambio oficial tiene presión a depreciarse en el segundo semestre. <strong>Posicionamiento moderado en USD linked 2026-2027 como cobertura asimétrica de bajo costo.</strong></div>
+    </div>
+
+    <!-- Riesgo duration y liquidez -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab riesgo">Riesgo de Duration · Liquidez</div>
+    </div>
+    <div class="ins-body" style="border-left:3px solid var(--neg);background:rgba(239,108,108,.03);">
+      <div class="ins-sub">Duration — corta en pesos, moderada en USD</div>
+      <div class="ins-text">La incertidumbre sobre la trayectoria de tasas (el BCRA baja pero los bancos no siguen) y sobre la inflación de mayo/junio hace que extender duration en pesos sea un riesgo no remunerado. En USD, la compresión de riesgo país permite capturar valor en el tramo medio de la curva soberana.</div>
+
+      <div class="ins-sub">Liquidez — más alta de lo que parece en el agregado</div>
+      <div class="ins-text">La mora bancaria en 13,2% implica que una parte significativa de los activos del sistema son ilíquidos o de cobro incierto. Si el BCRA endurece los criterios de clasificación de cartera o exige más provisiones, los bancos necesitarán capital, lo que puede presionar a ventas de activos financieros y comprimir liquidez del mercado de pesos.<br/><br/><strong>Mantener colchón de liquidez en activos líquidos (Lecap cortas, FCI money market en pesos) equivalente a al menos el 15-20% de la cartera técnica. Evitar sobreexposición a FCI con participación en cartera bancaria de deudores problemáticos.</strong> <span class="tag neg">CRÍTICO</span></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis basado en noticias publicadas en El Cronista el 5 de mayo de 2026 hasta las 10:30 hs<br/>
+    Cotizaciones de referencia: BNA $1.425 | Blue $1.405 | CCL $1.492 | MEP $1.437<br/>
+    No constituye asesoramiento financiero
+  </footer>
+
+</div>
+</body>
+</html>
