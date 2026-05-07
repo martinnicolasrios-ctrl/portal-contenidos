@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 07/05/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; }
+
+    /* KPI STRIP */
+    .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+    .kpi { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; }
+    .kpi.neg-top { border-top-color: var(--neg); }
+    .kpi.gold-top { border-top-color: var(--gold); }
+    .kpi.pos-top { border-top-color: var(--pos); }
+    .kpi-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+    .kpi-value { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+    .kpi-value.neg { color: var(--neg); }
+    .kpi-value.pos { color: var(--pos); }
+    .kpi-value.gold { color: var(--gold); }
+    .kpi-note { font-size: 10px; color: var(--ink-3); line-height: 1.4; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+
+    /* CARDS */
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
+    .card-pos { border-left: 3px solid var(--pos); background: rgba(91,211,154,.04); }
+    .card-pos .card-header { color: var(--pos); }
+
+    /* FITCH BADGE */
+    .fitch-box { display: flex; align-items: center; gap: 20px; background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--pos); border-radius: 4px; padding: 18px 24px; margin-bottom: 20px; }
+    .fitch-rating { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700; color: var(--pos); line-height: 1; flex-shrink: 0; }
+    .fitch-sep { width: 1px; height: 40px; background: var(--line); flex-shrink: 0; }
+    .fitch-info { flex: 1; }
+    .fitch-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+    .fitch-desc { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+    .fitch-desc strong { color: var(--ink); font-weight: 600; }
+
+    /* BULLETS */
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
+
+    /* HIGHLIGHTS */
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
+    .highlight-neg { background: rgba(239,108,108,.04); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-neg strong { color: var(--ink); font-weight: 600; }
+
+    /* TENSIONS */
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+
+    /* ALERTS */
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; display: block; margin-bottom: 4px; }
+
+    /* POS GRID */
+    .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pos-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 16px 18px; }
+    .pos-card.neg-top { border-top-color: var(--neg); }
+    .pos-card.gold-top { border-top-color: var(--gold); }
+    .pos-card.pos-top { border-top-color: var(--pos); }
+    .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .pos-text { font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .pos-text strong { color: var(--ink); font-weight: 600; }
+
+    /* INSURANCE */
+    .ins-tab { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 8px 18px; border-radius: 4px 4px 0 0; margin-bottom: -1px; }
+    .ins-tab.pesos { background: rgba(52,187,218,.15); color: var(--accent); border: 1px solid rgba(52,187,218,.2); border-bottom: 1px solid var(--bg-2); }
+    .ins-tab.usd { background: rgba(91,211,154,.12); color: var(--pos); border: 1px solid rgba(91,211,154,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-tab.riesgo { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-body { background: var(--bg-2); border: 1px solid var(--line); border-radius: 0 4px 4px 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .ins-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; margin-top: 14px; }
+    .ins-sub:first-child { margin-top: 0; }
+    .ins-text { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 8px; }
+    .ins-text strong { color: var(--ink); font-weight: 600; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 5px; margin-top: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
+
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
+
+    @media (max-width: 720px) {
+      .header-title { font-size: 22px; }
+      .section-title { font-size: 18px; }
+      .kpi-strip { grid-template-columns: 1fr 1fr; }
+      .pos-grid { grid-template-columns: 1fr; }
+      .fitch-box { flex-direction: column; align-items: flex-start; gap: 10px; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 22px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Mercado — El Cronista Comercial · Jueves 7 de mayo de 2026</div>
+    <div class="header-title">El Upgrade de Fitch Prende la Mecha, pero el Rally Choca contra un Techo Estructural que el Mercado Subestima</div>
+    <div class="header-meta">7 de mayo de 2026 · Análisis regulatorio y financiero</div>
+  </div>
+
+  <!-- FITCH BADGE -->
+  <div class="fitch-box">
+    <div class="fitch-rating">B-</div>
+    <div class="fitch-sep"></div>
+    <div class="fitch-info">
+      <div class="fitch-label">Reacción de Mercado — 07/05/2026</div>
+      <div class="fitch-desc">Merval <strong>+4,2% en USD</strong> · ADRs hasta <strong>+10%</strong> (Macro +10,3%) · Bonos soberanos <strong>+2,8%</strong> en exterior · Riesgo país cayó ~40 pb a <strong>514 pb</strong> · GD30 +1,2% · GD35/GD38 +2% · CABA colocó u$s 500M a 10Y al 7,325% (demanda 6x)</div>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">BNA Oficial</div>
+      <div class="kpi-value">$1.410</div>
+      <div class="kpi-note">-0,35% · ancla intacta</div>
+    </div>
+    <div class="kpi gold-top">
+      <div class="kpi-label">MEP</div>
+      <div class="kpi-value gold">$1.427</div>
+      <div class="kpi-note">-0,05% · spread ~1,2%</div>
+    </div>
+    <div class="kpi neg-top">
+      <div class="kpi-label">Blue</div>
+      <div class="kpi-value neg">$1.400</div>
+      <div class="kpi-note">-0,71% · por debajo del BNA</div>
+    </div>
+    <div class="kpi neg-top">
+      <div class="kpi-label">Riesgo País</div>
+      <div class="kpi-value neg">514 pb</div>
+      <div class="kpi-note">Umbral crítico: 500 pb</div>
+    </div>
+    <div class="kpi pos-top">
+      <div class="kpi-label">CABA Bono 10Y</div>
+      <div class="kpi-value pos">7,325%</div>
+      <div class="kpi-note">Tasa mínima histórica · 6x demanda</div>
+    </div>
+  </div>
+
+  <!-- § 01 RESUMEN -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Fitch subió la nota de Argentina de CCC+ a B-</strong> (primera vez en categoría B desde 2019). Impacto inmediato: Merval +4,2% en dólares, ADRs hasta +10%, bonos soberanos +2,8% en exterior, riesgo país cayó ~40 puntos a 514 pb.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>CABA colocó u$s 500 millones a 10 años al 7,325%</strong>, la tasa más baja de su historia (vs. 7,8% en noviembre). Demanda fue 6x la oferta. Señal directa de que el upgrade soberano ya se transmite a subsoberanos y abre ventana para el Tesoro Nacional.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Barclays publica un informe duro ("A drop of water in the desert"):</strong> la baja de tasas reales es insuficiente para reactivar la economía real. El crédito privado en Argentina es el más bajo de los 44 países del BIS. Salarios reales en caída, consumo de supermercados por debajo de mínimos de la era Fernández.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Banco Nación licita hoy u$s 1.500 millones</strong> en tres clases (TAMAR+margen en $, hard dollar a 3 años, UVA a 2 años). Primera emisión de este tipo en 30 años. El plazo fijo UVA se duplicó en depósitos en un mes.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El piso de 500 pb de riesgo país es el umbral crítico</strong>: perforarlo habilitaría acceso a fondos high yield internacionales. Moody's (Caa1) y S&P (CCC+) aún no subieron; el "middle rating" sigue por debajo de B, lo que limita el flujo institucional.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 02 LECTURA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">El Rally es Legítimo en Dirección, no en Magnitud</div>
+      <div class="card-content">
+        <p>El mercado está procesando un evento real —el upgrade de Fitch— pero sobreestimando su capacidad de destrabar flujos en lo inmediato. El rally es legítimo en dirección pero su sostenibilidad depende de tres condiciones que todavía no se cumplen: que S&P o Moody's también suban (para que el "middle rating" llegue a B), que el riesgo país perfore los 500 pb sostenidamente (hoy en 514), y que el Gobierno logre reabrir el mercado de deuda soberano internacional.</p>
+        <p>Lo que el mercado está celebrando hoy es simultáneamente contradicho por dos fuentes de alto nivel: <strong>Barclays y Moody's</strong>. Ambas dicen que los fundamentos fiscales mejoraron, pero que la economía real no tracciona, los salarios reales caen, el crédito no llega a la economía, y el riesgo político empieza a erosionar el "premio de confianza" que Milei tenía. Barclays explícitamente deja abierta la puerta a un repricing de riesgo si estas tendencias continúan.</p>
+        <p>El régimen actual es un <strong>carry en transición hacia apertura de mercado de capitales</strong>, con el dólar como ancla nominal y las tasas reales en descenso. El próximo catalizador de calificación —S&P o Moody's— es el que definirá si el régimen se consolida o entra en una meseta de espera electoral.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li class="tension-item">
+        <strong>Fitch vs. Moody's/S&P — el "middle rating" sigue en CCC</strong>
+        Fitch subió a B-, pero S&P sigue en CCC+ y Moody's en Caa1. El "middle rating" que usan los fondos para elegibilidad sigue debajo de B. El upgrade no habilita todavía flujos institucionales masivos. El mercado está corriendo un paso por delante.
+      </li>
+      <li class="tension-item">
+        <strong>Carry vs. tipo de cambio real</strong>
+        Barclays, Kiguel y Gadano coinciden: el TCR apreciado es el problema estructural no resuelto. El dólar planchado sostiene la desinflación pero destruye competitividad en la industria manufacturera y el empleo formal. Sin corrección de TCR, el carry sigue vivo pero la base real se deteriora.
+      </li>
+      <li class="tension-item">
+        <strong>Tasas descendentes vs. plazo fijo UVA en auge</strong>
+        Los bancos bajan tasas nominales (15%-25% TNA) pero los depósitos UVA se duplicaron en un mes (de $556 mil millones a $1 billón en abril). La demanda de cobertura CER desde el ahorrista minorista es explícita. Esto contradice la narrativa de inflación convergente.
+      </li>
+      <li class="tension-item">
+        <strong>Riesgo político subestimado</strong>
+        Barclays usa el índice Di Tella (cayó 12% en abril, niveles de Macri julio 2018). Polymarket da 47% a Milei vs. 41% Kicillof para 2027. Adorni bajo fuego, cambio de ministro del Interior (Santilli). El mercado priceó el upgrade de Fitch pero no está pricando el deterioro político.
+      </li>
+      <li class="tension-item">
+        <strong>Crédito vs. morosidad bancaria</strong>
+        Barclays documenta que los préstamos en situación irregular están en máximos históricos para hogares. El sistema bancario ya está al límite de lo que puede expandir con el nivel actual de depósitos. Argentina tiene los depósitos bancarios más bajos del BIS (12% del PBI vs. 80% Chile).
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 04 IMPACTO VARIABLES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Tipo de Cambio</div>
+      <div class="card-content">Oficial $1.410 (-0,35%). MEP $1.427 (-0,05%). Blue $1.400 (-0,71%) — ya por debajo del BNA: dato inusual que señala exceso de oferta de dólares billete en el segmento informal, posiblemente vinculado al Régimen de Inocencia Fiscal o ingreso de divisas por liquidación de exportaciones. Spread MEP/BNA ~1,2%: muy comprimido, baja presión sobre la brecha. <strong>El upgrade de Fitch no movió el tipo de cambio</strong>, confirmando que el cepo absorbe la presión.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas</div>
+      <div class="card-content">Plazo fijo: 15%-25% TNA según banco (muy disperso). Tasas reales negativas contra inflación ~3% mensual. El plazo fijo UVA es el único instrumento con rendimiento real positivo — por eso explotó en demanda. Bonos soberanos: tramo corto (GD29) 7,7%-8,3%; tramo medio (GD35/38) 7,5%-8%. <strong>Curva levemente invertida en algunos tramos</strong> → el mercado paga prima de corto plazo, consistente con incertidumbre de deuda 2027-2028.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada</div>
+      <div class="card-content">Gadano dice que el Gobierno no logra perforar el piso de 2% mensual por "componentes inerciales". Kiguel admite que "cómo bajamos de 3% a 1% mensual todavía no está claro". El plazo fijo UVA duplicando depósitos en un mes es evidencia de mercado de que el ahorrista no cree en la convergencia rápida.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo Soberano — Umbral 500 pb</div>
+      <div class="card-content">Riesgo país: 514 pb (cayó ~40 pts). El umbral crítico es 500 pb: por debajo habilita reingreso a fondos high yield. Vencimientos 2026: u$s 15.000M. 2027: saltan a u$s 30.000M. <strong>La necesidad de reabrir el mercado de deuda soberano internacional es urgente y creciente.</strong> El upgrade de Fitch acercó la posibilidad, pero sin S&P y Moody's siguiendo, el flujo destrabbante es marginal.</div>
+    </div>
+  </div>
+
+  <!-- § 05 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card pos-top">
+        <div class="pos-label">Se Benefician</div>
+        <div class="pos-text"><strong>GD35/GD38</strong> (tramo medio): carry + upside de upgrade adicional de S&P/Moody's. <strong>ADRs bancos</strong>: Macro +10,3% fue el gran ganador. <strong>Bonos CABA</strong>: colocación al 7,325% marca precio de referencia que comprime spreads en CABA 2031/2032. <strong>Instrumentos CER/UVA</strong> de corto-mediano plazo. <span class="tag pos">POSITIVOS</span></div>
+      </div>
+      <div class="pos-card neg-top">
+        <div class="pos-label">Se Deterioran</div>
+        <div class="pos-text"><strong>Acciones energéticas/petroleras</strong>: Vista -4,8%, YPF -1,6% por ruido geopolítico en Medio Oriente (especulaciones sobre acuerdo EEUU-Irán que podría bajar el petróleo). <strong>Tasa fija nominal</strong>: con inflación pegajosa y tasas en caída libre (15%-25% TNA), el plazo fijo clásico destruye valor real. <span class="tag neg">RIESGOSOS</span></div>
+      </div>
+      <div class="pos-card gold-top">
+        <div class="pos-label">Cobertura que Tiene Valor</div>
+        <div class="pos-text"><strong>Dólar linked de mediano plazo</strong>: si el Gobierno decide en algún punto de 2026-2027 acelerar la corrección cambiaria, los bonos DL y las ON dollar-linked de empresas serían los ganadores. La ON Banco Nación clase 2 (hard dollar 36 meses) es una apuesta en esa dirección. <span class="tag gold">COBERTURA</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Pierde Sentido</div>
+        <div class="pos-text">El plazo fijo a tasa fija en bancos top (Santander 15%, Galicia 18%) con inflación en 2-3% mensual es rendimiento real negativo. <strong>Cualquier cartera overweight en tasa fija nominal corta en pesos necesita revisión urgente.</strong> <span class="tag neg">SALIR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 06 ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas Ejecutivas</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <strong>El riesgo político es la variable más subestimada del rally</strong>
+        Barclays documenta caída de 12% en confianza en el Gobierno en abril. Polymarket da 47% vs. 41% para 2027. El escándalo Adorni y el cambio de ministro del Interior son señales de fragilidad institucional. Si el riesgo político se acelera antes de las elecciones, el "premium Milei" se evapora y los bonos se reprician. <span class="tag neg">CRÍTICO</span>
+      </li>
+      <li class="alert-item">
+        <strong>El "middle rating" sigue en CCC — próximas visitas de calificadoras son el evento del mes</strong>
+        Hasta que S&P o Moody's no suban, los fondos con mandato B no pueden comprar Argentina sistemáticamente. Las visitas de calificadoras a Buenos Aires en semanas son el evento más importante del mes. Una sola no alcanza; necesitan dos upgrades. <span class="tag neg">CRÍTICO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Perfil de vencimientos 2027 (u$s 30.000M) exige acceso soberano antes de fin de año</strong>
+        El Gobierno tiene una ventana acotada. Si el rally de bonos no se consolida por debajo de 500 pb, el refinanciamiento de 2027 se vuelve un problema estructural. <span class="tag neg">ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Inflación pegajosa amenaza el ancla nominal</strong>
+        Kiguel dice que bajar del 2-3% mensual "no está claro cómo se va a hacer". Si la inflación no converge, el Gobierno enfrentará el dilema: sube tasas (hiere el carry) o tolera la inflación (deteriora salarios reales). No hay salida fácil. <span class="tag neg">ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Blue en $1.400, por debajo del BNA ($1.410) — señal atípica que merece seguimiento</strong>
+        Puede indicar ingreso neto de divisas por Inocencia Fiscal, liquidación de cosecha o arbitraje. Si se revierte bruscamente, puede señalar salida de capitales o pérdida de confianza. <span class="tag gold">MONITOREAR</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 07 NO PRICEADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight-neg">
+      <strong>El trade-off entre TCR y empleo formal.</strong> Barclays lo documenta con precisión: el tipo de cambio real apreciado destruye empleo en la industria manufacturera. El mercado mira los bonos y el Merval, pero no está pricando el costo social acumulado que puede gatillar un cambio de humor político antes de octubre 2027.
+    </div>
+    <div class="highlight-neg">
+      <strong>El problema estructural de la base de depósitos bancarios.</strong> Argentina tiene los depósitos bancarios más bajos del BIS (12% del PBI vs. 80% Chile, 69% Brasil). Cualquier expansión crediticia tiene un techo físico. La política monetaria es casi irrelevante como herramienta de reactivación. El mercado lo ignora cuando celebra la baja de tasas del BCRA.
+    </div>
+    <div class="highlight">
+      <strong>El riesgo de refinanciamiento 2027.</strong> Los vencimientos saltan de u$s 15.000M (2026) a u$s 30.000M (2027). Si el acceso al mercado internacional soberano no se reabre antes de fin de 2026, el Gobierno puede verse forzado a opciones que distorsionan el mercado doméstico.
+    </div>
+  </div>
+
+  <!-- § 08 CFO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — CFO de Compañía de Seguros</span>
+    </div>
+
+    <!-- Pesos -->
+    <div style="margin-bottom:4px;">
+      <div class="ins-tab pesos">Cartera en Pesos</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">CER corto (hasta 12 meses) — MANTENER / INCREMENTAR</div>
+      <div class="ins-text">La explosión de depósitos UVA confirma que el mercado de pesos no cree en convergencia inflacionaria rápida. Para seguros de largo plazo con pasivos en pesos, el CER corto es la posición core. <span class="tag pos">CORE</span></div>
+
+      <div class="ins-sub">CER mediano (12-36 meses) — CAUTELA</div>
+      <div class="ins-text">Si la inflación converge más rápido de lo esperado (tail de riesgo), el CER largo pierde. Mantener exposición moderada, no sobreponderar. La ON clase 1 del Banco Nación (TAMAR + margen, 12 meses) puede ser útil para parking de liquidez en pesos. <span class="tag gold">MODERADO</span></div>
+
+      <div class="ins-sub">Tata fija nominal — REDUCIR AGRESIVAMENTE</div>
+      <div class="ins-text">Con bancos top pagando 15-18% TNA y la inflación en 2-3% mensual, es rendimiento real negativo. Solo tiene sentido si se espera desinflación ultra rápida — no el escenario base de Kiguel/Barclays/Gadano. <span class="tag neg">REDUCIR</span></div>
+    </div>
+
+    <!-- USD -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab usd">Cartera en USD</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">GD35/GD38 tramo medio — OVERWEIGHT MODERADO</div>
+      <div class="ins-text">Con upgrade Fitch ya digerido, hay upside adicional si S&P o Moody's siguen. Para seguros con reservas técnicas en dólares, el GD35 ofrece yield ~7,5% con compresión de spread adicional posible hasta los ~350 pb (nivel B+). <span class="tag pos">OVERWEIGHT</span></div>
+
+      <div class="ins-sub">ON corporativas hard dollar — SELECTIVA</div>
+      <div class="ins-text">ON con buena calidad crediticia (energía, agroindustria) en hard dollar a 24-36 meses son atractivas. La ON clase 2 del BNA (hard dollar 36 meses) merece análisis: compite con el Bonar 2028; el mercado la ve "complicada" en precio — evaluar spread vs. soberano.</div>
+
+      <div class="ins-sub">Bonos CABA — BENCHMARK DEL DÍA</div>
+      <div class="ins-text">La colocación al 7,325% a 10 años marca precio de referencia. Los bonos CABA 2031/2032 existentes probablemente compriman spreads. Para seguros con horizonte calzado, CABA tiene calificación crediticia propia superior al soberano. <span class="tag blue">ATRACTIVO</span></div>
+    </div>
+
+    <!-- Riesgo -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab riesgo">Riesgo de Duration · Liquidez</div>
+    </div>
+    <div class="ins-body" style="border-left:3px solid var(--neg);background:rgba(239,108,108,.03);">
+      <div class="ins-sub">Duration en pesos — ALARMA</div>
+      <div class="ins-text">Con inflación pegajosa y tasas en caída, el mercado puede tener un shock si la inflación no converge o si el Gobierno decide subir tasas para defenderla. <strong>No extender duration en tata fija nominal más allá de 90-180 días.</strong> En CER, el plazo óptimo es 6-18 meses.</div>
+
+      <div class="ins-sub">Duration en USD — MODERADA</div>
+      <div class="ins-text">El tramo medio de la curva soberana (GD35/GD38) ofrece mejor relación riesgo/retorno que el largo. No extender a GD2046 sin diversificación dado el perfil de vencimientos 2027.</div>
+
+      <div class="ins-sub">Riesgo de liquidez — Ruido político como trigger</div>
+      <div class="ins-text">Si el ruido político se acelera (escándalo Adorni, debilidad electoral) puede haber una corrida hacia dólares que comprima la liquidez en pesos. <strong>Mantener colchón en activos líquidos (Lecaps, FCI money market CER) equivalente al 15-20% de la cartera técnica.</strong> La baja del Blue por debajo del BNA puede revertirse: mantener stops o escalonar entradas en instrumentos expuestos al tipo de cambio financiero. <span class="tag neg">PRUDENCIA</span></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis elaborado sobre la cobertura de El Cronista del 7 de mayo de 2026<br/>
+    Cotizaciones de apertura 7/5/2026: BNA $1.410 | Blue $1.400 | MEP $1.427 | CCL $1.483 | Riesgo País 514 pb<br/>
+    No constituye asesoramiento financiero
+  </footer>
+
+</div>
+</body>
+</html>
