@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial 08/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: radial-gradient(ellipse 80% 60% at 0% 0%, rgba(52,187,218,0.06) 0%, transparent 60%), var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  .wrapper {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  /* HEADER */
+  header {
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+
+  .date-stamp {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .section-block {
+    margin-bottom: 52px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-urgent {
+    border-left: 2px solid var(--neg);
+  }
+
+  .card-regulatory {
+    border-left: 2px solid var(--accent);
+  }
+
+  .card-financial {
+    border-left: 2px solid var(--gold);
+  }
+
+  .card-norm {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .card-norm-urgent { color: var(--accent); }
+  .card-norm-regulatory { color: var(--accent); }
+  .card-norm-financial { color: var(--gold); }
+
+  .card-org {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .btn-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+
+  .btn-link:hover { opacity: 0.75; }
+
+  .btn-bora-neg {
+    color: var(--neg);
+    border: 1px solid rgba(239,108,108,0.3);
+  }
+
+  .btn-bora-accent {
+    color: var(--accent);
+    border: 1px solid rgba(52,187,218,0.3);
+  }
+
+  .btn-bora-gold {
+    color: var(--gold);
+    border: 1px solid rgba(232,176,74,0.3);
+  }
+
+  .btn-kronos {
+    color: var(--ink-3);
+    border: 1px solid rgba(123,145,163,0.3);
+  }
+
+  /* VENCIMIENTOS CHIPS */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+
+  .chip-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .chip-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .chip-action {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-3);
+    padding: 16px 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .wrapper { padding: 32px 20px; }
+    .section-title { font-size: 20px; }
+    .logo { font-size: 22px; }
+    .chips-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo"></div>
+    <div class="subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="date-stamp">08 de mayo de 2026 · Edición matutina</div>
+  </header>
+
+  <!-- SECCIÓN 1: URGENTE -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Urgente</span>
+    </div>
+
+    <!-- Card: SSN Resolución 204/2026 -->
+    <div class="card card-urgent">
+      <div class="card-norm card-norm-urgent">RESOL-2026-204-APN-SSN#MEC</div>
+      <div class="card-org">Superintendencia de Seguros de la Nación</div>
+      <div class="card-title">Recurso de apelación concedido a Providencia Cía. Argentina de Seguros S.A.</div>
+      <div class="card-desc">
+        La SSN resuelve conceder el recurso de apelación interpuesto por Providencia Compañía Argentina de Seguros S.A. respecto de la Resolución RESOL-2026-171-APN-SSN#MEC de fecha 20 de abril de 2026, en relación y en ambos efectos. Si bien se trata de un acto administrativo sobre una entidad del mercado asegurador, el otorgamiento del recurso en ambos efectos suspende la ejecutoriedad de la Resolución 171/2026 hasta tanto se resuelva la apelación, lo que implica que cualquier medida sancionatoria o restrictiva dispuesta por esa resolución queda en suspenso. Las compañías del sector deben monitorear el resultado del recurso, ya que podría sentar precedente sobre el alcance de las facultades sancionatorias de la SSN.
+      </div>
+      <div class="card-footer">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341729/20260508" class="btn-link btn-bora-neg" target="_blank">→ Ver en BORA</a>
+        <a href="https://kronos.ssn.gob.ar/" class="btn-link btn-kronos" target="_blank">→ Kronos SSN · Res. 204</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 2: NOVEDADES REGULATORIAS -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Novedades Regulatorias</span>
+    </div>
+
+    <!-- Card: CNV RG 1138/2026 -->
+    <div class="card card-regulatory">
+      <div class="card-norm card-norm-regulatory">RESGC-2026-1138-APN-DIR#CNV</div>
+      <div class="card-org">Comisión Nacional de Valores</div>
+      <div class="card-title">Modificación Normas NT 2013 — Eximición examen de idoneidad (UADE)</div>
+      <div class="card-desc">
+        La CNV modifica las Normas N.T. 2013 y modificatorias para reconocer a la Universidad Argentina de la Empresa (UADE) como institución cuyos egresados pueden quedar eximidos del examen de idoneidad requerido para el personal que realiza actividades de venta, promoción y asesoramiento al público inversor a través de Agentes Registrados. La modificación impacta en el régimen de capacitación y habilitación del personal del área de inversiones y tesorería de aseguradoras que operen como agentes o a través de agentes registrados en la CNV. Los responsables de Recursos Humanos y Cumplimiento deben actualizar los criterios de acreditación de idoneidad vigentes.
+      </div>
+      <div class="card-footer">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341707/20260508" class="btn-link btn-bora-accent" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Card: SRT Resolución 21/2026 -->
+    <div class="card card-regulatory">
+      <div class="card-norm card-norm-regulatory">RESOL-2026-21-APN-SRT#MCH</div>
+      <div class="card-org">Superintendencia de Riesgos del Trabajo</div>
+      <div class="card-title">Modificación del Régimen de Pago Voluntario en procedimientos sumariales de ART</div>
+      <div class="card-desc">
+        La SRT perfecciona el mecanismo de Pago Voluntario como vía de extinción de procedimientos sumariales aplicables a Aseguradoras de Riesgos del Trabajo (ART), derogando aspectos de las Resoluciones SRT 48/2019 y 51/2024. Se redefinen las condiciones de adhesión en la etapa inicial de los sumarios y se optimiza la tramitación de actuaciones administrativas correctivas. Aunque el impacto primario es sobre las ART, las aseguradoras que operen en el ramo ART o que tengan obligaciones de autoseguro deben revisar sus protocolos internos de respuesta temprana ante procedimientos sancionatorios de la SRT.
+      </div>
+      <div class="card-footer">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341702/20260508" class="btn-link btn-bora-accent" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3: IMPACTO FINANCIERO -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Impacto Financiero</span>
+    </div>
+
+    <!-- Card: BNA Tasas TAMAR -->
+    <div class="card card-financial">
+      <div class="card-norm card-norm-financial">AVISO OFICIAL — ART. 1 DECRETO 13.477/56</div>
+      <div class="card-org">Banco de la Nación Argentina</div>
+      <div class="card-title">Publicación de tasa TAMAR para préstamos con caución de certificados de obra (vigente desde 28/01/2026)</div>
+      <div class="card-desc">
+        El BNA informa que los préstamos con caución de certificados de obras se instrumentan mediante adelantos en cuenta corriente con intereses percibidos por período mensual vencido. Para usuarios Pymes aplica la tasa TAMAR correspondiente a 5 días hábiles anteriores al inicio de cada período más 6 puntos porcentuales anuales. Si bien este aviso no genera cambio normativo directo, la referencia a la tasa TAMAR como benchmark actualizado es relevante para el área de inversiones de aseguradoras, dado que la tasa BNA actúa como referencia para la valuación de activos y el cálculo de rendimientos en carteras de renta fija denominadas en pesos. El área de finanzas debe registrar la evolución de la TAMAR para el seguimiento de inversiones admitidas y proyecciones de calce de reservas.
+      </div>
+      <div class="card-footer">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341722/20260508" class="btn-link btn-bora-gold" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- Card: BCRA Edictos cambiarios — solo referencia -->
+    <div class="card card-financial">
+      <div class="card-norm card-norm-financial">EDICTOS CAMBIARIOS</div>
+      <div class="card-org">Banco Central de la República Argentina</div>
+      <div class="card-title">Publicación de edictos por infracciones cambiarias (Sumarios 8505 y 8398)</div>
+      <div class="card-desc">
+        El BCRA publica dos edictos de citación y emplazamiento en el marco de sumarios por infracción a la Ley de Régimen Penal Cambiario (Ley 19.359 / Decreto 480/95): uno contra Catajuy SRL (Sumario 8505, EX-2023-00180613) y otro contra persona física Laerton Aurelio Bronstrup Kohl (Sumario 8398, EX-2023-00150284). Sin impacto normativo directo en inversiones o reservas de aseguradoras. Se registra a efectos de monitoreo del régimen cambiario: la actividad del BCRA en materia de control de cambios es un indicador del grado de restricción del mercado, relevante para la gestión de activos en moneda extranjera de la cartera de inversiones regulada por la SSN.
+      </div>
+      <div class="card-footer">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341730/20260508" class="btn-link btn-bora-gold" target="_blank">→ Ver en BORA (Sumario 8505)</a>
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341731/20260508" class="btn-link btn-bora-gold" target="_blank">→ Ver en BORA (Sumario 8398)</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4: PRÓXIMOS VENCIMIENTOS -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Próximos Vencimientos</span>
+    </div>
+    <div class="chips-grid">
+
+      <div class="chip">
+        <div class="chip-date">Sin fecha explícita · RESOL 171/2026 SSN</div>
+        <div class="chip-desc">Recurso de apelación de Providencia Cía. de Seguros en trámite ante instancia revisora. Resolución 171/2026 suspendida en ambos efectos.</div>
+        <div class="chip-action">Monitorear resolución del recurso ante SSN</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">Vigente · RG CNV 1138/2026</div>
+        <div class="chip-desc">La modificación a NT 2013 sobre idoneidad UADE entra en vigencia desde publicación. Personal del área de inversiones debe verificar situación de acreditación.</div>
+        <div class="chip-action">Actualizar registros de idoneidad de personal CNV</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">Sin vencimientos críticos en esta edición</div>
+        <div class="chip-desc">No se publicaron en la edición del 08/05/2026 resoluciones SSN con plazos operativos inminentes para presentación de estados contables, cálculo de reservas o valuación de inversiones.</div>
+        <div class="chip-action">Sin acción urgente requerida</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Generado automáticamente · 08/05/2026 · Fuente: Boletín Oficial de la República Argentina
+  </footer>
+
+</div>
+</body>
+</html>

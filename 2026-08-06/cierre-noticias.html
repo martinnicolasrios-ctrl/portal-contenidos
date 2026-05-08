@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis de Mercado — 08/05</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620;
+      --bg-2: #0F1E2B;
+      --bg-3: #17293A;
+      --line: #1E3447;
+      --ink: #F2F6F9;
+      --ink-2: #B5C5D3;
+      --ink-3: #7B91A3;
+      --accent: #34BBDA;
+      --gold: #E8B04A;
+      --pos: #5BD39A;
+      --neg: #EF6C6C;
+      --cer: #9B8AE0;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'Inter', sans-serif;
+      --serif: 'Fraunces', serif;
+    }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%);
+      color: var(--ink);
+      padding: 40px 20px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .deck { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+
+    /* SLIDES */
+    .slide { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .slide-header {
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .slide-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .slide-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .1em;
+    }
+    .slide-body { padding: 24px 28px 28px; }
+
+    /* PORTADA */
+    .slide-cover .slide-header {
+      background: linear-gradient(135deg, var(--bg-3) 0%, var(--bg-2) 50%, rgba(52,187,218,.12) 100%);
+      border-bottom: 1px solid var(--line);
+      padding: 40px 36px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .cover-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .cover-title {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .cover-title span { color: var(--accent); }
+    .cover-subtitle { font-size: 14px; color: var(--ink-2); margin-top: 4px; }
+    .cover-meta { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .cover-meta-item {
+      background: rgba(52,187,218,.08);
+      border: 1px solid rgba(52,187,218,.2);
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .04em;
+    }
+    .slide-cover .slide-body { display: none; }
+
+    /* BULLETS */
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .bullet {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px;
+    }
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 6px;
+      box-shadow: 0 0 6px rgba(52,187,218,.5);
+    }
+    .bullet-text { font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-text strong { font-weight: 600; color: var(--ink); }
+
+    /* HIGHLIGHT NUMBERS */
+    .highlight-number {
+      margin-top: 20px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .highlight-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 4px;
+    }
+    .highlight-value {
+      font-family: var(--mono);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .highlight-value.green { color: var(--pos); }
+    .highlight-value.yellow { color: var(--gold); }
+    .highlight-value.red { color: var(--neg); }
+    .highlight-sep { width: 1px; height: 36px; background: var(--line); }
+
+    /* CURVES GRID */
+    .curves { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .curve-card { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .curve-header {
+      padding: 9px 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--bg-3);
+      color: var(--ink-3);
+    }
+    .curve-header.hd  { background: rgba(52,187,218,.15); color: var(--accent); border-bottom: 1px solid rgba(52,187,218,.2); }
+    .curve-header.ars { background: rgba(91,211,154,.12); color: var(--pos); border-bottom: 1px solid rgba(91,211,154,.2); }
+    .curve-header.cer { background: rgba(155,138,224,.12); color: var(--cer); border-bottom: 1px solid rgba(155,138,224,.2); }
+    .curve-header.dl  { background: rgba(232,176,74,.12); color: var(--gold); border-bottom: 1px solid rgba(232,176,74,.2); }
+    .curve-body {
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+      background: var(--bg-2);
+    }
+    .curve-body strong { font-weight: 600; color: var(--ink); }
+    .curve-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 2px 10px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .badge-up   { background: rgba(91,211,154,.15); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .badge-down { background: rgba(239,108,108,.15); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .badge-flat { background: rgba(52,187,218,.12); color: var(--accent); border: 1px solid rgba(52,187,218,.22); }
+    .badge-warn { background: rgba(232,176,74,.12); color: var(--gold); border: 1px solid rgba(232,176,74,.22); }
+
+    /* SEMAFORO SECTION */
+    .semaforo-section { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    .risk-card {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 16px 18px;
+    }
+    .risk-card.intl { border-left-color: var(--neg); }
+    .risk-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 8px;
+    }
+    .risk-text { font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+    .risk-text strong { color: var(--ink); font-weight: 600; }
+
+    /* CONCLUSION BOX */
+    .conclusion-box {
+      background: rgba(52,187,218,.06);
+      border: 1px solid rgba(52,187,218,.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+    .conclusion-box strong { color: var(--ink); font-weight: 600; }
+
+    /* ANÁLISIS GRID */
+    .analisis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    .analisis-card {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 16px 18px;
+    }
+    .analisis-card.regime   { border-top-color: var(--cer); }
+    .analisis-card.inconsist { border-top-color: var(--neg); }
+    .analisis-card.tactica  { border-top-color: var(--pos); }
+    .analisis-card.cartera  { border-top-color: var(--gold); }
+    .analisis-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 10px;
+    }
+    .analisis-text { font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .analisis-text strong { color: var(--ink); font-weight: 600; }
+
+    /* SEMAFORO DISPLAY */
+    .semaforo-display {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 18px 24px;
+    }
+    .semaforo-light {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 16px 4px rgba(232,176,74,.5);
+      background: radial-gradient(circle at 38% 35%, #fde68a, #E8B04A 55%, #9a6a00);
+    }
+    .semaforo-light.red {
+      box-shadow: 0 0 16px 4px rgba(239,108,108,.5);
+      background: radial-gradient(circle at 38% 35%, #fca5a5, #EF6C6C 55%, #7f1d1d);
+    }
+    .semaforo-light.green {
+      box-shadow: 0 0 16px 4px rgba(91,211,154,.5);
+      background: radial-gradient(circle at 38% 35%, #86efac, #5BD39A 55%, #14532d);
+    }
+    .semaforo-text { flex: 1; }
+    .semaforo-estado {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .semaforo-estado.red   { color: var(--neg); }
+    .semaforo-estado.green { color: var(--pos); }
+    .semaforo-justif { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+    /* FUTURES TABLE */
+    .futures-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .futures-table th {
+      background: var(--bg-3);
+      color: var(--ink-3);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 9px 12px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .futures-table td {
+      padding: 9px 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(30,52,71,.4);
+      font-family: var(--mono);
+      color: var(--ink-2);
+      font-variant-numeric: tabular-nums;
+    }
+    .futures-table tr:last-child td { border-bottom: none; }
+    .futures-table tr:nth-child(even) td { background: rgba(52,187,218,.02); }
+    .futures-table .neg    { color: var(--neg); font-weight: 600; }
+    .futures-table .pos    { color: var(--pos); font-weight: 600; }
+    .futures-table .ticker { font-weight: 600; color: var(--accent); }
+
+    /* TAGS */
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      margin-right: 4px;
+    }
+    .tag-blue  { background: rgba(52,187,218,.12); color: var(--accent); border: 1px solid rgba(52,187,218,.22); }
+    .tag-green { background: rgba(91,211,154,.12); color: var(--pos); border: 1px solid rgba(91,211,154,.22); }
+    .tag-red   { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.22); }
+
+    /* MACRO ROW */
+    .macro-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+    .macro-item {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 14px 16px;
+    }
+    .macro-item-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 6px;
+    }
+    .macro-item-val {
+      font-family: var(--mono);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
+    }
+    .macro-item-text { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+
+    /* NARRATIVA */
+    .narrativa-box {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 16px 20px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-2);
+    }
+    .narrativa-box strong { color: var(--ink); font-weight: 600; }
+
+    /* NOTA FINAL */
+    .nota {
+      background: var(--bg-3);
+      border-top: 1px solid var(--line);
+      padding: 12px 28px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink-3);
+      line-height: 1.5;
+      letter-spacing: .03em;
+    }
+    .nota strong { color: var(--ink-2); font-weight: 600; }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      .curves, .analisis-grid, .semaforo-section { grid-template-columns: 1fr; }
+      .macro-row { grid-template-columns: 1fr; }
+      .cover-title { font-size: 22px; }
+      .highlight-value { font-size: 18px; }
+      body { padding: 20px 14px 60px; }
+      .slide-body { padding: 18px 18px 22px; }
+    }
+  </style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- SLIDE 1 — PORTADA -->
+  <div class="slide slide-cover">
+    <div class="slide-header">
+      <span class="cover-eyebrow">Informe Ejecutivo</span>
+      <div class="cover-title">Análisis de Mercado —<br><span>8 de mayo de 2026</span></div>
+      <div class="cover-subtitle">Resumen ejecutivo diario · Datos al cierre de sesión BYMA</div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">Viernes 8 de mayo de 2026</div>
+        <div class="cover-meta-item">Cierre ~11:25 hs ARG</div>
+        <div class="cover-meta-item">BYMADATA · BCRA · INDEC · 1816 · MatbaRofex</div>
+      </div>
+    </div>
+    <div class="slide-body"></div>
+  </div>
+
+  <!-- SLIDE 2 — CONTEXTO INTERNACIONAL -->
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">§ 01</span>
+      <span class="slide-title">Contexto Internacional</span>
+    </div>
+    <div class="slide-body">
+      <ul class="bullets">
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Tasas / Fed:</strong> UST 10Y en 4,355% (-4 pb en el día) a pesar del NFP de abril mejor al esperado (115k vs 65k estimado): el mercado priceó que el sólido empleo es insuficiente para revertir la presión bajista sobre yields que ejerce la caída del WTI y la búsqueda de refugio ante Hormuz, lo que implica que la Fed no tiene urgencia de subir pero sí de no bajar.</div>
+        </li>
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Índices globales:</strong> S&P 500 en 7.391 (+0,74%) y Nasdaq en 26.124 (+1,23%) encabezados por semiconductores (NVDA +2,1%, INTC +7,0%) en su sexta semana consecutiva de suba; Europa cae levemente (-0,5% a -1,0%) por el riesgo arancelario de Trump contra la UE, marcando una divergencia transatlántica que refleja asimetría en la exposición al ciclo comercial.</div>
+        </li>
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Commodity / riesgo global:</strong> WTI en US$95,24 (+0,45%) pero con caída semanal del 7% por la tregua parcial Trump-Irán: el estrecho de Hormuz sigue cerrado (~14M bbl/día fuera del mercado según la IEA) pero el mercado descuenta que la escalada del jueves (cañonazos en el estrecho) no romperá el cese al fuego, lo que presiona precios a la baja aunque el piso se sostiene ante el riesgo de reanudación.</div>
+        </li>
+      </ul>
+      <div class="highlight-number">
+        <div>
+          <div class="highlight-label">Dato del día</div>
+          <div class="highlight-value yellow">NFP +115k; WTI -7% semanal</div>
+        </div>
+        <div class="highlight-sep"></div>
+        <div>
+          <div class="highlight-label">S&P 500</div>
+          <div class="highlight-value green">+0,74%</div>
+        </div>
+        <div class="highlight-sep"></div>
+        <div>
+          <div class="highlight-label">UST 10Y</div>
+          <div class="highlight-value yellow">4,355%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 — MACRO ARGENTINA -->
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">§ 02</span>
+      <span class="slide-title">Macro Argentina</span>
+    </div>
+    <div class="slide-body">
+      <div class="macro-row">
+        <div class="macro-item">
+          <div class="macro-item-label">IPC Último</div>
+          <div class="macro-item-val">3,4% mensual (mar-26)</div>
+          <div class="macro-item-text">IPC marzo 2026: 3,4% mensual (32,6% i.a.). REM: inflación esperada 12 meses = 24,2% i.a. (abril 2026) — el dato de marzo fue el más bajo en 3 años, consolidando la narrativa desinflacionaria que valida el carry pero que ya está largamente priceada en la curva CER corta (TZX26 en -12% real).</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">Reservas BCRA</div>
+          <div class="macro-item-val">US$45.906M</div>
+          <div class="macro-item-text">Reservas internacionales BCRA: US$45.906M al 05/05/2026. TC Mayorista A3500 = $1.390,64 (07/05). Banda cambiaria vigente: piso $811,44 — techo $1.717,98. El tipo de cambio opera cómodamente dentro de banda, con el mercado sin presionar ninguno de los límites.</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">CCL / Brecha</div>
+          <div class="macro-item-val">$1.491,82</div>
+          <div class="macro-item-text">CCL $1.491,82 (+0,50%) | MEP $1.431,28 (+0,30%) | Blue $1.400 (sin cambio). Brecha CCL/Mayorista: ~7,3%. La brecha comprimida refleja demanda sostenida de pesos para carry y ausencia de dolarización preventiva, lo que es consistente con el régimen de flotación dentro de banda con alta tasa real.</div>
+        </div>
+      </div>
+      <div class="narrativa-box">El mercado local opera en modo carry defensivo: la curva ARS sigue empinándose en la parte larga (Lecap abr27 ya en 28,0% TNA) mientras la CER priceó una desinflación contundente en el corto plazo (TZX26 en -12,0% real), todo en un contexto donde el CCL se mantiene acotado a ~7,3% de brecha y los futuros DLR implican una devaluación nominal mensual de apenas ~1,5%, validando la banda cambiaria. El riesgo externo del día es la escalada Irán-EE.UU. en Hormuz, que empuja el WTI por encima de US$95 y mantiene la cautela en los índices europeos aunque Wall Street sube por el NFP mejor al esperado.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 — RENTA FIJA -->
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">§ 03</span>
+      <span class="slide-title">Renta Fija — Curvas de Mercado</span>
+    </div>
+    <div class="slide-body">
+      <div class="curves">
+        <div class="curve-card">
+          <div class="curve-header hd">Hard Dollar — Globales / Bonares</div>
+          <div class="curve-body">
+            <strong>GD30:</strong> TNA 22,3% · Par 62,8% · <span class="tag tag-green">+0,39%</span><br>
+            <strong>GD35:</strong> TNA 15,7% · Par 49,7% · <span class="tag tag-green">+1,10%</span><br>
+            <strong>AL30:</strong> TNA 22,3% · Par 56,7% · <span class="tag tag-green">+0,63%</span><br>
+            <div class="curve-badge badge-up">Soberanos HD al alza</div><br>
+            <small style="color:var(--ink-3);font-size:11px;margin-top:6px;display:block;">Los soberanos hard dollar cierran la semana con compresión transversal de spreads: GD30 y AL30 en TNA ~22% con paridades en zona 57-63%, mientras GD35 en 15,7% TNA refleja que la curva sigue positivamente inclinada en duration. La mejora en paridades es consistente con la reducción del riesgo país impulsada por el ancla cambiaria y el superávit fiscal sostenido, aunque el piso de paridades aún sugiere que el mercado no priceo un acceso pleno a mercados voluntarios de deuda.</small>
+          </div>
+        </div>
+        <div class="curve-card">
+          <div class="curve-header ars">ARS Tasa Fija — Lecaps</div>
+          <div class="curve-body">
+            <strong>S29Y6</strong> (18d) → TNA 21,95%<br>
+            <strong>S17L6</strong> (67d) → TNA 23,81%<br>
+            <strong>T30A7</strong> (354d) → TNA 28,04%<br>
+            <div class="curve-badge badge-up">Curva empinada, carry largo rinde 28%</div><br>
+            <small style="color:var(--ink-3);font-size:11px;margin-top:6px;display:block;">La curva Lecap/Boncap se empina marcadamente: el tramo corto (18 días) rinde 21,95% TNA mientras el tramo largo (354 días, abr27) alcanza 28,04% TNA, un spread de más de 600 bps. Esta inclinación refleja que el mercado no está cómodo comprometiéndose a tasas fijas más allá de 6-8 meses sin demandar prima significativa, lo que es consistente con incertidumbre sobre el sendero de inflación de 2027 y la sostenibilidad del régimen cambiario post-bandas.</small>
+          </div>
+        </div>
+        <div class="curve-card">
+          <div class="curve-header cer">ARS Ajustado CER</div>
+          <div class="curve-body">
+            <strong>TZX26</strong> (jun-26) → TNA -12,05%<br>
+            <strong>X30S6</strong> (sep-26) → TNA -6,19%<br>
+            <strong>TZX27</strong> (jun-27) → TNA 2,09%<br>
+            <div class="curve-badge badge-down">CER corto en -12% real: desinflación priceada</div><br>
+            <small style="color:var(--ink-3);font-size:11px;margin-top:6px;display:block;">La curva CER presenta la historia más contundente del día: tasas reales fuertemente negativas en el corto plazo (TZX26 en -12,0% real) que se normalizan hacia el mediano plazo (TZX27 en +2,1%). El mercado priceó que la desinflación continuará en los próximos 3-6 meses por debajo del rendimiento de las Lecap, por lo que la cobertura vía CER corto no ofrece valor — es un voto masivo de confianza al ancla cambiaria y a la convergencia inflacionaria.</small>
+          </div>
+        </div>
+        <div class="curve-card">
+          <div class="curve-header dl">Dollar Linked</div>
+          <div class="curve-body">
+            <strong>TZV26</strong> (jun-26) → TNA 5,33%<br>
+            <strong>D30S6</strong> (sep-26) → TNA -0,28%<br>
+            <strong>TZV27</strong> (jun-27) → TNA 2,94%<br>
+            <div class="curve-badge badge-flat">Dollar linked sin prima: brecha y futuros alineados</div><br>
+            <small style="color:var(--ink-3);font-size:11px;margin-top:6px;display:block;">La demanda de cobertura cambiaria se secó: TZV26 (jun26) rinde apenas 5,33% TNA y D30S6 (sep26) está prácticamente en cero (-0,28%), muy por debajo de la tasa fija equivalente. El mercado no está dispuesto a pagar prima por dollar linked cuando los futuros ROFEX implican una devaluación mensual de 1,5-1,8%, consistente con el crawling dentro de banda — es complacencia cambiaria o convicción genuina de estabilidad, difícil de distinguir sin un shock.</small>
+          </div>
+        </div>
+      </div>
+      <div class="highlight-number" style="margin-top:18px;">
+        <div>
+          <div class="highlight-label">Destacado RF</div>
+          <div class="highlight-value" style="font-size:16px;">Lecap abr27 TNA 28%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 — MERVAL -->
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">§ 04</span>
+      <span class="slide-title">Renta Variable — Merval</span>
+    </div>
+    <div class="slide-body">
+      <ul class="bullets" style="margin-bottom:20px;">
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Cierre y volumen:</strong> El Merval opera en 2.820.031 puntos (-0,50%) en una rueda sin catalizador local propio: la baja generalizada de acciones líderes (EDN -1,69%, TGNO4 -1,86%, TRAN -2,06%) contrasta con el rebote de sectores más ligados al dólar financiero (VALO +2,75%). El volumen de renta variable ($7.567M) es modesto relativo al total negociado, lo que sugiere falta de convicción direccional.</div>
+        </li>
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Líderes:</strong> VALO +2,75% | BMA +0,45% | GGAL plano</div>
+        </li>
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Contexto:</strong> La caída del Merval en pesos frente a subas de Wall Street (Nasdaq +1,23%) implica una baja en dólares CCL más pronunciada: el mercado local no acompaña el rally externo de semis y tech, lo que puede reflejar toma de ganancias tras meses de fuerte apreciación en USD o ajuste de valuaciones relativas. El sector energía y servicios públicos lidera las bajas, sensible a la dinámica tarifaria local.</div>
+        </li>
+      </ul>
+      <div class="highlight-number">
+        <div>
+          <div class="highlight-label">Merval</div>
+          <div class="highlight-value red">-0,50%</div>
+        </div>
+        <div class="highlight-sep"></div>
+        <div>
+          <div class="highlight-label">Nivel</div>
+          <div class="highlight-value" style="font-size:16px;">2.820.031</div>
+        </div>
+        <div class="highlight-sep"></div>
+        <div>
+          <div class="highlight-label">Líder del día</div>
+          <div class="highlight-value green" style="font-size:16px;">VALO +2,75%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 — FUTUROS -->
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">§ 05</span>
+      <span class="slide-title">Futuros y Derivados — MatbaRofex DLR</span>
+    </div>
+    <div class="slide-body">
+      <ul class="bullets" style="margin-bottom:20px;">
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Curva corta:</strong> MAY-JUN TNA ~19-20%</div>
+        </li>
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Curva completa:</strong> MAY 18,1% | JUN 20,0% | JUL 22,0% | SEP ~24,7% | DIC ~25,1%</div>
+        </li>
+        <li class="bullet">
+          <div class="bullet-dot"></div>
+          <div class="bullet-text"><strong>Posicionamiento:</strong> DLR/MAY26</div>
+        </li>
+      </ul>
+      <table class="futures-table">
+        <thead>
+          <tr>
+            <th>Contrato</th>
+            <th>Último ($)</th>
+            <th>Var. día</th>
+            <th>TNA implícita</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="ticker">DLR / ABR26</td><td>—</td><td class="pos">—</td><td>—</td></tr>
+          <tr><td class="ticker">DLR / MAY26</td><td>$1.409</td><td class="neg">-0,14%</td><td>18,08%</td></tr>
+          <tr><td class="ticker">DLR / JUN26</td><td>$1.435</td><td class="neg">-0,14%</td><td>20,01%</td></tr>
+          <tr><td class="ticker">DLR / SEP26</td><td>$1.527</td><td class="pos">—</td><td>~24,7%</td></tr>
+          <tr><td class="ticker">DLR / DIC26</td><td>$1.617</td><td class="pos">—</td><td>~25,1%</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-number" style="margin-top:18px;">
+        <div>
+          <div class="highlight-label">TNA implícita MAY26</div>
+          <div class="highlight-value yellow">18,1%</div>
+        </div>
+        <div class="highlight-sep"></div>
+        <div>
+          <div class="highlight-label">TC implícito DIC26</div>
+          <div class="highlight-value">$1.617</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 — INTERPRETACIÓN ESTRATÉGICA -->
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">§ 06</span>
+      <span class="slide-title">Interpretación Estratégica</span>
+    </div>
+    <div class="slide-body">
+      <div class="analisis-grid">
+        <div class="analisis-card regime">
+          <div class="analisis-label">Régimen de Mercado</div>
+          <div class="analisis-text">
+            <strong>Carry</strong><br>
+            El régimen carry se sostiene con convicción: la Lecap larga rinde 28% TNA con brecha CCL menor al 8% y futuros DLR implican devaluación mensual del 1,5%, lo que genera un diferencial real positivo significativo para posiciones en pesos. La CER corta en -12% real y el dollar linked casi en cero confirman que ninguna otra estrategia ofrece retorno comparable al carry en tasa fija.
+          </div>
+        </div>
+        <div class="analisis-card">
+          <div class="analisis-label">Implícitos de Mercado</div>
+          <div class="analisis-text">
+            <strong>Inflación implícita:</strong> REM 24,2% i.a. próximos 12m; CER corto sugiere desinflación inmediata por debajo del 2% mensual en los próximos 2-3 meses<br>
+            <strong>Devaluación implícita:</strong> Futuros ROFEX implican ~1,5% mensual en MAY-JUN, escalando a ~1,8% mensual en DIC; consistente con crawling gradual dentro de banda cambiaria<br>
+            <strong>Tasa real implícita:</strong> Lecap corta (18d) rinde 21,95% TNA vs inflación esperada ~24% i.a. = tasa real ex-ante ligeramente negativa en corto; Lecap larga (354d) a 28% TNA vs REM 24,2% = tasa real ex-ante positiva en ~3,8% en el tramo largo<br>
+            <strong>vs. REM:</strong> Lecap larga (28%) supera ampliamente el REM de 24,2%, generando carry real positivo en la parte larga de la curva ARS; el tramo corto (22%) está levemente por debajo del REM, lo que desincentiva duración ultra-corta
+          </div>
+        </div>
+        <div class="analisis-card inconsist">
+          <div class="analisis-label">Inconsistencias</div>
+          <div class="analisis-text">
+            ROFEX DIC implica devaluación del ~16% acumulada desde hoy (1.617 vs 1.391) pero el CCL se aprecia en el día (+0,50%) con brecha comprimida al 7,3%: el mercado de futuros priceo más devaluación que lo que el spot financiero está dispuesto a convalidar, generando una tensión entre ambos mercados que históricamente se resuelve con convergencia del spot hacia los futuros o compresión de los futuros.<br>
+            Merval cae -0,50% en pesos mientras Wall Street sube +0,74% y Nasdaq +1,23%: la divergencia implica una caída en dólares CCL del ~1,3% en el día, lo que rompe la correlación de corto plazo con mercados externos y sugiere presión vendedora local específica o rebalanceo de cartera hacia instrumentos de renta fija.</div>
+        </div>
+        <div class="analisis-card">
+          <div class="analisis-label">Cambio vs. Ayer</div>
+          <div class="analisis-text">
+            · Curva Lecap se empinó: spread corto-largo amplió por suba del tramo largo (T30A7 ya en 28,04% TNA), reflejando mayor prima de riesgo a 12 meses que la semana pasada<br>
+            · CER corto se profundizó en terreno negativo: TZX26 en -12,05% real vs -10% de días previos, absorbiendo el dato de IPC de marzo que confirmó la desinflación<br>
+            · Dollar linked prácticamente sin demanda: D30S6 (sep26) operó en -0,28% TNA, mínimo de las últimas semanas, consistente con compresión de la brecha y futuros bajos<br>
+            <strong>Régimen:</strong> No hay rotación de régimen: el carry domina con mayor convicción que ayer. El único riesgo de rotación sería un shock cambiario externo (Hormuz-oil) que eleve el CCL y amplíe la brecha por encima del 10-12%, catalizando demanda de cobertura. Por ahora ese umbral no está en riesgo.
+          </div>
+        </div>
+        <div class="analisis-card tactica">
+          <div class="analisis-label">Señal Táctica de Mercado</div>
+          <div class="analisis-text">
+            · <strong>Preferencia:</strong> Tasa fija larga (Lecap/Boncap 6-12m)<br>
+            · <strong>Duración:</strong> MEDIA<br>
+            · <strong>Riesgo:</strong> MEDIO
+          </div>
+        </div>
+        <div class="analisis-card cartera">
+          <div class="analisis-label">Impacto en Cartera Balanceada</div>
+          <div class="analisis-text">
+            <strong>Ganan:</strong> Lecap/Boncap tramo medio-largo (S17L6, S30N6, T15E7, T30A7) — carry positivo con brecha acotada<br>
+            <strong>Pierden:</strong> CER corto (TZX26, X30S6) — tasas reales fuertemente negativas sin prima de recuperación; acciones locales en dólares
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8 — CONCLUSIÓN -->
+  <div class="slide">
+    <div class="slide-header">
+      <span class="slide-num">§ 07</span>
+      <span class="slide-title">Monitoreo y Conclusión Ejecutiva</span>
+    </div>
+    <div class="slide-body">
+      <div class="semaforo-section">
+        <div class="risk-card">
+          <div class="risk-label">Riesgo Local</div>
+          <div class="risk-text"><strong>Shock cambiario por reversión del carry:</strong> Si la inflación de abril supera el 3,4% de marzo o el déficit fiscal de Q1 decepciona, el CCL podría saltar al techo de banda (~$1.720), activando demanda masiva de cobertura que comprimiría el diferencial carry y desencadenaría ventas forzadas de Lecap largas.</div>
+        </div>
+        <div class="risk-card intl">
+          <div class="risk-label">Riesgo Internacional</div>
+          <div class="risk-text"><strong>Escalada en Estrecho de Hormuz:</strong> Si los intercambios de fuego EE.UU.-Irán del jueves derivan en cierre formal de Hormuz (vs cierre de facto actual), el WTI podría superar US$110, elevando la inflación importada global, forzando un repricing hawkish de la Fed y generando salida de capitales de emergentes que presionaría el CCL argentino vía CEDEARs y posiciones dolarizadas.</div>
+        </div>
+      </div>
+      <div class="conclusion-box">
+        <strong>Conclusión ejecutiva:</strong> El mercado argentino está en la zona más cómoda del régimen carry: brecha del 7,3%, futuros que validan el crawling, CER que priceó desinflación y una curva ARS que remunera hasta 28% en el tramo anual — el problema es que esa comodidad es frágil cuando descansa en expectativas que ya están descontadas. El catalizador que podría romperla es exógeno: una escalada en Hormuz que derive en WTI por encima de US$110 rompería la ecuación de carry al importar inflación y depreciar emergentes.
+      </div>
+      <div class="semaforo-display">
+        <div class="semaforo-light "></div>
+        <div class="semaforo-text">
+          <div class="semaforo-estado ">AMARILLO</div>
+          <div class="semaforo-justif">Amarillo porque el régimen carry es sólido internamente (brecha, futuros, CER alineados) pero está expuesto a un riesgo externo concreto y activo: el conflicto Irán-EE.UU. en Hormuz no está resuelto, el WTI ya subió 7% en la semana, y una escalada adicional podría importar inflación y depreciar emergentes antes de que el BCRA pueda responder. No es rojo porque las variables locales están bien alineadas y el ancla fiscal-cambiaria se mantiene.</div>
+        </div>
+      </div>
+    </div>
+    <div class="nota">
+      <strong>Metodología:</strong> Datos de renta fija extraídos de calculadoras 1816 — Soberanos USD y ARS. Cotizaciones: sesión BYMA del 08/05, entre 11:00–11:25 hs. Fuentes: BYMADATA · BCRA · INDEC · MatbaRofex · 1816 · CNBC · Yahoo Finance · Trading Economics.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

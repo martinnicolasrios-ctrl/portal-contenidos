@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis de Mercado — 8 de mayo de 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0B1620;--bg-card:#0F1E2B;--bg-section:#17293A;--border:#1E3447;--accent:#34BBDA;--gold:#E8B04A;--pos:#5BD39A;--neg:#EF6C6C;--warn:#F0A742;--text-primary:#E8EDF2;--text-secondary:#8FA4B8;--text-muted:#4A6478}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;padding:32px 16px 64px}
+.container{max-width:1040px;margin:0 auto}
+.report-header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:36px}
+.report-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.report-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--text-primary);line-height:1.3;max-width:820px}
+.report-subtitle{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.06em;margin-top:8px}
+.section{margin-bottom:32px}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:14px 16px}
+.kpi-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.kpi-value{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;color:var(--text-primary);line-height:1}
+.kpi-value.pos{color:var(--pos)}.kpi-value.neg{color:var(--neg)}.kpi-value.warn{color:var(--warn)}.kpi-value.accent{color:var(--accent)}.kpi-value.gold{color:var(--gold)}
+.kpi-sub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-secondary);margin-top:4px}
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.bullet-list li{padding-left:18px;position:relative;color:var(--text-primary);font-size:14px}
+.bullet-list li::before{content:'—';position:absolute;left:0;color:var(--accent);font-family:'IBM Plex Mono',monospace}
+.bullet-list li strong{color:var(--gold);font-weight:600}
+.prose{color:var(--text-primary);font-size:14px;line-height:1.75}
+.prose p{margin-bottom:14px}.prose p:last-child{margin-bottom:0}
+.prose strong{color:var(--gold);font-weight:600}
+.tension-grid{display:flex;flex-direction:column;gap:12px}
+.tension-card{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--warn);border-radius:4px;padding:14px 18px}
+.tension-title{font-weight:600;color:var(--gold);margin-bottom:6px;font-size:13.5px}
+.tension-body{color:var(--text-secondary);font-size:13.5px;line-height:1.65}
+.tension-body strong{color:var(--text-primary);font-weight:600}
+.pos-table{width:100%;border-collapse:collapse;font-size:13px}
+.pos-table th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border)}
+.pos-table td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.pos-table tr:last-child td{border-bottom:none}
+.pos-table tr:hover td{background:rgba(30,52,71,.4)}
+.asset-name{font-weight:600;color:var(--text-primary);white-space:nowrap}
+.badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;padding:2px 8px;border-radius:3px;letter-spacing:.05em;text-transform:uppercase}
+.badge-buy{background:rgba(91,211,154,.15);color:var(--pos)}
+.badge-hold{background:rgba(52,187,218,.12);color:var(--accent)}
+.badge-reduce{background:rgba(240,167,66,.15);color:var(--warn)}
+.badge-avoid{background:rgba(239,108,108,.15);color:var(--neg)}
+.pos-note{color:var(--text-secondary);font-size:12.5px}
+.alert-list{display:flex;flex-direction:column;gap:10px}
+.alert-item{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--neg);border-radius:4px;padding:13px 16px;display:flex;gap:12px;align-items:flex-start}
+.alert-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--neg);font-weight:500;white-space:nowrap;padding-top:2px}
+.alert-text{font-size:13.5px;color:var(--text-secondary);line-height:1.6}
+.alert-text strong{color:var(--text-primary);font-weight:600;display:block;margin-bottom:3px}
+.unpriced-box{background:var(--bg-section);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:4px;padding:20px 22px}
+.unpriced-box .prose strong{color:var(--accent)}
+.cfo-grid{display:flex;flex-direction:column;gap:10px}
+.cfo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:14px 18px}
+.cfo-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.cfo-body{font-size:13.5px;color:var(--text-secondary);line-height:1.65}
+.cfo-body strong{color:var(--text-primary);font-weight:600}
+.report-footer{border-top:1px solid var(--border);padding-top:20px;margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted)}
+@media(max-width:720px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.report-title{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="report-header">
+  <div class="report-meta">&nbsp;·&nbsp; Análisis de Mercado &nbsp;·&nbsp; El Cronista</div>
+  <h1 class="report-title">El mercado cotiza el fin del cepo como certeza mientras el atraso cambiario acumula tensión silenciosa</h1>
+  <div class="report-subtitle">Viernes 8 de mayo de 2026</div>
+</header>
+
+<section class="section">
+  <div class="section-label">§ 01 &nbsp; Resumen Ejecutivo</div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Riesgo País</div><div class="kpi-value warn">515 pts</div><div class="kpi-sub">+35 vs. mínimo ene-2026</div></div>
+    <div class="kpi-card"><div class="kpi-label">Rating Fitch</div><div class="kpi-value pos">B–</div><div class="kpi-sub">Desde CCC+ · mejor desde 2018</div></div>
+    <div class="kpi-card"><div class="kpi-label">Tipo de Cambio Oficial</div><div class="kpi-value accent">$1.420</div><div class="kpi-sub">CCL: $1.491 · brecha +5%</div></div>
+    <div class="kpi-card"><div class="kpi-label">Inflación esperada abr.</div><div class="kpi-value gold">2,6%</div><div class="kpi-sub">Converge a 1,8% en ago-sep (REM)</div></div>
+    <div class="kpi-card"><div class="kpi-label">Dólar mayorista dic-26</div><div class="kpi-value neg">$1.676</div><div class="kpi-sub">Depreciación nominal ~18% (REM)</div></div>
+    <div class="kpi-card"><div class="kpi-label">EBITDA YPF Q1</div><div class="kpi-value pos">$1.594 MM</div><div class="kpi-sub">Shale oil +39% · récord histórico</div></div>
+  </div>
+  <ul class="bullet-list">
+    <li><strong>Fitch sube calificación soberana de CCC+ a B–</strong> (perspectiva estable), mejor nivel desde 2018. Bonos soberanos rebotan pero el riesgo país permanece 35 pts por encima del mínimo de enero.</li>
+    <li><strong>Caputo anuncia medidas "de alto impacto"</strong> para los próximos meses que permitirán "salir 100% de las restricciones cambiarias". El cepo ya está "eliminado en un 90%" según el funcionario.</li>
+    <li><strong>REM de abril confirma desinflación estructural:</strong> 2,6% esperado para abril, convergiendo a 1,8% en agosto-septiembre. El consenso proyecta dólar mayorista a $1.676 a fin de año.</li>
+    <li><strong>BNA capta más de u$s 370 millones en su primera ON en 30 años</strong> con demanda que superó ampliamente la oferta: señal de profundización del mercado de capitales doméstico.</li>
+    <li><strong>YPF registra EBITDA histórico para un Q1</strong> ($1.594 MM), producción shale oil +39% y 205.000 barriles/día. El sector energético sigue siendo el ancla de dólares genuinos.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <div class="section-label">§ 02 &nbsp; Lectura de Mercado</div>
+  <div class="prose">
+    <p>El escenario de esta semana está definido por una convergencia de señales que refuerzan el régimen de <strong>carry + transición ordenada hacia liberación cambiaria</strong>: el upgrade de Fitch, el forward guidance de Caputo sobre el cepo, la desinflación confirmada por el REM y el éxito de la ON del Nación forman un relato coherente que el mercado financiero está convalidando.</p>
+    <p>Pero existe una fractura importante entre ese relato y la macroeconomía real. Mientras la City desayuna con riesgo país en 515 puntos y bonos en máximos, la economía real muestra mercado laboral deteriorado —crecen puestos informales mientras cae el empleo formal—, consumo deprimido e inflación que aunque baja aún acumula daño real. El mercado está mirando hacia 2027 con velo electoral: una baja de imagen del oficialismo combinada con una economía real rezagada es exactamente la combinación que genera prima de riesgo en la curva larga.</p>
+    <p>La advertencia de Cottani —ex viceministro de Caputo— es la más significativa del día desde el punto de vista del riesgo no visible: habla explícitamente de <strong>atraso cambiario en el tipo de cambio real</strong> y de "inconsistencia" del programa. Que este diagnóstico emerja del establishment económico oficialista no es un detalle menor.</p>
+    <p>El régimen vigente sigue siendo <strong>carry en pesos con cobertura selectiva</strong>, pero el mercado ya está empezando a cobrar seguro para el tramo largo.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">§ 03 &nbsp; Tensiones Clave</div>
+  <div class="tension-grid">
+    <div class="tension-card">
+      <div class="tension-title">Carry vs. Tipo de Cambio Real</div>
+      <div class="tension-body">BNA planchado en $1.420 mientras el CCL ya operó en <strong>$1.491 (+5% vs. oficial)</strong>. El REM proyecta dólar a $1.676 en diciembre —devaluación nominal del ~18% en 7 meses—. La velocidad de convergencia y la secuencia de liberación del cepo son la clave que el mercado no tiene resuelta.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Tasas Reales en Piso Buscando Equilibrio</div>
+      <div class="tension-body">Las tasas reales estuvieron en terreno profundamente negativo (hasta <strong>–15% anualizado</strong>). El mercado señala que ese fondo está siendo tocado a medida que la inflación baja. Sailing Inversiones advierte contra correr duration sin discriminar: el CER 2028 presenta la mejor relación riesgo-retorno en ese tramo.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Riesgo Político Filtrado en Precios</div>
+      <div class="tension-body">El descenso del índice de confianza en el gobierno impide que bonos y acciones locales se acoplen al rally de emergentes globales. El mercado cotiza la posibilidad de una <strong>derrota electoral en 2027</strong> como una prima creciente. Esto es estructural, no ruido.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Reservas: Meta con el FMI en Estrés</div>
+      <div class="tension-body">La segunda revisión del programa se espera próximamente y se anticipa un <strong>waiver por incumplimiento de meta de reservas</strong>. La suba contable de ~u$s 500 MM por valuación del oro no es acumulación genuina. Las reservas netas líquidas continúan bajo presión.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Mercado Laboral: La Contradicción Sostenida</div>
+      <div class="tension-body">Se crean puestos informales pero <strong>cae el empleo formal privado y público</strong>. Esto deflacta el consumo privado y socava la narrativa oficial de recuperación robusta. En la medida en que persista, la demanda de pesos se comprime y el ancla nominal se debilita.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">§ 04 &nbsp; Implicancias de Posicionamiento</div>
+  <table class="pos-table">
+    <thead><tr><th>Activo</th><th>Posición</th><th>Lógica / Condición</th></tr></thead>
+    <tbody>
+      <tr><td><div class="asset-name">GD30 / GD35 / AL30</div><div class="pos-note">Soberanos USD</div></td><td><span class="badge badge-buy">Sobreponderar</span></td><td class="pos-note">Fitch + liberación cepo como catalizador. Stop si riesgo país supera 560 pts. Limitado por revisión FMI y falta de acumulación genuina de reservas.</td></tr>
+      <tr><td><div class="asset-name">TZX28 / CER 2028</div><div class="pos-note">Inflación linked</div></td><td><span class="badge badge-buy">Mantener / Incrementar</span></td><td class="pos-note">Tasas reales tocando piso con inflación convergiendo a 1,8% en Q3. Mejor relación riesgo-retorno en duration intermedia según Sailing Inversiones.</td></tr>
+      <tr><td><div class="asset-name">TTD26 Duales</div><div class="pos-note">CER + dólar linked</div></td><td><span class="badge badge-buy">Sobreponderar</span></td><td class="pos-note">Instrumento óptimo para aseguradoras: protege contra inflación y contra volatilidad cambiaria. Calza el riesgo binario del escenario (inflación vs. salto cambiario).</td></tr>
+      <tr><td><div class="asset-name">LECAP / Tasa Fija</div><div class="pos-note">Nominal en pesos</div></td><td><span class="badge badge-reduce">Reducir Duration</span></td><td class="pos-note">TAMAR proyectada 23,1–23,5% TNA. Carry positivo mientras brecha acotada. Posición más expuesta a evento cambiario. Reducir si hay señales de liberación acelerada.</td></tr>
+      <tr><td><div class="asset-name">ON Corporativas USD</div><div class="pos-note">Energía / Agro / Financiero</div></td><td><span class="badge badge-hold">Mantener</span></td><td class="pos-note">Éxito de ON BNA (5,5% USD MEP) confirma apetito de mercado. Renta fija dolarizada sin riesgo soberano directo. Emisores de primer nivel.</td></tr>
+      <tr><td><div class="asset-name">Merval — Energía / Financiero</div><div class="pos-note">YPF, Pampa, TGS, bancos</div></td><td><span class="badge badge-hold">Selectivo</span></td><td class="pos-note">Inflación de abril como catalizador de re-rating. Sectores: energía y financiero. Evitar industria, construcción, comercio.</td></tr>
+      <tr><td><div class="asset-name">CEDEARs / ETFs S&amp;P</div><div class="pos-note">Dolarización minorista</div></td><td><span class="badge badge-hold">Upside de Flujo</span></td><td class="pos-note">Mercado Pago lanza acceso a CEDEARs y ETFs desde su app. Democratización amplía demanda minorista con independencia del subyacente.</td></tr>
+      <tr><td><div class="asset-name">Dólar Blue / Dólar Linked corto</div><div class="pos-note">Cobertura tradicional</div></td><td><span class="badge badge-avoid">Reducir / Evitar</span></td><td class="pos-note">Blue más barato que MEP (brecha negativa): ya no funciona como cobertura. Dólar linked corto pierde atractivo si liberación es gradual y crawling controlado.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <div class="section-label">§ 05 &nbsp; Alertas</div>
+  <div class="alert-list">
+    <div class="alert-item"><div class="alert-num">A-01</div><div class="alert-text"><strong>Revisión FMI + Waiver de Reservas</strong>Si la segunda revisión no se aprueba o los términos del waiver imponen condicionamientos sobre el ritmo de crawling o liberación, puede haber ruido severo en la curva soberana en dólares. Mayor impacto potencial en el cortísimo plazo.</div></div>
+    <div class="alert-item"><div class="alert-num">A-02</div><div class="alert-text"><strong>Dato de Inflación de Abril (~2 semanas)</strong>Mercado tiene priceado piso 2,3–2,5%. Si el dato supera 2,8%, la narrativa de desinflación se quiebra y las LECAP/tasa fija se desarman. Si confirma la baja, el rally en pesos tiene combustible adicional.</div></div>
+    <div class="alert-item"><div class="alert-num">A-03</div><div class="alert-text"><strong>Timing y Diseño de la Salida del Cepo</strong>Caputo confirmó medidas "de alto impacto" sin fecha ni mecanismo. Un anuncio mal calibrado puede generar overshooting en MEP/CCL y corrida sobre instrumentos en pesos. La secuencia importa más que el anuncio en sí.</div></div>
+    <div class="alert-item"><div class="alert-num">A-04</div><div class="alert-text"><strong>Elecciones 2027 como Proxy de Riesgo de Continuidad</strong>Una señal sostenida de caída de imagen del oficialismo puede re-pricear la curva larga soberana hacia arriba. El debate sobre el marco post-Milei ya comenzó (caso noruego estudiado por la oposición).</div></div>
+    <div class="alert-item"><div class="alert-num">A-05</div><div class="alert-text"><strong>Morosidad Bancaria al Alza</strong>Caputo la mencionó explícitamente. La expansión de crédito al sector privado convive con deterioro en calidad de cartera. Riesgo latente para bancos y para la liquidez del sistema.</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">§ 06 &nbsp; Riesgos No Priceados</div>
+  <div class="unpriced-box">
+    <div class="prose">
+      <p><strong>La inconsistencia entre el tipo de cambio nominal planchado y el tipo de cambio real deteriorado.</strong> El REM proyecta dólar en $1.676 para diciembre —devaluación nominal del 18% en 7 meses—. Si el crawling se mantiene al ~1% mensual implícito, el oficial llegaría a ~$1.540 en diciembre, lo que requiere un salto no gradual en algún momento para cerrar la brecha con el propio consenso del mercado.</p>
+      <p>Ese salto no está en precio de los instrumentos en pesos de duration media-larga. La curva CER y las LECAP largas tienen un riesgo de evento cambiario no completamente incorporado, por más que el relato oficial apunte a "salida ordenada".</p>
+      <p>Tampoco está en precio el riesgo de que el <strong>FAL (Fondo de Asistencia Laboral, implementación prevista para junio)</strong> genere fricciones impositivas que demoren su puesta en marcha, reduciendo el dinamismo esperado del mercado de capitales vía FCI y fideicomisos financieros. No contabilizar este flujo como certero en el plan de liquidez 2026.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">§ 07 &nbsp; Bajada a Cartera — Perspectiva CFO Compañía de Seguros</div>
+  <div class="cfo-grid">
+    <div class="cfo-card"><div class="cfo-tag">Cartera Pesos vs. USD</div><div class="cfo-body">El split óptimo actual sigue inclinado hacia pesos (carry positivo), pero la proximidad del evento cepo exige <strong>acortar duration en tasa nominal fija y ampliar cobertura en CER</strong>. Dentro del marco SSN, la migración hacia CER 2027-2028 desde LECAP +24m es la jugada defensiva correcta.</div></div>
+    <div class="cfo-card"><div class="cfo-tag">CER — Acción</div><div class="cfo-body"><strong>Sobreponderar tramo 2027-2028.</strong> TZX28 ofrece la mejor relación riesgo-retorno dado que la inflación cae pero no colapsa y la tasa real del tramo refleja equilibrio razonable. Evitar CER &gt;3 años por riesgo de evento cambiario no priceado.</div></div>
+    <div class="cfo-card"><div class="cfo-tag">Tasa Fija LECAP — Acción</div><div class="cfo-body"><strong>Reducir duration progresivamente.</strong> Mantener solo lo necesario para calce de pasivos de corto plazo. Una LECAP a 12 meses con tasa ~23% TNA rinde ~24% TEA en pesos; si el tipo de cambio salta 15% en ese período, la cobertura real es negativa.</div></div>
+    <div class="cfo-card"><div class="cfo-tag">Duales TTD26 — Acción</div><div class="cfo-body">Instrumento más inteligente en este contexto: <strong>protege contra inflación y contra volatilidad cambiaria.</strong> Para una aseguradora con pasivos mixtos, el Dual calza el riesgo del activo con la naturaleza binaria del escenario (inflación continúa vs. salto cambiario).</div></div>
+    <div class="cfo-card"><div class="cfo-tag">Riesgo de Duration — Urgente</div><div class="cfo-body">Con tasas reales que tocaron –15% y ahora normalizan, cualquier instrumento en pesos de duration &gt;18 meses sin cobertura cambiaria tiene <strong>convexidad negativa frente a un evento de salida del cepo.</strong> Reducir duration promedio de pesos de 18+ a 9-12 meses hasta que haya claridad sobre la mecánica de liberación.</div></div>
+    <div class="cfo-card"><div class="cfo-tag">Soberanos USD — Límite</div><div class="cfo-body">Mantener posición en GD30/AL30 como activo de reserva técnica en moneda extranjera dentro de inversiones admisibles SSN. El path hacia B+ o BB– en 12-18 meses genera apreciación, pero el tamaño de posición debe limitarse por riesgo de revisión FMI y volatilidad inherente en etapa de transición.</div></div>
+  </div>
+</section>
+
+<footer class="report-footer">
+  Fuentes: El Cronista, edición 8 de mayo de 2026 &nbsp;·&nbsp; Datos de cotización: 8/5/2026 AM/mediodía &nbsp;·&nbsp; Análisis propio basado en noticias públicas disponibles.
+</footer>
+
+</div>
+</body>
+</html>
