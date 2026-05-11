@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis de Mercado — 11 de mayo de 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#0B1620;--bg-card:#0F1E2B;--bg-section:#17293A;--border:#1E3447;
+  --accent:#34BBDA;--gold:#E8B04A;--pos:#5BD39A;--neg:#EF6C6C;--warn:#F0A742;
+  --text-primary:#E8EDF2;--text-secondary:#8FA4B8;--text-muted:#4A6478;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;padding:32px 16px 64px}
+.container{max-width:1040px;margin:0 auto}
+
+/* HEADER */
+.report-header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:36px}
+.report-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.report-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--text-primary);line-height:1.3;max-width:820px}
+.report-subtitle{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.06em;margin-top:8px}
+
+/* SECTION */
+.section{margin-bottom:32px}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:14px 16px}
+.kpi-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.kpi-value{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;color:var(--text-primary);line-height:1}
+.kpi-value.pos{color:var(--pos)}.kpi-value.neg{color:var(--neg)}.kpi-value.warn{color:var(--warn)}.kpi-value.accent{color:var(--accent)}.kpi-value.gold{color:var(--gold)}
+.kpi-sub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-secondary);margin-top:4px}
+
+/* BULLET LIST */
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.bullet-list li{padding-left:18px;position:relative;color:var(--text-primary);font-size:14px}
+.bullet-list li::before{content:'—';position:absolute;left:0;color:var(--accent);font-family:'IBM Plex Mono',monospace}
+.bullet-list li strong{color:var(--gold);font-weight:600}
+
+/* PROSE */
+.prose{color:var(--text-primary);font-size:14px;line-height:1.75}
+.prose p{margin-bottom:14px}.prose p:last-child{margin-bottom:0}
+.prose strong{color:var(--gold);font-weight:600}
+
+/* TENSION CARDS */
+.tension-grid{display:flex;flex-direction:column;gap:12px}
+.tension-card{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--warn);border-radius:4px;padding:14px 18px}
+.tension-title{font-weight:600;color:var(--gold);margin-bottom:6px;font-size:13.5px}
+.tension-body{color:var(--text-secondary);font-size:13.5px;line-height:1.65}
+.tension-body strong{color:var(--text-primary);font-weight:600}
+
+/* VARIABLES GRID */
+.var-grid{display:flex;flex-direction:column;gap:10px}
+.var-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:14px 18px}
+.var-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.var-body{font-size:13.5px;color:var(--text-secondary);line-height:1.65}
+.var-body strong{color:var(--text-primary);font-weight:600}
+
+/* POSITIONING TABLE */
+.pos-table{width:100%;border-collapse:collapse;font-size:13px}
+.pos-table th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border)}
+.pos-table td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.pos-table tr:last-child td{border-bottom:none}
+.pos-table tr:hover td{background:rgba(30,52,71,.4)}
+.asset-name{font-weight:600;color:var(--text-primary)}
+.badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;padding:2px 8px;border-radius:3px;letter-spacing:.05em;text-transform:uppercase}
+.badge-buy{background:rgba(91,211,154,.15);color:var(--pos)}
+.badge-hold{background:rgba(52,187,218,.12);color:var(--accent)}
+.badge-reduce{background:rgba(240,167,66,.15);color:var(--warn)}
+.badge-avoid{background:rgba(239,108,108,.15);color:var(--neg)}
+.badge-watch{background:rgba(232,176,74,.12);color:var(--gold)}
+.pos-note{color:var(--text-secondary);font-size:12.5px}
+
+/* ALERTS */
+.alert-list{display:flex;flex-direction:column;gap:10px}
+.alert-item{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--neg);border-radius:4px;padding:13px 16px;display:flex;gap:12px;align-items:flex-start}
+.alert-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--neg);font-weight:500;white-space:nowrap;padding-top:2px}
+.alert-text{font-size:13.5px;color:var(--text-secondary);line-height:1.6}
+.alert-text strong{color:var(--text-primary);font-weight:600;display:block;margin-bottom:3px}
+
+/* UNPRICED */
+.unpriced-box{background:var(--bg-section);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:4px;padding:20px 22px}
+.unpriced-box .prose strong{color:var(--accent)}
+
+/* CFO */
+.cfo-grid{display:flex;flex-direction:column;gap:10px}
+.cfo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:14px 18px}
+.cfo-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.cfo-body{font-size:13.5px;color:var(--text-secondary);line-height:1.65}
+.cfo-body strong{color:var(--text-primary);font-weight:600}
+
+/* FOOTER */
+.report-footer{border-top:1px solid var(--border);padding-top:20px;margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted)}
+
+@media(max-width:720px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.report-title{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="report-header">
+  <div class="report-meta">Hipotecario Seguros &nbsp;·&nbsp; Análisis de Mercado &nbsp;·&nbsp; El Cronista</div>
+  <h1 class="report-title">El régimen de carry se fisura por abajo: tasas reales cediendo, inflación que no baja al ritmo prometido y recaudación que no cierra</h1>
+  <div class="report-subtitle">Lunes 11 de mayo de 2026</div>
+</header>
+
+<!-- §01 RESUMEN EJECUTIVO -->
+<section class="section">
+  <div class="section-label">§ 01 &nbsp; Resumen Ejecutivo</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Tipo de Cambio Oficial</div>
+      <div class="kpi-value accent">$1.420</div>
+      <div class="kpi-sub">BNA · brecha MEP 0,7%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Inflación esperada abr.</div>
+      <div class="kpi-value gold">2,6%</div>
+      <div class="kpi-sub">Primera baja en 10 meses</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Inflación interanual 2026</div>
+      <div class="kpi-value warn">30,5%</div>
+      <div class="kpi-sub">REM BCRA · meta 2% en ago-sep</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Recaudación real</div>
+      <div class="kpi-value neg">–9 meses</div>
+      <div class="kpi-sub">Caída consecutiva en términos reales</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Recorte Presupuestario</div>
+      <div class="kpi-value warn">$2,5 bn</div>
+      <div class="kpi-sub">DA 20/2026 · más de 12 organismos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Blue / Oficial</div>
+      <div class="kpi-value pos">0%</div>
+      <div class="kpi-sub">Brecha prácticamente nula</div>
+    </div>
+  </div>
+  <ul class="bullet-list">
+    <li><strong>Recorte de $2,5 billones vía DA 20/2026</strong>: mayor tajo sobre subsidios. El superávit fiscal no se negocia, aunque la recaudación cede por tercer trimestre consecutivo.</li>
+    <li><strong>Inflación de abril esperada en 2,6%</strong>, primera baja en 10 meses. El Gobierno ya reconoce que no cumplirá la meta presupuestaria. REM BCRA proyecta convergencia al 2% recién en agosto-septiembre.</li>
+    <li><strong>Tipo de cambio oficial cerró abril a $1.405</strong>, $75 debajo de enero. Brecha MEP/oficial en 0,7% y blue/oficial prácticamente nula. Las cuevas informales entran en crisis de modelo de negocios.</li>
+    <li><strong>Recaudación: 9 meses de caída real consecutiva.</strong> IVA importaciones, derechos de importación y tasa estadística son el talón de Aquiles fiscal ante la apreciación real del peso.</li>
+    <li><strong>Dos urgencias diplomáticas antes de junio:</strong> acuerdo comercial con EE.UU. (1.670 productos en riesgo de vacío legal) y renegociación del swap/comercio con China antes del H2.</li>
+  </ul>
+</section>
+
+<!-- §02 LECTURA DE MERCADO -->
+<section class="section">
+  <div class="section-label">§ 02 &nbsp; Lectura de Mercado</div>
+  <div class="prose">
+    <p>El mercado opera en un régimen de <strong>calma administrada pero con creciente fragilidad interna</strong>. La volatilidad de tasas colapsó de 28% en febrero a 0% en abril —un logro de la política monetaria contractiva— pero ese mismo éxito genera su propia trampa: con la caución rindiendo ~20% anual y la inflación esperada bajando, el carry en pesos se achata y los brokers empiezan a advertir que puede despertar un <strong>apetito dolarizador latente</strong>.</p>
+    <p>La narrativa implícita que está construyendo el mercado es de <strong>transición suave hacia un régimen de menor inflación, pero con incertidumbre sobre la segunda mitad del año</strong>. El dato de inflación del jueves (esperado en 2,6%) ya está "priceado" según los propios analistas. El foco se desplaza a: ¿puede el Gobierno mantener el ancla cambiaria frente a la caída de recaudación, el atraso real del tipo de cambio, y la presión electoral de 2027?</p>
+    <p>La mejora de Fitch (B-) acercó a Argentina al universo de emergentes, pero el mercado exige spreads todavía muy por encima de Ecuador o El Salvador. Ecuador y Bolivia emitieron deuda internacional esta semana con demanda —el apetito global por riesgo EM mejoró— pero <strong>Argentina no lo está aprovechando porque el riesgo país no logra perforar los 500 puntos de forma sostenida</strong>.</p>
+  </div>
+</section>
+
+<!-- §03 TENSIONES CLAVE -->
+<section class="section">
+  <div class="section-label">§ 03 &nbsp; Tensiones Clave</div>
+  <div class="tension-grid">
+    <div class="tension-card">
+      <div class="tension-title">Fiscal vs. Ancla Cambiaria</div>
+      <div class="tension-body">El dólar planchado comprime importaciones, lo que contrae la recaudación de IVA importaciones, derechos e impuesto estadístico —<strong>9 meses de caída real</strong>. El recorte de $2,5 bn llega tarde y el riesgo de no cerrar la meta fiscal crece si las importaciones no rebotan en H2.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Tasas vs. Dólar</div>
+      <div class="tension-body">Caución al ~20% anual con inflación en desaceleración reduce el carry. Bull Market Brokers advierte explícitamente que las <strong>bajas tasas podrían despertar dolarización</strong>. Si el BCRA baja más la tasa para estimular actividad, la cobertura cambiaria se vuelve más atractiva.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Tipo de Cambio Real vs. Competitividad</div>
+      <div class="tension-body">El oficial cerró abril <strong>$75 debajo del inicio del año</strong> (apreciación real significativa). Sectores de menor competitividad y alta generación de empleo son los más afectados. El "alivio industrial" en retenciones es una respuesta táctica, no estructural.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Recaudación Provincial vs. Coparticipación</div>
+      <div class="tension-body">La caída de recaudación nacional impacta coparticipación. El titular de ARBA (PBA) ya habla de crisis y advierte que <strong>"cuando se acaben los activos"</strong>, el escenario cambia. El stress fiscal subnacional es el riesgo sistémico menos visibilizado.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">Riesgo Político Externo</div>
+      <div class="tension-body">Negociación con EE.UU. sobre <strong>1.670 productos</strong> y el swap con China tienen fecha límite antes de junio. Un deterioro en cualquiera de estos frentes puede impactar reservas y flujo exportador en el tramo más delicado del año.</div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title">PRO vs. Gobierno — Coalición en Fractura</div>
+      <div class="tension-body">La fractura visible del PRO señala que la coalición de apoyo legislativo para reformas de segunda generación (laboral, previsional, fiscal estructural) <strong>se estrecha de cara a 2027</strong>. Prima de riesgo político doméstico en ascenso.</div>
+    </div>
+  </div>
+</section>
+
+<!-- §04 VARIABLES CLAVE -->
+<section class="section">
+  <div class="section-label">§ 04 &nbsp; Impacto en Variables Clave</div>
+  <div class="var-grid">
+    <div class="var-card">
+      <div class="var-tag">Tipo de Cambio — Oficial / MEP / CCL</div>
+      <div class="var-body">Oficial en <strong>$1.420 (BNA)</strong>, MEP $1.429,68 (+0,18%), CCL $1.490,29 (+0,21%). Brecha MEP/oficial: <strong>0,7%</strong>. Brecha blue/oficial: <strong>0%</strong>. El mercado cambiario paralelo está en compresión extrema — técnicamente insostenible en el largo plazo si el atraso cambiario real continúa. La cosecha récord sostiene la oferta de corto plazo; el riesgo se concentra en H2.</div>
+    </div>
+    <div class="var-card">
+      <div class="var-tag">Curva de Tasas</div>
+      <div class="var-body">Tasa de caución a corto plazo ~<strong>20% anual</strong>. Con inflación esperada en 2,6% mensual (~35% anual), el carry sigue siendo positivo pero se reduce. La curva CER empieza a perder atractivo relativo si la inflación baja más de lo esperado. El riesgo es que la curva a tasa fija corta empiece a ver demanda creciente, comprimiendo spreads.</div>
+    </div>
+    <div class="var-card">
+      <div class="var-tag">Inflación Esperada</div>
+      <div class="var-body">Punto de inflexión en abril (<strong>2,6% vs. 3,4%</strong> en marzo). REM BCRA: <strong>30,5% interanual para 2026</strong>. Trayectoria: perfora el 2% mensual entre agosto y septiembre. El Gobierno ya reconoce que no alcanzará la meta presupuestaria. Activos CER de largo plazo se vuelven menos atractivos al desacelerarse la inflación.</div>
+    </div>
+    <div class="var-card">
+      <div class="var-tag">Liquidez del Sistema</div>
+      <div class="var-body">Alta. Liquidación récord del agro inyectando divisas. Días sin volatilidad de tasas: <strong>100% en abril</strong>. Sin embargo, Bull Market advierte que las bajas tasas de caución son un riesgo de liquidez dolarizadora latente. El Banco Nación lanza créditos MiPyME Costa Atlántica: canal de crédito activo.</div>
+    </div>
+    <div class="var-card">
+      <div class="var-tag">Riesgo Soberano</div>
+      <div class="var-body">No logra perforar <strong>500 bps</strong> de manera consistente. La mejora Fitch (B-) es el piso. Ecuador y Bolivia como benchmarks de referencia muestran que el mercado EM está abierto, pero <strong>Argentina sigue pagando una prima de riesgo político significativa</strong> que impide cerrar la brecha con pares de la región.</div>
+    </div>
+  </div>
+</section>
+
+<!-- §05 POSICIONAMIENTO -->
+<section class="section">
+  <div class="section-label">§ 05 &nbsp; Implicancias de Posicionamiento</div>
+  <table class="pos-table">
+    <thead>
+      <tr><th>Activo / Posición</th><th>Sesgo</th><th>Lógica / Condición</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="asset-name">Sector energético y financiero</div><div class="pos-note">Acciones locales</div></td>
+        <td><span class="badge badge-buy">Sobreponderar</span></td>
+        <td class="pos-note">Bull Market los prioriza. Exportadoras con costos en pesos y dólar alto relativo mejoran márgenes. Financiero se beneficia del crédito en expansión.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">GD30 / GD35 — Bonos USD cortos</div><div class="pos-note">Carry sostenido + convergencia</div></td>
+        <td><span class="badge badge-buy">Mantener / Incrementar</span></td>
+        <td class="pos-note">Si el carry se sostiene y el riesgo país converge hacia 450-480 bps, hay apreciación de precios. La mejora Fitch opera como catalizador de flujo institutional.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">CER corto (hasta 6 meses)</div><div class="pos-note">TZX26, TZXD6</div></td>
+        <td><span class="badge badge-hold">Mantener</span></td>
+        <td class="pos-note">Captura inflación residual mayo-julio con devengamiento aún positivo (~2,3-2,6% mensual). No ampliar posición.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">CER largo (2027+)</div><div class="pos-note">TZX28, DICP, PARP</div></td>
+        <td><span class="badge badge-reduce">Reducir</span></td>
+        <td class="pos-note">El devengamiento futuro se achica a medida que la inflación converge al 2%. Riesgo asimétrico negativo si la desinflación supera las expectativas del REM.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">Tasa Fija / LECAP corta (3-6 meses)</div><div class="pos-note">S14G6, S30S6</div></td>
+        <td><span class="badge badge-hold">Selectiva</span></td>
+        <td class="pos-note">Tasa implícita aún por encima de la inflación esperada en tramos cortos. En tramos largos el riesgo de sorpresa inflacionaria es asimétrico. No alargar duration.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">USD Linked — vencimientos H2 2026</div><div class="pos-note">TZV26, cobertura táctica</div></td>
+        <td><span class="badge badge-watch">Cobertura táctica</span></td>
+        <td class="pos-note">Probabilidad 25-30% de ajuste cambiario antes de oct-2026. Protege ante aceleración del crawling peg o devaluación post-electoral. Posición táctica, no core.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">CEDEARs vinculados a China / EM</div><div class="pos-note">Renta variable diversificada</div></td>
+        <td><span class="badge badge-hold">Upside de Flujo</span></td>
+        <td class="pos-note">El broker menciona un "tapado" chino como táctica internacional. Con brecha CCL comprimida, el costo de dolarización vía CEDEARs baja. Interesante como seguro de cola.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">Carry puro en caución (~20%)</div><div class="pos-note">Posición de liquidez</div></td>
+        <td><span class="badge badge-avoid">Pierde sentido</span></td>
+        <td class="pos-note">Diferencial de retorno sobre dólar se achica. Con inflación convergiendo al 2% mensual en H2 y eventual aceleración cambiaria, la relación riesgo-retorno es desfavorable para posiciones pasivas.</td>
+      </tr>
+      <tr>
+        <td><div class="asset-name">Bonos provinciales duration larga</div><div class="pos-note">Provincia-dependientes</div></td>
+        <td><span class="badge badge-avoid">Evitar</span></td>
+        <td class="pos-note">Recaudación y coparticipación en caída real. El stress fiscal subnacional es el vector de contagio con mayor riesgo no priceado. Reducir exposición.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- §06 ALERTAS -->
+<section class="section">
+  <div class="section-label">§ 06 &nbsp; Alertas Ejecutivas</div>
+  <div class="alert-list">
+    <div class="alert-item">
+      <div class="alert-num">A-01</div>
+      <div class="alert-text"><strong>Licitación del Tesoro esta semana</strong>Evento de referencia para verificar apetito por deuda en pesos. Si la demanda flaquea o el Tesoro debe convalidar tasas más altas, es una señal temprana de deterioro del carry.</div>
+    </div>
+    <div class="alert-item">
+      <div class="alert-num">A-02</div>
+      <div class="alert-text"><strong>Dato de Inflación de Abril (jueves)</strong>Aunque "priceado" en 2,5-2,6%, una sorpresa al alza (mayor a 3%) reactivaría demanda de cobertura y compresión de CER corto. Asimetría: el mercado no está preparado para la sorpresa positiva.</div>
+    </div>
+    <div class="alert-item">
+      <div class="alert-num">A-03</div>
+      <div class="alert-text"><strong>Misión a Washington — Acuerdo Comercial</strong>Si los 1.670 productos locales quedan en vacío legal, impacto directo en exportaciones no agro y posible presión sobre reservas en H2.</div>
+    </div>
+    <div class="alert-item">
+      <div class="alert-num">A-04</div>
+      <div class="alert-text"><strong>Presión Fiscal H2 2026</strong>Si la recaudación real no rebota con las importaciones, el recorte presupuestario puede ser insuficiente. Cualquier señal de uso de reservas para financiar gasto es trigger de dolarización.</div>
+    </div>
+    <div class="alert-item">
+      <div class="alert-num">A-05</div>
+      <div class="alert-text"><strong>Fricciones PRO-Gobierno</strong>De cara al proceso electoral 2027, la fractura coalicional puede desestabilizar el apoyo legislativo a reformas estructurales, elevando la prima de riesgo político doméstico y presionando la curva larga.</div>
+    </div>
+  </div>
+</section>
+
+<!-- §07 RIESGOS NO PRICEADOS -->
+<section class="section">
+  <div class="section-label">§ 07 &nbsp; Riesgos No Priceados</div>
+  <div class="unpriced-box">
+    <div class="prose">
+      <p>El mercado está operando como si el régimen de <strong>"carry suave + ancla cambiaria + cosecha"</strong> fuera lineal hasta 2027. Lo que no está priceando es el costo acumulado del atraso cambiario real sobre empleo y competitividad en sectores no exportadores, que puede generar un shock de demanda política en el segundo semestre — presión para aceleración del crawling peg o devaluación de salida electoral.</p>
+      <p>Tampoco está priceando el <strong>efecto combinado de caída de recaudación + menor coparticipación + stress provincial</strong> como vector de contagio fiscal subnacional. La curva de bonos provinciales es la que tiene el mayor riesgo no visible en este escenario: alta duration, baja liquidez secundaria, y sensibilidad directa al deterioro de las finanzas nacionales.</p>
+    </div>
+  </div>
+</section>
+
+<!-- §08 CFO -->
+<section class="section">
+  <div class="section-label">§ 08 &nbsp; Bajada a Cartera — Perspectiva CFO Compañía de Seguros</div>
+  <div class="cfo-grid">
+    <div class="cfo-card">
+      <div class="cfo-tag">Cartera Pesos vs. USD</div>
+      <div class="cfo-body">Entorno favorable a muy corto plazo (inflación bajando, tasas reales positivas, liquidez alta), pero el horizonte se estrecha. El riesgo de "sobrecalentamiento del carry" — bajas tasas, eventual dolarización — sugiere no alargar duration en pesos sin cobertura. La cartera en USD gana atractivo relativo a medida que <strong>la brecha CCL/oficial se comprime hacia cero</strong>, porque el costo de salida al CCL baja.</div>
+    </div>
+    <div class="cfo-card">
+      <div class="cfo-tag">CER — Acción</div>
+      <div class="cfo-body"><strong>Corto (hasta 6 meses): Mantener.</strong> Captura la inflación residual mayo-julio con devengamiento aún positivo (~2,3-2,6% mensual). <strong>Largo (2027+): Reducir.</strong> El devengamiento futuro se achica a medida que la inflación converge al 2%. Evitar CER largo con duration mayor a 18 meses.</div>
+    </div>
+    <div class="cfo-card">
+      <div class="cfo-tag">Tasa Fija — Acción</div>
+      <div class="cfo-body"><strong>Selectiva en tramos cortos (3-6 meses)</strong> donde la tasa implícita está por encima de la inflación esperada. En tramos largos el riesgo de sorpresa de inflación al alza (inercia, Medio Oriente, dólar) es asimétrico. <strong>No alargar duration en tasa fija</strong> por encima de 6 meses.</div>
+    </div>
+    <div class="cfo-card">
+      <div class="cfo-tag">USD Linked — Acción</div>
+      <div class="cfo-body">Empieza a tener valor para <strong>H2 2026</strong>. La cobertura ante una eventual aceleración del crawling peg o ajuste cambiario post-elecciones (escenario base moderado: probabilidad <strong>25-30%</strong> de ajuste antes de octubre 2026) justifica una posición táctica en USD linked con vencimientos agosto-noviembre 2026.</div>
+    </div>
+    <div class="cfo-card">
+      <div class="cfo-tag">Riesgo de Duration — Acción Urgente</div>
+      <div class="cfo-body">El entorno de desaceleración inflacionaria y tasas en caída es favorable para duration en teoría, pero el riesgo político-fiscal de H2 lo contrarresta. <strong>Reducir duration media de la cartera pesos de 12 a 6-8 meses.</strong> Aprovechar el período de calma (mayo-julio) para rotar hacia tramos cortos con tasas todavía atractivas.</div>
+    </div>
+    <div class="cfo-card">
+      <div class="cfo-tag">Riesgo de Liquidez — Alerta Técnica</div>
+      <div class="cfo-body">El sistema tiene alta liquidez hoy (agro liquidando, carry activo). El riesgo es que en H2, si el carry se deteriora, el mercado secundario de bonos CER y tasa fija largos puede tener spread de liquidación alto. <strong>Mantener al menos 15-20% de la cartera en activos de liquidez inmediata</strong> (FCI money market, Lecaps cortas) como buffer. Nota adicional: el evento de diluvio en la Costa Atlántica puede impactar la cartera técnica de seguros de bienes — monitorear exposición catastrófica climática.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="report-footer">
+  Fuentes: El Cronista, edición 11 de mayo de 2026 &nbsp;·&nbsp; Bull Market Brokers, Barclays &nbsp;·&nbsp; REM BCRA &nbsp;·&nbsp; Análisis propio basado en noticias públicas disponibles.
+</footer>
+
+</div>
+</body>
+</html>
