@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 12/05/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; line-height: 1.7; }
+
+    /* KPI STRIP */
+    .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+    .kpi { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; }
+    .kpi.neg-top { border-top-color: var(--neg); }
+    .kpi.gold-top { border-top-color: var(--gold); }
+    .kpi.pos-top { border-top-color: var(--pos); }
+    .kpi-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+    .kpi-value { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+    .kpi-value.neg { color: var(--neg); }
+    .kpi-value.pos { color: var(--pos); }
+    .kpi-value.gold { color: var(--gold); }
+    .kpi-note { font-size: 10px; color: var(--ink-3); line-height: 1.4; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+
+    /* AGENDA BOX */
+    .agenda { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 4px; padding: 18px 22px; margin-bottom: 20px; }
+    .agenda-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .agenda-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .agenda-item { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 10px 14px; }
+    .agenda-date { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; color: var(--gold); margin-bottom: 4px; }
+    .agenda-desc { font-size: 12px; color: var(--ink-2); line-height: 1.4; }
+
+    /* CARDS */
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
+    .card-pos { border-left: 3px solid var(--pos); background: rgba(91,211,154,.04); }
+    .card-pos .card-header { color: var(--pos); }
+
+    /* BULLETS */
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
+
+    /* HIGHLIGHTS */
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
+    .highlight-neg { background: rgba(239,108,108,.04); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-neg strong { color: var(--ink); font-weight: 600; }
+
+    /* TENSIONS */
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+
+    /* ALERTS */
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; display: block; margin-bottom: 4px; }
+
+    /* POS GRID */
+    .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pos-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 16px 18px; }
+    .pos-card.neg-top { border-top-color: var(--neg); }
+    .pos-card.gold-top { border-top-color: var(--gold); }
+    .pos-card.pos-top { border-top-color: var(--pos); }
+    .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .pos-text { font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .pos-text strong { color: var(--ink); font-weight: 600; }
+
+    /* INSURANCE */
+    .ins-tab { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 8px 18px; border-radius: 4px 4px 0 0; margin-bottom: -1px; }
+    .ins-tab.pesos { background: rgba(52,187,218,.15); color: var(--accent); border: 1px solid rgba(52,187,218,.2); border-bottom: 1px solid var(--bg-2); }
+    .ins-tab.usd { background: rgba(91,211,154,.12); color: var(--pos); border: 1px solid rgba(91,211,154,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-tab.riesgo { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-body { background: var(--bg-2); border: 1px solid var(--line); border-radius: 0 4px 4px 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .ins-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; margin-top: 14px; }
+    .ins-sub:first-child { margin-top: 0; }
+    .ins-text { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 8px; }
+    .ins-text strong { color: var(--ink); font-weight: 600; }
+
+    /* SÍNTESIS BOX */
+    .sintesis { background: rgba(52,187,218,.05); border: 1px solid rgba(52,187,218,.2); border-left: 3px solid var(--accent); border-radius: 4px; padding: 18px 22px; margin-top: 14px; font-size: 13px; line-height: 1.7; color: var(--ink-2); font-style: italic; }
+    .sintesis strong { color: var(--ink); font-style: normal; font-weight: 600; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 5px; margin-top: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
+
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
+
+    @media (max-width: 720px) {
+      .header-title { font-size: 22px; }
+      .section-title { font-size: 18px; }
+      .kpi-strip { grid-template-columns: 1fr 1fr; }
+      .agenda-items { grid-template-columns: 1fr; }
+      .pos-grid { grid-template-columns: 1fr; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 22px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Integral — El Cronista Comercial · Lunes 12 de mayo de 2026</div>
+    <div class="header-title">El Carry-Trade se Sostiene en la Foto pero Cruje en la Película: Inflación Resistente, Tasas Reales Negativas y un Dólar Quieto con Vencimientos sin Financiar</div>
+    <div class="header-meta">
+      12 de mayo de 2026 · Análisis regulatorio y financiero<br/>
+      Oficial BNA: $1.415 · Blue: $1.405 · MEP: $1.425 · CCL: $1.484 · Tarjeta: $1.839,5
+    </div>
+  </div>
+
+  <!-- AGENDA DE LA SEMANA -->
+  <div class="agenda">
+    <div class="agenda-title">Agenda Crítica de la Semana</div>
+    <div class="agenda-items">
+      <div class="agenda-item">
+        <div class="agenda-date">Miércoles 14/05</div>
+        <div class="agenda-desc">Licitación del Tesoro — tasa fija, CER, duales CER/Tamar, dólar linked, Bonares 2027/2028</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-date">Jueves 15/05</div>
+        <div class="agenda-desc">IPC de abril — dato binario para la narrativa de desinflación. Expectativa: 2,6%-2,8%</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-date">Viernes 15/05</div>
+        <div class="agenda-desc">Decisión YPF sobre naftas — congeladas desde el 1/04. Impacto potencial +0,3/+0,5 pp en IPC de mayo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi pos-top">
+      <div class="kpi-label">Riesgo País</div>
+      <div class="kpi-value pos">496 pb</div>
+      <div class="kpi-note">-3,1% · perforó los 500 pb</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">BNA Oficial</div>
+      <div class="kpi-value">$1.415</div>
+      <div class="kpi-note">Blue $1.405 · brecha ~1,5%</div>
+    </div>
+    <div class="kpi gold-top">
+      <div class="kpi-label">CCL</div>
+      <div class="kpi-value gold">$1.484</div>
+      <div class="kpi-note">Brecha CCL/oficial ~8,7%</div>
+    </div>
+    <div class="kpi neg-top">
+      <div class="kpi-label">Tasa Plazo Fijo</div>
+      <div class="kpi-value neg">19% TNA</div>
+      <div class="kpi-note">Real: -8% a -10% anual</div>
+    </div>
+    <div class="kpi neg-top">
+      <div class="kpi-label">Inflación i.a.</div>
+      <div class="kpi-value neg">~30,9%</div>
+      <div class="kpi-note">IPC abril (jueves): espera 2,6-2,8%</div>
+    </div>
+  </div>
+
+  <!-- § 01 RESUMEN -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El riesgo país perforó los 500 puntos (496 bps, -3,1%)</strong> impulsado por la mejora de calificación de Moody's y un contexto global favorable para emergentes. Los bonos soberanos rozan máximos históricos, pero el Gobierno aún está lejos del umbral de 400 bps para volver al mercado internacional.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El IPC de abril (dato jueves 15/05) se espera entre 2,6% y 2,8%</strong>: sería la primera desaceleración desde mayo de 2025. El dato de CABA (2,5% vs. 3,5% en marzo) da señal favorable, pero la inflación anual proyectada sigue en ~30,9%.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Las tasas pasivas (TNA 19% plazo fijo, ~22% letras) están en terreno fuertemente negativo en términos reales</strong>, con inflación anualizada del 30,9%. El descalce —que venía de expectativas de 1,5% mensual para este momento del año— es la principal tensión latente del sistema financiero.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El Tesoro convoca licitación para el miércoles 14/05</strong> con menú amplio (tasa fija, CER, duales CER/Tamar, dólar linked, Bonares 2027/2028), buscando extender duration y captar hasta u$s 500 millones en soberanos.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Fitch aclaró que la mejora soberana no se traslada a provincias</strong>: el ajuste fiscal nacional recortó transferencias de capital un 80% en términos reales. Las provincias emiten deuda pero con limitada flexibilidad fiscal.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 02 LECTURA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Transición con Sesgo de Calma Administrada</div>
+      <div class="card-content">
+        <p>El mercado local opera en un régimen de <strong>transición con sesgo de calma administrada</strong>. La narrativa dominante es la de un programa que "no golea pero tampoco recibe goles". La baja del riesgo país y el upgrade de calificación generaron un rally técnico en bonos soberanos, pero ese impulso convive con tensiones estructurales que la superficie financiera todavía no está preciando con honestidad.</p>
+        <p>El régimen actual es formalmente <strong>carry con ancla cambiaria</strong>: el dólar oficial cae levemente, la brecha Blue/Oficial es de apenas ~1,5%, y la brecha CCL/Oficial es de ~8,7%. Es el escenario ideal para el carry, pero su sostenibilidad depende de dos eventos que ocurren esta semana: el dato de inflación del jueves y la licitación del miércoles.</p>
+        <p>El problema más profundo: en octubre 2025 el REM esperaba 1,5% mensual para este momento del año; la inflación está en el triple. Las tasas pasivas nunca subieron proporcionalmente. El sistema financiero corre con tasas reales de entre -8% y -10% anual. Esta situación es tolerable en el corto plazo con represión financiera y oferta genuina de dólares del agro, pero <strong>es insostenible sin convergencia</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li class="tension-item">
+        <strong>Tasas reales negativas estructurales (-8% a -10% anual)</strong>
+        Con inflación anualizada de ~30,9% y tasas pasivas de 19-22% TNA, el plazo fijo destruye valor real. El mercado espera que la baja de inflación de abril reduzca la brecha, pero si el IPC no baja lo suficiente, la presión sobre el tipo de cambio se intensifica a partir de julio.
+      </li>
+      <li class="tension-item">
+        <strong>El Tesoro extiende duration pero el mercado aún no convalida tasa</strong>
+        La estrategia de ir a bonos duales 2028-2029 requiere que el mercado confíe en la convergencia inflacionaria. Si el IPC de abril sale más alto de lo esperado, la demanda por tasa fija larga colapsará y el Tesoro deberá premiar excesivamente CER o dólar linked.
+      </li>
+      <li class="tension-item">
+        <strong>Dólar quieto sin fundamentos de largo plazo</strong>
+        Polo (Cohen) es explícito: "El Gobierno todavía no tiene la plata para pagar los vencimientos". La paradoja Santángelo ("sobran dólares, faltan pesos") revela que el ancla cambiaria genera consumo deprimido: se compran más de u$s 2.000 millones mensuales en atesoramiento. Ese flujo puede revertir.
+      </li>
+      <li class="tension-item">
+        <strong>Aumento de combustibles antes del 15/05</strong>
+        La nafta lleva congelada desde el 1 de abril. Un aumento fuerte impacta directo en el IPC de mayo, justo cuando se intentaba instalar la narrativa de desinflación sostenida. Impacto estimado: +0,3/+0,5 pp en IPC de mayo.
+      </li>
+      <li class="tension-item">
+        <strong>Fitch advertencia provincial ignorada por el mercado</strong>
+        Las provincias tendrán deterioro fiscal en 2026 (menos coparticipación efectiva, obra pública nacional paralizada). Emitieron u$s 4.400 millones en deuda en 2025-2026 con frente fiscal debilitado. El upgrade soberano no las cubre.
+      </li>
+      <li class="tension-item">
+        <strong>Merval en rojo mientras emergentes vuelan</strong>
+        El mercado local descuenta riesgo político electoral y ajuste con límite, mientras el contexto global de emergentes sube. Es una señal de divergencia estructural, no ruido de corto plazo.
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 04 VARIABLES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Tipo de Cambio</div>
+      <div class="card-content">El oficial continuará deslizándose en torno a $1.365-1.420 mientras el BCRA sostenga las compras. El MEP ($1.425) y el CCL ($1.484) muestran brecha contenida pero con algo de presión. La narrativa de Di Stefano ("el dólar podría superar a la inflación en un año") es un riesgo de mediano plazo. La licitación del miércoles y el IPC del jueves serán los catalizadores de corto: <strong>si el IPC sorprende al alza o la licitación falla, la brecha puede ampliarse con rapidez.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas</div>
+      <div class="card-content">El corto plazo (letras al 22% TNA) está claramente por debajo de la inflación esperada. Los bonos duales 2028-2029 ofrecen cobertura por el instrumento más conveniente entre CER y Tamar — la apuesta del Tesoro para extender duration. La pendiente es negativa en términos reales: el mercado premia el largo solo si confía en la convergencia, y esa confianza es frágil.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada — Riesgo de Rebote en Mayo</div>
+      <div class="card-content">El REM proyecta 2,6% para abril. Si llega ese número, la narrativa de "inflación en baja" se instala por el primer mes tras 10 meses de aceleración. Sin embargo, el piso de 30% anual persiste; la baja de combustibles que no llegó en abril podría compensar con un salto en mayo. <strong>El riesgo de rebote inflacionario en mayo es real y no está plenamente priceado.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Liquidez y Crédito — Morosidad Latente</div>
+      <div class="card-content">Los bancos ven el crédito como "una vergüenza" (10% del PBI, ABA). La adquisición de Efectivo Sí por Banco Columbia refleja el estrés del segmento de consumo masivo: la financiera tenía ROE negativo, morosidad creciente y pérdida patrimonial del 26%. El crecimiento de "deudas zombis" señala que el sistema bancario está absorbiendo morosidad latente que aún no apareció en los balances de los bancos grandes.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo Soberano — 496 pb, a 96 del Umbral Clave</div>
+      <div class="card-content">Los bonos soberanos en máximos desde febrero. El GD38 lidera las subas (+1% el lunes). Pero Polo (Cohen) es claro: el Gobierno necesita financiamiento externo que todavía no tiene. La meta de 400 bps para volver al mercado internacional está a ~96 pb de distancia. <strong>Fitch mejoró el soberano pero aclaró que eso no se traslada a las provincias</strong>, fracturando la narrativa de "Argentina unificada en mejora".</div>
+    </div>
+  </div>
+
+  <!-- § 05 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card pos-top">
+        <div class="pos-label">Se Benefician</div>
+        <div class="pos-text"><strong>Bonos duales CER/Tamar (2028-2029):</strong> licitación del miércoles en mercado primario — cobertura doble contra inflación y suba de tasas. <strong>CER mediano plazo (TX26, TZXM7):</strong> break-even favorable vs. tasa fija. <strong>Acciones energéticas (TRAN, PAMPA, GGAL):</strong> privatización Transener activa relectura del sector; lideraron el lunes +4%. <strong>Cedears (uranio, IA, ciberseguridad):</strong> nuevos 13 listados, dolarización con yield real. <span class="tag pos">CORE</span></div>
+      </div>
+      <div class="pos-card neg-top">
+        <div class="pos-label">Empeoran o Pierden Sentido</div>
+        <div class="pos-text"><strong>Lecap / tasa fija corta:</strong> rendimiento real negativo claro. Solo tienen sentido para gestión de liquidez de menos de 30 días. <strong>Bonos soberanos largos (GD46, GD35):</strong> rally maduro — recortar exposición tras el rally. <strong>Bonos provinciales:</strong> riesgo de repricing negativo si el mercado procesa el warning fiscal de Fitch. <span class="tag neg">REDUCIR</span></div>
+      </div>
+      <div class="pos-card gold-top">
+        <div class="pos-label">Cobertura que Empieza a Tener Valor</div>
+        <div class="pos-text"><strong>Dólar linked TZV28:</strong> ingreso gradual — cobertura asimétrica de bajo costo hoy. El escenario Di Stefano (dólar supera inflación en 2027) se comprará antes de que el consenso lo vea. <strong>GD30/GD29 tramo corto-medio:</strong> mantener con stop ajustado si riesgo país supera 560 pb. <span class="tag gold">COBERTURA</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Oportunidad de la Semana</div>
+        <div class="pos-text"><strong>Licitación del Tesoro miércoles 14/05:</strong> ingreso a bonos duales CER/Tamar 2028-2029 en mercado primario — precio de emisión sin markup secundario. Es la ventana de posicionamiento más eficiente de la semana. Vigilar si los duales concentran la demanda (señal de desconfianza en tasa fija larga). <span class="tag blue">ACCIÓN</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 06 ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas Ejecutivas</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <strong>IPC de abril (jueves 15/05) — evento binario de la semana</strong>
+        Si el dato supera el 2,8%, se derrumba la narrativa de desinflación, el mercado reprecia bonos CER vs. tasa fija, y la brecha cambiaria puede ampliarse. Si confirma la baja, el rally en pesos tiene combustible. <span class="tag neg">CRÍTICO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Licitación del Tesoro (miércoles 14/05)</strong>
+        Una licitación fallida o con fuerte sesgo hacia CER/dólar linked (en lugar de tasa fija larga) sería una señal de que el mercado no confía en la convergencia inflacionaria. Vigilar si los duales se llevan la mayor demanda. <span class="tag neg">CRÍTICO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Aumento de combustibles (viernes 15/05)</strong>
+        La decisión de YPF puede impactar +0,3/+0,5 puntos en el IPC de mayo. Si se suman tarifas pendientes, el piso de inflación de mayo podría ser mayor al de abril, truncando el ciclo desinflacionario antes de que arranque. <span class="tag neg">ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Tensión provincial oculta — upgrade soberano no les aplica</strong>
+        Los bonos provinciales (Córdoba, Mendoza, Santa Fe) pueden tener repricing negativo si el mercado procesa que la mejora soberana no es consolidable a nivel subnacional. Vigilar los spreads soberanos vs. provinciales. <span class="tag neg">MEDIO-ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Riesgo político-electoral y consumo</strong>
+        Si el salario real no mejora, la adhesión social al modelo se debilita antes de 2027. Recaudación cayendo + ajuste sin espacio = límite al modelo sin reformas fiscales adicionales. Una aceleración de este deterioro puede gatillar salida de carry y fuga a cobertura. <span class="tag neg">MEDIO</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 07 NO PRICEADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight-neg">
+      <strong>La morosidad sistémica en el crédito al consumo.</strong> La adquisición de Efectivo Sí por Columbia (pérdida patrimonial del 26%, ROE negativo por caída del salario real), el crecimiento de "deudas zombis" y el alerta de los bancos sobre el nivel de crédito al PBI esconden una deterioración en el crédito informal y semi-formal que los balances bancarios grandes todavía no muestran. Cuando ese stock de morosidad latente se formalice —posiblemente en H2 2026 cuando se concentren los vencimientos de planes de pago—, habrá una contracción de la oferta de crédito que impactará duramente el consumo. Ninguna consultora lo está incorporando en sus proyecciones para el segundo semestre.
+    </div>
+    <div class="highlight-neg">
+      <strong>El riesgo de corrección electoral del dólar.</strong> El REM pone el dólar a $1.676 para diciembre 2026 (+15,8% interanual). Pero los break-evens implícitos muestran que el mercado espera una inflación de 28,3% y un dólar que podría superar esa cifra si el resultado electoral de 2027 no es favorable al oficialismo. La opción de cobertura cambiaria está barata hoy y esa baratura no se va a mantener si el ciclo electoral entra en foco antes de fin de año.
+    </div>
+  </div>
+
+  <!-- § 08 CFO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — CFO de Aseguradora</span>
+    </div>
+
+    <!-- Pesos -->
+    <div style="margin-bottom:4px;">
+      <div class="ins-tab pesos">Cartera en Pesos</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">Acción inmediata — rotar a duales en licitación del miércoles</div>
+      <div class="ins-text">El principal riesgo hoy para una aseguradora con pasivos en pesos de mediano plazo es estar sobreinvertida en Lecap o plazo fijo. Con tasas reales de -8% a -10% anual, cada mes que pasa se destruye margen técnico. La acción inmediata es rotar hacia <strong>bonos duales (CER + Tamar) para los tramos 2027-2029</strong>, que protegen tanto frente a inflación mayor a la esperada como frente a suba de tasas. El Tesoro ofrecerá exactamente estos instrumentos el miércoles: es una ventana de ingreso a precios de mercado primario. <span class="tag blue">ACCIÓN MIÉRCOLES</span></div>
+
+      <div class="ins-sub">CER corto — superior al plazo fijo en todo escenario</div>
+      <div class="ins-text">Para el tramo más corto (hasta 6 meses), los <strong>bonos CER cortos (TX26)</strong> son superiores al plazo fijo en términos de rendimiento real y liquidez. Las Lecap de 30-90 días tienen valor solo para gestión de caja operativa.</div>
+
+      <div class="ins-sub">Riesgo de duration — no extender en tasa fija larga</div>
+      <div class="ins-text">El mayor error sería extender duration en <strong>Lecap 2027+</strong>. Si el IPC de mayo rebota por combustibles o la licitación del miércoles muestra que el mercado no convalida tasa fija larga, esos instrumentos sufrirán. La duration ideal para el pasivo técnico de una aseguradora de daños (12-18 meses promedio) se cubre mejor con <strong>duales o CER corto-medio</strong>, no con tasa fija larga. <span class="tag neg">EVITAR</span></div>
+    </div>
+
+    <!-- USD -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab usd">Cartera en USD / Cobertura Cambiaria</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">Dólar linked TZV28 — construir posición gradual</div>
+      <div class="ins-text">Con brecha CCL en 8,7% y dólar linked sin prima, es el momento de <strong>comenzar a construir posición gradual en TZV28 y/o Cedears defensivos</strong>. No como apuesta a devaluación inminente, sino como cobertura asimétrica: el costo de cobertura es bajo hoy y el riesgo de cola (electoral 2027, monetización de vencimientos, fallo en licitación) está subestimado.</div>
+
+      <div class="ins-sub">GD30/GD35 — mantener encaje USD con tramos medios</div>
+      <div class="ins-text">Para el encaje en USD, los <strong>bonos soberanos (GD30/GD35)</strong> ofrecen carry en dólares con riesgo crediticio mejorado post-upgrade. <strong>Evitar los tramos más largos (GD46)</strong> que están priceando escenarios muy optimistas que aún no tienen fundamentos de balance. Recortar exposición larga tras el rally. <span class="tag gold">RECORTAR GD46</span></div>
+    </div>
+
+    <!-- Riesgo liquidez -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab riesgo">Riesgo de Liquidez</div>
+    </div>
+    <div class="ins-body" style="border-left:3px solid var(--neg);background:rgba(239,108,108,.03);">
+      <div class="ins-sub">Paro bancario y disrupción operativa</div>
+      <div class="ins-text">El paro bancario anunciado puede generar disrupción en transferencias y operaciones de mercado secundario. <strong>Mantener colchón de liquidez en cuentas operativas equivalente a al menos 15 días de necesidades de caja.</strong></div>
+
+      <div class="ins-sub">Riesgo de contrapartes financieras no bancarias</div>
+      <div class="ins-text">La absorción de Efectivo Sí por Columbia y la tensión en el crédito al consumo aumentan el riesgo de que algunas contrapartes del mercado financiero no bancario (sociedades de garantía, fideicomisos de consumo) tengan dificultades en H2 2026. Revisar exposición a ese segmento. <span class="tag neg">REVISAR</span></div>
+    </div>
+
+    <!-- Síntesis ejecutiva -->
+    <div class="sintesis">
+      <strong>Síntesis ejecutiva para el CFO:</strong> Rotar Lecap/plazo fijo hacia bonos duales CER/Tamar en la licitación del miércoles. Construir posición gradual en cobertura cambiaria (TZV28) aprovechando la baja prima actual. No extender duration en tasa fija. Monitorear el IPC del jueves como evento gatillo. El rally de bonos soberanos en dólares está maduro: no agregar riesgo soberano largo, mantener tramo medio con stop ajustado.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis integral basado en cobertura de El Cronista del 12 de mayo de 2026<br/>
+    Cotizaciones: BNA $1.415 · Blue $1.405 · MEP $1.425 · CCL $1.484 · Riesgo País 496 pb<br/>
+    No constituye asesoramiento financiero
+  </footer>
+
+</div>
+</body>
+</html>

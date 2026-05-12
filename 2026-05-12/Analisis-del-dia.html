@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCRA · Informe Monetario Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0B1620;color:#E8EEF2;font-family:'Inter',sans-serif;line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:48px 32px 80px}
+
+  /* ===== HEADER ===== */
+  header{border-bottom:1px solid #1E3447;padding-bottom:28px;margin-bottom:40px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#34BBDA;margin-bottom:14px;font-weight:500}
+  h1{font-family:'Fraunces',serif;font-size:38px;line-height:1.15;font-weight:600;color:#F5F7F9;letter-spacing:-.01em;margin-bottom:14px}
+  .subtitle{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:#9AA8B4;font-style:italic;margin-bottom:22px}
+  .meta{display:flex;flex-wrap:wrap;gap:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7A8A98;letter-spacing:.06em;text-transform:uppercase}
+  .meta span{display:inline-flex;align-items:center;gap:6px}
+  .meta strong{color:#E8EEF2;font-weight:500}
+
+  /* ===== KPI BAR ===== */
+  .kpi-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#1E3447;border:1px solid #1E3447;border-radius:4px;margin-bottom:48px;overflow:hidden}
+  .kpi{background:#0F1E2B;padding:18px 16px}
+  .kpi-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7A8A98;margin-bottom:8px}
+  .kpi-value{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;color:#F5F7F9;margin-bottom:2px}
+  .kpi-delta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9AA8B4}
+  .pos{color:#5BD39A}
+  .neg{color:#EF6C6C}
+  .gold{color:#E8B04A}
+
+  /* ===== SECTIONS ===== */
+  section{margin-bottom:48px}
+  .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#34BBDA;margin-bottom:8px;text-transform:uppercase;font-weight:500}
+  h2{font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#F5F7F9;margin-bottom:20px;letter-spacing:-.005em;line-height:1.25}
+  h3{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#E8EEF2;margin-bottom:10px;margin-top:18px}
+  p{margin-bottom:14px;color:#C5CFD7}
+  p:last-child{margin-bottom:0}
+  strong{color:#F5F7F9;font-weight:600}
+  em{color:#9AA8B4;font-style:italic}
+
+  /* ===== BULLET LIST (§01) ===== */
+  .bullet-list{list-style:none;padding:0}
+  .bullet-list li{position:relative;padding-left:24px;margin-bottom:14px;color:#D5DCE3}
+  .bullet-list li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:#34BBDA;box-shadow:0 0 12px rgba(52,187,218,.55)}
+  .bullet-list li strong{color:#F5F7F9}
+
+  /* ===== TABLES ===== */
+  table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:13px;margin:14px 0;border:1px solid #1E3447;border-radius:4px;overflow:hidden}
+  thead th{background:#17293A;color:#9AA8B4;font-weight:500;text-align:left;padding:11px 14px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #1E3447}
+  tbody td{padding:11px 14px;border-bottom:1px solid #16273A;color:#D5DCE3}
+  tbody tr:nth-child(even) td{background:#0E1B27}
+  tbody tr:last-child td{border-bottom:none}
+  td.r{text-align:right}
+  td.c{text-align:center}
+
+  /* ===== CARDS ===== */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px}
+  .card{background:#0F1E2B;border:1px solid #1E3447;border-left:3px solid #34BBDA;border-radius:4px;padding:18px 20px}
+  .card-title{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:#F5F7F9;margin-bottom:8px}
+  .card p{font-size:14px;color:#B8C2CB;margin-bottom:0}
+
+  .card-alert{border-left-color:#EF6C6C}
+  .card-rec{border-left-color:#E8B04A;background:#1A1810}
+  .card-pos{border-left-color:#5BD39A}
+
+  /* ===== HIGHLIGHT (§07) ===== */
+  .highlight{background:#0E2730;border:1px solid #1E3D47;border-left:3px solid #34BBDA;border-radius:4px;padding:18px 20px;margin:14px 0}
+  .highlight .h-title{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#34BBDA;margin-bottom:8px;font-weight:500}
+  .highlight p{font-size:14px;color:#D5DCE3;margin:0}
+
+  /* ===== TAGS ===== */
+  .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;font-weight:500;margin-left:8px;vertical-align:middle}
+  .tag-crit{background:rgba(239,108,108,.15);color:#EF6C6C;border:1px solid rgba(239,108,108,.3)}
+  .tag-alt{background:rgba(232,176,74,.13);color:#E8B04A;border:1px solid rgba(232,176,74,.3)}
+  .tag-med{background:rgba(52,187,218,.13);color:#34BBDA;border:1px solid rgba(52,187,218,.3)}
+  .tag-confirm{background:rgba(91,211,154,.13);color:#5BD39A;border:1px solid rgba(91,211,154,.3)}
+  .tag-hipot{background:rgba(155,138,224,.13);color:#9B8AE0;border:1px solid rgba(155,138,224,.3)}
+
+  /* ===== SCENARIO TABLE (§07) ===== */
+  .scen-table th, .scen-table td{font-size:12px}
+  .prob{font-weight:600;color:#E8B04A}
+
+  /* ===== CFO RECS (§08) ===== */
+  .rec-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+  .rec-block{background:#1A1810;border:1px solid #2A2418;border-left:3px solid #E8B04A;border-radius:4px;padding:18px 22px}
+  .rec-branch{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#E8B04A;font-weight:500;margin-bottom:8px}
+  .rec-title{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#F5F7F9;margin-bottom:8px}
+  .rec-block p{font-size:14px;color:#C5CFD7;margin-bottom:0}
+  .rec-block ul{list-style:none;padding:0;margin-top:10px}
+  .rec-block ul li{position:relative;padding-left:18px;margin-bottom:7px;font-size:13.5px;color:#C5CFD7}
+  .rec-block ul li::before{content:"›";position:absolute;left:0;top:-1px;color:#E8B04A;font-weight:600}
+
+  /* ===== AGENDA ===== */
+  .agenda{margin-top:14px}
+  .agenda-item{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:12px 0;border-bottom:1px solid #16273A}
+  .agenda-item:last-child{border-bottom:none}
+  .agenda-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#34BBDA;letter-spacing:.04em}
+  .agenda-text{font-size:14px;color:#C5CFD7}
+  .agenda-text strong{color:#F5F7F9}
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid #1E3447;padding-top:24px;margin-top:60px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7A8A98;letter-spacing:.04em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  footer .brand{color:#34BBDA}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:720px){
+    .wrap{padding:32px 20px 60px}
+    h1{font-size:28px}
+    h2{font-size:22px}
+    .kpi-bar{grid-template-columns:repeat(2,1fr)}
+    .cards{grid-template-columns:1fr}
+    .agenda-item{grid-template-columns:1fr;gap:4px}
+    table{font-size:12px}
+    thead th,tbody td{padding:9px 10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="eyebrow">§ Banco Central · Informe Monetario Mensual</div>
+    <h1>El BCRA compra USD 2.770 M y baja encajes mientras la base sigue cayendo en términos reales</h1>
+    <div class="subtitle">Acumulación de reservas vía mercado, peso fuerte, expansión crediticia incipiente y un giro normativo que reabre el grifo cambiario para personas humanas</div>
+    <div class="meta">
+      <span><strong>Fuente</strong> BCRA · Informe Monetario Abril 2026</span>
+      <span><strong>Cierre estadístico</strong> 08-may-2026</span>
+      <span><strong>Análisis</strong></span>
+    </div>
+  </header>
+
+  <!-- ===== KPI BAR ===== -->
+  <div class="kpi-bar">
+    <div class="kpi">
+      <div class="kpi-label">Reservas Int.</div>
+      <div class="kpi-value">USD 44.516 M</div>
+      <div class="kpi-delta pos">+USD 2.464 M m/m</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Compras BCRA</div>
+      <div class="kpi-value">USD 2.770 M</div>
+      <div class="kpi-delta pos">USD 7.155 M YTD</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">TCN mayorista</div>
+      <div class="kpi-value">$ 1.381</div>
+      <div class="kpi-delta pos">–1,0% m/m</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">TAMAR BP</div>
+      <div class="kpi-value">23,6% n.a.</div>
+      <div class="kpi-delta neg">–3,2 p.p. vs mar</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Base Monetaria</div>
+      <div class="kpi-value">4,1% PIB</div>
+      <div class="kpi-delta neg">–3,0% real s.e.</div>
+    </div>
+  </div>
+
+  <!-- ===== §01 RESUMEN EJECUTIVO ===== -->
+  <section>
+    <div class="section-num">§ 01 · Resumen Ejecutivo</div>
+    <h2>Cinco lecturas no obvias del mes</h2>
+    <ul class="bullet-list">
+      <li><strong>El BCRA está acumulando reservas sin emitir presión inflacionaria.</strong> Las compras por USD 2.770 M expandieron $3 bn la base, pero las operaciones del Tesoro (rollover positivo + depósitos en BCRA) esterilizaron $2,4 bn. La compra de divisas es expansiva, pero la política fiscal/de deuda neutraliza el efecto monetario.</li>
+      <li><strong>La caída real de la base monetaria —8 meses consecutivos— no es contractiva, es sustitución de cartera.</strong> El público migra de no remunerados a remunerados. El M3 privado se mantiene estable en 13,2% del PIB y los plazos fijos privados crecen 4,1% real s.e. en el mes.</li>
+      <li><strong>Las TAMAR cayeron 3,2 p.p. en el mes sin volatilidad: el mercado descuenta que el régimen actual se sostiene.</strong> El call y el REPO también comprimieron. Tasas reales positivas pero en proceso de normalización a la baja. <span class="tag tag-confirm">Confirmado</span></li>
+      <li><strong>El crédito real volvió a crecer (+0,6% s.e.) tras dos meses de caída,</strong> traccionado por hipotecarios UVA (+100% i.a. real) y tarjetas (+3,1% s.e.). La pre-electoral de octubre 2025 ya se metabolizó: ahora viene la fase de recomposición sostenida.</li>
+      <li><strong>El cambio normativo del 9-abr es estructural, no cosmético.</strong> Personas humanas pueden no liquidar divisas, los límites de adelantos en tarjetas exterior se eliminan y se habilita cobertura cambiaria con piso en pasivos externos. Es una liberalización selectiva con efectos sobre la oferta de dólares y el carry trade minorista.</li>
+    </ul>
+  </section>
+
+  <!-- ===== §02 LECTURA DE MERCADO ===== -->
+  <section>
+    <div class="section-num">§ 02 · Lectura de Mercado</div>
+    <h2>Qué está pasando realmente</h2>
+
+    <p>El informe describe un mes <strong>aparentemente plácido</strong> —base que cae, M3 estable, tasas bajando ordenadamente, tipo de cambio retrocediendo del techo de la banda— pero la lectura no obvia es que <strong>esa placidez no es equilibrio: es la fase de absorción de un esquema</strong> donde el BCRA opera tres palancas simultáneas con direcciones consistentes.</p>
+
+    <p>La primera palanca es la <strong>acumulación de reservas por vía de mercado</strong>, no por colocaciones de deuda en USD ni por desembolsos de organismos. El BCRA compró USD 5.176 M en el trimestre (vs USD 4.314 M en todo el i.a. previo). El stock terminó en USD 44.516 M, +40,4% i.a. nominal. Esto convalida la lectura de que el sector privado está liquidando excedentes (cosecha + carry favorable a posiciones en pesos), <em>no</em> que el oficial salga a defender precios.</p>
+
+    <p>La segunda palanca es la <strong>compresión de tasas pasivas sin episodios de volatilidad</strong>. TAMAR BP pasó de 26,8% a 23,6% (n.a., promedio) y el cierre del mes en 23,1%. La call cayó de 23,8% a 20,6%. El descenso fue progresivo, sin saltos —lectura: el BCRA <em>permite</em> el ajuste, no lo administra activamente con intervenciones. La demanda de pesos está siendo abastecida por la sustitución de M2 a plazo.</p>
+
+    <p>La tercera palanca es la <strong>flexibilización normativa cambiaria</strong> (Com. A 8417) y la <strong>reducción de encajes</strong> (Com. A 8423: integración diaria pasa de 75% a 65% e historial de capitales mínimos para agro no MiPyME se elimina, Com. A 8418). Esto libera capacidad prestable del sistema financiero al mismo tiempo que el crédito real reaparece. La secuencia <em>importa</em>: primero estabilización, ahora desregulación selectiva.</p>
+
+    <p>El detalle revelador: los depósitos en USD del privado tocan máximo histórico (USD 39.047 M, +30,9% i.a.) y los préstamos en USD acumulan +53,8% i.a. (USD 22.732 M). El sistema está <strong>dolarizándose en ambas patas del balance</strong> de manera ordenada —algo impensado hace 18 meses sin colas en bancos.</p>
+  </section>
+
+  <!-- ===== §03 TENSIONES CLAVE ===== -->
+  <section>
+    <div class="section-num">§ 03 · Tensiones Clave</div>
+    <h2>Las contradicciones que el informe no enfatiza</h2>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">Base cae en términos reales, pero la economía no se enfría</div>
+        <p>Ocho meses de contracción real s.e. de la base contra crédito real expandiéndose y depósitos a plazo +4,1% s.e. La ecuación cierra solo si se asume que la velocidad de circulación está cayendo estructuralmente por sustitución de M2 a plazo. Si esa hipótesis falla, hay un problema de demanda real de dinero subestimada.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Compras del BCRA + caída del TC = oferta excedente persistente</div>
+        <p>El BCRA compra y el dólar baja simultáneamente. Eso solo es consistente si la oferta privada de divisas excede sistemáticamente la demanda al precio actual. La pregunta CFO: ¿hasta cuándo? La liquidación de cosecha gruesa termina en julio.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Flexibilización cambiaria con elecciones próximas</div>
+        <p>Eliminar límites de adelantos en tarjetas exterior y permitir no liquidación de exportaciones de personas humanas son medidas que <em>aumentan</em> potencialmente la demanda de USD. Las hacen ahora porque la oferta sobra. La ventana de hacer estas medidas sin costo cambiario es estrecha.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Préstamos en USD crecen +53,8% i.a. con tasas en 4,9% n.a.</div>
+        <p>Los documentos a sola firma en USD crecen +49,5% i.a. real. Esto financia capital de trabajo exportador, pero también introduce <strong>riesgo de descalce</strong> en empresas no exportadoras que toman USD para girar en ARS. Materia prima para sinistralidad crediticia de cara a 2027.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §04 IMPACTO EN VARIABLES ===== -->
+  <section>
+    <div class="section-num">§ 04 · Impacto en Variables</div>
+    <h2>Lectura cruzada para asset allocation</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th class="c">Lectura</th>
+          <th class="c">Dirección</th>
+          <th>Driver</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tasa real ARS</td>
+          <td class="c">23,6% n.a. – inflación implícita ROFEX</td>
+          <td class="c pos">Positiva, comprimiendo</td>
+          <td>Sustitución cartera + menor demanda BCRA de esterilización</td>
+        </tr>
+        <tr>
+          <td>Tipo de cambio nominal</td>
+          <td class="c">$1.381 mayorista (–1,0% m/m)</td>
+          <td class="c pos">Apreciación nominal</td>
+          <td>Oferta excedente privada + BCRA absorbe</td>
+        </tr>
+        <tr>
+          <td>Reservas internacionales</td>
+          <td class="c">USD 44.516 M (+40,4% i.a.)</td>
+          <td class="c pos">Recomposición acelerada</td>
+          <td>Compras mercado + BONAR 27/28 + neto vs organismos</td>
+        </tr>
+        <tr>
+          <td>Crédito privado en ARS</td>
+          <td class="c">+0,6% s.e. real (+9,5% i.a.)</td>
+          <td class="c pos">Reactivación selectiva</td>
+          <td>Hipotecarios UVA + tarjetas. Comerciales aún flojos.</td>
+        </tr>
+        <tr>
+          <td>Crédito privado en USD</td>
+          <td class="c">+53,8% i.a. promedio</td>
+          <td class="c gold">Crecimiento intenso</td>
+          <td>Documentos a sola firma exportadores</td>
+        </tr>
+        <tr>
+          <td>Depósitos USD privado</td>
+          <td class="c">USD 39.047 M (máximo histórico)</td>
+          <td class="c pos">Dolarización ordenada</td>
+          <td>Plazo fijo y caja de ahorro</td>
+        </tr>
+        <tr>
+          <td>Base monetaria / PIB</td>
+          <td class="c">4,1% (–0,3 p.p. i.a.)</td>
+          <td class="c neg">Contracción real</td>
+          <td>Sustitución hacia remunerados (menor efectivo mínimo)</td>
+        </tr>
+        <tr>
+          <td>M3 privado / PIB</td>
+          <td class="c">13,2% (+2,1 p.p. vs mín. abr-24)</td>
+          <td class="c pos">Estable / leve expansión</td>
+          <td>Recomposición monetaria desde piso 2024</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== §05 IMPLICANCIAS ===== -->
+  <section>
+    <div class="section-num">§ 05 · Implicancias para Cartera</div>
+    <h2>Qué se beneficia y qué se complica</h2>
+
+    <div class="cards">
+      <div class="card card-pos">
+        <div class="card-title">Beneficiados</div>
+        <p>Posiciones <strong>CER y duration ARS larga</strong>: caída de TAMAR comprime tasas reales en el tramo largo y el carry sigue siendo positivo. <strong>Hipotecarios UVA originados pre-2025</strong>: spread amplio sobre fondeo. <strong>Bancos privados con exposición a crédito al consumo</strong>: tarjetas crecen +3,1% s.e. y el spread sobre fondeo TAMAR se ensancha.</p>
+      </div>
+      <div class="card card-alert">
+        <div class="card-title">Complicados</div>
+        <p>Posiciones de <strong>cobertura cambiaria pura (DLK cortos, ROFEX)</strong>: TCN bajando + BCRA comprando = costo de carry negativo. <strong>Plazo fijo tradicional minorista</strong>: el 21,1% n.a. para PH hasta $1M ya está debajo de inflación esperada. <strong>Aseguradoras con sub-exposición a UVA</strong>: pierden contra la recomposición real de cartera del sistema.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §06 ALERTAS ===== -->
+  <section>
+    <div class="section-num">§ 06 · Alertas y Riesgos</div>
+    <h2>Lo que hay que monitorear</h2>
+
+    <div class="cards">
+      <div class="card card-alert">
+        <div class="card-title">Descalce ARS/USD en deudores no exportadores <span class="tag tag-alt">Alto</span></div>
+        <p>Préstamos USD privado +53,8% i.a. real. Si una fracción significativa va a empresas no exportadoras (no se desglosa en el informe), la próxima depreciación nominal —cuando termine la cosecha o haya ruido electoral— generará mora. Implicancia: revisar libro de caución y reaseguro de crédito.</p>
+      </div>
+      <div class="card card-alert">
+        <div class="card-title">Liberalización cambiaria con ventana estacional <span class="tag tag-crit">Crítico</span></div>
+        <p>La eliminación de límites de adelantos en tarjetas exterior y la no liquidación obligatoria de exportaciones de PH son <strong>asimétricas en el tiempo</strong>: hoy aumentan la demanda potencial sin presión porque sobra oferta. Cuando la oferta caiga (jul-ago), el efecto comprimido se traducirá en presión sobre TCN. <span class="tag tag-hipot">Hipótesis</span></p>
+      </div>
+      <div class="card card-alert">
+        <div class="card-title">Depósitos a la vista remunerados –8,5% s.e. real <span class="tag tag-med">Medio</span></div>
+        <p>Caen 18,3% nominal en el trimestre. La sustitución hacia plazo fijo es virtuosa, pero también implica que los FCI MM están perdiendo participación frente al plazo fijo directo. Impacto: menor demanda de Lecaps cortas y caución, lo que puede tensar el tramo corto de la curva ARS si el flujo se revierte.</p>
+      </div>
+      <div class="card card-alert">
+        <div class="card-title">Encajes diarios bajan de 75% a 65% <span class="tag tag-med">Medio</span></div>
+        <p>Com. A 8423 libera $1,3 bn aprox. de capacidad prestable del sistema. Es expansivo del crédito pero <strong>contractivo de la demanda de Lecaps</strong> (los bancos integran menos con TP de licitaciones primarias por liberación de plazos mín/máx). Posible compresión adicional de TIR en tramo corto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §07 LO QUE NO ESTÁ PRECIADO ===== -->
+  <section>
+    <div class="section-num">§ 07 · Lo Que No Está Preciado</div>
+    <h2>Riesgos y escenarios que el mercado subestima</h2>
+
+    <div class="highlight">
+      <div class="h-title">Insight 1 · Fin de la cosecha gruesa como evento de mercado</div>
+      <p>El consenso descuenta que la baja del TCN es estructural por desinflación + carry. La oferta real <strong>tiene estacionalidad</strong>: el grueso de la liquidación termina entre julio y agosto. El precio del oficial post-julio reflejará la verdadera demanda de equilibrio, no la oferta excedente actual. Si el BCRA deja de comprar USD a $1.381, ¿a qué precio compra a $1.500? La banda superior está en torno a $1.450 según el gráfico 4.2 del informe.</p>
+    </div>
+
+    <div class="highlight">
+      <div class="h-title">Insight 2 · El régimen normativo nuevo es un experimento que aún no rindió examen</div>
+      <p>Com. A 8417 elimina barreras importantes (no liquidación PH, sin tope tarjetas exterior, cobertura cambiaria habilitada). El informe BCRA lo presenta como técnico, pero <strong>no hay precedente reciente</strong> de un régimen así sostenido con elecciones de medio término por delante (referencia explícita en gráfico 4.2). Si el dispositivo cambiario falla bajo presión, la reversión sería costosa en reservas.</p>
+    </div>
+
+    <h3 style="margin-top:28px">Tres escenarios para el próximo trimestre</h3>
+    <table class="scen-table">
+      <thead>
+        <tr>
+          <th>Escenario</th>
+          <th class="c">Probabilidad</th>
+          <th>TCN cierre Q3</th>
+          <th>TAMAR cierre Q3</th>
+          <th>Implicancia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Base · Sostenimiento ordenado</strong></td>
+          <td class="c"><span class="prob">55%</span></td>
+          <td>$1.420 – $1.480</td>
+          <td>20% – 22% n.a.</td>
+          <td>Carry positivo se sostiene. CER overweight.</td>
+        </tr>
+        <tr>
+          <td><strong>Alcista · Aceleración desinflacionaria</strong></td>
+          <td class="c"><span class="prob">25%</span></td>
+          <td>$1.380 – $1.420</td>
+          <td>17% – 19% n.a.</td>
+          <td>Soberanos USD outperform. Duration ARS comprime.</td>
+        </tr>
+        <tr>
+          <td><strong>Bajista · Ruido electoral / oferta cae</strong></td>
+          <td class="c"><span class="prob">20%</span></td>
+          <td>$1.500 – $1.580</td>
+          <td>24% – 28% n.a.</td>
+          <td>DLK rinde. Riesgo de stop en crédito USD.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:28px">Agenda de monitoreo</h3>
+    <div class="agenda">
+      <div class="agenda-item">
+        <div class="agenda-date">15-may-2026</div>
+        <div class="agenda-text"><strong>IPC abril INDEC</strong> · Si IPC mensual &gt; 2,5% y TAMAR cierra mes &lt; 23%, tasa real negativa. <em>Trigger</em>: reducir duration ARS, rebalanceo a CER corto.</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-date">Junio 2026</div>
+        <div class="agenda-text"><strong>Pico liquidación de cosecha</strong> · Si BCRA compra &lt; USD 1.500 M en el mes, señal de oferta debilitándose anticipadamente. <em>Trigger</em>: agregar cobertura DLK +5% cartera.</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-date">15-jul-2026</div>
+        <div class="agenda-text"><strong>Licitación de Tesoro mid-mes</strong> · Si rollover &lt; 100% por primera vez en 2026, riesgo de emisión por déficit cuasi-fiscal. <em>Trigger</em>: rotación a Boncap más cortos, evaluar USD.</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-date">Pre PASO</div>
+        <div class="agenda-text"><strong>Encuestas electorales primer semestre</strong> · Si polarización aumenta, prima de riesgo cambiario salta antes que la nominal. <em>Trigger</em>: hedge ROFEX corto a 90 días.</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-date">Continuo</div>
+        <div class="agenda-text"><strong>Stock préstamos USD vs depósitos USD</strong> · Hoy ratio 58% (22,7/39,0). Si supera 65%, alerta de fragilidad sistémica por descalce. <em>Trigger</em>: revisión de exposición caución comercial.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §08 BAJADA CFO ===== -->
+  <section>
+    <div class="section-num">§ 08 · Bajada</div>
+    <h2>Acciones concretas por línea de negocio</h2>
+
+    <div class="rec-grid">
+      <div class="rec-block">
+        <div class="rec-branch">Portafolio · Inversiones</div>
+        <div class="rec-title">Mantener overweight CER mid-curve, evaluar toma de Boncap larga</div>
+        <p>La compresión de TAMAR sin volatilidad valida la duration ARS. El breakeven CER vs Boncap se está ampliando: si la inflación sorprende a la baja, Boncap larga supera CER. Mantener 55–60% CER, abrir 10–15% Boncap T2X8/T2X9.</p>
+        <ul>
+          <li>Reducir caución a 1 día (carry negativo vs TAMAR).</li>
+          <li>Evitar agregar DLK corto: TCN aún en fase apreciativa.</li>
+          <li>Sostener exposición a Globales / Bonares por compresión de spread con reservas en alza.</li>
+        </ul>
+      </div>
+
+      <div class="rec-block">
+        <div class="rec-branch">Caución · Crédito</div>
+        <div class="rec-title">Revisar exposición a deudores en USD no exportadores</div>
+        <p>El crecimiento +53,8% i.a. de préstamos en USD al privado incluye empresas que toman para capital de trabajo en ARS. Es <strong>la próxima fuente de sinistralidad si el TCN se ajusta</strong>.</p>
+        <ul>
+          <li>Pedir desglose por moneda funcional del deudor a los principales tomadores de pólizas de caución comercial.</li>
+          <li>Recargo de tarifa para empresas con &gt; 30% pasivo USD / facturación ARS.</li>
+          <li>Ajustar reaseguro de crédito a cargo proporcional para evitar concentración geográfica.</li>
+        </ul>
+      </div>
+
+      <div class="rec-block">
+        <div class="rec-branch">Vida · Retiro</div>
+        <div class="rec-title">Aprovechar la ventana de UVA expansiva</div>
+        <p>Hipotecarios UVA +100% i.a. y prendarios +13% i.a. indican que el ahorrista UVA tiene <strong>profundidad de demanda</strong>. Reasignar producto Retiro hacia UVA-linked.</p>
+        <ul>
+          <li>Lanzar variante de Retiro Individual UVA con piso de capital garantizado.</li>
+          <li>Coordinar con red bancaria: cross-selling de seguro de vida sobre hipotecas UVA originadas en 2025–2026.</li>
+          <li>Reducir asignación de plazo fijo tradicional en pesos de reservas matemáticas (rendimiento real comprimiéndose).</li>
+        </ul>
+      </div>
+
+      <div class="rec-block">
+        <div class="rec-branch">Daños · Incendio / Auto</div>
+        <div class="rec-title">Sumas aseguradas en revisión: TCN apreciando comprime costo de repuestos importados</div>
+        <p>El ITCRM bajó –1,9% en abril y el ITCNM subió +0,8%. El costo de reposición en USD para repuestos automotores y commodities siderúrgicas (incendio industrial) se está abaratando en pesos. <strong>Ventana para mejora de loss ratio</strong> en próximos 60–90 días.</p>
+        <ul>
+          <li>Diferir ajustes automáticos de tarifa al alza hasta agosto.</li>
+          <li>Renegociar contratos de reaseguro proporcional incendio aprovechando primas en USD apreciadas.</li>
+          <li>Acelerar liquidaciones pendientes con repuesto importado.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <span class="brand">Análisis Macro-Financiero</span>
+    <span>Fuentes: BCRA · Informe Monetario Mensual Abril 2026 · Cierre estadístico 08-may-2026 · Cifras provisorias</span>
+  </footer>
+
+</div>
+</body>
+</html>
