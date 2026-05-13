@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial — Análisis Regulatorio — 13/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(ellipse at top left, rgba(52, 187, 218, 0.06) 0%, transparent 60%);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  
+  .wrapper {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+  
+  /* HEADER */
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 28px;
+    margin-bottom: 48px;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-bottom: 4px;
+  }
+  .header-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+  
+  /* SECTION HEADERS */
+  .section-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 10px 0 28px 0;
+  }
+  .section-block {
+    margin-bottom: 52px;
+  }
+  
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+  }
+  .card-urgent   { border-left: 2px solid var(--neg); }
+  .card-accent   { border-left: 2px solid var(--accent); }
+  .card-gold     { border-left: 2px solid var(--gold); }
+  
+  .card-norma {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .card-norma-urgent { color: var(--neg); }
+  .card-norma-gold   { color: var(--gold); }
+  
+  .card-organismo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+  .card-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  
+  /* CARD LINKS */
+  .card-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .card-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    transition: opacity 0.15s;
+  }
+  .card-link:hover { opacity: 0.75; }
+  .card-link-neg    { color: var(--neg);    border: 1px solid rgba(239,108,108,.3); }
+  .card-link-accent { color: var(--accent); border: 1px solid rgba(52,187,218,.3); }
+  .card-link-gold   { color: var(--gold);   border: 1px solid rgba(232,176,74,.3); }
+  .card-link-ink3   { color: var(--ink-3);  border: 1px solid rgba(123,145,163,.3); }
+  
+  /* CHIPS / VENCIMIENTOS */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+  .chip-fecha {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .chip-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+  .chip-accion {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .chip-empty {
+    color: var(--ink-3);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+  }
+  
+  /* FOOTER */
+  .site-footer {
+    border-top: 1px solid var(--line);
+    margin-top: 52px;
+    padding-top: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: center;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .wrapper { padding: 28px 18px; }
+    .logo { font-size: 22px; }
+    .section-title { font-size: 20px; }
+    .chips-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo">Hipotecario Seguros</div>
+    <div class="subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="header-date">13 de mayo de 2026</div>
+  </header>
+
+  <!-- SECCIÓN 1: URGENTE -->
+  <!-- No hay ítems de carácter urgente en la edición de hoy -->
+
+  <!-- SECCIÓN 2: NOVEDADES REGULATORIAS -->
+  <section class="section-block">
+    <div class="section-heading">
+      <span class="section-num">§ 01</span>
+      <h2 class="section-title">Novedades Regulatorias</h2>
+    </div>
+    <hr class="section-divider">
+
+    <!-- SSN Res. 211 — Autorización INCENDIO -->
+    <div class="card card-accent">
+      <span class="card-norma">RESOL-2026-211-APN-SSN#MEC</span>
+      <span class="card-organismo">Superintendencia de Seguros de la Nación · 11/05/2026</span>
+      <div class="card-title">Autorización para operar en ramo Incendio — Cía. de Seguros Generales de la Provincia de Santa Cruz SA</div>
+      <p class="card-desc">La SSN autoriza a Compañía de Seguros Generales de la Provincia de Santa Cruz SA a operar en todo el territorio nacional en el ramo Incendio. Impacto directo en competencia del mercado de seguros patrimoniales; requiere actualización del registro de entidades habilitadas para cotización de riesgos de incendio.</p>
+      <div class="card-links">
+        <a class="card-link card-link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341912/20260513" target="_blank">→ Ver en BORA</a>
+        <a class="card-link card-link-ink3" href="https://kronos.ssn.gob.ar/" target="_blank">→ Kronos SSN · Res. 211</a>
+      </div>
+    </div>
+
+    <!-- SSN Res. 210 — Autorización CRÉDITO -->
+    <div class="card card-accent">
+      <span class="card-norma">RESOL-2026-210-APN-SSN#MEC</span>
+      <span class="card-organismo">Superintendencia de Seguros de la Nación · 11/05/2026</span>
+      <div class="card-title">Autorización para operar en ramo Crédito — Lograr Compañía de Seguros de Personas SA</div>
+      <p class="card-desc">La SSN autoriza a Lograr Compañía de Seguros de Personas SA a operar en todo el territorio nacional en el ramo Crédito. Expande la cartera habilitada de esta compañía dentro del segmento de Personas; el ramo Crédito puede intersectar con coberturas de Vida Colectivo y productos combinados.</p>
+      <div class="card-links">
+        <a class="card-link card-link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341917/20260513" target="_blank">→ Ver en BORA</a>
+        <a class="card-link card-link-ink3" href="https://kronos.ssn.gob.ar/" target="_blank">→ Kronos SSN · Res. 210</a>
+      </div>
+    </div>
+
+    <!-- SSN Res. 212 — Cambio denominación GGAL → GALICIA SEGUROS DE RETIRO -->
+    <div class="card card-accent">
+      <span class="card-norma">RESOL-2026-212-APN-SSN#MEC</span>
+      <span class="card-organismo">Superintendencia de Seguros de la Nación · 11/05/2026</span>
+      <div class="card-title">Cambio de denominación: GGAL Seguros de Retiro SA pasa a ser Galicia Seguros de Retiro SAU</div>
+      <p class="card-desc">La SSN conforma la reforma estatutaria y el cambio de razón social de GGAL Seguros de Retiro SA por Galicia Seguros de Retiro SAU, aprobado en Asamblea Extraordinaria del 3 de diciembre de 2025. Las contrapartes, contratos marco y registros internos que referencien a la compañía bajo su antigua denominación deben actualizarse.</p>
+      <div class="card-links">
+        <a class="card-link card-link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341916/20260513" target="_blank">→ Ver en BORA</a>
+        <a class="card-link card-link-ink3" href="https://kronos.ssn.gob.ar/" target="_blank">→ Kronos SSN · Res. 212</a>
+      </div>
+    </div>
+
+    <!-- SSN Res. 208 — Agente Institorio DELIVERY HERO -->
+    <div class="card card-accent">
+      <span class="card-norma">RESOL-2026-208-APN-SSN#MEC</span>
+      <span class="card-organismo">Superintendencia de Seguros de la Nación · 11/05/2026</span>
+      <div class="card-title">Inscripción de Delivery Hero E-Commerce SA como Agente Institorio</div>
+      <p class="card-desc">La SSN inscribe a Delivery Hero E-Commerce SA (CUIT 30-71198576-6) en el Registro de Agentes Institorios (Res. SSN 38.052/2013). Implica la incorporación de un nuevo canal de distribución digital de seguros masivos; es relevante para la gestión de riesgos de responsabilidad civil y accidentes personales en plataformas de delivery.</p>
+      <div class="card-links">
+        <a class="card-link card-link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341914/20260513" target="_blank">→ Ver en BORA</a>
+        <a class="card-link card-link-ink3" href="https://kronos.ssn.gob.ar/" target="_blank">→ Kronos SSN · Res. 208</a>
+      </div>
+    </div>
+
+    <!-- SSN Res. 209 — Agente Institorio MUTUAL CONEXO -->
+    <div class="card card-accent">
+      <span class="card-norma">RESOL-2026-209-APN-SSN#MEC</span>
+      <span class="card-organismo">Superintendencia de Seguros de la Nación · 11/05/2026</span>
+      <div class="card-title">Inscripción de Asociación Mutual "Conexo" como Agente Institorio</div>
+      <p class="card-desc">La SSN inscribe a la Asociación Mutual "Conexo" (CUIT 30-71468558-5) en el Registro de Agentes Institorios. Refuerza la tendencia de incorporación de entidades mutuales como canales de distribución masiva de seguros; relevante para el seguimiento del mercado de seguros de Vida y Accidentes Personales.</p>
+      <div class="card-links">
+        <a class="card-link card-link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341915/20260513" target="_blank">→ Ver en BORA</a>
+        <a class="card-link card-link-ink3" href="https://kronos.ssn.gob.ar/" target="_blank">→ Kronos SSN · Res. 209</a>
+      </div>
+    </div>
+
+    <!-- SSN Res. 206 — Sanción productora -->
+    <div class="card card-accent">
+      <span class="card-norma">RESOL-2026-206-APN-SSN#MEC</span>
+      <span class="card-organismo">Superintendencia de Seguros de la Nación · 11/05/2026</span>
+      <div class="card-title">Sanción disciplinaria a productora asesora de seguros (Llamado de Atención)</div>
+      <p class="card-desc">La SSN aplica a la Productora Asesora de Seguros Sra. Iris Noemí Bellone (Matrícula SSN 67.273) un Llamado de Atención conforme al art. 59 inc. a) de la Ley 20.091. Refleja el ejercicio activo de la potestad disciplinaria; señal de refuerzo en el control de idoneidad y conducta de productores.</p>
+      <div class="card-links">
+        <a class="card-link card-link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341913/20260513" target="_blank">→ Ver en BORA</a>
+        <a class="card-link card-link-ink3" href="https://kronos.ssn.gob.ar/" target="_blank">→ Kronos SSN · Res. 206</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3: IMPACTO FINANCIERO -->
+  <section class="section-block">
+    <div class="section-heading">
+      <span class="section-num">§ 02</span>
+      <h2 class="section-title">Impacto Financiero</h2>
+    </div>
+    <hr class="section-divider">
+
+    <!-- BCRA Com A 8424 -->
+    <div class="card card-gold">
+      <span class="card-norma card-norma-gold">COMUNICACIÓN "A" 8424/2026</span>
+      <span class="card-organismo">Banco Central de la República Argentina · 21/04/2026</span>
+      <div class="card-title">Actualización de certificados de depósito a plazo fijo nominativos — Sistema de seguro de garantía de depósitos (SINAP)</div>
+      <p class="card-desc">El BCRA actualiza el modelo del dorso de los certificados de depósito a plazo fijo nominativos en el texto ordenado de "Características de los instrumentos de pago que emiten las entidades financieras", en concordancia con las modificaciones al SINAP introducidas por la Com. "A" 8407. Para aseguradoras, impacta directamente en la valuación y verificación de instrumentos de plazo fijo como activos computables en cobertura de compromisos: los certificados actualizados deberán verificar los nuevos modelos para ser considerados válidos en reportes de inversiones ante la SSN.</p>
+      <div class="card-links">
+        <a class="card-link card-link-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341905/20260513" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA Com B 13170 -->
+    <div class="card card-gold">
+      <span class="card-norma card-norma-gold">COMUNICACIÓN "B" 13170/2026</span>
+      <span class="card-organismo">Banco Central de la República Argentina · 11/05/2026</span>
+      <div class="card-title">Tasas de referencia OPASI 2 — Garantía de los depósitos — Actualización periódica</div>
+      <p class="card-desc">El BCRA publica las tasas de referencia aplicables para el seguro de garantía de los depósitos (Circular OPASI 2). Estas tasas pueden incidir en el rendimiento de inversiones en instrumentos bancarios computables para la cobertura de reservas técnicas y matemáticas de aseguradoras; la actualización debe incorporarse al monitoreo de rendimiento del portafolio de renta fija en pesos.</p>
+      <div class="card-links">
+        <a class="card-link card-link-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341906/20260513" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4: PRÓXIMOS VENCIMIENTOS -->
+  <section class="section-block">
+    <div class="section-heading">
+      <span class="section-num">§ 03</span>
+      <h2 class="section-title">Próximos Vencimientos</h2>
+    </div>
+    <hr class="section-divider">
+
+    <div class="chips-grid">
+      <div class="chip">
+        <span class="chip-fecha">13/05/2026</span>
+        <div class="chip-desc">Vigencia de publicación — SSN Resoluciones 206, 208, 209, 210, 211, 212</div>
+        <div class="chip-accion">Actualizar registros internos: nuevos agentes institorios, cambio denominación GGAL/Galicia Retiro y autorizaciones de ramos</div>
+      </div>
+      <div class="chip">
+        <span class="chip-fecha">Inmediato</span>
+        <div class="chip-desc">BCRA Com. "A" 8424 — Modelo actualizado de certificados de depósito a plazo fijo nominativos (SINAP)</div>
+        <div class="chip-accion">Verificar que los certificados en cartera correspondan al modelo actualizado para validez como activo computable ante SSN</div>
+      </div>
+      <div class="chip">
+        <span class="chip-fecha">Inmediato</span>
+        <div class="chip-desc">BCRA Com. "B" 13170 — Nuevas tasas de referencia OPASI 2 vigentes a partir del 11/05/2026</div>
+        <div class="chip-accion">Actualizar parámetros de rendimiento del portafolio bancario en modelos de reporte de inversiones</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    Generado automáticamente · 13/05/2026 · Fuente: Boletín Oficial de la República Argentina
+  </footer>
+
+</div>
+</body>
+</html>

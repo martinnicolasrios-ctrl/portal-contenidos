@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis Cronista — 13/05/2026 · Hipotecario Seguros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1620; --bg-2: #0F1E2B; --bg-3: #17293A; --line: #1E3447;
+      --ink: #F2F6F9; --ink-2: #B5C5D3; --ink-3: #7B91A3;
+      --accent: #34BBDA; --gold: #E8B04A; --pos: #5BD39A; --neg: #EF6C6C;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); background-image: radial-gradient(ellipse at top left, rgba(52,187,218,.06) 0%, transparent 60%); color: var(--ink); padding: 40px 20px 80px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1040px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { background: var(--bg-3); border-bottom: 1px solid var(--line); padding: 28px 36px; margin-bottom: 32px; border-radius: 4px; }
+    .header-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .header-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+    .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .08em; line-height: 1.7; }
+
+    /* KPI STRIP */
+    .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+    .kpi { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; }
+    .kpi.neg-top { border-top-color: var(--neg); }
+    .kpi.gold-top { border-top-color: var(--gold); }
+    .kpi.pos-top { border-top-color: var(--pos); }
+    .kpi-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+    .kpi-value { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+    .kpi-value.neg { color: var(--neg); }
+    .kpi-value.pos { color: var(--pos); }
+    .kpi-value.gold { color: var(--gold); }
+    .kpi-note { font-size: 10px; color: var(--ink-3); line-height: 1.4; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 28px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+
+    /* CARDS */
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .card-header { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--ink-3); letter-spacing: .1em; margin-bottom: 10px; }
+    .card-content { font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .card-content strong { color: var(--ink); font-weight: 600; }
+    .card-content p { margin-bottom: 10px; }
+    .card-content p:last-child { margin-bottom: 0; }
+    .card-alert { border-left: 3px solid var(--neg); background: rgba(239,108,108,.04); }
+    .card-alert .card-header { color: var(--neg); }
+    .card-rec { border-left: 3px solid var(--gold); background: rgba(232,176,74,.04); }
+    .card-rec .card-header { color: var(--gold); }
+    .card-pos { border-left: 3px solid var(--pos); background: rgba(91,211,154,.04); }
+    .card-pos .card-header { color: var(--pos); }
+
+    /* BULLETS */
+    .bullet-list { margin: 0; padding: 0; list-style: none; }
+    .bullet-list li { display: flex; gap: 12px; margin-bottom: 12px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 6px rgba(52,187,218,.5); }
+    .bullet-list strong { color: var(--ink); font-weight: 600; }
+
+    /* HIGHLIGHTS */
+    .highlight { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight strong { color: var(--ink); font-weight: 600; }
+    .highlight-neg { background: rgba(239,108,108,.04); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 16px 20px; margin-bottom: 14px; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+    .highlight-neg strong { color: var(--ink); font-weight: 600; }
+
+    /* TENSIONS */
+    .tension-list { margin: 0; padding: 0; list-style: none; }
+    .tension-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .tension-item:last-child { margin-bottom: 0; }
+    .tension-item strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
+
+    /* ALERTS */
+    .alert-list { margin: 0; padding: 0; list-style: none; }
+    .alert-item { background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--neg); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-item strong { color: var(--neg); font-weight: 600; display: block; margin-bottom: 4px; }
+
+    /* POS GRID */
+    .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pos-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: 16px 18px; }
+    .pos-card.neg-top { border-top-color: var(--neg); }
+    .pos-card.gold-top { border-top-color: var(--gold); }
+    .pos-card.pos-top { border-top-color: var(--pos); }
+    .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+    .pos-text { font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+    .pos-text strong { color: var(--ink); font-weight: 600; }
+
+    /* INSURANCE */
+    .ins-tab { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 8px 18px; border-radius: 4px 4px 0 0; margin-bottom: -1px; }
+    .ins-tab.pesos { background: rgba(52,187,218,.15); color: var(--accent); border: 1px solid rgba(52,187,218,.2); border-bottom: 1px solid var(--bg-2); }
+    .ins-tab.cer { background: rgba(155,138,224,.12); color: #9B8AE0; border: 1px solid rgba(155,138,224,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-tab.riesgo { background: rgba(239,108,108,.12); color: var(--neg); border: 1px solid rgba(239,108,108,.2); border-bottom: 1px solid var(--bg-2); margin-left: 8px; }
+    .ins-body { background: var(--bg-2); border: 1px solid var(--line); border-radius: 0 4px 4px 4px; padding: 20px 24px; margin-bottom: 14px; }
+    .ins-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; margin-top: 14px; }
+    .ins-sub:first-child { margin-top: 0; }
+    .ins-text { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 8px; }
+    .ins-text strong { color: var(--ink); font-weight: 600; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 5px; margin-top: 4px; }
+    .tag.neg { background: rgba(239,108,108,.1); color: var(--neg); border: 1px solid rgba(239,108,108,.25); }
+    .tag.gold { background: rgba(232,176,74,.1); color: var(--gold); border: 1px solid rgba(232,176,74,.25); }
+    .tag.pos { background: rgba(91,211,154,.1); color: var(--pos); border: 1px solid rgba(91,211,154,.25); }
+    .tag.blue { background: rgba(52,187,218,.1); color: var(--accent); border: 1px solid rgba(52,187,218,.25); }
+
+    /* SINTESIS */
+    .sintesis { background: rgba(52,187,218,.05); border: 1px solid rgba(52,187,218,.2); border-left: 3px solid var(--accent); border-radius: 4px; padding: 18px 22px; margin-top: 14px; font-size: 13px; line-height: 1.7; color: var(--ink-2); font-style: italic; }
+    .sintesis strong { color: var(--ink); font-style: normal; font-weight: 600; }
+
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: .06em; line-height: 1.6; }
+
+    @media (max-width: 720px) {
+      .header-title { font-size: 22px; }
+      .section-title { font-size: 18px; }
+      .kpi-strip { grid-template-columns: 1fr 1fr; }
+      .pos-grid { grid-template-columns: 1fr; }
+      body { padding: 20px 14px 60px; }
+      .header { padding: 20px 22px; }
+      .card { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Análisis Estructurado — El Cronista Comercial · Miércoles 13 de mayo de 2026</div>
+    <div class="header-title">El Mercado Descuenta la Normalización antes que el Gobierno la Complete</div>
+    <div class="header-meta">
+      13 de mayo de 2026 · Análisis regulatorio y financiero para CEO · Hipotecario Seguros<br/>
+      BNA $1.405 · MEP $1.418 · CCL $1.479 · Blue $1.415 · Riesgo País ~496 pb
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi pos-top">
+      <div class="kpi-label">Riesgo País</div>
+      <div class="kpi-value pos">496 pb</div>
+      <div class="kpi-note">-3,1% · mercado anticipa sub-400</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">BNA Oficial</div>
+      <div class="kpi-value">$1.405</div>
+      <div class="kpi-note">-0,71% en el día</div>
+    </div>
+    <div class="kpi gold-top">
+      <div class="kpi-label">CCL</div>
+      <div class="kpi-value gold">$1.479</div>
+      <div class="kpi-note">Brecha CCL/oficial ~5,3% — mínima del esquema</div>
+    </div>
+    <div class="kpi pos-top">
+      <div class="kpi-label">BCRA Compras 2026</div>
+      <div class="kpi-value pos">76%</div>
+      <div class="kpi-note">Meta anual alcanzada a mediados de mayo · u$s 136M/día</div>
+    </div>
+    <div class="kpi neg-top">
+      <div class="kpi-label">FCIs T+1 (suscripciones)</div>
+      <div class="kpi-value neg">+11%</div>
+      <div class="kpi-note">vs. Money Market +3% · rotación masiva a duration</div>
+    </div>
+  </div>
+
+  <!-- § 01 RESUMEN -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Riesgo país perforó 500 puntos (496 pb, -3,1%)</strong> impulsado por el upgrade de Fitch y la tracción del BCRA en reservas; el mercado ya anticipa sub-400 y Moody's podría upgradar antes de julio. Es el dato dominante de la semana.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El BCRA compró u$s 136M el lunes</strong> y Bausili acumuló el 76% de la meta de compras para todo 2026 a mediados de mayo: el ritmo de acumulación supera ampliamente lo proyectado y es el ancla real del carry.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>Rotación masiva en FCIs hacia duration</strong>: suscripciones netas en fondos T+1 al +11% y renta fija al +6,4% en el último mes, con los money market quedando rezagados (+3%). La compresión de tasas impulsa búsqueda de rendimiento con mayor riesgo.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>La morosidad emerge como variable sistémica</strong>: después de meses de expansión acelerada del crédito al consumo, las fintech y billeteras digitales ya operan en modo "rescate de sobreendeudados". No es un riesgo latente: ya ocurre.</div>
+      </li>
+      <li>
+        <div class="bullet-dot"></div>
+        <div><strong>El cepo sigue intacto por razones estructurales</strong> (Spotorno: "se vino la noche"), mientras el dólar libre cotiza ya a $1.479 CCL con brecha mínima respecto al oficial y el Gobierno avanza con RIGI ampliado (reunión Thiel-Caputo).</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 02 LECTURA -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Carry Consolidado con Transición Gradual — y Riesgo de Evento Discreto Subestimado</div>
+      <div class="card-content">
+        <p>El mercado está adelantando un escenario de convergencia que el Gobierno aún no habilitó formalmente. La lógica es: Fitch subió la nota → flujo de fondos externos → bonos suben → riesgo país baja → Moody's revisa → nueva baja del riesgo país → el Gobierno puede volver a los mercados internacionales. Esta cadena está activa y el mercado la está priceando.</p>
+        <p>Pero hay una tensión no resuelta: el tipo de cambio oficial sigue administrado, el cepo sigue vigente, y Spotorno advierte que la salida no es inminente porque las condiciones aún no están dadas para hacerlo sin corrección cambiaria. El CCL en $1.479 con un oficial a $1.405 implica una brecha de apenas ~5,3%, la más baja desde la implementación del esquema. Estructuralmente favorable para el carry, pero también significa que el margen para absorber una eventual corrección del tipo de cambio real se ha comprimido.</p>
+        <p>El régimen actual es <strong>carry consolidado con transición gradual hacia normalización</strong>, pero con más riesgo de evento discreto (salto del tipo de cambio o shock externo) que lo que los precios de activos reflejan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <ul class="tension-list">
+      <li class="tension-item">
+        <strong>BCRA compra agresivamente reservas pero el tipo de cambio cae</strong>
+        El dólar BNA bajó 0,71% en un solo día. Si la liquidación del agro se sostiene, el BCRA puede tener que acelerar la absorción de pesos o tolerar más apreciación real. El conflicto entre acumulación de reservas y tipo de cambio real es la contradicción central del esquema.
+      </li>
+      <li class="tension-item">
+        <strong>Tasas bajas + rotación a duration = riesgo de reversión abrupta</strong>
+        La rotación hacia T+1 y renta fija ocurre porque las tasas cortas están comprimidas. Si el dato de inflación de abril decepciona, el mercado puede hacer una rotación abrupta hacia cobertura CER, generando rescates masivos de fondos T+1 en forma simultánea.
+      </li>
+      <li class="tension-item">
+        <strong>Morosidad fintech vs. narrativa de recuperación del ciclo crediticio</strong>
+        Las fintech ya operan en modo "refinanciación de emergencia". Esto es inconsistente con la narrativa de expansión del ciclo financiero y puede generar deterioro de cartera en el sistema bancario con rezago de 2-3 meses.
+      </li>
+      <li class="tension-item">
+        <strong>Brecha mínima: el incentivo a liquidar exportaciones puede debilitarse</strong>
+        Si la brecha se cierra aún más o se invierte, el incentivo para liquidar exportaciones vía canal oficial se debilita. Los dólares del colchón volviendo al sistema (ARCA: adherentes duplicados) muestran confianza marginal en el peso, pero es reversible.
+      </li>
+      <li class="tension-item">
+        <strong>RIGI/Thiel-Caputo: ancla de largo plazo pero pasivos contingentes</strong>
+        El "Súper RIGI" en preparación implica compromisos con inversores externos que operan como ancla de confianza pero generan pasivos contingentes en moneda dura. No está priceado el riesgo regulatorio de mediano plazo si hay cambio de signo político en 2027.
+      </li>
+      <li class="tension-item">
+        <strong>Aranceles EE.UU. a la carne argentina: postergados por lobby ganadero norteamericano</strong>
+        El Financial Times advierte que la rebaja arancelaria prometida no se concretará. Menor ingreso de dólares por exportaciones de carne de lo esperado: erosiona el flujo genuino que sostiene las reservas.
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 04 VARIABLES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Tipo de Cambio — Brecha en Mínimos Históricos del Esquema</div>
+      <div class="card-content">El oficial sigue en crawl peg (-0,71% diario, controlado). MEP $1.418 y CCL $1.479 comprimen la brecha a ~5,3%: mínima del esquema desde su implementación. La presión sobre el oficial es bajista en el corto plazo por la liquidación del agro, pero es transitoria. <strong>La brecha reducida es señal de confianza pero también de vulnerabilidad: cualquier shock de demanda de divisas puede forzar una corrección mayor que impacte no linealmente.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Curva de Tasas — Diferencial T+0 vs. T+1 de 50-80 pb Mensuales</div>
+      <div class="card-content">Las tasas cortas (money market, T+0) están comprimidas y rinden ~1,6% mensual. Los instrumentos T+1 y renta fija rinden 2,3-2,4% mensual. El diferencial genera incentivo estructural a extender duration, lo que introduce riesgo de duration si la inflación sorprende al alza o si hay evento cambiario.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Inflación Esperada — Debate Vivo: ¿Puede Perforar el 2%?</div>
+      <div class="card-content">El 79% del mercado cree que el Gobierno puede perforar el 2% mensual. Pero la morosidad creciente y el inicio de Hot Sale (mayo 11-13) generan impulso de consumo a crédito que puede presionar precios en mayo. Dato de abril (esta semana) es el catalizador inmediato.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Riesgo Soberano — AL41 el Instrumento de Referencia</div>
+      <div class="card-content">Riesgo país en mínimos del ciclo (496 pb). El mercado anticipa sub-400 con el upgrade de Moody's. AL41 rinde 9,43% y concentra el interés de los fondos. La curva de bonos está bien demandada. El riesgo no es de default, sino de que el proceso de compresión sea más lento de lo que el mercado ya priceó.</div>
+    </div>
+  </div>
+
+  <!-- § 05 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card pos-top">
+        <div class="pos-label">Se Benefician</div>
+        <div class="pos-text"><strong>Bonos soberanos ley extranjera (AL35/AL41)</strong> por sobre GD en este momento — AL41 con mayor carry y demanda de fondos. <strong>FCIs T+1 y renta fija peso</strong> por diferencial de rendimiento. <strong>ADRs energéticas</strong> (+4% el lunes). <strong>Acciones energía y minería</strong> con exposición a RIGI. <span class="tag pos">POSITIVOS</span></div>
+      </div>
+      <div class="pos-card neg-top">
+        <div class="pos-label">Empeoran o Pierden Sentido</div>
+        <div class="pos-text"><strong>Posiciones largas en dólar financiero puro:</strong> el carry comprime la brecha, no tiene valor. <strong>Acciones de consumo masivo/retailers</strong> ligados a crédito al consumo — deterioro de mora en marcha. <strong>Dollar-linked largo plazo:</strong> brecha mínima hace que el costo implícito de cobertura sea irrazonable. <strong>Money market puro:</strong> queda 50-80 pb abajo de T+1 cada mes. <span class="tag neg">REDUCIR</span></div>
+      </div>
+      <div class="pos-card gold-top">
+        <div class="pos-label">Cobertura con Valor Creciente</div>
+        <div class="pos-text"><strong>CER de mediano plazo</strong> como protección ante desvío inflacionario — el debate sobre si el Gobierno puede perforar el 2% es el evento binario del mes. <strong>Opciones sobre tipo de cambio</strong> (si disponibles) ante compresión excesiva de brecha. <strong>Activos RIGI</strong> si hay exposición al Súper RIGI. <span class="tag gold">COBERTURA</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-label">Oportunidad Estructural</div>
+        <div class="pos-text"><strong>Tokenización de activos (CNV Res. 1137/2026):</strong> temprano para actuar, pero el momento de seguir el proceso regulatorio de cerca. Si se habilita renta fija tokenizada para compañías de seguros, puede ser un instrumento eficiente para la porción USD de la cartera con mayor yield que bonos soberanos directos. <span class="tag blue">MONITOREAR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 06 ALERTAS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 06</span>
+      <span class="section-title">Alertas Ejecutivas</span>
+    </div>
+    <ul class="alert-list">
+      <li class="alert-item">
+        <strong>Dato de inflación de abril — catalizador inmediato</strong>
+        Si supera el 3%, la narrativa de normalización se frena y el mercado revierte duration masivamente. Si es 2% o menos, consolida el régimen de carry y compresión de riesgo país. Es el evento binario de la semana. <span class="tag neg">CRÍTICO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Moody's antes de julio — rally o decepción</strong>
+        El responsable de Moody's mencionó que harán revisión y son "tangibles" las posibilidades de upgrade. Si ocurre, rally adicional de 5-10 pb en bonos. Si no ocurre, venta. <span class="tag neg">ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Morosidad en crédito al consumo fintech — señal de contagio diferido</strong>
+        Ya ocurre, no es latente. Monitorear ratio de irregularidad en los próximos informes del BCRA. El contagio a bancos tiene rezago de 60-90 días. <span class="tag neg">ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Cepo: 76% de meta de reservas en mayo — presión política para levantar antes de 2027</strong>
+        Si el BCRA cierra el año con reservas netas positivas robustas, la presión política para levantar el cepo antes de las elecciones crecerá. Esto puede cambiar completamente el escenario cambiario con escaso preaviso. <span class="tag neg">MEDIO-ALTO</span>
+      </li>
+      <li class="alert-item">
+        <strong>Aranceles EE.UU. a la carne argentina: postergados</strong>
+        Menor ingreso de divisas agropecuarias de lo proyectado. No disruptivo en el corto plazo pero erosiona el flujo de dólares genuinos que sostiene las reservas. <span class="tag gold">MONITOREAR</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- § 07 NO PRICEADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 07</span>
+      <span class="section-title">Lo Que el Mercado Todavía No Está Preciando</span>
+    </div>
+    <div class="highlight-neg">
+      <strong>La morosidad fintech como vector de contagio sistémico diferido.</strong> El mercado está absorbido por el rally de bonos y la compresión del riesgo país, pero el deterioro silencioso en el crédito al consumo informal puede generar un ajuste del ciclo crediticio con rezago de 60-90 días. Esto impactaría en consumo, IVA y, con él, en el superávit fiscal.
+    </div>
+    <div class="highlight-neg">
+      <strong>El escenario de dólar libre no eliminado.</strong> Melconian advierte: las condiciones estructurales (reservas netas, pasivos remunerados del BCRA) todavía no justifican una unificación cambiaria limpia. El mercado priceó la convergencia pero no priceó el riesgo de que la unificación implique una corrección del 10-15% sobre los dólares financieros actuales.
+    </div>
+    <div class="highlight">
+      <strong>El impacto del "Súper RIGI" en el balance fiscal de largo plazo.</strong> Las concesiones fiscales para atraer a Thiel y similares pueden comprometer el superávit primario en años electorales. El mercado celebra la señal de inversión pero no descuenta el costo fiscal diferido.
+    </div>
+  </div>
+
+  <!-- § 08 CFO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 08</span>
+      <span class="section-title">Bajada a Cartera — CFO de Compañía de Seguros</span>
+    </div>
+
+    <!-- Pesos vs USD -->
+    <div style="margin-bottom:4px;">
+      <div class="ins-tab pesos">Cartera en Pesos vs. USD</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">Pesos — mantener con duration controlada (máximo 6 meses)</div>
+      <div class="ins-text">La cartera en pesos tiene una ventana favorable en el muy corto plazo (carry positivo, brecha comprimida), pero el riesgo de evento discreto es asimétrico: si la brecha se corrige incluso parcialmente, el CER y las posiciones en pesos no ajustadas por tipo de cambio pierden valor real de manera importante. <strong>Duration máxima recomendada: T+1 o hasta 6 meses CER. Sin sobreponderar renta fija larga.</strong></div>
+
+      <div class="ins-sub">USD — priorizar AL41 y ON de energía/infraestructura</div>
+      <div class="ins-text">La cartera en USD debería priorizarse en <strong>bonos soberanos ley extranjera (AL41)</strong>, que ofrecen el mejor retorno ajustado por riesgo con el carry crediticio de la compresión. Si hay restricciones regulatorias a la tenencia de soberanos, <strong>ONs en dólares de energía e infraestructura</strong> son la alternativa más sólida.</div>
+    </div>
+
+    <!-- CER, tasa fija, USD linked -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab cer">CER · Tasa Fija · USD Linked</div>
+    </div>
+    <div class="ins-body">
+      <div class="ins-sub">CER — posición táctica 15-20%, condicional al dato de inflación</div>
+      <div class="ins-text">Mantener posición táctica de 15-20% de cartera pesos como cobertura ante desvío inflacionario. <strong>Si el dato de abril confirma baja bajo el 2,5%</strong>, reducir moderadamente y alargar tasa fija. <strong>Si el dato supera el 3%</strong>, aumentar CER agresivamente en el corto plazo. La decisión es binaria y ocurre esta semana. <span class="tag gold">CONDICIONAL AL DATO</span></div>
+
+      <div class="ins-sub">Tasa fija — apuesta del momento, pero duration corta</div>
+      <div class="ins-text">Los fondos T+1 que rinden 2,3% mensual con activos de calidad son adecuados para reservas técnicas de vencimiento próximo. <strong>Evitar tata fija a más de 6 meses</strong>: la incertidumbre sobre la trayectoria de inflación y la eventual unificación cambiaria hace que el riesgo de reinversión sea alto.</div>
+
+      <div class="ins-sub">USD Linked — sin valor relativo con brecha en 5,3%</div>
+      <div class="ins-text">Con la brecha en mínimos históricos (~5,3%), el valor relativo de estos instrumentos es bajo. No tiene sentido pagar el costo implícito de cobertura cuando la brecha es casi nula. <strong>Mantener posición residual solo como hedge de liquidez de muy corto plazo.</strong> Si la brecha vuelve a ampliar por encima del 8-10%, recalibrar. <span class="tag neg">RESIDUAL</span></div>
+    </div>
+
+    <!-- Riesgo liquidez -->
+    <div style="margin-bottom:4px; margin-top:16px;">
+      <div class="ins-tab riesgo">Riesgo de Duration · Liquidez</div>
+    </div>
+    <div class="ins-body" style="border-left:3px solid var(--neg);background:rgba(239,108,108,.03);">
+      <div class="ins-sub">Duration — crítica: no superar 6 meses promedio en pesos</div>
+      <div class="ins-text">La rotación de mercado hacia T+1 y renta fija es tentadora, pero para una compañía de seguros con pasivos en pesos de corto plazo (seguros patrimoniales, ART, vida de corto plazo), extender demasiado la duration genera mismatch. <strong>La duration media de la cartera en pesos no debería superar los 6 meses</strong>, con revisión inmediata post-dato de inflación de abril.</div>
+
+      <div class="ins-sub">Liquidez — buffer del 20% en T+0 como amortiguador</div>
+      <div class="ins-text">La morosidad en el sistema de crédito al consumo puede generar rescates de FCIs de terceros que presionen liquidez en el sistema. Adicionalmente, si hay corrección cambiaria, los rescates pueden ser masivos. <strong>Mantener al menos el 20% de la cartera de inversiones en instrumentos de liquidación inmediata (T+0, money market)</strong> aunque sacrifique rendimiento. <span class="tag neg">URGENTE</span></div>
+    </div>
+
+    <div class="sintesis">
+      <strong>Nota regulatoria para el CFO:</strong> La tokenización de activos que la CNV está habilitando vía Resolución 1137/2026 puede en el mediano plazo abrir una nueva clase de activos elegibles para carteras de seguros. Es temprano para actuar, pero es el momento de seguir el proceso regulatorio de cerca: si se habilita renta fija tokenizada para compañías de seguros, puede ser un instrumento eficiente para la porción USD de la cartera con mayor yield que los bonos soberanos directos.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Análisis elaborado sobre cobertura de El Cronista del 12-13 de mayo de 2026<br/>
+    Cotizaciones de referencia: BNA $1.405 · MEP $1.418 · CCL $1.479 · Blue $1.415 · Riesgo País ~496 pb<br/>
+    No constituye asesoramiento financiero · Hipotecario Seguros
+  </footer>
+
+</div>
+</body>
+</html>
