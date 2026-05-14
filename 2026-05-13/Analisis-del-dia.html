@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCII Marzo 2026 — Lectura Aseguradora</title>
+<style>
+  :root{
+    --bg-0:#0B1620;
+    --bg-1:#0F1E2B;
+    --bg-2:#17293A;
+    --border:#1E3447;
+    --text:#E6EEF5;
+    --muted:#8AA0B4;
+    --accent:#34BBDA;
+    --gold:#E8B04A;
+    --pos:#5BD39A;
+    --neg:#EF6C6C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0B1620;color:#E6EEF5;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .pf-wrap{max-width:1040px;margin:0 auto;padding:48px 28px 80px}
+
+  /* Header */
+  .pf-header{border-bottom:1px solid #1E3447;padding-bottom:24px;margin-bottom:32px}
+  .pf-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8AA0B4;margin-bottom:14px}
+  .pf-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:36px;line-height:1.15;letter-spacing:-.01em;margin-bottom:10px}
+  .pf-subtitle{color:#8AA0B4;font-size:15px;max-width:780px}
+  .pf-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8AA0B4;text-transform:uppercase;letter-spacing:.1em}
+  .pf-meta span{display:inline-flex;align-items:center;gap:6px}
+  .pf-meta .dot{width:6px;height:6px;border-radius:50%;background:#34BBDA;display:inline-block}
+
+  /* Sections */
+  .pf-section{margin-top:36px}
+  .pf-section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid #1E3447}
+  .pf-section-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#34BBDA;letter-spacing:.15em}
+  .pf-section-title{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:500;letter-spacing:-.005em}
+
+  /* Cards */
+  .pf-card{background:#0F1E2B;border:1px solid #1E3447;border-radius:4px;padding:22px 24px;margin-bottom:14px}
+  .pf-card h3{font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:500;margin-bottom:10px;color:#E6EEF5}
+  .pf-card p{font-size:14.5px;color:#C7D4DF;margin-bottom:8px}
+  .pf-card p:last-child{margin-bottom:0}
+  .pf-card.accent{border-left:3px solid #34BBDA}
+  .pf-card.gold{border-left:3px solid #E8B04A}
+  .pf-card.pos{border-left:3px solid #5BD39A}
+  .pf-card.neg{border-left:3px solid #EF6C6C}
+
+  /* KPI grid */
+  .pf-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+  .pf-kpi{background:#0F1E2B;border:1px solid #1E3447;border-radius:4px;padding:18px 16px}
+  .pf-kpi .label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8AA0B4;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  .pf-kpi .value{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:500;color:#E6EEF5;line-height:1}
+  .pf-kpi .delta{font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:6px;color:#8AA0B4}
+  .pf-kpi .delta.pos{color:#5BD39A}
+  .pf-kpi .delta.neg{color:#EF6C6C}
+
+  /* Chip grid for sectors */
+  .pf-chip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+  .pf-chip{background:#0F1E2B;border:1px solid #1E3447;border-radius:4px;padding:14px 14px;position:relative}
+  .pf-chip .name{font-size:13px;color:#C7D4DF;margin-bottom:6px;line-height:1.3}
+  .pf-chip .vals{display:flex;align-items:baseline;gap:10px;font-family:'IBM Plex Mono',monospace}
+  .pf-chip .now{font-size:20px;font-weight:500;color:#E6EEF5}
+  .pf-chip .prev{font-size:12px;color:#8AA0B4}
+  .pf-chip .arrow{font-family:'IBM Plex Mono',monospace;font-size:11px;position:absolute;top:12px;right:12px;padding:2px 6px;border-radius:2px}
+  .pf-chip .arrow.pos{color:#5BD39A;background:rgba(91,211,154,.08)}
+  .pf-chip .arrow.neg{color:#EF6C6C;background:rgba(239,108,108,.08)}
+
+  /* Tables */
+  .pf-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+  .pf-table th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8AA0B4;letter-spacing:.12em;text-transform:uppercase;padding:10px 12px;border-bottom:1px solid #1E3447;background:#0B1620}
+  .pf-table td{padding:11px 12px;border-bottom:1px solid #1E3447;color:#C7D4DF;font-size:13.5px}
+  .pf-table td.num{font-family:'IBM Plex Mono',monospace;text-align:right}
+  .pf-table tr:last-child td{border-bottom:none}
+  .pf-table .pos{color:#5BD39A}
+  .pf-table .neg{color:#EF6C6C}
+  .pf-table .badge{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.05em}
+  .pf-table .badge.semA{background:rgba(91,211,154,.12);color:#5BD39A}
+  .pf-table .badge.semM{background:rgba(232,176,74,.12);color:#E8B04A}
+  .pf-table .badge.semB{background:rgba(239,108,108,.12);color:#EF6C6C}
+
+  /* Two-col */
+  .pf-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+  /* Lists */
+  .pf-list{list-style:none;padding:0}
+  .pf-list li{padding:8px 0 8px 18px;position:relative;font-size:14.5px;color:#C7D4DF;border-bottom:1px dashed #1E3447}
+  .pf-list li:last-child{border-bottom:none}
+  .pf-list li::before{content:"▸";color:#34BBDA;position:absolute;left:0;top:8px;font-family:'IBM Plex Mono',monospace}
+
+  /* Highlight bullets */
+  .pf-bullets{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+  .pf-bullet{background:#0B1620;border:1px solid #1E3447;border-left:2px solid #34BBDA;border-radius:2px;padding:12px 14px;font-size:13.5px;color:#C7D4DF}
+  .pf-bullet strong{color:#E6EEF5;font-weight:500;display:block;margin-bottom:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#34BBDA}
+
+  /* Footer */
+  .pf-footer{margin-top:48px;padding-top:20px;border-top:1px solid #1E3447;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8AA0B4;letter-spacing:.08em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* Inline emphasis */
+  .em{color:#E6EEF5;font-weight:500}
+  .em-accent{color:#34BBDA;font-weight:500}
+  .em-gold{color:#E8B04A;font-weight:500}
+  .em-pos{color:#5BD39A;font-weight:500}
+  .em-neg{color:#EF6C6C;font-weight:500}
+
+  /* Responsive */
+  @media(max-width:720px){
+    .pf-wrap{padding:28px 16px 60px}
+    .pf-title{font-size:26px}
+    .pf-kpi-grid{grid-template-columns:repeat(2,1fr)}
+    .pf-chip-grid{grid-template-columns:repeat(2,1fr)}
+    .pf-two{grid-template-columns:1fr}
+    .pf-bullets{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="pf-wrap">
+
+  <!-- Header -->
+  <header class="pf-header">
+    <div class="pf-eyebrow">INDEC · Industria Manufacturera · UCII</div>
+    <h1 class="pf-title">Utilización de Capacidad Instalada — Marzo 2026</h1>
+    <p class="pf-subtitle">El nivel general se ubica en <span class="em">59,8%</span>, con expansión interanual de <span class="em-pos">+5,4 p.p.</span> Lectura para Comité de Inversiones e implicancias por línea de seguros.</p>
+    <div class="pf-meta">
+      <span><span class="dot"></span>Fuente: INDEC · DNEEC</span>
+      <span>Publicado 13/05/2026</span>
+      <span>Análisis interno</span>
+    </div>
+  </header>
+
+  <!-- §01 RESUMEN EJECUTIVO -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 01</span>
+      <h2 class="pf-section-title">Resumen ejecutivo</h2>
+    </div>
+
+    <div class="pf-kpi-grid">
+      <div class="pf-kpi">
+        <div class="label">Nivel General</div>
+        <div class="value">59,8%</div>
+        <div class="delta pos">+5,4 p.p. vs mar-25</div>
+      </div>
+      <div class="pf-kpi">
+        <div class="label">vs Feb 2026</div>
+        <div class="value">+5,2</div>
+        <div class="delta pos">Aceleración secuencial</div>
+      </div>
+      <div class="pf-kpi">
+        <div class="label">Sectores ↑ i.a.</div>
+        <div class="value">10/12</div>
+        <div class="delta pos">Difusión amplia</div>
+      </div>
+      <div class="pf-kpi">
+        <div class="label">Brecha vs prom. 2022</div>
+        <div class="value">-8 p.p.</div>
+        <div class="delta neg">Aún sub-óptimo</div>
+      </div>
+    </div>
+
+    <div class="pf-bullets">
+      <div class="pf-bullet"><strong>Lectura macro</strong>Recuperación industrial confirmada con difusión amplia: químicos, metálicas básicas, refinación y alimentos lideran. La aceleración secuencial (+5,2 p.p. m/m) es atípica para un marzo y sugiere arrastre real, no solo efecto base.</div>
+      <div class="pf-bullet"><strong>Asimetría sectorial</strong>Persiste polarización: refinación al 86,0% (rozando óptimo técnico) convive con metalmecánica y textiles al 40%. El gap top-bottom de 46 p.p. señala que la recuperación no es homogénea y deja sectores con capacidad ociosa estructural.</div>
+      <div class="pf-bullet"><strong>Implicancia underwriting</strong>Bloques con UCII >65% (refinación, metálicas básicas, papel, químicos) elevan riesgo operativo por mayor exposición de plantas: relevante para <span class="em">Incendio/Propiedad</span> y <span class="em">Caución</span> contractual. Sectores <50% siguen siendo zona de fragilidad crediticia.</div>
+      <div class="pf-bullet"><strong>Implicancia inversiones</strong>Marzo confirma sesgo pro-actividad sin sobrecalentar el nivel general (aún 8 p.p. debajo del pico 2022). Consistente con tesis de duration moderada en pesos y exposición selectiva a sectores con palanca operativa (alimentos, químicos).</div>
+    </div>
+  </section>
+
+  <!-- §02 LECTURA SECTORIAL -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 02</span>
+      <h2 class="pf-section-title">Mapa sectorial — 12 bloques</h2>
+    </div>
+
+    <p style="color:#C7D4DF;font-size:14.5px;margin-bottom:14px">
+      Cinco bloques operan por encima del nivel general (59,8%). El liderazgo de <span class="em-accent">refinación del petróleo (86,0%)</span> es consistente con la expansión de Vaca Muerta y mayor procesamiento de crudo. <span class="em-accent">Sustancias y químicos</span> registra el salto interanual más fuerte (+15,7 p.p.) por normalización post-inundaciones de Bahía Blanca 2025.
+    </p>
+
+    <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5BD39A;letter-spacing:.12em;text-transform:uppercase;margin:18px 0 8px">▲ Por encima del nivel general</h3>
+    <div class="pf-chip-grid">
+      <div class="pf-chip">
+        <div class="arrow pos">+10,2</div>
+        <div class="name">Refinación del petróleo</div>
+        <div class="vals"><span class="now">86,0</span><span class="prev">vs 75,8</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow pos">+9,0</div>
+        <div class="name">Industrias metálicas básicas</div>
+        <div class="vals"><span class="now">73,3</span><span class="prev">vs 64,3</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow pos">+1,8</div>
+        <div class="name">Papel y cartón</div>
+        <div class="vals"><span class="now">70,0</span><span class="prev">vs 68,2</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow pos">+15,7</div>
+        <div class="name">Sustancias y productos químicos</div>
+        <div class="vals"><span class="now">69,5</span><span class="prev">vs 53,8</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow pos">+4,0</div>
+        <div class="name">Productos alimenticios y bebidas</div>
+        <div class="vals"><span class="now">61,6</span><span class="prev">vs 57,6</span></div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#E8B04A;letter-spacing:.12em;text-transform:uppercase;margin:18px 0 8px">● Por debajo del nivel general</h3>
+    <div class="pf-chip-grid">
+      <div class="pf-chip">
+        <div class="arrow pos">+4,9</div>
+        <div class="name">Productos minerales no metálicos</div>
+        <div class="vals"><span class="now">56,6</span><span class="prev">vs 51,7</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow pos">+7,1</div>
+        <div class="name">Edición e impresión</div>
+        <div class="vals"><span class="now">56,0</span><span class="prev">vs 48,9</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow pos">+11,5</div>
+        <div class="name">Productos del tabaco</div>
+        <div class="vals"><span class="now">52,7</span><span class="prev">vs 41,2</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow pos">+0,7</div>
+        <div class="name">Industria automotriz</div>
+        <div class="vals"><span class="now">49,6</span><span class="prev">vs 48,9</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow neg">-0,7</div>
+        <div class="name">Productos de caucho y plástico</div>
+        <div class="vals"><span class="now">41,3</span><span class="prev">vs 42,0</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow neg">-0,8</div>
+        <div class="name">Productos textiles</div>
+        <div class="vals"><span class="now">40,2</span><span class="prev">vs 41,0</span></div>
+      </div>
+      <div class="pf-chip">
+        <div class="arrow neg">-2,8</div>
+        <div class="name">Metalmecánica excl. automotriz</div>
+        <div class="vals"><span class="now">40,0</span><span class="prev">vs 42,8</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §03 DRIVERS -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 03</span>
+      <h2 class="pf-section-title">Drivers — estructural vs transitorio</h2>
+    </div>
+
+    <div class="pf-two">
+      <div class="pf-card pos">
+        <h3>Estructural — Refinación 86,0%</h3>
+        <p>Mayor procesamiento de crudo. Vinculado al ramp-up sostenido de Vaca Muerta y debottlenecking del downstream. Es el nivel más alto de la serie reciente y opera cerca del óptimo técnico.</p>
+        <p><span class="em-accent">Lectura:</span> driver permanente. Sostiene CAPEX en cadena O&G, con impacto positivo sobre primas de Caución contractual y Riesgo Ambiental.</p>
+      </div>
+
+      <div class="pf-card pos">
+        <h3>Estructural — Metálicas básicas 73,3%</h3>
+        <p>Acero crudo +17,1% i.a. (Cámara Argentina del Acero). Tracción consistente con construcción privada y obra de infraestructura energética.</p>
+        <p><span class="em-accent">Lectura:</span> consolida tendencia. Señal positiva para Caución de obra pública/privada y para crédito a cadena siderúrgica.</p>
+      </div>
+
+      <div class="pf-card gold">
+        <h3>Transitorio — Químicos 69,5%</h3>
+        <p>Salto de +15,7 p.p. i.a. amplificado por base débil: en marzo 2025 las inundaciones de Bahía Blanca cortaron el suministro de gas al polo petroquímico. Materias primas plásticas +69,1% i.a., químicos básicos +49,1% i.a.</p>
+        <p><span class="em-gold">Lectura:</span> efecto base relevante. La tasa de crecimiento se moderará desde abril. El nivel absoluto (69,5%) sí es genuinamente alto y refleja recuperación operativa.</p>
+      </div>
+
+      <div class="pf-card neg">
+        <h3>Persistente — Metalmecánica 40,0%</h3>
+        <p>Única caída interanual significativa (-2,8 p.p.). Maquinaria agropecuaria -14,7% i.a. y aparatos de uso doméstico -16,2% i.a. arrastran al bloque.</p>
+        <p><span class="em-neg">Lectura:</span> alerta sectorial. Bajo nivel de actividad sostenido en bienes durables; afecta solvencia de PYMEs metalmecánicas — relevante para suscripción de Caución y crédito comercial.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §04 TENSIONES E INCONSISTENCIAS -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 04</span>
+      <h2 class="pf-section-title">Tensiones e inconsistencias</h2>
+    </div>
+
+    <ul class="pf-list">
+      <li><span class="em">Brecha durables vs commodities industriales:</span> mientras refinación, metálicas y químicos operan >70%, automotriz, metalmecánica, textiles y caucho/plástico siguen ≤49%. La recuperación no es "industrial" sino concentrada en cadenas primarias y de proceso continuo.</li>
+      <li><span class="em">Marzo rompe estacionalidad:</span> el salto m/m de +5,2 p.p. (de 54,6 a 59,8) es inusualmente fuerte. Comparado con marzo 2025 (-4,2 p.p. m/m desde febrero), la dinámica de 2026 muestra arrastre real adicional al efecto estacional.</li>
+      <li><span class="em">Automotriz: recuperación frágil:</span> 49,6% es solo +0,7 p.p. i.a., pero +10,7 p.p. m/m. Volatilidad alta y desde piso muy bajo (24,0% en enero). Aún no consolidada — requiere monitoreo mes a mes.</li>
+      <li><span class="em">Textiles en mínimos:</span> 40,2% con tendencia plana y caída interanual. Sumado a metalmecánica y caucho/plástico, configura un cluster de fragilidad de unas ~3 ramas que arrastra el nivel general hacia abajo.</li>
+      <li><span class="em">Ponderación 2004 — caveat metodológico:</span> la serie usa estructura de valor agregado de 2004 (año base vigente). Esto sobrepondera sectores que perdieron peso real (textiles, metalmecánica liviana) e infrapondera energía/petroquímica. El nivel general "real" probablemente esté algo por encima del 59,8% reportado.</li>
+    </ul>
+  </section>
+
+  <!-- §05 IMPLICANCIAS DE INVERSIÓN -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 05</span>
+      <h2 class="pf-section-title">Implicancias para portfolio</h2>
+    </div>
+
+    <div class="pf-card accent">
+      <h3>Lectura para Comité de Inversiones</h3>
+      <p>El dato confirma <span class="em">recuperación de la actividad industrial sin recalentamiento</span>: 59,8% está cómodamente por debajo del rango 65-70% donde aparecen cuellos de botella inflacionarios. Esto es consistente con un BCRA que puede sostener desinflación gradual sin necesidad de freno monetario abrupto.</p>
+      <p style="margin-top:10px"><span class="em-accent">Implicancia táctica:</span> mantener exposición a curva CER en tramo medio y posiciones en duales TAMAR, donde la convergencia inflacionaria + actividad creciente sigue siendo escenario favorable. La aceleración m/m podría reforzar narrativa de tasas reales positivas sostenibles.</p>
+    </div>
+
+    <div class="pf-two" style="margin-top:14px">
+      <div class="pf-card">
+        <h3>Renta fija soberana</h3>
+        <p>Datos compatibles con expectativa de compresión de spread soberano: actividad creciente sin presión inflacionaria fuerte. GD/AL30 deberían seguir capturando el tema "credibilidad fiscal + crecimiento". Mantener duration moderada.</p>
+      </div>
+      <div class="pf-card">
+        <h3>Equity sectorial</h3>
+        <p>Favorece nombres expuestos a refinación (YPF, Pampa), siderurgia (Ternium Argentina, Aluar) y químicos (Profertil indirecto). Subponderar consumer durables y maquinaria mientras metalmecánica no rompa el 45%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §06 SEMÁFORO POR LÍNEA -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 06</span>
+      <h2 class="pf-section-title">Semáforo por línea de seguros</h2>
+    </div>
+
+    <table class="pf-table">
+      <thead>
+        <tr>
+          <th>Línea</th>
+          <th>Sectores expuestos</th>
+          <th>Señal UCII</th>
+          <th style="text-align:right">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="em">Caución contractual</span></td>
+          <td>Construcción, energía, siderurgia, química</td>
+          <td>Cemento ↑, acero +17,1%, químicos en máximos</td>
+          <td style="text-align:right"><span class="badge semA">Favorable</span></td>
+        </tr>
+        <tr>
+          <td><span class="em">Crédito comercial</span></td>
+          <td>Transversal, sesgo PYME industrial</td>
+          <td>10/12 sectores en expansión i.a.</td>
+          <td style="text-align:right"><span class="badge semA">Favorable</span></td>
+        </tr>
+        <tr>
+          <td><span class="em">Incendio / Propiedad</span></td>
+          <td>Refinación, química, papel, alimentos</td>
+          <td>UCII >65% eleva exposición operativa</td>
+          <td style="text-align:right"><span class="badge semM">Atención</span></td>
+        </tr>
+        <tr>
+          <td><span class="em">ART</span></td>
+          <td>Industria global; manufactura intensiva</td>
+          <td>Mayor actividad = mayor exposición a siniestros</td>
+          <td style="text-align:right"><span class="badge semM">Atención</span></td>
+        </tr>
+        <tr>
+          <td><span class="em">Caución a PYME metalmecánica</span></td>
+          <td>Maquinaria agropecuaria, electrodomésticos</td>
+          <td>UCII 40,0%, caída i.a.; producción ≤-15%</td>
+          <td style="text-align:right"><span class="badge semB">Cautela</span></td>
+        </tr>
+        <tr>
+          <td><span class="em">Vida / Retiro</span></td>
+          <td>Macro general, masa salarial industrial</td>
+          <td>Sin señal directa; lectura indirecta vía empleo</td>
+          <td style="text-align:right"><span class="badge semA">Neutral+</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- §07 RIESGOS NO TARIFADOS -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 07</span>
+      <h2 class="pf-section-title">Riesgos no tarifados</h2>
+    </div>
+
+    <div class="pf-two">
+      <div class="pf-card neg">
+        <h3>Concentración en refinación</h3>
+        <p>El 86,0% del bloque petróleo es récord. Operar cerca del techo técnico aumenta exponencialmente el riesgo de paradas no planificadas, incidentes operativos y siniestros mayores en pólizas industriales. Revisar acumulaciones en YPF Luján de Cuyo, La Plata, Plaza Huincul.</p>
+      </div>
+      <div class="pf-card neg">
+        <h3>Efecto base que se diluye</h3>
+        <p>Una porción del salto interanual proviene de comparación contra bases débiles (Bahía Blanca, recesión 2024). Desde abril 2026 la mejora i.a. se moderará. No extrapolar la velocidad actual a la segunda mitad del año.</p>
+      </div>
+      <div class="pf-card neg">
+        <h3>PYMEs industriales atrasadas</h3>
+        <p>El cluster metalmecánica + textiles + caucho representa una fracción no menor del tejido PYME industrial. Riesgo de cola en cartera de Caución comercial y crédito a proveedores chicos del sector durables.</p>
+      </div>
+      <div class="pf-card neg">
+        <h3>Sensibilidad cambiaria</h3>
+        <p>Buena parte de la mejora en químicos y refinación responde a competitividad cambiaria post-corrección. Un atraso cambiario sostenido podría revertir UCII en sectores transables en 2-3 trimestres — relevante para suscripción de horizonte medio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §08 AGENDA DE MONITOREO -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 08</span>
+      <h2 class="pf-section-title">Agenda de monitoreo</h2>
+    </div>
+
+    <table class="pf-table">
+      <thead>
+        <tr>
+          <th>Indicador</th>
+          <th>Fuente</th>
+          <th>Umbral relevante</th>
+          <th>Próximo dato</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>UCII Abril 2026</td>
+          <td>INDEC</td>
+          <td>Confirmación si >58% / Reversión si <56%</td>
+          <td class="num">~13/06/2026</td>
+        </tr>
+        <tr>
+          <td>IPI manufacturero marzo</td>
+          <td>INDEC</td>
+          <td>Validación cualitativa del salto UCII</td>
+          <td class="num">Ya publicado</td>
+        </tr>
+        <tr>
+          <td>Metalmecánica — UCII</td>
+          <td>INDEC</td>
+          <td>Alerta si persiste <42% en abril-mayo</td>
+          <td class="num">Mensual</td>
+        </tr>
+        <tr>
+          <td>Producción acero crudo</td>
+          <td>Cámara Arg. del Acero</td>
+          <td>Validar sostenimiento >17% i.a.</td>
+          <td class="num">Mensual</td>
+        </tr>
+        <tr>
+          <td>Refinación / despachos combustibles</td>
+          <td>Secretaría de Energía</td>
+          <td>Confirmar el 86% técnico es genuino</td>
+          <td class="num">Mensual</td>
+        </tr>
+        <tr>
+          <td>Patentamientos 0km</td>
+          <td>ACARA</td>
+          <td>Validar recuperación automotriz</td>
+          <td class="num">~01/06/2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Bajada CFO -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 09</span>
+      <h2 class="pf-section-title">Takedown CFO / Comité</h2>
+    </div>
+
+    <div class="pf-card accent">
+      <p style="font-size:15px;color:#E6EEF5;line-height:1.7">
+        UCII 59,8% en marzo confirma <span class="em-pos">recuperación industrial real con difusión amplia</span>, no un rebote estadístico. El dato es consistente con sostener tesis de tasas reales positivas + duration moderada, y favorece <span class="em-accent">underwriting agresivo en Caución contractual y crédito comercial</span> para cadenas vinculadas a energía, siderurgia y química.
+        Cautela puntual en exposición a <span class="em-neg">PYMEs metalmecánicas y textiles</span> (cluster sub-50%) y vigilancia activa sobre acumulaciones de Incendio/Propiedad en sectores que operan cerca de óptimo técnico (refinación, papel, químicos). El próximo dato (abril) define si el salto m/m fue arrastre genuino o anomalía: ante reversión por debajo de 56% revisar postura.
+      </p>
+    </div>
+  </section>
+
+  <footer class="pf-footer">
+    <span>Análisis Macro & Sectorial</span>
+    <span>Elaboración interna · 14/05/2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
