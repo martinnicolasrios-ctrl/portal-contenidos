@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis Regulatorio — Boletín Oficial 14/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 60%);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 28px;
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-2);
+    margin-bottom: 4px;
+  }
+
+  .header-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    position: relative;
+  }
+
+  .section-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: -40px;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  section { margin-bottom: 52px; }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+
+  .card-urgent { border-left: 2px solid var(--neg); }
+  .card-novedad { border-left: 2px solid var(--accent); }
+  .card-financiero { border-left: 2px solid var(--gold); }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-norma {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .card-norma-urgent { color: var(--accent); }
+  .card-norma-novedad { color: var(--accent); }
+  .card-norma-financiero { color: var(--gold); }
+
+  .card-organismo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  /* LINKS BAR */
+  .links-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .btn-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    letter-spacing: 0.03em;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+
+  .btn-link:hover { opacity: 0.75; }
+
+  .btn-bora-neg { color: var(--neg); border: 1px solid rgba(239,108,108,.3); }
+  .btn-bora-accent { color: var(--accent); border: 1px solid rgba(52,187,218,.3); }
+  .btn-bora-gold { color: var(--gold); border: 1px solid rgba(232,176,74,.3); }
+  .btn-kronos { color: var(--ink-3); border: 1px solid rgba(123,145,163,.3); }
+
+  /* VENCIMIENTOS */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+
+  .chip-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .chip-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .chip-action {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    margin-top: 48px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .wrapper { padding: 28px 20px; }
+    .section-header::after { right: -20px; }
+    .chips-grid { grid-template-columns: 1fr; }
+    .links-bar { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo"></div>
+    <div class="subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="header-date">Edición: 14 de Mayo de 2026 &nbsp;·&nbsp; Publicación: boletinoficial.gob.ar</div>
+  </header>
+
+  <!-- SECCIÓN 1: URGENTE -->
+  <!-- No hay ítems que requieran acción urgente inmediata en esta edición para el sector asegurador -->
+
+  <!-- SECCIÓN 2: NOVEDADES REGULATORIAS -->
+  <section id="novedades">
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <h2 class="section-title">Novedades Regulatorias</h2>
+    </div>
+
+    <!-- CNV RG 1139 -->
+    <div class="card card-novedad">
+      <div class="card-meta">
+        <span class="card-norma card-norma-novedad">RG 1139/2026</span>
+        <span class="card-organismo">Comisión Nacional de Valores</span>
+      </div>
+      <div class="card-title">Reforma integral del régimen PLA/FT/FP en el mercado de capitales — Normas N.T. 2013</div>
+      <div class="card-body">
+        La CNV reemplaza completamente el Título XI de sus Normas, redefiniendo las obligaciones de prevención de lavado de activos y financiación del terrorismo para todos los sujetos obligados del mercado de capitales (ALyC, FCI, PSAV, fiduciarios financieros). Los cambios más relevantes para aseguradoras que operan carteras de inversión son: (1) se elimina el uso de efectivo para pagos a clientes, con excepción del régimen DDJJ Simplificada de Ganancias; (2) se incorpora el cheque electrónico (ECHEQ) como medio de pago válido; (3) se extienden a los Proveedores de Servicios de Activos Virtuales (PSAV) registrados las mismas obligaciones informativas que rigen para ALyC, con vigencia desde el 1° de julio de 2026 y plazo de carga inicial hasta el 31 de julio de 2026; (4) se refuerzan los requisitos de idoneidad, integridad y solvencia para inscripción y mantenimiento de registro ante CNV; (5) se incorporan nuevas variables al régimen informativo: Beneficiarios Finales, segmentación de riesgo de clientes, PEPs y monitoreo de operatoria, con plazos de actualización semestral para los ítems 3, 8, 9 y 10. Las aseguradoras con FCI propios o carteras en ALyC deben revisar sus manuales PLA/FT/FP y verificar que sus contrapartes del mercado de capitales cumplan el nuevo régimen antes del 1° de julio de 2026.
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341941/20260514" target="_blank" class="btn-link btn-bora-accent">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA A-8427 -->
+    <div class="card card-novedad">
+      <div class="card-meta">
+        <span class="card-norma card-norma-novedad">Com. "A" 8427/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Nuevo requerimiento de información mensual: Transferencias Inmediatas Intraentidades (R.I.-T.I.I.)</div>
+      <div class="card-body">
+        El BCRA incorpora un nuevo régimen informativo mensual (Circular CONAU 1-1722) aplicable a entidades financieras y PSP con cuentas de pago, relativo al stock y flujo de transferencias inmediatas intraentidades. Si bien el destinatario directo son bancos y PSP, las aseguradoras que operen a través de cuentas en entidades financieras o que tengan cuentas de pago propias deben verificar el tratamiento de sus proveedores. El régimen entra en vigencia a partir de agosto de 2026, con vencimiento del primer reporte el 22 de septiembre de 2026. Las instrucciones operativas se difundirán por separado (ver Com. "A" 8434/2026).
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341954/20260514" target="_blank" class="btn-link btn-bora-accent">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA A-8428 -->
+    <div class="card card-novedad">
+      <div class="card-meta">
+        <span class="card-norma card-norma-novedad">Com. "A" 8428/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Adecuaciones al Régimen Informativo de Supervisión Trimestral/Anual — Billeteras Digitales Interoperables</div>
+      <div class="card-body">
+        El BCRA modifica el Régimen Informativo de Supervisión Trimestral/Anual (Circular CONAU 1-1723, RUNOR 1-1957), incorporando cuatro nuevas partidas de información (N° 999736 a 999739) relacionadas con usuarios de canales no presenciales para entidades inscriptas como "Billeteras digitales interoperables". Aplica a partir del trimestre cerrado al 30/06/2026. Para aseguradoras, el impacto es indirecto: aquellas que utilicen billeteras digitales como medio de cobro o pago de primas deben verificar si sus proveedores PSP reportarán correctamente estas operaciones.
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341955/20260514" target="_blank" class="btn-link btn-bora-accent">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA A-8434 -->
+    <div class="card card-novedad">
+      <div class="card-meta">
+        <span class="card-norma card-norma-novedad">Com. "A" 8434/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Instrucciones operativas del régimen R.I.-T.I.I. — Complemento de Com. "A" 8427</div>
+      <div class="card-body">
+        Complementa la Comunicación "A" 8427/2026, publicando el texto ordenado de la Sección 84 de "Presentación de Informaciones al Banco Central" con las instrucciones operativas del régimen de Transferencias Inmediatas Intraentidades. Confirma la fecha de vigencia: período agosto 2026, con vencimiento de presentación el 22/09/2026. No genera obligaciones adicionales a las ya señaladas en la Com. "A" 8427.
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341956/20260514" target="_blank" class="btn-link btn-bora-accent">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3: IMPACTO FINANCIERO -->
+  <section id="financiero">
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <h2 class="section-title">Impacto Financiero</h2>
+    </div>
+
+    <!-- BCRA B-13171 -->
+    <div class="card card-financiero">
+      <div class="card-meta">
+        <span class="card-norma card-norma-financiero">Com. "B" 13171/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Tasas de referencia para la Garantía de Depósitos — Actualización al 12/05/2026</div>
+      <div class="card-body">
+        El BCRA publica la actualización de tasas de referencia aplicables en el marco de la Garantía de Depósitos (Circular OPASI 2), con datos al 12/05/2026. Si bien está dirigida formalmente a entidades financieras, estas tasas son relevantes para las aseguradoras como referencia de pricing de reservas técnicas en pesos y como benchmark para evaluar el rendimiento de plazo fijo bancario dentro de las carteras de inversión reguladas por la SSN. El archivo de datos se actualiza en www.bcra.gob.ar (sección Estadísticas).
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341958/20260514" target="_blank" class="btn-link btn-bora-gold">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA B-13169 -->
+    <div class="card card-financiero">
+      <div class="card-meta">
+        <span class="card-norma card-norma-financiero">Com. "B" 13169/2026</span>
+        <span class="card-organismo">Banco Central de la República Argentina</span>
+      </div>
+      <div class="card-title">Tasas continuas de descuento al 30/04/2026 para medición de riesgo de tasa de interés en cartera de inversión (RTICI)</div>
+      <div class="card-body">
+        El BCRA difunde las tasas continuas de descuento al 30 de abril de 2026, utilizadas dentro del marco estandarizado de medición del riesgo de tasa de interés en la cartera de inversión (RTICI), según la Comunicación "A" 6397 y los "Lineamientos para la gestión de riesgos en las entidades financieras". Aunque dirigida a entidades financieras, estas tasas constituyen una referencia técnica fundamental para las áreas de finanzas de aseguradoras que valúan sus carteras de renta fija a curva de descuento y modelan escenarios de tasas para el cálculo de reservas matemáticas de seguros de Vida. El Anexo no se publica en BORA; puede consultarse en la Biblioteca Prebisch o en www.bcra.gob.ar.
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341957/20260514" target="_blank" class="btn-link btn-bora-gold">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BNA Tasas -->
+    <div class="card card-financiero">
+      <div class="card-meta">
+        <span class="card-norma card-norma-financiero">Aviso Oficial</span>
+        <span class="card-organismo">Banco de la Nación Argentina</span>
+      </div>
+      <div class="card-title">Actualización de tasas activas del BNA — Período 08/05 al 14/05/2026</div>
+      <div class="card-body">
+        El BNA publica su cuadro semanal de tasas activas (Tasa Cartera General, adelantada y vencida) y tasas de descuento, vigentes desde el 8 al 14 de mayo de 2026. La tasa efectiva anual adelantada se ubica en 21,95%–23,26% en el período y la efectiva anual vencida en 28,13%–30,31%, con variaciones diarias relevantes. Para aseguradoras, estas tasas operan como referencia para la valuación de activos de renta fija emitidos en pesos, créditos hipotecarios en cartera propia y para benchmarking de rendimientos de inversiones admitidas bajo la normativa SSN. La tasa TAMAR vigente es el parámetro para préstamos con caución de certificados de obras (MiPyMEs: TAMAR +6 ppa; resto: TAMAR +6,5 ppa).
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341953/20260514" target="_blank" class="btn-link btn-bora-gold">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- ARCA RGC 5846 -->
+    <div class="card card-financiero">
+      <div class="card-meta">
+        <span class="card-norma card-norma-financiero">RGC 5846/2026</span>
+        <span class="card-organismo">Ministerio de Economía / ARCA</span>
+      </div>
+      <div class="card-title">Exporta Simple: ampliación de límites operativos y eliminación de restricciones — Vigencia a 20 días hábiles</div>
+      <div class="card-body">
+        La RGC modifica el Régimen de Exportación Simplificada "Exporta Simple" (RGC N° 4.458/2019). Los cambios clave son: (1) se eleva el límite anual de exportaciones con derechos de exportación superiores al 0% a U$S 600.000 por sujeto (antes era más restrictivo); (2) el tope por operación individual sube a U$S 15.000; (3) se deroga el artículo 7° que restringía el acceso a estímulos exportadores. Vigencia: a partir de los 20 días hábiles de su publicación (estimado: 11 o 12 de junio de 2026). Para aseguradoras, el impacto directo es acotado, pero puede ser relevante para aquellas que aseguren riesgos del comercio exterior (seguros de crédito a la exportación, seguros de transporte internacional) o cuenten con clientes exportadores PyME que modifiquen su perfil de riesgo.
+      </div>
+      <div class="links-bar">
+        <a href="https://www.boletinoficial.gob.ar/detalleAviso/primera/341940/20260514" target="_blank" class="btn-link btn-bora-gold">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4: PRÓXIMOS VENCIMIENTOS -->
+  <section id="vencimientos">
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <h2 class="section-title">Próximos Vencimientos</h2>
+    </div>
+    <div class="chips-grid">
+
+      <div class="chip">
+        <div class="chip-date">31 / 07 / 2026</div>
+        <div class="chip-desc">CNV RG 1139/2026 — Carga inicial de información PLA/FT/FP en AIF (Beneficiarios Finales, Oficiales de Cumplimiento, Manual PLA, Autoevaluación de Riesgo, etc.) para sujetos obligados del mercado de capitales (incluyendo ALyC y FCI vinculados a aseguradoras).</div>
+        <div class="chip-action">Verificar completitud de documentación en AIF y actualizar Manual PLA/FT/FP.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">01 / 07 / 2026</div>
+        <div class="chip-desc">CNV RG 1139/2026 — Entrada en vigencia del nuevo régimen PLA/FT/FP para PSAV registrados ante CNV y para la obligación informativa de ítems 1, 7, 8, 9 y 10 del Art. 2° Sección I Título XI.</div>
+        <div class="chip-action">Confirmar que intermediarios financieros y gestores de FCI usados por la aseguradora estén en regla con el nuevo Título XI.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">22 / 09 / 2026</div>
+        <div class="chip-desc">BCRA Com. "A" 8427/2026 y 8434/2026 — Primer vencimiento del Régimen Informativo R.I.-T.I.I. (Transferencias Inmediatas Intraentidades), correspondiente al período agosto 2026.</div>
+        <div class="chip-action">Verificar con bancos custodios y PSP que cuenten con la infraestructura para cumplir el nuevo requerimiento.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">~12 / 06 / 2026</div>
+        <div class="chip-desc">ARCA RGC 5846/2026 — Entrada en vigencia de los nuevos límites del Régimen "Exporta Simple" (a los 20 días hábiles desde el 14/05/2026).</div>
+        <div class="chip-action">Revisar pólizas de seguro de crédito a la exportación y transporte internacional en cartera de clientes PyME exportadores.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">30 / 06 / 2026</div>
+        <div class="chip-desc">BCRA Com. "A" 8428/2026 — Cierre del primer trimestre alcanzado por las nuevas partidas informativas 999736 a 999739 para entidades inscriptas como billeteras digitales interoperables.</div>
+        <div class="chip-action">Si la aseguradora opera como PSP con cuenta de pago, verificar disponibilidad de datos para el nuevo reporte trimestral.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Generado automáticamente &nbsp;·&nbsp; 14/05/2026 &nbsp;·&nbsp; Fuente: Boletín Oficial de la República Argentina
+  </footer>
+
+</div>
+</body>
+</html>

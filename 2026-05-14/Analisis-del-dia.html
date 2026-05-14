@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPOM Marzo 2026 — Análisis Crítico para Comité de Inversiones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0B1620;
+    --bg-mid: #0F1E2B;
+    --bg-card: #17293A;
+    --border: #1E3447;
+    --border-soft: #243B52;
+    --text-primary: #E6EEF5;
+    --text-secondary: #A8BACB;
+    --text-muted: #6F8294;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+    --warn: #F3A85C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    line-height: 1.65;
+    font-size: 15px;
+    padding: 32px 16px 64px;
+  }
+
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  /* ---------- HEADER ---------- */
+  .pf-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+  }
+
+  .pf-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .pf-eyebrow .dot {
+    width: 4px; height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .pf-title {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .pf-subtitle {
+    color: var(--text-secondary);
+    font-size: 17px;
+    font-weight: 300;
+    max-width: 760px;
+    line-height: 1.55;
+  }
+
+  .pf-meta {
+    display: flex;
+    gap: 28px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pf-meta span strong {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  .pf-section {
+    margin-bottom: 44px;
+  }
+
+  .pf-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pf-section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .pf-section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+
+  .pf-section-kicker {
+    margin-left: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+  }
+
+  p strong, .em {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ---------- CARDS ---------- */
+  .pf-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .pf-card.accent { border-left: 3px solid var(--accent); }
+  .pf-card.warn   { border-left: 3px solid var(--warn); }
+  .pf-card.neg    { border-left: 3px solid var(--neg); }
+  .pf-card.pos    { border-left: 3px solid var(--pos); }
+  .pf-card.gold   { border-left: 3px solid var(--gold); }
+
+  .pf-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+  }
+
+  .pf-card-title .ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ---------- CHIP GRID ---------- */
+  .pf-chip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 18px 0 24px;
+  }
+
+  .pf-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+
+  .pf-chip-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .pf-chip-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  .pf-chip-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    margin-top: 4px;
+    color: var(--text-muted);
+  }
+
+  .pf-chip-delta.pos { color: var(--pos); }
+  .pf-chip-delta.neg { color: var(--neg); }
+  .pf-chip-delta.warn { color: var(--warn); }
+
+  /* ---------- BADGE ---------- */
+  .pf-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: rgba(52, 187, 218, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(52, 187, 218, 0.3);
+    margin-right: 6px;
+  }
+
+  .pf-badge.warn { background: rgba(243, 168, 92, 0.1); color: var(--warn); border-color: rgba(243, 168, 92, 0.3); }
+  .pf-badge.neg  { background: rgba(239, 108, 108, 0.1); color: var(--neg); border-color: rgba(239, 108, 108, 0.3); }
+  .pf-badge.pos  { background: rgba(91, 211, 154, 0.1); color: var(--pos); border-color: rgba(91, 211, 154, 0.3); }
+  .pf-badge.gold { background: rgba(232, 176, 74, 0.1); color: var(--gold); border-color: rgba(232, 176, 74, 0.3); }
+
+  /* ---------- TABLES ---------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+
+  th {
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  th.num, td.num {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+
+  td.label {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td .delta-pos { color: var(--pos); }
+  td .delta-neg { color: var(--neg); }
+  td .delta-warn { color: var(--warn); }
+
+  /* ---------- TWO-COL ---------- */
+  .pf-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ---------- TRAFFIC LIGHT ---------- */
+  .pf-traffic {
+    display: grid;
+    grid-template-columns: 160px 80px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pf-traffic:last-child { border-bottom: none; }
+
+  .pf-traffic-line {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+
+  .pf-light {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 4px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .pf-light.green  { background: rgba(91, 211, 154, 0.15); color: var(--pos); }
+  .pf-light.yellow { background: rgba(243, 168, 92, 0.15); color: var(--warn); }
+  .pf-light.red    { background: rgba(239, 108, 108, 0.15); color: var(--neg); }
+  .pf-light.gold   { background: rgba(232, 176, 74, 0.15); color: var(--gold); }
+
+  .pf-traffic-detail {
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+
+  /* ---------- EXECUTIVE SUMMARY ---------- */
+  .pf-exec {
+    background: linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-card) 100%);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 30px;
+    margin-bottom: 36px;
+  }
+
+  .pf-exec ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pf-exec li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+  }
+
+  .pf-exec li:last-child { margin-bottom: 0; }
+
+  .pf-exec li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+  }
+
+  .pf-exec li strong { color: var(--text-primary); }
+
+  /* ---------- SCENARIO TABLE ---------- */
+  .scenario-table th, .scenario-table td {
+    border-right: 1px solid var(--border);
+  }
+  .scenario-table th:last-child, .scenario-table td:last-child { border-right: none; }
+
+  .prob-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .prob-bar div { height: 100%; }
+  .prob-bar .base { background: var(--accent); }
+  .prob-bar .opt  { background: var(--pos); }
+  .prob-bar .str  { background: var(--neg); }
+
+  /* ---------- AGENDA ---------- */
+  .pf-agenda-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pf-agenda-item:last-child { border-bottom: none; }
+
+  .pf-agenda-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .pf-agenda-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  .pf-agenda-trigger {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ---------- QUOTE / CALLOUT ---------- */
+  .pf-callout {
+    background: rgba(52, 187, 218, 0.05);
+    border-left: 2px solid var(--accent);
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .pf-callout.warn { background: rgba(243, 168, 92, 0.05); border-color: var(--warn); }
+  .pf-callout.neg  { background: rgba(239, 108, 108, 0.05); border-color: var(--neg); }
+
+  /* ---------- FOOTER ---------- */
+  .pf-footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 720px) {
+    body { padding: 20px 12px 40px; font-size: 14px; }
+    .pf-title { font-size: 28px; }
+    .pf-section-title { font-size: 20px; }
+    .pf-chip-grid { grid-template-columns: repeat(2, 1fr); }
+    .pf-two-col { grid-template-columns: 1fr; }
+    .pf-traffic { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
+    .pf-section-kicker { display: none; }
+    .pf-agenda-item { grid-template-columns: 1fr; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ============ HEADER ============ -->
+  <header class="pf-header">
+    <div class="pf-eyebrow">
+      <span>IPOM BCRA</span>
+      <span class="dot"></span>
+      <span>Análisis Crítico</span>
+      <span class="dot"></span>
+      <span>Comité de Inversiones</span>
+    </div>
+    <h1 class="pf-title">Informe de Política Monetaria — Marzo 2026</h1>
+    <p class="pf-subtitle">
+      El BCRA retoma la publicación trimestral del IPOM y comunica un diagnóstico de fundamentos sólidos
+      frente al shock geopolítico. La narrativa es coherente, pero hay tensiones no menores —
+      demanda de dinero por debajo del escenario base, inflación subyacente al alza,
+      y una estrategia de acumulación de reservas que el propio Recuadro 1 sugiere que tomará años, no trimestres.
+    </p>
+    <div class="pf-meta">
+      <span><strong>Fuente</strong> BCRA · IPOM Mar-26 (publicado may-26)</span>
+      <span><strong>Cobertura</strong> Macro · Precios · Política Monetaria</span>
+      <span><strong>Audiencia</strong> Comité de Inversiones · CFO</span>
+    </div>
+  </header>
+
+  <!-- ============ EXECUTIVE SUMMARY ============ -->
+  <section class="pf-exec">
+    <div class="pf-section-num" style="margin-bottom: 14px;">RESUMEN EJECUTIVO</div>
+    <ul>
+      <li><strong>El BCRA decidió no mover su política monetaria</strong> pese a la aceleración de la inflación mensual a 3,4% en marzo. Lectura: el regulador interpreta los shocks (combustibles, tarifas, carnes) como transitorios y de oferta — la política monetaria no contrarresta oferta salvo segunda ronda.</li>
+      <li><strong>Tasas en descenso pronunciado por mercado, no por decreto.</strong> TAMAR bancos privados cayó 10,6 p.p. (ene→abr) hasta 23,6%; cauciones de ~33% a ~20%; Tesoro cortando a 2,05% TEM. Implicancia directa para nuestro portafolio de Lecaps/CER: ventana de carry compresión cerrándose, hora de evaluar duration.</li>
+      <li><strong>Inflación subyacente acelerando, no desacelerando.</strong> IPC-S BCRA pasó de 2,0% (IV-25) a 2,3% promedio I-26, con servicios subyacentes en 2,5% (vs. bienes 2,0%). REM espera 30,5% i.a. para dic-26 (+10,4 p.p. vs. lo esperado a fin de 2025). Hay revisión al alza, no convergencia.</li>
+      <li><strong>Demanda de dinero por debajo del escenario base proyectado en el IPOM dic-25 — cerca de 2 desvíos estándar.</strong> M2 transaccional cayó a 5,6% del PIB (-0,3 p.p. vs. dic). El BCRA admite "menor dinamismo que el previsto". Es la grieta más relevante del informe.</li>
+      <li><strong>Recuadro 1 (BCRP Perú) funciona como gestión de expectativas.</strong> El mensaje implícito: la acumulación de reservas tomó 20 años en Perú, fue no lineal, dependió de factores exógenos (precios de commodities, IED, desdolarización). El BCRA prepara el terreno por si las metas con FMI se tensionan.</li>
+      <li><strong>Equilibrio externo frágil bajo el lenguaje optimista.</strong> Cuenta corriente cerró 2025 con -1,1% del PIB (USD 7.582 M) y el I-26 muestra "leve déficit estacional". El narrativo de "superávit comercial sólido" coexiste con compra privada de USD por USD 33 mil M en 2025.</li>
+      <li><strong>Toma operativa por línea de negocio</strong> → Daños y ART: presión sobre primas reales por tarifas/combustibles; Caución de obra: alerta por mora bancaria creciente y construcción débil; Vida/Retiro: colapso de tasas reales CER complica matching de pasivos largos; Bonos: oportunidad de capturar capital gains en CER medio (TX28/TX31) antes de nueva compresión.</li>
+    </ul>
+  </section>
+
+  <!-- ============ § 01 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 01</span>
+      <span class="pf-section-title">Tablero macro: el dato vs. el relato</span>
+      <span class="pf-section-kicker">Fundamentos & tensiones</span>
+    </div>
+
+    <div class="pf-chip-grid">
+      <div class="pf-chip">
+        <div class="pf-chip-label">IPC Marzo m/m</div>
+        <div class="pf-chip-value">3,4%</div>
+        <div class="pf-chip-delta warn">+0,5 p.p. vs IV-25</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">IPC-S BCRA Mar</div>
+        <div class="pf-chip-value">2,4%</div>
+        <div class="pf-chip-delta warn">subyacente al alza</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">REM Inflación 2026</div>
+        <div class="pf-chip-value">30,5%</div>
+        <div class="pf-chip-delta neg">+10,4 p.p. vs. dic-25</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">PIB 2025</div>
+        <div class="pf-chip-value">+4,4%</div>
+        <div class="pf-chip-delta pos">en línea c/ IPOM ant.</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">RR.II. brutas 31-mar</div>
+        <div class="pf-chip-value">USD 42.052 M</div>
+        <div class="pf-chip-delta pos">+USD 17.066 M i.a.</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Compras BCRA YTD</div>
+        <div class="pf-chip-value">USD 7.600 M</div>
+        <div class="pf-chip-delta pos">75% piso anual</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">CC Balanza Pagos 2025</div>
+        <div class="pf-chip-value">-1,1% PIB</div>
+        <div class="pf-chip-delta warn">déficit USD 7.582 M</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Resultado Primario I-26</div>
+        <div class="pf-chip-value">+1,2% PIB</div>
+        <div class="pf-chip-delta pos">s.e. anualizado</div>
+      </div>
+    </div>
+
+    <p>
+      El BCRA ofrece una lectura ordenada: <span class="em">superávit fiscal preservado, RR.II. en crecimiento,
+      apreciación del peso pese al shock geopolítico, tasas en descenso impulsado por mercado, riesgo país en
+      compresión.</span> Todo eso es factual y verificable. Lo que no aparece con la misma claridad es que la
+      <span class="em">aceleración de la inflación no se explica solamente por shocks de oferta</span>: el IPC
+      subyacente del propio BCRA (IPC-S) subió 0,3 p.p. de IV-25 a I-26, y los servicios subyacentes están en
+      2,5% mensual — un piso elevado en un esquema que aspira a converger a una sola cifra anual.
+    </p>
+
+    <div class="pf-callout warn">
+      Observación crítica: el BCRA atribuye toda la dinámica reciente a "cambios en precios relativos" y "estacionalidad".
+      Si el diagnóstico fuera correcto, la inflación subyacente debería haberse mantenido estable. No lo hizo.
+      La nominalidad mensual sigue mostrando resistencia hacia abajo en torno al 2,3-2,4%, lo que implica un
+      piso anual implícito cercano al 30% — exactamente lo que mide el REM.
+    </div>
+  </section>
+
+  <!-- ============ § 02 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 02</span>
+      <span class="pf-section-title">Lectura del shock: petróleo, tarifas y la disciplina de no reaccionar</span>
+      <span class="pf-section-kicker">Inflación & precios relativos</span>
+    </div>
+
+    <p>
+      El conflicto en Medio Oriente llevó al Brent a un promedio de <span class="em">USD 102/bbl en abril (+49% vs. 2025)</span>,
+      con pico de USD 118. Los combustibles minoristas acumularon ~25% de suba en marzo,
+      con incidencia directa de 0,3 p.p. en el IPC y un arrastre estimado superior a 10% para abril
+      (incidencia >0,4 p.p.). El BCRA decidió no mover su política — la lectura textual es que la inflación
+      mensual va a bajar por reversión de estacionales y combustibles "atenuados" por YPF (congelamiento 45 días)
+      y el TC apreciado.
+    </p>
+
+    <p>
+      <span class="em">El razonamiento es ortodoxo:</span> la política monetaria sólo debe operar sobre demanda agregada
+      y no sobre shocks de oferta, mientras no haya segunda ronda. <span class="em">El supuesto crítico es que la
+      ausencia de inercia inflacionaria validará esta inacción.</span> Si los salarios paritarios reaccionan al pico
+      de marzo, o si el conflicto se prolonga y el Brent sostiene USD 100+, el BCRA tendría que endurecer encajes
+      o tasas vía colocación de Lecaps con corte más alto.
+    </p>
+
+    <h3 class="pf-card-title" style="margin-top: 24px;">Composición del shock — qué se reverte y qué se queda</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th class="num">Aporte Mar (p.p.)</th>
+          <th>Naturaleza</th>
+          <th>Lectura para abril/mayo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Carnes y derivados</td>
+          <td class="num">~0,5</td>
+          <td>Estacional + ext.</td>
+          <td><span class="delta-pos">Revierte</span> — IPC BA carnes +0,3% en abril</td>
+        </tr>
+        <tr>
+          <td class="label">Educación</td>
+          <td class="num">~0,2</td>
+          <td>Estacional puro</td>
+          <td><span class="delta-pos">Revierte</span> — fin del ciclo de actualización</td>
+        </tr>
+        <tr>
+          <td class="label">Prendas de vestir</td>
+          <td class="num">~0,2</td>
+          <td>Estacional</td>
+          <td><span class="delta-warn">Persiste en abril</span>, revierte en mayo</td>
+        </tr>
+        <tr>
+          <td class="label">Combustibles</td>
+          <td class="num">~0,3</td>
+          <td>Shock externo</td>
+          <td><span class="delta-neg">Arrastre >10%</span> → +0,4 p.p. en abril</td>
+        </tr>
+        <tr>
+          <td class="label">Electricidad, gas</td>
+          <td class="num">~0,5 (feb)</td>
+          <td>Regulado (subs.)</td>
+          <td><span class="delta-warn">Sendero de cobertura</span> — sigue corrigiendo</td>
+        </tr>
+        <tr>
+          <td class="label">IPC-S subyacente</td>
+          <td class="num">~1,3</td>
+          <td><strong>Estructural</strong></td>
+          <td><span class="delta-warn">El verdadero piso</span> — no revierte solo</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      El punto no obvio es que el IPC-S BCRA <span class="em">subió de 2,0% (IV-25) a 2,3% promedio I-26</span>,
+      una aceleración del 15% en el ritmo subyacente. El propio BCRA muestra en el Gráfico II.8 que los servicios
+      subyacentes se "desacoplaron" de bienes desde noviembre 2025 — están en 2,5% vs. 2,0% en bienes. Esto es
+      <span class="em">inercia, no estacionalidad</span>, y es lo que debería preocupar al CFO sobre el horizonte
+      de primas reales.
+    </p>
+  </section>
+
+  <!-- ============ § 03 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 03</span>
+      <span class="pf-section-title">Demanda de dinero por debajo del escenario base — la grieta del informe</span>
+      <span class="pf-section-kicker">Régimen monetario · señal estructural</span>
+    </div>
+
+    <p>
+      El BCRA reconoce con extraordinaria sinceridad técnica que el <span class="em">M2 privado transaccional se ubicó
+      cerca del segundo desvío estándar por debajo del escenario base</span> proyectado en el IPOM de diciembre.
+      Para un régimen cuyo ancla nominal explícita es el control de agregados monetarios, esto no es un detalle.
+      En abril, M2 transaccional representó 5,6% del PIB (-0,3 p.p. vs. dic-25) y se contrajo 1,6% s.e. mensual
+      promedio en el cuatrimestre.
+    </p>
+
+    <div class="pf-two-col">
+      <div class="pf-card warn">
+        <div class="pf-card-title">Las tres explicaciones del BCRA</div>
+        <p style="margin-bottom: 8px;"><strong>1. Tasas bajaron, pero con rezago</strong> — la baja "sucedió, aunque demoró más tiempo en materializarse".</p>
+        <p style="margin-bottom: 8px;"><strong>2. Capex empresarial demorado</strong> — la demanda de títulos dollar-linked sugiere ciclo de inversión retrasado vs. ritmo de liquidación de divisas.</p>
+        <p style="margin-bottom: 0;"><strong>3. Cambio estructural</strong> en medios de pago electrónicos — FCI Money Market intermediando lo que antes era M2.</p>
+      </div>
+      <div class="pf-card neg">
+        <div class="pf-card-title">Lectura crítica no en el informe</div>
+        <p style="margin-bottom: 8px;"><strong>Remonetización más lenta de la prometida</strong> debilita el argumento de "abastecer demanda de dinero con compra de divisas". Si la demanda no se expande, las compras inyectan pesos que hay que esterilizar.</p>
+        <p style="margin-bottom: 0;"><strong>Riesgo de inconsistencia</strong>: el plan asumía que la compra de USD por el BCRA sería absorbida por una creciente demanda real de pesos. Si esa demanda no aparece, o el ritmo de compras se modera o crece la esterilización vía repos/Tesoro.</p>
+      </div>
+    </div>
+
+    <div class="pf-callout">
+      El Recuadro 3 del IPOM detalla cómo el BCRA "eliminó la volatilidad de la tasa de interés sin alterar su variabilidad
+      (endogeneidad)". Lectura entre líneas: el BCRA admite que la transición tras la eliminación de la LEFI fue
+      operativamente complicada (volatilidad extrema de cauciones, hasta 60% TNA en momentos puntuales).
+      Hoy la facilidad permanente de liquidez al cierre + el rango ampliado de títulos elegibles para encajes son
+      <em>parches operativos efectivos</em>, pero confirman que el régimen está aún calibrándose.
+    </div>
+  </section>
+
+  <!-- ============ § 04 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 04</span>
+      <span class="pf-section-title">Tasas en descenso: ventana de capital gains, ¿se está cerrando?</span>
+      <span class="pf-section-kicker">Bonos & Portafolio</span>
+    </div>
+
+    <p>
+      La compresión de tasas pesos del primer cuatrimestre fue notable y vino impulsada por mercado (no por LEFI/TPM,
+      que ya no existen). Los movimientos relevantes para el portafolio:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tasa</th>
+          <th class="num">Ene-26</th>
+          <th class="num">Abr-26</th>
+          <th class="num">Δ p.p.</th>
+          <th>Implicancia portafolio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Caución 1d</td>
+          <td class="num">~33,5%</td>
+          <td class="num">~20%</td>
+          <td class="num"><span class="delta-neg">-13,5</span></td>
+          <td>Liquidez transaccional rinde menos — revisar pool líquido</td>
+        </tr>
+        <tr>
+          <td class="label">TAMAR priv.</td>
+          <td class="num">~34,2%</td>
+          <td class="num">23,6%</td>
+          <td class="num"><span class="delta-neg">-10,6</span></td>
+          <td>Plazos fijos cortos pierden carry vs. CER medio</td>
+        </tr>
+        <tr>
+          <td class="label">Desc. doc.</td>
+          <td class="num">~40,3%</td>
+          <td class="num">29,5%</td>
+          <td class="num"><span class="delta-neg">-10,8</span></td>
+          <td>Spread bancario comprimido — efecto P&L bancos</td>
+        </tr>
+        <tr>
+          <td class="label">Tesoro corte (Lecap)</td>
+          <td class="num">2,8% TEM</td>
+          <td class="num">2,05% TEM</td>
+          <td class="num"><span class="delta-neg">-0,75</span></td>
+          <td>Curva muy comprimida — duration corta poco atractiva</td>
+        </tr>
+        <tr>
+          <td class="label">Plazo medio coloc.</td>
+          <td class="num">~150 d</td>
+          <td class="num">562 d</td>
+          <td class="num"><span class="delta-pos">+412</span></td>
+          <td>Tesoro extendiendo deuda agresivamente</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="pf-card-title" style="margin-top: 22px;">Bonos CER — tasas reales colapsando post-elección</h3>
+
+    <p>
+      El Gráfico III.2.4 del IPOM es revelador: las TIR de TX26/TX28/TX31 llegaron a 30-40% en septiembre 2025
+      (pico pre-electoral) y hoy se ubican en <span class="em">terreno cercano a 0% real o levemente negativo</span>
+      en los tramos cortos. El mercado descontó casi por completo la prima de riesgo electoral.
+    </p>
+
+    <div class="pf-two-col">
+      <div class="pf-card accent">
+        <div class="pf-card-title">Implicancia operativa <span class="ticker">CER MEDIO</span></div>
+        <p>Si el escenario base del BCRA se cumple (desinflación gradual, sin segunda ronda), las TIR reales del tramo
+        medio (TX28/TX31) <em>no tienen mucho más para comprimir</em>. El capital gain ya fue capturado en gran medida.
+        El carry pasa a ser el motor — y el carry es chico en términos reales.</p>
+      </div>
+      <div class="pf-card warn">
+        <div class="pf-card-title">Riesgo simétrico <span class="ticker">RE-PRICING</span></div>
+        <p>Si la inflación subyacente no converge (sigue en 2,3-2,4%), o si el shock de combustibles tiene segunda ronda,
+        el mercado podría re-pricear hacia arriba las TIR reales. Tramos largos (TX31 y más allá) tienen <em>asimetría
+        negativa de duration</em> en este escenario.</p>
+      </div>
+    </div>
+
+    <div class="pf-callout warn">
+      <strong>Lectura para Comité:</strong> el momento de extender duration en CER fue Q4-25/I-26 y ya pasó.
+      Hoy la decisión es entre <em>mantener</em> el matching de pasivos largos vs. <em>tomar ganancia</em> en tramos
+      donde la TIR real es marginal y rotar a Lecap larga + cobertura. Para Vida/Retiro, el matching CER sigue siendo
+      la herramienta natural pese al carry comprimido.
+    </div>
+
+    <h3 class="pf-card-title" style="margin-top: 22px;">Bonos USD locales — nueva opción ofrecida por Tesoro</h3>
+
+    <p>
+      El Tesoro introdujo en 2026 una oferta sistemática de instrumentos en USD ley local con cupones mensuales:
+      <span class="em">AO27 (USD 1.445 M colocados, TNA corte promedio 5,24%)</span> y
+      <span class="em">AO28 (USD 834 M, TNA 8,39%)</span>. La diferencia de 315 p.b. entre vencimiento octubre-27
+      (post elecciones presidenciales) y octubre-28 captura prima política y de duration.
+    </p>
+
+    <div class="pf-callout">
+      Para nuestra cartera de Bonos USD, AO27/AO28 son <em>alternativas a Bopreal/Globales</em> con rendimientos
+      competitivos y riesgo crediticio idéntico al Tesoro. Conviene evaluar el spread vs. AL30/GD30 a duration
+      comparable. La Ley de Inocencia Fiscal seguirá impulsando demanda doméstica de estos instrumentos —
+      potencial compresión adicional de TIR.
+    </div>
+  </section>
+
+  <!-- ============ § 05 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 05</span>
+      <span class="pf-section-title">Escenarios: base, positivo, estresado</span>
+      <span class="pf-section-kicker">Probabilidades & desencadenantes</span>
+    </div>
+
+    <table class="scenario-table">
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Base (60%)</th>
+          <th>Positivo (20%)</th>
+          <th>Estresado (20%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Inflación dic-26 i.a.</td>
+          <td>28-32%</td>
+          <td>22-26%</td>
+          <td>38-45%</td>
+        </tr>
+        <tr>
+          <td class="label">PIB 2026</td>
+          <td>2,5-3,0%</td>
+          <td>3,5-4,5%</td>
+          <td>0,5-1,5%</td>
+        </tr>
+        <tr>
+          <td class="label">TC nominal dic-26</td>
+          <td>$1.450-1.550</td>
+          <td>$1.350-1.450 (apreciación)</td>
+          <td>$1.700-1.900 (banda techo)</td>
+        </tr>
+        <tr>
+          <td class="label">Brent prom. 2026</td>
+          <td>USD 85-95</td>
+          <td>USD 70-80 (resolución)</td>
+          <td>USD 110-130 (escalada)</td>
+        </tr>
+        <tr>
+          <td class="label">RR.II. dic-26</td>
+          <td>USD 50-55 mil M</td>
+          <td>USD 58-65 mil M</td>
+          <td>USD 35-42 mil M</td>
+        </tr>
+        <tr>
+          <td class="label">EMBI Arg dic-26</td>
+          <td>500-650 p.b.</td>
+          <td>350-500 p.b.</td>
+          <td>900-1.300 p.b.</td>
+        </tr>
+        <tr>
+          <td class="label">CER 1y real TIR</td>
+          <td>0-3% (compresión leve)</td>
+          <td>negativa (rally fuerte)</td>
+          <td>8-15% (re-pricing)</td>
+        </tr>
+        <tr>
+          <td class="label">Desencadenante</td>
+          <td>Persistencia disciplina fiscal + sin shock externo nuevo</td>
+          <td>Resolución Medio Oriente + RIGI/Súper RIGI acelera + cosecha récord</td>
+          <td>Conflicto se escala + segunda ronda salarial + freno acumulación RIN</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 14px;">
+      <span class="pf-badge">Probabilidad base</span>
+      <span class="pf-badge pos">Probabilidad positiva</span>
+      <span class="pf-badge neg">Probabilidad estresada</span>
+    </p>
+
+    <p>
+      La asimetría más relevante es que el <span class="em">escenario estresado tiene activadores observables y monitoreables</span>
+      (precio del crudo, acuerdo paritario, tensión política), mientras que el positivo depende mayormente de factores
+      exógenos no controlables (resolución del conflicto, ciclo de commodities). Para el manejo de portafolio, la
+      ponderación práctica es <em>asimétrica negativa</em>: el riesgo de pérdida en escenario estresado supera al
+      potencial de upside en escenario positivo a duration equivalente.
+    </p>
+  </section>
+
+  <!-- ============ § 06 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 06</span>
+      <span class="pf-section-title">Implicancias por línea de negocio</span>
+      <span class="pf-section-kicker">Caución · Daños · ART · Vida/Retiro · Bonos</span>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-traffic">
+        <div class="pf-traffic-line">Caución / Crédito</div>
+        <div class="pf-light yellow">Alerta</div>
+        <div class="pf-traffic-detail">
+          Construcción ISAC -0,1% i.a. acumulado bimestre; mora bancaria creciente
+          (referenciada por BCRA en párrafo 46). RIGI/Súper RIGI con USD 94,6 mil M presentados puede dar
+          demanda de Caución de obra grandes proyectos, pero el grueso del flujo es 2027-28.
+          <em>Acción:</em> mantener pricing prudente en obra privada PyME, expandir selectivamente en RIGI con
+          due-diligence reforzada del balance del tomador.
+        </div>
+      </div>
+      <div class="pf-traffic">
+        <div class="pf-traffic-line">Incendio / Propiedad</div>
+        <div class="pf-light yellow">Alerta</div>
+        <div class="pf-traffic-detail">
+          Tarifas energéticas +12% en febrero, combustibles +25% en marzo, IPC servicios subyacentes en 2,5% mensual.
+          Costos de reposición/reparación de siniestros suben más rápido que las primas si las renovaciones quedan
+          rezagadas. <em>Acción:</em> revisar índices de actualización en pólizas existentes y validar suma asegurada
+          contra costos de reconstrucción actualizados.
+        </div>
+      </div>
+      <div class="pf-traffic">
+        <div class="pf-traffic-line">ART</div>
+        <div class="pf-light yellow">Alerta</div>
+        <div class="pf-traffic-detail">
+          Empleo asalariado formal -1,7% i.a. (IV-25), no asalariado +1,8% — la base imponible se está erosionando
+          en composición. Ley de Modernización Laboral puede revertir la tendencia, pero el efecto es 2027+.
+          Salarios formales privados con var. acum. anual 13,3% (gráfico II.10) — siniestralidad real podría no
+          acompañar al alza de primas indexadas. <em>Acción:</em> monitorear ratio combinado por sector.
+        </div>
+      </div>
+      <div class="pf-traffic">
+        <div class="pf-traffic-line">Vida / Retiro</div>
+        <div class="pf-light red">Tensión</div>
+        <div class="pf-traffic-detail">
+          Colapso de tasas reales CER deja matching pasivos largos en zona incómoda. AO28 USD TNA 8,39% es opción
+          interesante para pasivos en USD del segmento Retiro. Para Vida con compromisos en pesos, CER sigue siendo
+          insustituible pero el carry comprimido reduce margen financiero.
+          <em>Acción:</em> evaluar barbell con AO28/AL29 + CER medio, y considerar incorporar ONs corp grado de inversión
+          (mercado primario muy activo: USD 10,8 mil M emitidos).
+        </div>
+      </div>
+      <div class="pf-traffic">
+        <div class="pf-traffic-line">Bonos / Inversiones</div>
+        <div class="pf-light gold">Oportunidad táctica</div>
+        <div class="pf-traffic-detail">
+          Ventana de re-pricing en Lecaps medias (~2,0-2,2% TEM corte) — si convergencia inflación se sostiene,
+          aún hay carry positivo real. AO27/AO28 capturan dolarización doméstica vía Ley de Inocencia Fiscal.
+          ONs corporativas activas (Vista, YPF, Pampa, telcos). <em>Acción:</em> rotar parcialmente Lecap muy corta
+          a tramo medio + selectivo en USD locales; vigilar Globales por si EMBI comprime adicional bajo escenario positivo.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 07 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 07</span>
+      <span class="pf-section-title">Agenda de monitoreo — qué mirar y cuándo accionar</span>
+      <span class="pf-section-kicker">Próximas 12 semanas</span>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-date">14-MAY-26<br>(hoy)</div>
+        <div>
+          <div class="pf-agenda-title">IPC Nacional Abril (INDEC)</div>
+          <div>Test clave del relato del BCRA. Consenso REM ~3,4%, IPC BA ya publicado en 2,5%.
+          Lectura ≥3,5% pondría en cuestión la tesis de "shocks transitorios".</div>
+          <div class="pf-agenda-trigger">Umbral acción: >3,7% → revisar exposición CER larga al alza; <2,8% → confirmar compresión adicional</div>
+        </div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-date">FINES MAY</div>
+        <div>
+          <div class="pf-agenda-title">Vencimiento congelamiento naftas YPF (15-may +45d)</div>
+          <div>Si Brent persiste >USD 95, ajuste a precios de pizarra dará nueva incidencia en IPC mayo-junio.
+          Si Brent retrocede, atenuante se convierte en disipación.</div>
+          <div class="pf-agenda-trigger">Umbral acción: Brent sostenido >USD 100 → revisar escenario estresado</div>
+        </div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-date">MAYO-JUN</div>
+        <div>
+          <div class="pf-agenda-title">Paritarias clave: Comercio, UOM, Sanidad</div>
+          <div>Reapertura/cierre de tramos. Pisos >3% mensual confirmarían segunda ronda implícita y obligarían
+          al BCRA a endurecer encajes/tasas. Si paritarias se cierran en torno a 2-2,5% mensual, el BCRA mantiene tesis.</div>
+          <div class="pf-agenda-trigger">Umbral acción: paritarias ≥3,5% mensual sostenido → cobertura inflación CER corto</div>
+        </div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-date">JUN-26</div>
+        <div>
+          <div class="pf-agenda-title">Próximo IPOM BCRA (junio 2026)</div>
+          <div>Próxima revisión sistemática del cuadro completo. Atentos a si BCRA mantiene escenario base de M2
+          transaccional o lo revisa formalmente a la baja — indicador clave de cuán cómoda está la autoridad con
+          el ritmo de remonetización.</div>
+          <div class="pf-agenda-trigger">Umbral acción: revisión a la baja del corredor M2 → reducir expectativa de compras de USD</div>
+        </div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-date">JUL-AGO</div>
+        <div>
+          <div class="pf-agenda-title">Revisión FMI / Cumplimiento meta RIN</div>
+          <div>Compras YTD USD 7.600 M = 75% del piso anual. Si el ritmo se sostiene, holgura significativa; si se
+          desacelera por menor monetización, posible negociación con FMI sobre senderos. El Recuadro 1 (Perú) parece
+          gestión anticipada de expectativas en esa dirección.</div>
+          <div class="pf-agenda-trigger">Umbral acción: ratio compras/operado <5% sostenido → señal de menor monetización</div>
+        </div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-date">OCT-26</div>
+        <div>
+          <div class="pf-agenda-title">Vencimiento AO27 (post-presidenciales)</div>
+          <div>Bono Tesoro USD ley local USD 1.445 M emitidos. Funciona como termómetro de roll-over en USD pre/post
+          turno electoral 2027.</div>
+          <div class="pf-agenda-trigger">Umbral acción: TIR AO27 secundario >7% → señal de tensión rollover</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 08 ============ -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 08</span>
+      <span class="pf-section-title">Toma para el CFO: conclusiones accionables</span>
+      <span class="pf-section-kicker">Posicionamiento & decisiones</span>
+    </div>
+
+    <div class="pf-card accent">
+      <div class="pf-card-title">1. El BCRA juega ortodoxia — y eso es bueno para el portafolio</div>
+      <p>La decisión de no reaccionar al shock de oferta es coherente con la tesis de control de agregados.
+      Para nuestro portafolio implica menos volatilidad de tasas en el corto plazo y un escenario base creíble
+      de desinflación gradual. <strong>Acción: mantener exposición a CER medio (TX28) y ampliar tramo medio Lecap.</strong></p>
+    </div>
+
+    <div class="pf-card warn">
+      <div class="pf-card-title">2. La inflación subyacente es la métrica que debemos monitorear, no la cabeza</div>
+      <p>Mientras IPC-S BCRA se mantenga en 2,3-2,4% mensual, el piso anual implícito es ~28-30%. Si baja a 1,8-2,0%,
+      el escenario positivo gana probabilidad. Si sube a 2,6%+, escenario estresado se activa.
+      <strong>Acción: incorporar IPC-S como métrica principal de tablero, junto con IPC cabeza.</strong></p>
+    </div>
+
+    <div class="pf-card gold">
+      <div class="pf-card-title">3. La ventana de capital gains en CER se está cerrando — rotar a carry + USD locales</div>
+      <p>TIR reales CER comprimidas dejan poca asimetría positiva. AO27/AO28 ofrecen rendimientos USD competitivos
+      con riesgo crediticio idéntico al Tesoro y demanda institucional creciente vía Ley de Inocencia Fiscal.
+      <strong>Acción: evaluar swap parcial de CER corto a Lecap media + AO28; mantener CER medio/largo para matching pasivos.</strong></p>
+    </div>
+
+    <div class="pf-card neg">
+      <div class="pf-card-title">4. Suscripciones reales podrían sufrir por inflación de costos siniestrales</div>
+      <p>Combustibles, tarifas, materiales de construcción suben más rápido que el IPC cabeza. Si las renovaciones
+      no incorporan estos ajustes, el ratio combinado se deteriora.
+      <strong>Acción: revisión técnica de pricing en Incendio/Propiedad y validación de sumas aseguradas con índices de
+      reconstrucción actualizados.</strong></p>
+    </div>
+
+    <div class="pf-card pos">
+      <div class="pf-card-title">5. La dolarización onshore es una novedad estructural a favor del sistema</div>
+      <p>USD 5,6 mil M de aumento de depósitos en USD durante 2025, ONs corporativas en USD por USD 10,8 mil M
+      emitidos. Es un mercado de fondeo y de colocación nuevo, líquido y profundo.
+      <strong>Acción: explorar participación en colocaciones primarias de ONs grado de inversión en USD para matching
+      Vida/Retiro y Caución internacional.</strong></p>
+    </div>
+
+    <h3 class="pf-card-title" style="margin-top: 28px; margin-bottom: 12px;">Riesgos no priceados a vigilar</h3>
+    <p>
+      <span class="pf-badge neg">RIESGO 1</span> Conflicto Medio Oriente se extiende → Brent sostenido USD 100+ →
+      segunda ronda inflacionaria forzando endurecimiento monetario.
+    </p>
+    <p>
+      <span class="pf-badge neg">RIESGO 2</span> Demanda de dinero no responde al rezago previsto → BCRA tiene que
+      elegir entre seguir comprando USD (esterilizando vía Tesoro) o reducir ritmo de RIN.
+    </p>
+    <p>
+      <span class="pf-badge neg">RIESGO 3</span> Mora bancaria sigue creciendo → contracción de crédito → impacto en
+      Caución (obra) y en demanda agregada en H2-26.
+    </p>
+    <p>
+      <span class="pf-badge gold">UPSIDE</span> Resolución conflicto + cosecha récord + Súper RIGI acelera →
+      escenario positivo se materializa con compresión adicional EMBI y rally en USD locales.
+    </p>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="pf-footer">
+    <span>Análisis Macro Interno · Mayo 2026</span>
+    <span>Basado en IPOM BCRA Marzo 2026 — Fuente primaria: BCRA, INDEC, REM</span>
+  </footer>
+
+</div>
+</body>
+</html>
