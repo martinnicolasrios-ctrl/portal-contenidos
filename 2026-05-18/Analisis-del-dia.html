@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1816 Semanal · 15-May-2026 · Inflación y Política Monetaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0B1620;
+    color: #E6EEF5;
+    line-height: 1.6;
+    font-weight: 400;
+    font-size: 15px;
+  }
+  .pf-wrapper { max-width: 1040px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  /* HEADER */
+  .pf-header {
+    border-bottom: 1px solid #1E3447;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .pf-header-left { flex: 1; min-width: 260px; }
+  .pf-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 10px;
+  }
+  .pf-header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.15;
+    color: #F4F8FB;
+    letter-spacing: -0.01em;
+  }
+  .pf-header h1 em {
+    font-style: italic;
+    color: #E8B04A;
+    font-weight: 400;
+  }
+  .pf-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #8AA0B5;
+    text-align: right;
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+  }
+  .pf-meta strong { color: #E6EEF5; font-weight: 500; }
+
+  /* SECTIONS */
+  .pf-section { margin-bottom: 36px; }
+  .pf-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1E3447;
+  }
+  .pf-section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #34BBDA;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+  .pf-section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: #F4F8FB;
+    letter-spacing: -0.005em;
+  }
+
+  /* CARDS */
+  .pf-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+  }
+  .pf-card-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #34BBDA;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .pf-card p { margin-bottom: 10px; color: #CCD7E2; }
+  .pf-card p:last-child { margin-bottom: 0; }
+  .pf-card strong { color: #F4F8FB; font-weight: 600; }
+  .pf-card em { color: #E8B04A; font-style: normal; font-weight: 500; }
+
+  /* CHIPS GRID */
+  .pf-chip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .pf-chip {
+    background: #17293A;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .pf-chip-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #8AA0B5;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pf-chip-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    color: #F4F8FB;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  .pf-chip-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    margin-top: 4px;
+    color: #8AA0B5;
+  }
+  .pos { color: #5BD39A !important; }
+  .neg { color: #EF6C6C !important; }
+  .gold { color: #E8B04A !important; }
+  .accent { color: #34BBDA !important; }
+
+  /* BADGES */
+  .pf-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid;
+  }
+  .badge-pos { color: #5BD39A; border-color: #5BD39A; background: rgba(91,211,154,0.08); }
+  .badge-neg { color: #EF6C6C; border-color: #EF6C6C; background: rgba(239,108,108,0.08); }
+  .badge-gold { color: #E8B04A; border-color: #E8B04A; background: rgba(232,176,74,0.08); }
+  .badge-accent { color: #34BBDA; border-color: #34BBDA; background: rgba(52,187,218,0.08); }
+
+  /* BULLETS */
+  .pf-bullets { list-style: none; padding: 0; }
+  .pf-bullets li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    color: #CCD7E2;
+  }
+  .pf-bullets li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #34BBDA;
+    font-size: 10px;
+    top: 4px;
+  }
+  .pf-bullets li strong { color: #F4F8FB; font-weight: 600; }
+
+  /* TABLE */
+  .pf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 13px;
+  }
+  .pf-table th {
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #8AA0B5;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 10px 12px;
+    border-bottom: 1px solid #1E3447;
+    font-weight: 500;
+  }
+  .pf-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #17293A;
+    color: #CCD7E2;
+  }
+  .pf-table tr:last-child td { border-bottom: none; }
+  .pf-table td.mono {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #F4F8FB;
+  }
+  .pf-table td.label { color: #F4F8FB; font-weight: 500; }
+
+  /* TWO-COL */
+  .pf-twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* TRAFFIC LIGHT */
+  .pf-light-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .pf-light {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 14px 16px;
+    border-left: 3px solid;
+  }
+  .pf-light.green { border-left-color: #5BD39A; }
+  .pf-light.amber { border-left-color: #E8B04A; }
+  .pf-light.red { border-left-color: #EF6C6C; }
+  .pf-light-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #F4F8FB;
+    margin-bottom: 6px;
+  }
+  .pf-light-desc {
+    font-size: 12px;
+    color: #8AA0B5;
+    line-height: 1.5;
+  }
+
+  /* SCENARIO */
+  .pf-scenario {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+  .pf-scenario-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1E3447;
+  }
+  .pf-scenario-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #F4F8FB;
+  }
+  .pf-scenario-prob {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .pf-scenario-body {
+    font-size: 13px;
+    color: #CCD7E2;
+    line-height: 1.55;
+  }
+
+  /* FOOTER */
+  .pf-footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid #1E3447;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #8AA0B5;
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* INLINE STRONG */
+  p strong, li strong { color: #F4F8FB; font-weight: 600; }
+  p em, li em { color: #E8B04A; font-style: normal; font-weight: 500; }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .pf-wrapper { padding: 32px 18px 60px; }
+    .pf-header { flex-direction: column; align-items: flex-start; }
+    .pf-meta { text-align: left; }
+    .pf-header h1 { font-size: 28px; }
+    .pf-twocol { grid-template-columns: 1fr; }
+    .pf-section-title { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="pf-wrapper">
+
+  <!-- HEADER -->
+  <header class="pf-header">
+    <div class="pf-header-left">
+      <div class="pf-eyebrow">1816 · Informe Semanal · Análisis Interno</div>
+      <h1>Inflación cede, <em>pero la tasa sigue endógena al FX</em></h1>
+    </div>
+    <div class="pf-meta">
+      <div><strong>15-MAY-2026</strong></div>
+      <div>Fuente: 1816 Economía & Estrategia</div>
+      <div>Audiencia: Comité de Inversiones · CFO</div>
+    </div>
+  </header>
+
+  <!-- §01 RESUMEN EJECUTIVO -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 01</span>
+      <h2 class="pf-section-title">Resumen ejecutivo</h2>
+    </div>
+
+    <div class="pf-chip-grid">
+      <div class="pf-chip">
+        <div class="pf-chip-label">IPC Abr (m/m)</div>
+        <div class="pf-chip-value pos">2,6%</div>
+        <div class="pf-chip-delta">vs 3,4% en mar · primera baja en 10 meses</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Núcleo</div>
+        <div class="pf-chip-value pos">2,3%</div>
+        <div class="pf-chip-delta">vs 3,2% en mar</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Núcleo ex carne</div>
+        <div class="pf-chip-value neg">2,6%</div>
+        <div class="pf-chip-delta">vs 2,5% en mar · inercia persiste</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">EMBI ARG</div>
+        <div class="pf-chip-value gold">~500 pbs</div>
+        <div class="pf-chip-delta">Perforó la barrera solo una rueda</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Canje CCL/MEP</div>
+        <div class="pf-chip-value">~4%</div>
+        <div class="pf-chip-delta">Sostenido pese a financiamiento USD local</div>
+      </div>
+      <div class="pf-chip">
+        <div class="pf-chip-label">Fut. Dólar May</div>
+        <div class="pf-chip-value gold">USD 2.466 M</div>
+        <div class="pf-chip-delta">57% del IA total de A3 · vence fin de mes</div>
+      </div>
+    </div>
+
+    <div class="pf-card">
+      <ul class="pf-bullets">
+        <li><strong>Desinflación táctica vs. estructural.</strong> La baja del IPC a 2,6% combina un componente real (núcleo a 2,3%) con un componente discrecional: YPF mantiene la nafta por 45 días adicionales tras ajustar solo 1%. El precio del subyacente "ex carne" subiendo a 2,6% revela que la inercia no cedió; la desinflación de los próximos meses depende crucialmente de que el petróleo no vuelva a niveles preguerra.</li>
+        <li><strong>Capacidad de financiamiento USD local es finita.</strong> El tope de USD 250 M VN por Bonar en la última licitación (post-éxito de fin de abril) es un mensaje del propio Gobierno: a 500 pbs de EMBI, con Ecuador y Bolivia emitiendo afuera a spreads 100+ pbs menores, ARG no convalida ni offshore ni en cantidad ilimitada onshore.</li>
+        <li><strong>La tasa es endógena pero al FX, no al M2.</strong> El M2 privado transaccional estuvo dos desvíos estándar debajo del escenario base del BCRA en el 1T26. El régimen formal de agregados es de fachada; la regla operativa es el tipo de cambio nominal. Esto explica la imprevisibilidad de la tasa hacia adelante.</li>
+        <li><strong>Tesoro pateando vencimientos con éxito.</strong> Cuarta licitación consecutiva con mix relevante a 2028-2029. Reapertura del Dual jun-28 a TAMAR+7% (idéntico al TMG28) refleja preferencia por no convalidar forwards CER 28-27 de dos dígitos, sacrificando emisión de TAMAR simples.</li>
+        <li><strong>Concentración inusual en futuro May.</strong> USD 2.466 M en mayo (57% del IA total), construido entre ago-sep 2025 antes de la elección. La decisión de rolleo de esa cartera puntual es el evento idiosincrático de las próximas dos semanas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §02 LECTURA MACRO -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 02</span>
+      <h2 class="pf-section-title">Lectura macro: inflación, FX y cuentas externas</h2>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card-title">Inflación · qué cede y qué no</div>
+      <p>El dato de abril <strong>rompe una racha de 10 meses</strong> de aceleración o estabilidad, pero la composición es ambigua. La núcleo cae fuerte (3,2% → 2,3%) mientras la <em>núcleo ex carne</em> —la medición que el propio Gobierno introdujo para suavizar la lectura— sube de 2,5% a 2,6%. Traducción: el grueso de la baja de abril descansa en el componente cárnico, que es volátil.</p>
+      <p>El <strong>buffer de combustibles de YPF</strong> (ajuste de solo 1% y nuevos 45 días sin cambios) compra desinflación de corto plazo a cambio de inflación más persistente más adelante, salvo que el crudo retroceda a niveles preguerra. El REM ratifica esa lectura: pronósticos mayo-septiembre prácticamente sin cambios, pero <em>i.a. fin de año revisado +1,4 pp a 30,5%</em>, consistente con 1,7% promedio mensual en el 4T26.</p>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card-title">Cuenta capital · señal del propio Gobierno</div>
+      <p>Ecuador y Bolivia colocaron Globales esta semana con <strong>EMBI al menos 100 pbs por debajo del argentino</strong>. ARG perforó los 500 pbs solo una rueda. El dato más relevante no es el spread, sino el comportamiento del Tesoro: el tope de <strong>USD 250 M VN por Bonar</strong> en la licitación (tras la subasta exitosa de fin de abril donde el mercado se llevó los USD 500 M ofrecidos) es una admisión implícita de que <em>la capacidad de financiamiento local en USD también es limitada</em>, incluso con un canje CCL/MEP en zona de 4%.</p>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card-title">Flujos MLC · préstamos USD y agro</div>
+      <p>Los préstamos bancarios en USD —que generan liquidación instantánea en el MLC— <strong>desaceleraron</strong>, lo que explica el menor ritmo comprador del BCRA en la primera semana de mayo. La compensación viene del agro: la afluencia de camiones a puertos anticipa una <em>liquidación grande en las próximas semanas</em>.</p>
+    </div>
+  </section>
+
+  <!-- §03 POLÍTICA MONETARIA -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 03</span>
+      <h2 class="pf-section-title">Política monetaria: el verdadero régimen es FX</h2>
+    </div>
+
+    <div class="pf-card">
+      <p>El IPOM defiende la endogeneidad de la tasa, pero hay una <strong>contradicción de base</strong>: el régimen formal —vigente desde julio— supone que la tasa depende de un nivel definido del agregado monetario. Sin embargo, el propio BCRA admite que el <em>M2 privado transaccional estuvo dos desvíos estándar por debajo del escenario base en el 1T26</em>.</p>
+      <p>La explicación natural es el desarrollo de billeteras digitales: en lo que va de 2026 cayó incluso nominalmente el stock de billetes y monedas (24,6 → 23,3 billones), mientras que los <strong>FCI Money Market Clásicos en ARS</strong> subieron de 37,4 a 46,8 billones. El "dinero transaccional" está mutando y los agregados clásicos lo capturan mal.</p>
+      <p>Conclusión operativa: <em>si tasa y M2 son ambos variables y se mueven juntos, el ancla real es el FX nominal</em>. Por eso la trayectoria de la tasa es difícil de prever: no responde a una regla observable sino a la evolución del MLC. Las revisiones del BCRA a sus metas de M2 para el 2T (ligera caída en % PBI) son, en este marco, informativamente irrelevantes.</p>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card-title">Canje S29Y6 anticipado · munición USD linked</div>
+      <p>El BCRA adelantó el canje de la Lecap S29Y6 por una canasta de TZV26 y dos Boncap 2027. <strong>Por qué importa:</strong> el Central había vendido aproximadamente USD 1.400 M VN de TZV26 y ahora recibe otros USD 1.500 M de munición. Es decir, mantiene capacidad de intervención en el segmento USD linked durante las próximas semanas, justo cuando vence el futuro mayo.</p>
+    </div>
+  </section>
+
+  <!-- §04 ESTRATEGIA · TESORO Y CURVAS -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 04</span>
+      <h2 class="pf-section-title">Estrategia: Tesoro, Duales y curva CER</h2>
+    </div>
+
+    <div class="pf-card">
+      <p>Cuarta licitación seguida con porcentaje relevante emitido a 2028-2029. El movimiento clave de esta semana fue la oferta del <strong>Dual jun-28 a CER+4% / TAMAR+7%</strong>, <em>idéntico margen sobre TAMAR al TMG28 colocado hace dos semanas sin opcionalidad CER</em>.</p>
+      <p>Lectura: el Gobierno prefiere no validar más en primario forwards 28-27 de dos dígitos en la curva CER, aun a costa de cerrarse la puerta a emitir TAMAR simples en lo inmediato. Está pagando potencialmente más tasa real ex-post (si TAMAR queda positiva real) a cambio de no anclar expectativas reales altas hacia adelante.</p>
+    </div>
+
+    <table class="pf-table">
+      <thead>
+        <tr>
+          <th>Instrumento</th>
+          <th>Comparable</th>
+          <th>Yield / Margen</th>
+          <th>Lectura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Dual jun-28</td>
+          <td>Nuevo</td>
+          <td class="mono accent">CER+4% / TAMAR+7%</td>
+          <td>Opcionalidad gratuita vs TMG28</td>
+        </tr>
+        <tr>
+          <td class="label">TMG28</td>
+          <td>Emitido hace 2 sem</td>
+          <td class="mono">TAMAR+7%</td>
+          <td>Sin call CER · inferior al Dual</td>
+        </tr>
+        <tr>
+          <td class="label">Boncer TZX28</td>
+          <td>Mercado secundario</td>
+          <td class="mono">CER+7,2% TNA</td>
+          <td>Benchmark CER puro</td>
+        </tr>
+        <tr>
+          <td class="label">Boncer TZX27</td>
+          <td>Mercado secundario</td>
+          <td class="mono">Ver curva</td>
+          <td>Forward 28-27 implícita dos dígitos</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pf-card" style="margin-top: 14px;">
+      <p><strong>Posicionamiento sugerido por 1816:</strong> los Duales son <em>casi ideales para bancos</em> (fondeo se mueve con TAMAR), pero a estos precios <strong>no necesariamente</strong> son los papeles adecuados para carteras con benchmark CER. Es improbable que esas carteras cedan más de 300 pbs de tasa contra un TZX28 (CER+7,2%) solo para tener el call TAMAR.</p>
+    </div>
+  </section>
+
+  <!-- §05 ESCENARIOS Y PROBABILIDADES -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 05</span>
+      <h2 class="pf-section-title">Escenarios 2T-3T 2026</h2>
+    </div>
+
+    <div class="pf-twocol">
+      <div class="pf-scenario">
+        <div class="pf-scenario-head">
+          <span class="pf-scenario-title">Base</span>
+          <span class="pf-scenario-prob accent">55%</span>
+        </div>
+        <div class="pf-scenario-body">
+          Liquidación agrícola sostiene compras BCRA; inflación 1,7-2,3% mensual hacia 4T (i.a. ~30%); EMBI oscila 480-550 pbs sin reapertura offshore; rollover Lecap exitoso con mix 28-29 creciente; Dual jun-28 absorbe demanda institucional pero curva CER no comprime. Tasa endógena al FX con sesgo a sostener crawl actual.
+        </div>
+      </div>
+
+      <div class="pf-scenario">
+        <div class="pf-scenario-head">
+          <span class="pf-scenario-title">Positivo</span>
+          <span class="pf-scenario-prob pos">25%</span>
+        </div>
+        <div class="pf-scenario-body">
+          Petróleo cede a preguerra + agro fuerte → desinflación más persistente (núcleo &lt;2% sostenido); EMBI consolidad debajo de 450 pbs y se abre ventana offshore; BCRA acumula reservas con menor esfuerzo. Compresión curva CER y plus para Boncer largos. Carry trade ARS retoma atractivo.
+        </div>
+      </div>
+
+      <div class="pf-scenario" style="grid-column: 1 / -1;">
+        <div class="pf-scenario-head">
+          <span class="pf-scenario-title">Stress</span>
+          <span class="pf-scenario-prob neg">20%</span>
+        </div>
+        <div class="pf-scenario-body">
+          La cartera grande del futuro mayo (USD 2.466 M) no rollea cobertura → squeeze de demanda en USD linked y mayor presión sobre canje CCL/MEP (que se va de 4% a 6-7%); inflación núcleo ex carne sigue cediendo poco y consolida piso 2,5%; EMBI vuelve a 600 pbs. BCRA debe usar la munición TZV26 + Boncap 27 más rápido, agota poder de fuego antes de 2T cerrado. Tasa nominal sube.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §06 IMPLICANCIAS POR RAMA -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 06</span>
+      <h2 class="pf-section-title">Impacto por línea de negocio</h2>
+    </div>
+
+    <table class="pf-table">
+      <thead>
+        <tr>
+          <th>Rama</th>
+          <th>Variable clave</th>
+          <th>Lectura del informe</th>
+          <th>Acción sugerida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Caución / Crédito</td>
+          <td class="mono">EMBI · CCL/MEP · liquidez USD</td>
+          <td>Capacidad financiamiento USD local "finita"; señal de tope de USD 250 M por Bonar.</td>
+          <td>Revisar exposición a tomadores apalancados en préstamos USD; stress test si MLC se tensiona.</td>
+        </tr>
+        <tr>
+          <td class="label">Incendio / Propiedad</td>
+          <td class="mono">IPC núcleo ex carne · costos reposición</td>
+          <td>Inercia 2,5-2,6% no cede; costos de reposición seguirán presionados si petróleo no retrocede.</td>
+          <td>Reforzar cláusulas de ajuste; revisar suma asegurada vs CER en próximas renovaciones.</td>
+        </tr>
+        <tr>
+          <td class="label">ART</td>
+          <td class="mono">Salarios reales · paritarias</td>
+          <td>Desinflación táctica → ventana para ancla salarial nominal antes de eventual rebote.</td>
+          <td>Anticipar revisión de salarios cubiertos antes del posible rebote inflacionario del 3T.</td>
+        </tr>
+        <tr>
+          <td class="label">Vida / Retiro</td>
+          <td class="mono">Curva CER · Duales · TAMAR</td>
+          <td>Dual jun-28 con call CER es atractivo para matching de pasivos en UVA si CER se mantiene en zona de premio.</td>
+          <td>Evaluar swap parcial TMG28 → Dual jun-28 (opcionalidad gratuita); mantener TZX28 como ancla CER.</td>
+        </tr>
+        <tr>
+          <td class="label">Cartera Bonos</td>
+          <td class="mono">USD linked · futuros · Lecap</td>
+          <td>BCRA con USD 1.500 M VN adicionales de munición linked + vencimiento concentrado futuro mayo.</td>
+          <td>Cautela en USD linked corto plazo (oferta BCRA); preferir Boncer medio si curva CER no comprime.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- §07 ALERTAS Y MONITOREO -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 07</span>
+      <h2 class="pf-section-title">Agenda de monitoreo · próximas 2-3 semanas</h2>
+    </div>
+
+    <div class="pf-light-grid">
+      <div class="pf-light red">
+        <div class="pf-light-title">Rollover futuro dólar mayo</div>
+        <div class="pf-light-desc">Fin de mes · USD 2.466 M (57% IA A3). La cartera puntual construida ago-sep 2025 puede no rollear → presión en USD linked.</div>
+      </div>
+      <div class="pf-light amber">
+        <div class="pf-light-title">Liquidación agrícola</div>
+        <div class="pf-light-desc">Próximas 2-3 semanas. Volumen y velocidad de ingreso a puertos define el ritmo comprador BCRA.</div>
+      </div>
+      <div class="pf-light amber">
+        <div class="pf-light-title">IPC mayo (mid-jun)</div>
+        <div class="pf-light-desc">Validar si núcleo ex carne cede o consolida piso 2,5-2,6%. Determina credibilidad de desinflación.</div>
+      </div>
+      <div class="pf-light amber">
+        <div class="pf-light-title">Próxima licitación Tesoro</div>
+        <div class="pf-light-desc">Observar si se sostiene mix 28-29 y si reabren Dual jun-28 o vuelven a TAMAR simples.</div>
+      </div>
+      <div class="pf-light green">
+        <div class="pf-light-title">Canje CCL/MEP</div>
+        <div class="pf-light-desc">Umbral de alerta: salida sostenida arriba de 5% indicaría tensión en demanda USD onshore.</div>
+      </div>
+      <div class="pf-light green">
+        <div class="pf-light-title">Balance BCRA 2025</div>
+        <div class="pf-light-desc">Análisis preliminar publicado por 1816 esta mañana ("El día en pocas líneas"). Pendiente lectura detallada.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §08 RIESGOS NO PRICEADOS -->
+  <section class="pf-section">
+    <div class="pf-section-head">
+      <span class="pf-section-num">§ 08</span>
+      <h2 class="pf-section-title">Riesgos no priceados y takedown CFO</h2>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card-title">Riesgos no priceados</div>
+      <ul class="pf-bullets">
+        <li><strong>Petróleo de regreso a preguerra:</strong> el mercado parece descartar el escenario, pero un ajuste relevante elimina la inflación táctica que está comprando YPF y consolida desinflación estructural. Asimetría positiva poco priceada.</li>
+        <li><strong>Pass-through del agregado mutante:</strong> si las billeteras digitales y los FCI MM siguen ganando participación como medios de pago, las métricas tradicionales de M2 dejarán de tener poder predictivo. La tasa podría sostenerse alta más tiempo del que sugiere cualquier modelo monetarista clásico.</li>
+        <li><strong>Concentración futuro mayo:</strong> riesgo binario en función de la decisión de un único actor grande. No es modelable con probabilidad histórica.</li>
+        <li><strong>Forward 28-27 CER:</strong> mercado sigue priceando dos dígitos reales, pero el Tesoro ya señaló que no convalida. Compresión técnica posible si flujo institucional rota hacia Duales.</li>
+      </ul>
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card-title">Takedown para CFO</div>
+      <p><strong>Diagnóstico:</strong> la desinflación de abril es genuina pero parcialmente discrecional (combustibles). La capacidad real de financiamiento USD del Tesoro —tanto offshore como local— está cerca del techo, y el régimen monetario formal no describe la regla real (FX). La tasa seguirá imprevisible.</p>
+      <p><strong>Posicionamiento:</strong> <em>(i)</em> mantener exposición CER en Boncer medios (TZX28) como ancla; <em>(ii)</em> incorporar Dual jun-28 selectivamente por opcionalidad gratuita vs TMG28; <em>(iii)</em> reducir USD linked corto por sobreoferta BCRA hasta tener señal de fin del overhang; <em>(iv)</em> watch list activa sobre rollover futuro mayo y liquidación agrícola.</p>
+      <p><strong>Riesgo principal:</strong> escenario stress (20%) implica que la munición USD linked del BCRA se consume rápido y la tasa nominal vuelve a subir antes del cierre de 2T. Conviene tener flexibilidad de duration para reposicionar.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="pf-footer">
+    <span>1816 · Informe Semanal del 15-MAY-2026 · Uso exclusivo Banco Hipotecario</span>
+    <span>Análisis interno</span>
+  </footer>
+
+</div>
+</body>
+</html>
