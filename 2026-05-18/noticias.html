@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Cronista — Análisis Ejecutivo 18/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0B1620;
+    color: #F2F6F9;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: #0F1E2B;
+    border-bottom: 1px solid #1E3447;
+    padding: 32px 0 28px;
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 10px;
+  }
+  .site-header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F2F6F9;
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+  .header-meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #7B91A3;
+  }
+  .header-meta-item span {
+    color: #B5C5D3;
+    font-weight: 600;
+  }
+
+  /* KPI STRIP */
+  .kpi-strip {
+    background: #0F1E2B;
+    border-bottom: 1px solid #1E3447;
+    padding: 0 0 24px;
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .kpi-card {
+    background: #17293A;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    margin-bottom: 6px;
+  }
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: #F2F6F9;
+    line-height: 1.1;
+  }
+  .kpi-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .kpi-delta.pos { color: #5BD39A; }
+  .kpi-delta.neg { color: #EF6C6C; }
+  .kpi-delta.flat { color: #7B91A3; }
+
+  /* MAIN CONTENT */
+  .main-content {
+    padding: 40px 0 60px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1E3447;
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #34BBDA;
+    letter-spacing: 0.08em;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #F2F6F9;
+  }
+
+  /* BULLET LIST */
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bullet-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .bullet-dot {
+    width: 7px;
+    height: 7px;
+    min-width: 7px;
+    border-radius: 50%;
+    background: #34BBDA;
+    box-shadow: 0 0 6px rgba(52,187,218,.5);
+    margin-top: 7px;
+  }
+  .bullet-list li p {
+    color: #B5C5D3;
+    font-size: 14.5px;
+  }
+  .bullet-list li p strong {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  /* CARD */
+  .card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .card-header {
+    background: #17293A;
+    padding: 12px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    border-bottom: 1px solid #1E3447;
+  }
+  .card-content {
+    padding: 20px;
+    color: #B5C5D3;
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+  .card-content p + p {
+    margin-top: 12px;
+  }
+  .card-content strong {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  /* TENSION LIST */
+  .tension-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tension-item {
+    border-left: 3px solid #34BBDA;
+    padding: 14px 18px;
+    background: #0F1E2B;
+    border-radius: 0 4px 4px 0;
+  }
+  .tension-title {
+    font-weight: 600;
+    color: #F2F6F9;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .tension-body {
+    color: #B5C5D3;
+    font-size: 14px;
+  }
+
+  /* VARIABLE CARDS */
+  .var-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .var-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+  .var-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 8px;
+  }
+  .var-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #F2F6F9;
+    margin-bottom: 8px;
+  }
+  .var-body {
+    color: #B5C5D3;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  /* POS GRID */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .pos-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .pos-top {
+    padding: 10px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .pos-top.green { background: rgba(91,211,154,.08); color: #5BD39A; border-bottom: 1px solid rgba(91,211,154,.15); }
+  .pos-top.red { background: rgba(239,108,108,.08); color: #EF6C6C; border-bottom: 1px solid rgba(239,108,108,.15); }
+  .pos-top.gold { background: rgba(232,176,74,.08); color: #E8B04A; border-bottom: 1px solid rgba(232,176,74,.15); }
+  .pos-top.blue { background: rgba(52,187,218,.08); color: #34BBDA; border-bottom: 1px solid rgba(52,187,218,.15); }
+  .pos-body {
+    padding: 14px 16px;
+  }
+  .pos-body ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pos-body ul li {
+    color: #B5C5D3;
+    font-size: 13.5px;
+    padding-left: 12px;
+    position: relative;
+  }
+  .pos-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #7B91A3;
+  }
+  .pos-body ul li strong {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  /* ALERT LIST */
+  .alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-alert {
+    border-left: 3px solid #EF6C6C;
+    background: rgba(239,108,108,.04);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+  .alert-title {
+    font-weight: 600;
+    color: #EF6C6C;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .alert-body {
+    color: #B5C5D3;
+    font-size: 13.5px;
+  }
+
+  /* NO PRICEADO */
+  .noprice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .noprice-item {
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+  .noprice-item.accent { border-left: 3px solid #34BBDA; background: rgba(52,187,218,.04); }
+  .noprice-item.neg { border-left: 3px solid #EF6C6C; background: rgba(239,108,108,.04); }
+  .noprice-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .noprice-item.accent .noprice-title { color: #34BBDA; }
+  .noprice-item.neg .noprice-title { color: #EF6C6C; }
+  .noprice-body {
+    color: #B5C5D3;
+    font-size: 13.5px;
+  }
+
+  /* INS TABS */
+  .ins-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .ins-tab {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border-radius: 4px 4px 0 0;
+    cursor: default;
+  }
+  .ins-tab.pesos { background: rgba(52,187,218,.12); color: #34BBDA; border: 1px solid rgba(52,187,218,.2); border-bottom: none; }
+  .ins-tab.cer { background: rgba(162,93,220,.12); color: #A25DDC; border: 1px solid rgba(162,93,220,.2); border-bottom: none; }
+  .ins-tab.riesgo { background: rgba(239,108,108,.12); color: #EF6C6C; border: 1px solid rgba(239,108,108,.2); border-bottom: none; }
+  .ins-body {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 0 4px 4px 4px;
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .ins-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    margin-bottom: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #1E3447;
+  }
+  .ins-sub:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .ins-body p {
+    color: #B5C5D3;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .ins-body p strong { color: #F2F6F9; font-weight: 600; }
+  .ins-body ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 6px;
+  }
+  .ins-body ul li {
+    color: #B5C5D3;
+    font-size: 13.5px;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ins-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #34BBDA;
+  }
+  .ins-body ul li strong { color: #F2F6F9; font-weight: 600; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .tag.pos { background: rgba(91,211,154,.12); color: #5BD39A; border: 1px solid rgba(91,211,154,.2); }
+  .tag.neg { background: rgba(239,108,108,.12); color: #EF6C6C; border: 1px solid rgba(239,108,108,.2); }
+  .tag.gold { background: rgba(232,176,74,.12); color: #E8B04A; border: 1px solid rgba(232,176,74,.2); }
+  .tag.blue { background: rgba(52,187,218,.12); color: #34BBDA; border: 1px solid rgba(52,187,218,.2); }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 13.5px;
+  }
+  table th {
+    background: #17293A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #1E3447;
+  }
+  table td {
+    padding: 9px 14px;
+    color: #B5C5D3;
+    border-bottom: 1px solid #1E3447;
+  }
+  table tr:nth-child(even) td { background: #0F1E2B; }
+  table tr:nth-child(odd) td { background: #0B1620; }
+  table tr:hover td { background: rgba(52,187,218,.04); }
+  table td strong { color: #F2F6F9; font-weight: 600; }
+
+  /* CARD-REC */
+  .card-rec {
+    border-left: 3px solid #E8B04A;
+    background: rgba(232,176,74,.04);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    margin-top: 16px;
+  }
+  .card-rec-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #E8B04A;
+    margin-bottom: 8px;
+  }
+  .card-rec p { color: #B5C5D3; font-size: 13.5px; margin-bottom: 6px; }
+  .card-rec p strong { color: #F2F6F9; font-weight: 600; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: #1E3447;
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: #0F1E2B;
+    border-top: 1px solid #1E3447;
+    padding: 24px 0;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .footer-col-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    margin-bottom: 10px;
+  }
+  .footer-col p {
+    font-size: 12.5px;
+    color: #7B91A3;
+    line-height: 1.6;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .var-grid { grid-template-columns: 1fr; }
+    .pos-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .site-header h1 { font-size: 22px; }
+    .ins-tabs { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container">
+    <div class="eyebrow">El Cronista — Análisis Ejecutivo // Lunes 18 de Mayo de 2026</div>
+    <h1>El carry se agrieta por arriba: tasas USA en máximos, bonos crujiendo y el dólar planchado como última trinchera del programa</h1>
+    <div class="header-meta">
+      <span class="header-meta-item">Fuente: <span>cronista.com</span></span>
+      <span class="header-meta-item">Cobertura: <span>Finanzas · Mercados · Economía · Regulación · Empresas</span></span>
+      <span class="header-meta-item">Fecha: <span>18.05.2026</span></span>
+      <span class="header-meta-item">Edición: <span>Argentina</span></span>
+    </div>
+  </div>
+</header>
+
+<!-- KPI STRIP -->
+<div class="kpi-strip">
+  <div class="container" style="padding-top:20px;">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Dólar BNA</div>
+        <div class="kpi-value">$1.420</div>
+        <div class="kpi-delta pos">+0.35%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Dólar Blue</div>
+        <div class="kpi-value">$1.415</div>
+        <div class="kpi-delta neg">-0.35%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Dólar MEP</div>
+        <div class="kpi-value">$1.428</div>
+        <div class="kpi-delta pos">+0.12%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Riesgo País</div>
+        <div class="kpi-value">~600</div>
+        <div class="kpi-delta flat">pb (ref. Lacunza)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">UST 30yr</div>
+        <div class="kpi-value">5.13%</div>
+        <div class="kpi-delta neg">Max desde jul/2007</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main-content">
+<div class="container">
+
+  <!-- S01 RESUMEN EJECUTIVO -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <span class="bullet-dot"></span>
+        <p><strong>Shock externo de tasas.</strong> El Treasury a 30 años tocó 5.13% (máximo desde julio de 2007) y el de 10 años alcanzó 4.596%, traccionado por petróleo encima de USD 105 y la guerra en Irán. La primera semana de Kevin Warsh en la Fed arranca con el mercado descontando cero recortes de tasa hasta diciembre 2026, con 62 meses consecutivos de inflación CPI por encima del 2% americano.</p>
+      </li>
+      <li>
+        <span class="bullet-dot"></span>
+        <p><strong>El campo da oxígeno pero no resuelve el stock.</strong> La BCR revisó al alza en 2 Mt la cosecha de soja y 1 Mt en maíz, lo que garantiza flujo de dólares para el cierre del semestre. Sin embargo, el Gobierno acaba de cancelar USD 4.300M del swap chino (quedando USD 670M de remanente), lo que redujo la liquidez del BCRA en dólares en forma directa.</p>
+      </li>
+      <li>
+        <span class="bullet-dot"></span>
+        <p><strong>El Tesoro devuelve al BCRA pero con un mecanismo inflacionario.</strong> Caputo anunció que $18,4 billones de las ganancias del BCRA se usarán para cancelar letras intransferibles (~USD 21.700M VN), reduciendo deuda bruta en 3,3% del PIB. El circuito implica emisión de pesos del Central y posterior absorción: el riesgo es el timing entre emisión y absorción en un contexto de carry bajo estrés.</p>
+      </li>
+      <li>
+        <span class="bullet-dot"></span>
+        <p><strong>La inflación no converge a la meta: 30,4% proyectado vs. 10,1% del Presupuesto.</strong> Más de 40 consultoras relevadas por FocusEconomics proyectan inflación 2026 al 30,4% promedio anual. Melconian cuestionó el dato de abril (2,6%) por estar "distorsionado del consumo real" y advirtió desequilibrio cambiario en tres meses si el dólar no recupera momentum.</p>
+      </li>
+      <li>
+        <span class="bullet-dot"></span>
+        <p><strong>RIGI en tensión normativa: inversiones de USD 15.000M en riesgo.</strong> El conflicto entre la ley nacional (20% compre argentino) y provincias que exigen hasta 60% de contenido local (caso Vicuña, BHP/Lundin Mining en San Juan) amenaza el principal vehículo de atracción de inversiones. La indefinición jurídica es el riesgo más silencioso del programa.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- S02 LECTURA DE MERCADO -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Interpretacion — No un resumen</div>
+      <div class="card-content">
+        <p>El régimen que sostiene Argentina hoy es, en esencia, un <strong>carry sobre riesgo contenido</strong>: dólar oficial planchado en torno a $1.420 desde hace meses, tasas reales todavía ligeramente positivas en pesos y riesgo soberano en mínimos recientes (~600 pb). Ese equilibrio fue construido sobre la base de un flujo de divisas (agro + swap) y una narrativa de consolidación fiscal que Wall Street compró con entusiasmo. JP Morgan lo ratificó esta semana ubicando a Argentina como pieza clave del "nuevo orden global" de commodities estratégicos.</p>
+        <p>Pero el contexto global está <strong>cambiando la ecuación de costos del carry</strong>. Cuando el Treasury a 30 años opera al 5.13% y el mercado descarta recortes hasta fin de año, el spread que justificaba posicionarse en deuda emergente comprimida se erosiona. Los bonos soberanos argentinos van a sentir ese viento de frente con mayor intensidad que los de otros emergentes que tienen menor duration efectiva y mejor acceso al mercado secundario.</p>
+        <p>La <strong>narrativa implícita que construye el mercado local</strong> es la siguiente: el gobierno "ya hizo lo difícil" (fiscal, swap, letras intransferibles), la cosecha cubre el flujo del semestre y el dólar no se mueve. Esa narrativa es funcional al carry, pero tiene tres grietas: (1) la inflación no converge a la meta, lo que complica la curva CER a mediano plazo; (2) el carry en pesos rinde cada vez menos en dólares a medida que la tasa real cae; (3) el shock externo de tasas no fue plenamente incorporado en los precios locales del lunes.</p>
+        <p>El <strong>régimen sigue siendo carry/transición</strong>, pero con señales incipientes de que el mercado empieza a discriminar duration y a pedir más prima por riesgo global. La ventana de compresión de spreads se angosta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- S03 TENSIONES CLAVE -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <div class="tension-list">
+      <div class="tension-item">
+        <div class="tension-title">Tipo de cambio planchado vs. inflación que no baja lo suficiente</div>
+        <div class="tension-body">El dólar BNA acumula una baja de $60 en lo que va de 2026 mientras el consenso de inflación anual está en 30,4%. Eso implica un tipo de cambio real que se aprecia aceleradamente. Melconian lo nombraba explícitamente: en tres meses, si el dólar no recupera, la situación cambiaria se complica. El Band system del FMI con techo en $1.600 y piso en $1.000 otorga margen, pero el anclaje del oficial en $1.420 es una señal política que sostiene expectativas a costos crecientes.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">Tasas USA en máximos históricos vs. carry en pesos que se reduce</div>
+        <div class="tension-body">Con la tasa de política monetaria BCRA en torno al 32% y la inflación proyectada al 30%, el carry en pesos en dólares es casi nulo. Al mismo tiempo, los Treasuries a 2 años rinden 4.08% libre de riesgo. La diferencia de rendimientos ajustada por riesgo ya no justifica posiciones agresivas en pesos. Los bancos que salen a financiar leasing a tasa negativa real (30% fijo, TAMAR+4%) son síntoma de esta presión: prefieren activos reales que carry en curva de pesos.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">Cancelación swap chino vs. acumulación de reservas netas</div>
+        <div class="tension-body">La devolución de USD 4.300M al Banco Popular de China reduce la liquidez disponible del BCRA en forma inmediata, aunque el BCRA no los contabilizaba como reservas propias. El saldo neto es neutro en el balance formal pero la cobertura operativa baja. En un trimestre donde el campo aporta, el timing es manejable; el riesgo aparece si la liquidación agrícola se demora o si hay que intervenir en el mercado cambiario.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">RIGI: marco legal inconsistente entre Nación y provincias</div>
+        <div class="tension-body">La ley RIGI fija 20% de compre nacional; San Juan exige 60% de contenido local para el proyecto Vicuña (USD 15.000M, BHP/Lundin). Si el conflicto jurídico no se resuelve antes de que el proyecto avance a la siguiente fase, envía una señal negativa a la totalidad del pipeline de inversión minera y energética. Es la inconsistencia más peligrosa: el gobierno recibe a JP Morgan prometiendo commodities y a la vez no puede garantizar certeza jurídica en su propio territorio.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">Emisión por ganancias del BCRA vs. absorción: el timing importa</div>
+        <div class="tension-body">La operación de $18,4 billones para cancelar letras intransferibles implica que el BCRA emite pesos, el Tesoro los recibe y los usa para cancelar deuda intra-sector público. El efecto neto en la base monetaria depende de si el Tesoro esteriliza rápidamente. En un momento donde las tasas reales caen y la inflación no converge, el riesgo de que esa emisión presione sobre el mercado cambiario (oficial o paralelo) no es trivial.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S04 IMPACTO EN VARIABLES -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="var-grid">
+      <div class="var-card">
+        <div class="var-label">Tipo de Cambio</div>
+        <div class="var-title">Oficial / MEP / CCL</div>
+        <div class="var-body">
+          <span class="tag blue">Oficial $1.420</span>
+          <span class="tag blue">MEP $1.428</span>
+          <span class="tag neg">Blue $1.415</span>
+          <br><br>
+          La brecha MEP/oficial es de apenas 0.6%, señal de que el mercado no está apostando a una corrección cambiaria inminente. El blue cediendo 0.35% mientras el oficial sube el mismo porcentaje es técnico; la brecha es irrisoria. El riesgo no está en hoy sino en el escenario de 90 días si la presión de tasas externas y la apreciación real acumulada fuerzan una corrección del crawling o una salida del esquema de bandas.
+        </div>
+      </div>
+      <div class="var-card">
+        <div class="var-label">Curva de Tasas</div>
+        <div class="var-title">Corto vs. Largo Plazo</div>
+        <div class="var-body">
+          <span class="tag neg">Tasa real cayendo</span>
+          <span class="tag gold">TAMAR referencia</span>
+          <br><br>
+          Los bancos financian leasing a 30% fijo y TAMAR+4%, tasas negativas en términos reales si la inflación se mantiene al 30%. La curva en pesos se aplana y el incentivo al carry de corto plazo baja. El segmento largo (CER 2027-2028) es el más vulnerable al riesgo inflacionario superior al esperado. El mercado no está pidiendo prima de duration todavía, pero el escenario externo lo puede forzar.
+        </div>
+      </div>
+      <div class="var-card">
+        <div class="var-label">Inflación</div>
+        <div class="var-title">Expectativas y Convergencia</div>
+        <div class="var-body">
+          <span class="tag neg">30,4% consenso 2026</span>
+          <span class="tag neg">vs. 10,1% meta</span>
+          <br><br>
+          La inflación de abril fue 2,6% pero el consenso anual está casi 3x por encima de la meta del Presupuesto. El petróleo encima de USD 105 presiona el costo de energía y transporte; cualquier traslado a precios internos (tarifas, fletes, nafta) puede reactivar la aceleración. El riesgo inflacionario para el segundo semestre 2026 es al alza, no a la baja.
+        </div>
+      </div>
+      <div class="var-card">
+        <div class="var-label">Liquidez del Sistema</div>
+        <div class="var-title">Pesos y Dolares</div>
+        <div class="var-body">
+          <span class="tag gold">Cosecha aporta divisas</span>
+          <span class="tag neg">Swap cancelado -$4.300M</span>
+          <br><br>
+          La liquidez en pesos estará presionada al alza por la emisión de ganancias del BCRA ($6B en cuenta Tesoro + $18,4B para letras). En dólares, la cancelación del swap chino drena la cobertura sin que haya ingresado todavía la totalidad de las divisas de la cosecha gruesa. La ventana de junio-julio es clave; cualquier demora en la liquidación agropecuaria pone a prueba las reservas.
+        </div>
+      </div>
+      <div class="var-card" style="grid-column: 1 / -1;">
+        <div class="var-label">Riesgo Soberano</div>
+        <div class="var-title">Bonos Externos y Spreads</div>
+        <div class="var-body">
+          <span class="tag gold

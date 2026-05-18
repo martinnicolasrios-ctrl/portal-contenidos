@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial — Análisis Regulatorio · 18/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 60%);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  /* HEADER */
+  header {
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-bottom: 4px;
+  }
+
+  .date-stamp {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .section-block {
+    margin-bottom: 52px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 22px 16px;
+    margin-bottom: 14px;
+  }
+
+  .card-urgent { border-left: 2px solid var(--neg); }
+  .card-novelty { border-left: 2px solid var(--accent); }
+  .card-financial { border-left: 2px solid var(--gold); }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-norma {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .norma-urgent { color: var(--accent); }
+  .norma-novelty { color: var(--accent); }
+  .norma-financial { color: var(--gold); }
+
+  .card-org {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  /* LINK BUTTONS */
+  .card-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .btn-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+
+  .btn-link:hover { opacity: 0.75; }
+
+  .btn-bora-neg { color: var(--neg); border: 1px solid rgba(239,108,108,.3); }
+  .btn-bora-accent { color: var(--accent); border: 1px solid rgba(52,187,218,.3); }
+  .btn-bora-gold { color: var(--gold); border: 1px solid rgba(232,176,74,.3); }
+  .btn-kronos { color: var(--ink-3); border: 1px solid rgba(123,145,163,.3); }
+
+  /* VENCIMIENTOS CHIPS */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .chip {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+
+  .chip-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+
+  .chip-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .chip-action {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .chip-empty {
+    color: var(--ink-3);
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .wrapper { padding: 28px 18px; }
+    .section-title { font-size: 20px; }
+    .chips-grid { grid-template-columns: 1fr; }
+    .card-links { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Hipotecario Seguros</div>
+    <div class="subtitle">Boletín Oficial &mdash; Análisis Regulatorio</div>
+    <div class="date-stamp">Edición del 18 de Mayo de 2026</div>
+  </header>
+
+  <!-- SECCIÓN 1: URGENTE — omitida (sin items urgentes en esta edición) -->
+
+  <!-- SECCIÓN 2: NOVEDADES REGULATORIAS -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 01</span>
+      <h2 class="section-title">Novedades Regulatorias</h2>
+    </div>
+
+    <!-- ARCA RG 5848 -->
+    <div class="card card-novelty">
+      <div class="card-meta">
+        <span class="card-norma norma-novelty">RESOG-2026-5848-E-ARCA-ARCA</span>
+        <span class="card-org">Agencia de Recaudación y Control Aduanero (ARCA)</span>
+      </div>
+      <div class="card-title">Resolución General 5848/2026 — Certificado de Trabajo Digital (Art. 80 LCT)</div>
+      <div class="card-desc">
+        Reglamenta la emisión digital del Certificado de Trabajo (F.984) conforme a la Ley de Modernización Laboral N° 27.802. Los empleadores deben generar el certificado a través del sistema "Simplificación Registral" de ARCA con clave fiscal nivel 2 o superior, en formato digital o físico. El trabajador lo accede vía "Trabajo en Blanco" en arca.gob.ar. Se abroga la RG N° 2.316 y se deroga el Título III de la RG N° 5.250. Vigencia: a partir del 18/05/2026. Impacto directo en el área de Recursos Humanos de la aseguradora: cualquier desvinculación laboral a partir de hoy debe documentarse exclusivamente bajo este nuevo procedimiento digital.
+      </div>
+      <div class="card-links">
+        <a class="btn-link btn-bora-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342052/20260518" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3: IMPACTO FINANCIERO -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 02</span>
+      <h2 class="section-title">Impacto Financiero</h2>
+    </div>
+
+    <!-- BCRA Com B 13173 / CER -->
+    <div class="card card-financial">
+      <div class="card-meta">
+        <span class="card-norma norma-financial">COM. "B" 13173/2026</span>
+        <span class="card-org">Banco Central de la República Argentina (BCRA)</span>
+      </div>
+      <div class="card-title">Valores diarios del Coeficiente de Estabilización de Referencia (CER) — Circular OPASI 2</div>
+      <div class="card-desc">
+        Publicación rutinaria de los valores diarios del CER. Para la aseguradora, el CER es el índice de ajuste de los títulos públicos CER (LECERES, bonos CER) que integran la cartera de inversiones afectadas a la cobertura de reservas técnicas. La actualización periódica de estos valores es insumo obligatorio para la valuación diaria del portafolio y para el cálculo de las reservas matemáticas en seguros Vida con capitalización. Los anexos con los valores numéricos se encuentran en la edición web del BORA y en el sitio bcra.gob.ar.
+      </div>
+      <div class="card-links">
+        <a class="btn-link btn-bora-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342065/20260518" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA Com B 13174 / UVA -->
+    <div class="card card-financial">
+      <div class="card-meta">
+        <span class="card-norma norma-financial">COM. "B" 13174/2026</span>
+        <span class="card-org">Banco Central de la República Argentina (BCRA)</span>
+      </div>
+      <div class="card-title">Valores diarios de la Unidad de Valor Adquisitivo (UVA) — Ley 25.827</div>
+      <div class="card-desc">
+        Publicación de los valores diarios de la UVA, unidad actualizable por CER. Relevante para la cartera de inversiones en instrumentos UVA (Ley 27.271) que algunas aseguradoras mantienen como activo admitido para la cobertura de compromisos técnicos en pesos indexados. Adicionalmente, los préstamos hipotecarios UVA otorgados a empleados o vinculados a fideicomisos del grupo deben ser valuados con estos índices en los estados contables.
+      </div>
+      <div class="card-links">
+        <a class="btn-link btn-bora-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342066/20260518" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BCRA Com B 13175 / ICL -->
+    <div class="card card-financial">
+      <div class="card-meta">
+        <span class="card-norma norma-financial">COM. "B" 13175/2026</span>
+        <span class="card-org">Banco Central de la República Argentina (BCRA)</span>
+      </div>
+      <div class="card-title">Valores diarios del Índice para Contratos de Locación (ICL) — Ley 27.551</div>
+      <div class="card-desc">
+        Publicación del ICL (promedio entre CER y RIPTE). Impacto indirecto en la aseguradora si mantiene inmuebles en cartera de inversiones o propiedades operativas cuyos contratos de alquiler se actualicen por este índice (Ley de Alquileres). También relevante para el ramo de Caución de contratos de locación y para la valuación de activos inmobiliarios afectados a reservas.
+      </div>
+      <div class="card-links">
+        <a class="btn-link btn-bora-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342067/20260518" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <!-- BNA Tasas -->
+    <div class="card card-financial">
+      <div class="card-meta">
+        <span class="card-norma norma-financial">Aviso Oficial · BNA</span>
+        <span class="card-org">Banco de la Nación Argentina</span>
+      </div>
+      <div class="card-title">Tasas activas de referencia — TAMAR + spread vigente al 15/05/2026</div>
+      <div class="card-desc">
+        El BNA publica la Tasa Activa Cartera General (TAMAR) con vigencia desde el 15/05/2026: TNA nominal a 30 días del 24,54% (vencida), con efectiva mensual de 2,017%. Esta tasa es referencia regulatoria para el rendimiento mínimo de ciertos activos admitidos e insumo para el cálculo de la tasa de descuento en las reservas de siniestros pendientes de larga resolución. Monitorear respecto al corredor de política monetaria del BCRA.
+      </div>
+      <div class="card-links">
+        <a class="btn-link btn-bora-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342064/20260518" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 4: PRÓXIMOS VENCIMIENTOS -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 03</span>
+      <h2 class="section-title">Próximos Vencimientos</h2>
+    </div>
+    <div class="chips-grid">
+
+      <div class="chip">
+        <div class="chip-date">18/05/2026 — Vigencia inmediata</div>
+        <div class="chip-desc">ARCA RG 5848/2026 — Certificado de Trabajo Digital entra en vigor.</div>
+        <div class="chip-action">Actualizar procedimiento de RRHH para desvinculaciones.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">Actualizacion diaria</div>
+        <div class="chip-desc">Valores CER, UVA e ICL publicados por BCRA (Com. B 13173, 13174, 13175).</div>
+        <div class="chip-action">Incorporar valores al sistema de valuación de portafolio.</div>
+      </div>
+
+      <div class="chip">
+        <div class="chip-date">Monitoreo continuo</div>
+        <div class="chip-desc">TAMAR BNA a 24,54% TNA vigente desde 15/05/2026.</div>
+        <div class="chip-action">Verificar impacto en rentabilidad de activos a tasa variable.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NOTA EDITORIAL -->
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-number">§ 04</span>
+      <h2 class="section-title">Nota de Cobertura</h2>
+    </div>
+    <div class="card card-novelty">
+      <div class="card-desc" style="margin-bottom:0;">
+        La edición del 18/05/2026 no registra resoluciones de la Superintendencia de Seguros de la Nación (SSN), decretos del PEN con impacto directo en el sector asegurador, ni modificaciones normativas del BCRA que afecten el régimen de inversiones de aseguradoras (Com. "A" o circulares RUNOR/LISOL). Las tres comunicaciones "B" del BCRA son publicaciones rutinarias de índices estadísticos. No se detectaron cambios en alícuotas impositivas ARCA/AFIP aplicables al sector.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Generado automáticamente &middot; 18/05/2026 &middot; Fuente: Boletín Oficial de la República Argentina &mdash; boletinoficial.gob.ar
+  </footer>
+
+</div>
+</body>
+</html>
