@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Cronista — Análisis Macro | 19 Mayo 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  body {
+    background: #0B1620;
+    color: #F2F6F9;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HEADER */
+  .header {
+    background: #0F1E2B;
+    border-bottom: 1px solid #1E3447;
+    padding: 32px 0 28px;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 12px;
+  }
+
+  .header-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F2F6F9;
+    line-height: 1.25;
+    max-width: 720px;
+    margin-bottom: 16px;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #7B91A3;
+  }
+
+  .meta-item span {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  /* KPI STRIP */
+  .kpi-strip {
+    background: #17293A;
+    border-bottom: 1px solid #1E3447;
+    padding: 20px 0;
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: #1E3447;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .kpi-card {
+    background: #0F1E2B;
+    padding: 14px 16px;
+  }
+
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    margin-bottom: 6px;
+  }
+
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: #F2F6F9;
+    line-height: 1;
+  }
+
+  .kpi-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .kpi-delta.pos { color: #5BD39A; }
+  .kpi-delta.neg { color: #EF6C6C; }
+  .kpi-delta.neu { color: #7B91A3; }
+
+  /* MAIN CONTENT */
+  .main {
+    padding: 48px 0 64px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1E3447;
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #34BBDA;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #F2F6F9;
+  }
+
+  /* CARD */
+  .card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 14px 20px;
+    background: #17293A;
+    border-bottom: 1px solid #1E3447;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7B91A3;
+  }
+
+  .card-content {
+    padding: 20px;
+    color: #B5C5D3;
+    line-height: 1.7;
+  }
+
+  .card-content p + p {
+    margin-top: 12px;
+  }
+
+  .card-alert {
+    border-left: 3px solid #EF6C6C;
+    background: rgba(239,108,108,.04);
+  }
+
+  .card-rec {
+    border-left: 3px solid #E8B04A;
+    background: rgba(232,176,74,.04);
+  }
+
+  /* BULLET LIST */
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .bullet-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .bullet-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34BBDA;
+    box-shadow: 0 0 6px rgba(52,187,218,.5);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .bullet-text {
+    color: #B5C5D3;
+    line-height: 1.65;
+  }
+
+  .bullet-text strong {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  /* TENSION LIST */
+  .tension-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tension-item {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-left: 3px solid #34BBDA;
+    border-radius: 4px;
+    padding: 14px 18px;
+  }
+
+  .tension-title {
+    font-weight: 600;
+    color: #F2F6F9;
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+
+  .tension-body {
+    color: #B5C5D3;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* VARIABLE CARDS GRID */
+  .var-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .var-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 16px;
+  }
+
+  .var-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7B91A3;
+    margin-bottom: 8px;
+  }
+
+  .var-card-impact {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    padding: 2px 8px;
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .impact-neg { background: rgba(239,108,108,.12); color: #EF6C6C; }
+  .impact-pos { background: rgba(91,211,154,.12); color: #5BD39A; }
+  .impact-neu { background: rgba(52,187,218,.1); color: #34BBDA; }
+  .impact-warn { background: rgba(232,176,74,.12); color: #E8B04A; }
+
+  .var-card-text {
+    color: #B5C5D3;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  /* POS GRID */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .pos-cell {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .pos-top {
+    padding: 8px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .pos-top.pos { background: rgba(91,211,154,.12); color: #5BD39A; }
+  .pos-top.neg { background: rgba(239,108,108,.12); color: #EF6C6C; }
+  .pos-top.gold { background: rgba(232,176,74,.12); color: #E8B04A; }
+  .pos-top.blue { background: rgba(52,187,218,.1); color: #34BBDA; }
+
+  .pos-body {
+    padding: 14px;
+  }
+
+  .pos-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #B5C5D3;
+    line-height: 1.5;
+  }
+
+  .pos-item:last-child { margin-bottom: 0; }
+
+  .pos-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #7B91A3;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .pos-item strong { color: #F2F6F9; font-weight: 600; }
+
+  /* ALERT LIST */
+  .alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .alert-item {
+    background: rgba(239,108,108,.04);
+    border: 1px solid rgba(239,108,108,.2);
+    border-left: 3px solid #EF6C6C;
+    border-radius: 4px;
+    padding: 14px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .alert-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #EF6C6C;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .alert-title {
+    font-weight: 600;
+    color: #EF6C6C;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .alert-body {
+    color: #B5C5D3;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* NO PRICEADO */
+  .np-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .np-item {
+    padding: 14px 18px;
+    border-radius: 4px;
+    border-left: 3px solid #34BBDA;
+    background: rgba(52,187,218,.04);
+    border-top: 1px solid rgba(52,187,218,.1);
+    border-right: 1px solid rgba(52,187,218,.1);
+    border-bottom: 1px solid rgba(52,187,218,.1);
+  }
+
+  .np-item.neg-tone {
+    border-left-color: #EF6C6C;
+    background: rgba(239,108,108,.04);
+    border-top-color: rgba(239,108,108,.1);
+    border-right-color: rgba(239,108,108,.1);
+    border-bottom-color: rgba(239,108,108,.1);
+  }
+
+  .np-title {
+    font-weight: 600;
+    color: #34BBDA;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .np-item.neg-tone .np-title { color: #EF6C6C; }
+
+  .np-body {
+    color: #B5C5D3;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* INS TABS */
+  .ins-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ins-tab {
+    padding: 9px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border: 1px solid #1E3447;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    background: #17293A;
+    color: #7B91A3;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .ins-tab.active-pesos {
+    background: rgba(52,187,218,.12);
+    color: #34BBDA;
+    border-color: rgba(52,187,218,.25);
+    border-bottom: 1px solid #0F1E2B;
+  }
+
+  .ins-tab.active-cer {
+    background: rgba(166,110,220,.12);
+    color: #A66EDC;
+    border-color: rgba(166,110,220,.25);
+    border-bottom: 1px solid #0F1E2B;
+  }
+
+  .ins-tab.active-riesgo {
+    background: rgba(239,108,108,.1);
+    color: #EF6C6C;
+    border-color: rgba(239,108,108,.2);
+    border-bottom: 1px solid #0F1E2B;
+  }
+
+  .ins-body {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 0 4px 4px 4px;
+    padding: 20px;
+    display: none;
+  }
+
+  .ins-body.active { display: block; }
+
+  .ins-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7B91A3;
+    margin-bottom: 10px;
+    margin-top: 18px;
+  }
+
+  .ins-sub:first-child { margin-top: 0; }
+
+  .ins-text {
+    color: #B5C5D3;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .ins-text + .ins-text { margin-top: 8px; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 3px;
+  }
+
+  .tag.neg { background: rgba(239,108,108,.15); color: #EF6C6C; }
+  .tag.pos { background: rgba(91,211,154,.15); color: #5BD39A; }
+  .tag.gold { background: rgba(232,176,74,.15); color: #E8B04A; }
+  .tag.blue { background: rgba(52,187,218,.12); color: #34BBDA; }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .data-table th {
+    background: #17293A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7B91A3;
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  .data-table td {
+    padding: 10px 14px;
+    color: #B5C5D3;
+    border-top: 1px solid #1E3447;
+  }
+
+  .data-table tr:nth-child(even) td { background: rgba(15,30,43,.5); }
+  .data-table tr:hover td { background: rgba(52,187,218,.04); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: #1E3447;
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #0F1E2B;
+    border-top: 1px solid #1E3447;
+    padding: 24px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7B91A3;
+    margin-bottom: 6px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: #7B91A3;
+    line-height: 1.6;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .var-grid { grid-template-columns: 1fr 1fr; }
+    .pos-grid { grid-template-columns: 1fr; }
+    .header-title { font-size: 22px; }
+    .ins-tabs { flex-wrap: wrap; }
+  }
+
+  @media (max-width: 480px) {
+    .var-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="eyebrow">El Cronista — Análisis Macro / Martes 19 Mayo 2026</div>
+    <h1 class="header-title">El carry vive, pero el reloj corre: el mercado pide salida mientras el BCRA no acumula y los analistas anticipa ruptura en H2</h1>
+    <div class="header-meta">
+      <div class="meta-item">Dólar BNA <span>$1.420</span></div>
+      <div class="meta-item">Dólar MEP <span>$1.429,33</span></div>
+      <div class="meta-item">Dólar CCL <span>$1.487,03</span></div>
+      <div class="meta-item">Dólar Blue <span>$1.420 +0,35%</span></div>
+      <div class="meta-item">Dólar Tarjeta <span>$1.846</span></div>
+      <div class="meta-item">Merval <span>2.816.245</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- KPI STRIP -->
+<section class="kpi-strip">
+  <div class="container">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Riesgo País</div>
+        <div class="kpi-value">&gt;500</div>
+        <div class="kpi-delta neg">Sigue elevado pese al superávit</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Brecha CCL/BNA</div>
+        <div class="kpi-value">+4,7%</div>
+        <div class="kpi-delta neu">Brecha contenida, cepo vigente</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Compras BCRA</div>
+        <div class="kpi-value">-40%</div>
+        <div class="kpi-delta neg">vs. abril, en plena cosecha gruesa</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Inflación esperada</div>
+        <div class="kpi-value">~2%</div>
+        <div class="kpi-delta pos">Mercado proyecta baja en mayo</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Swap China</div>
+        <div class="kpi-value">Extensión</div>
+        <div class="kpi-delta gold">BCRA busca renovar tramo activado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="container">
+
+    <!-- § 01 RESUMEN EJECUTIVO -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">§ 01</span>
+        <h2 class="section-title">Resumen Ejecutivo</h2>
+      </div>
+      <ul class="bullet-list">
+        <li>
+          <span class="bullet-dot"></span>
+          <span class="bullet-text"><strong>El carry trade entra en zona de advertencia.</strong> Múltiples analistas (Rubinstein, Lacunza, Melconian) convergen en que la divisa "planchada" no es sostenible en el segundo semestre y anticipan presión alcista sobre el dólar. El mercado aún no cortó posiciones, pero los titulares señalan que el debate interno ya escala.</span>
+        </li>
+        <li>
+          <span class="bullet-dot"></span>
+          <span class="bullet-text"><strong>El BCRA compró 40% menos que en abril pese a la cosecha récord.</strong> La falta de acumulación de reservas en el momento estacional más favorable del año es la señal de estrés más concreta del día. Si el agro tiene u$s 18.000 M sin vender, el problema no es el flujo sino la estructura de incentivos bajo el cepo.</span>
+        </li>
+        <li>
+          <span class="bullet-dot"></span>
+          <span class="bullet-text"><strong>Riesgo país por encima de 500 puntos pese al superávit fiscal.</strong> El mercado "cree pero no presta": el desacople entre resultado fiscal y costo de deuda revela que la confianza en la sostenibilidad del ajuste tiene un techo mientras el cepo permanezca y las reservas netas sean negativas.</span>
+        </li>
+        <li>
+          <span class="bullet-dot"></span>
+          <span class="bullet-text"><strong>El Gobierno lanza el RIMI (régimen simplificado de inversión para pymes) y alienta fondos soberanos provinciales con Vaca Muerta como ancla.</strong> La narrativa oficial pivota hacia el modelo noruego: dolarización via ingresos energéticos en lugar de dolarización del balance monetario.</span>
+        </li>
+        <li>
+          <span class="bullet-dot"></span>
+          <span class="bullet-text"><strong>Los créditos hipotecarios UVA muestran signos de saturación.</strong> El Gobierno estudia una medida de "nafta" para sostener el segmento. Al mismo tiempo, una empresa logró financiarse en dólares al 0%, señal de exceso de liquidez en el sistema financiero en moneda dura para perfiles premium.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- § 02 LECTURA DE MERCADO -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">§ 02</span>
+        <h2 class="section-title">Lectura de Mercado</h2>
+      </div>
+      <div class="card">
+        <div class="card-header">Interpretacion — no resumen</div>
+        <div class="card-content">
+          <p>El escenario macro del día tiene una arquitectura específica: el gobierno acumula victorias microeconómicas (superávit fiscal, desinflación, inversión extranjera vía RIGI, exportaciones récord de energía) mientras el mercado financiero le pone precio a una fragilidad estructural que todavía no se resolvió. El riesgo país por encima de 500 puntos con superávit primario no es una paradoja: es la valuación del problema de reservas y del régimen cambiario.</p>
+          <p>El régimen actual es formalmente de <strong>carry con ancla cambiaria en una banda de flotación amplia</strong>. En la práctica opera como crawling peg de facto, con el blue y el CCL cotizando apenas 4,7% arriba del oficial, y el mercado posicionado en pesos de tasa. La señal de hoy no es que el régimen haya cambiado: es que el número de analistas de primera línea que publican advertencias sobre su ruptura en H2 alcanzó una masa crítica. Cuando Lacunza, Rubinstein y Melconian coinciden en el mismo diagnóstico en el mismo día, ya no es ruido.</p>
+          <p>La narrativa implícita que construye el mercado tiene tres capas. <strong>Primera capa (consenso)</strong>: el carry sigue siendo rentable hoy, hay que aprovecharlo mientras dure. <strong>Segunda capa (anticipación)</strong>: los tres factores de ruptura (vencimientos de deuda, elecciones 2027, demanda estacional de dólares en H2) están calendarizados y el mercado comienza a rotarlos en sus modelos. <strong>Tercera capa (no priceada)</strong>: la dependencia energética de Vaca Muerta como sustituto de reservas cambia la estructura de flujos, pero su escala temporal no cubre el gap de liquidez de corto plazo.</p>
+          <p>El dato más revelador del día no está en la cotización del dólar sino en el 40% de caída en compras del BCRA durante la cosecha gruesa. En la lógica normal, el segundo trimestre es cuando el Banco Central debería estar acumulando dólares para sostener el régimen en el segundo semestre. No lo está haciendo con la fuerza que el calendario requeriría, y eso crea una asimetría temporal que el mercado va a testear.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- § 03 TENSIONES CLAVE -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">§ 03</span>
+        <h2 class="section-title">Tensiones Clave</h2>
+      </div>
+      <div class="tension-list">
+        <div class="tension-item">
+          <div class="tension-title">BCRA no acumula en cosecha gruesa &mdash; la ventana se cierra</div>
+          <div class="tension-body">Las compras del BCRA cayeron 40% vs. abril pese a la cosecha récord y los u$s 18.000 M de granos sin liquidar en el campo. El sector agropecuario retiene porque los incentivos del cepo (brecha baja + devaluación esperada) generan un óptimo privado de venta diferida. Si esa liquidación no llega antes de junio, el BCRA entra al H2 con reservas netas estructuralmente negativas.</div>
+        </div>
+        <div class="tension-item">
+          <div class="tension-title">Riesgo país &gt;500 puntos vs. superávit fiscal primario &mdash; el mercado descuenta algo que el fisco no ve</div>
+          <div class="tension-body">La persistencia del spread por encima de 500 pb con resultado fiscal positivo refleja que los inversores descuentan una de tres cosas: reversión del ajuste antes de las elecciones, algún evento de reestructuración de deuda, o una corrección cambiaria que licue los pasivos en pesos. El traspié del proyecto de acuerdo con bonistas en el Senado suma incertidumbre legal al cálculo.</div>
+        </div>
+        <div class="tension-item">
+          <div class="tension-title">Dólar planchado + analistas en alerta &mdash; disonancia entre precio de mercado y consenso técnico</div>
+          <div class="tension-body">El blue cotiza a $1.420, el CCL a $1.487, la brecha es mínima. Sin embargo, tres economistas de referencia (Lacunza, Rubinstein, Melconian) publicaron en el mismo día advertencias sobre devaluación en 2027 o en H2. Esta disonancia entre el precio spot y el consenso técnico es una señal temprana de que el posicionamiento en carry tiene un punto de inflexión próximo.</div>
+        </div>
+        <div class="tension-item">
+          <div class="tension-title">Swap con China &mdash; los renovables como colchón opaco</div>
+          <div class="tension-body">El BCRA confirma que planea extender el swap con China, habiendo pagado "casi todo" el tramo activado. Esto revela que la extensión no es oportunista sino defensiva: sin ella, las reservas brutas caerían materialmente. Un swap renovado compra tiempo pero no genera reservas genuinas, y el mercado lo sabe.</div>
+        </div>
+        <div class="tension-item">
+          <div class="tension-title">Crédito hipotecario UVA sin "nafta" &mdash; riesgo de freno al consumo de real estate</div>
+          <div class="tension-body">El crédito hipotecario fue uno de los motores de recuperación 2025-2026. Si el Gobierno estudia una medida de soporte (tope a cuota o subsidio de tasa) es porque el nivel de rates reales ya empieza a frenar el originación. Esto anticipa potencial desaceleración en construcción y en el canal de crédito como motor de demanda.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- § 04 IMPACTO EN VARIABLES -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">§ 04</span>
+        <h2 class="section-title">Impacto en Variables Clave</h2>
+      </div>
+      <div class="var-grid">
+        <div class="var-card">
+          <div class="var-card-label">Tipo de Cambio</div>
+          <span class="var-card-impact impact-warn">PRESION LATENTE</span>
+          <div class="var-card-text">Oficial/Blue/CCL sin movimiento hoy. La brecha CCL-BNA es de ~4,7%, en mínimos históricos bajo el nuevo esquema de bandas. Sin embargo, la concentración de advertencias de analistas sobre H2 y la caída en compras del BCRA crean condiciones para que la brecha se amplíe antes de fin de año. El 3N (elecciones EE.UU.) aparece como catalizador externo adicional.</div>
+        </div>
+        <div class="var-card">
+          <div class="var-card-label">Curva de Tasas</div>
+          <span class="var-card-impact impact-neu">EN TRANSICION</span>
+          <div class="var-card-text">La tasa fija en pesos sigue siendo atractiva vs. inflación proyectada (~2% mensual). Bancos financian a tasa negativa en tramos selectos (estrategia de captación para colocaciones en FCI). La curva corta en pesos comprime. El riesgo es que si la devaluación esperada sube, la tasa real ex-post se deteriora rápido para quienes estén atrapados en duration larga.</div>
+        </div>
+        <div class="var-card">
+          <div class="var-card-label">Inflacion Esperada</div>
+          <span class="var-card-impact impact-pos">BAJA</span>
+          <div class="var-card-text">El mercado anticipa inflación de ~2% mensual para mayo. Esto es consistente con el discurso de Caputo ("recuperación entre mayo y junio") y refuerza el carry. La desinflación es real pero el CER deja de ser el instrumento favorito cuando la inflación baja: el mercado rota hacia tasa fija. Esto reduce la demanda de bonos ajustados.</div>
+        </div>
+        <div class="var-card">
+          <div class="var-card-label">Liquidez del Sistema</div>
+          <span class="var-card-impact impact-pos">ABUNDANTE</span>
+          <div class="var-card-text">La liquidación en dólares al 0% de una empresa corporativa top y el Banco Nación ofreciendo hipotecarios al 6% con tope UVA indican que la liquidez en el sistema es holgada. Los FCI en dólares con liquidez inmediata ganan vs. cuentas remuneradas. La trampa: la liquidez en pesos puede evaporarse si el escenario de cobertura cambia abruptamente.</div>
+        </div>
+        <div class="var-card">
+          <div class="var-card-label">Riesgo Soberano</div>
+          <span class="var-card-impact impact-neg">ELEVADO</span>
+          <div class="var-card-text">El riesgo país por encima de 500 pb es el dato más duro del día. El mercado cree en Milei pero no le presta, lo que implica que el acceso a mercados voluntarios a tasas razonables sigue cerrado. El traspié del acuerdo con bonistas en el Senado agrega incertidumbre legal. Vaca Muerta como fuente de dólares es real pero su impacto en el balance del soberano es de mediano plazo.</div>
+        </div>
+        <div class="var-card">
+          <div class="var-card-label">Reservas BCRA</div>
+          <span class="var-card-impact impact-neg">PRESIONADAS</span>
+          <div class="var-card-text">Las reservas brutas cuentan con el soporte del swap con China (en proceso de extensión) y los dólares de Vaca Muerta (crecientes). Las reservas netas son estructuralmente negativas. La caída del 40% en compras durante la cosecha es la señal más preocupante: el BCRA no está aprovechando el único trimestre del año donde la estacionalidad juega a favor.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- § 05 POSICIONAMIENTO -->
+    <section class="section">
+      <div class="section-head">
