@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boletín Oficial — Análisis Regulatorio · 20/05/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B1620;
+      --bg-2: #0F1E2B;
+      --bg-3: #17293A;
+      --line: #1E3447;
+      --ink: #F2F6F9;
+      --ink-2: #B5C5D3;
+      --ink-3: #7B91A3;
+      --accent: #34BBDA;
+      --gold: #E8B04A;
+      --pos: #5BD39A;
+      --neg: #EF6C6C;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background-color: var(--bg);
+      background-image: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 55%);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 48px 40px;
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 32px 20px; }
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 52px;
+    }
+
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-2);
+      margin-bottom: 4px;
+    }
+
+    .header-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 22px;
+      margin-top: 52px;
+    }
+
+    .section-header:first-of-type { margin-top: 0; }
+
+    .section-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--line);
+      margin-bottom: 28px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 22px 24px 18px;
+      margin-bottom: 16px;
+    }
+
+    .card-urgent  { border-left: 2px solid var(--neg); }
+    .card-regular { border-left: 2px solid var(--accent); }
+    .card-finance { border-left: 2px solid var(--gold); }
+
+    .card-norma-urgent  { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .card-norma-regular { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .card-norma-finance { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gold);   text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+
+    .card-org {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    /* ── CARD FOOTER LINKS ── */
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .card-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-decoration: none;
+      border-radius: 3px;
+      padding: 3px 8px;
+      transition: opacity 0.15s;
+    }
+    .card-link:hover { opacity: 0.75; }
+
+    .link-neg    { color: var(--neg);    border: 1px solid rgba(239,108,108,.3); }
+    .link-accent { color: var(--accent); border: 1px solid rgba(52,187,218,.3); }
+    .link-gold   { color: var(--gold);   border: 1px solid rgba(232,176,74,.3); }
+    .link-dim    { color: var(--ink-3);  border: 1px solid rgba(123,145,163,.3); }
+
+    /* ── CHIPS / BADGES ── */
+    .chips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .chip {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 16px 20px;
+    }
+
+    .chip-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .chip-desc {
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .chip-action {
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .chip-empty {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 60px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo"></div>
+    <div class="subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="header-date">20 de mayo de 2026</div>
+  </header>
+
+  <!-- § 01 — NOVEDADES REGULATORIAS -->
+  <div class="section-header">
+    <span class="section-num">§ 01</span>
+    <span class="section-title">Novedades Regulatorias</span>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- Card: BCRA Com A 8436 -->
+  <div class="card card-regular">
+    <div class="card-norma-regular">BCRA · Comunicación "A" 8436/2026</div>
+    <div class="card-org">Banco Central de la República Argentina</div>
+    <div class="card-title">Actualización del Sistema Nacional de Pagos — Normas Complementarias sobre Transferencias</div>
+    <div class="card-body">
+      El BCRA incorpora nuevas hojas ordenadas al texto de la Circular SINAP 1-247, en función de lo dispuesto por la Comunicación C 101699. Las modificaciones actualizan las normas complementarias del sistema de transferencias electrónicas de fondos, aplicables a entidades financieras, PSP con cuentas de pago, redes de transferencias y administradores de esquemas de pago. Para las aseguradoras, este cambio impacta en los circuitos operativos de cobranza de primas (débitos automáticos, transferencias inmediatas) y en los pagos de siniestros y rescates, especialmente en los módulos de conciliación bancaria y en los SLAs acordados con entidades recaudadoras. Se recomienda verificar la compatibilidad de los conectores bancarios con las nuevas hojas ordenadas antes del cierre de mes.
+    </div>
+    <div class="card-footer">
+      <a class="card-link link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342191/20260520" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- Card: BCRA Com B 13176 -->
+  <div class="card card-regular">
+    <div class="card-norma-regular">BCRA · Comunicación "B" 13176/2026</div>
+    <div class="card-org">Banco Central de la República Argentina</div>
+    <div class="card-title">Tasas de Referencia para Garantía de Depósitos — Actualización al 18/05/2026</div>
+    <div class="card-body">
+      Se actualizan las tasas de referencia de la Circular OPASI 2 sobre garantía de depósitos (SEDESA), con vigencia a partir del 18 de mayo de 2026. Estas tasas son de seguimiento obligatorio para el área de Finanzas ya que constituyen benchmarks utilizados en la valuación de inversiones en plazos fijos y títulos a tasa variable mantenidos en la cartera de reservas técnicas. Su variación puede afectar la comparabilidad de rendimientos en los estados contables y el cálculo del test de adecuación de activos. El anexo con los valores numéricos actualizados se encuentra disponible en el sitio del BCRA.
+    </div>
+    <div class="card-footer">
+      <a class="card-link link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342192/20260520" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- § 02 — IMPACTO FINANCIERO -->
+  <div class="section-header">
+    <span class="section-num">§ 02</span>
+    <span class="section-title">Impacto Financiero</span>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- Card: BCRA Com B 13176 - impacto financiero -->
+  <div class="card card-finance">
+    <div class="card-norma-finance">BCRA · Comunicación "B" 13176/2026</div>
+    <div class="card-org">Banco Central de la República Argentina</div>
+    <div class="card-title">Revisión de tasas de referencia: impacto en cartera de inversiones afectadas a reservas</div>
+    <div class="card-body">
+      La actualización de tasas de garantía de depósitos (OPASI 2) requiere revisión del rendimiento implícito de las inversiones en depósitos a plazo fijo computables como activos afectados. Según la normativa de la SSN, las inversiones que cubren reservas técnicas y matemáticas deben valuarse y reportarse conforme las condiciones de mercado vigentes; la nueva tasa de referencia incide directamente en los cálculos de suficiencia de activos y en el Anexo de Inversiones (Resol. SSN 38.708). Se recomienda al área de Finanzas actualizar los modelos de proyección de rendimiento de la cartera de renta fija y verificar el cumplimiento de los límites de concentración en depósitos bancarios.
+    </div>
+    <div class="card-footer">
+      <a class="card-link link-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342192/20260520" target="_blank">→ Ver en BORA</a>
+    </div>
+  </div>
+
+  <!-- § 03 — PRÓXIMOS VENCIMIENTOS -->
+  <div class="section-header">
+    <span class="section-num">§ 03</span>
+    <span class="section-title">Próximos Vencimientos</span>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="chips-grid">
+    <div class="chip">
+      <div class="chip-date">20/05/2026 — Vigencia inmediata</div>
+      <div class="chip-desc">BCRA Com. "A" 8436/2026 — Nuevas hojas ordenadas Sistema Nacional de Pagos (SINAP 1-247)</div>
+      <div class="chip-action">Verificar conectores bancarios y circuitos de cobranza/pagos de siniestros</div>
+    </div>
+    <div class="chip">
+      <div class="chip-date">18/05/2026 — En vigor</div>
+      <div class="chip-desc">BCRA Com. "B" 13176/2026 — Nuevas tasas de referencia OPASI 2 para garantía de depósitos</div>
+      <div class="chip-action">Actualizar modelos de valuación de inversiones afectadas a reservas técnicas</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Generado automáticamente · 20/05/2026 · Fuente: Boletín Oficial de la República Argentina
+  </footer>
+
+</body>
+</html>

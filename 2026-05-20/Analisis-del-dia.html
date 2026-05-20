@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIPM Abril 2026 — Lectura para Comité de Inversiones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-1: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --border: #1E3346;
+    --text-1: #E6EEF5;
+    --text-2: #B7C5D3;
+    --text-3: #7C8FA3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+    --warn: #F0A868;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg-1);
+    color: var(--text-1);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+  }
+  .pf-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  .pf-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .pf-subtitle {
+    color: var(--text-2);
+    font-size: 16px;
+    max-width: 720px;
+  }
+  .pf-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 16px;
+    letter-spacing: 0.04em;
+  }
+  .pf-meta span { margin-right: 18px; }
+
+  .pf-section {
+    margin-top: 56px;
+  }
+  .pf-section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .pf-section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--text-1);
+    letter-spacing: -0.005em;
+  }
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-1);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    margin-top: 24px;
+  }
+
+  p { color: var(--text-2); margin-bottom: 12px; }
+  strong { color: var(--text-1); font-weight: 600; }
+  em { color: var(--accent); font-style: normal; font-weight: 500; }
+
+  .pf-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    color: var(--text-1);
+  }
+  .pf-pos { color: var(--pos); font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  .pf-neg { color: var(--neg); font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  .pf-warn { color: var(--warn); font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  .pf-gold { color: var(--gold); font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+
+  /* KPI cards */
+  .pf-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .pf-kpi {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+  }
+  .pf-kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .pf-kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.1;
+  }
+  .pf-kpi-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 6px;
+  }
+
+  /* Executive summary box */
+  .pf-exec {
+    background: linear-gradient(180deg, rgba(52,187,218,0.05), rgba(52,187,218,0.01));
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+  }
+  .pf-exec ul {
+    list-style: none;
+    margin-top: 10px;
+  }
+  .pf-exec li {
+    color: var(--text-2);
+    padding: 6px 0 6px 18px;
+    position: relative;
+    font-size: 14.5px;
+  }
+  .pf-exec li::before {
+    content: "▸";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+    top: 8px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 8px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  th {
+    background: var(--bg-3);
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+  }
+  th.num { text-align: right; }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-2);
+  }
+  td.num {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-1);
+  }
+  td.label { color: var(--text-1); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+  tr.highlight td { background: rgba(232,176,74,0.04); }
+
+  /* Insight callouts */
+  .pf-callout {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .pf-callout-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .pf-callout p { font-size: 14px; margin-bottom: 0; }
+
+  /* Scenario table */
+  .pf-scenarios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .pf-scenario {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+  }
+  .pf-scenario.base { border-top: 2px solid var(--accent); }
+  .pf-scenario.upside { border-top: 2px solid var(--pos); }
+  .pf-scenario.downside { border-top: 2px solid var(--neg); }
+  .pf-scenario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .pf-scenario-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pf-scenario-prob {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .pf-scenario p { font-size: 13px; margin-bottom: 8px; }
+
+  /* Insurance ramo grid */
+  .pf-ramos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .pf-ramo {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+  .pf-ramo-name {
+    font-weight: 600;
+    color: var(--text-1);
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pf-ramo-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pf-ramo-tag.pres-alta { background: rgba(239,108,108,0.15); color: var(--neg); }
+  .pf-ramo-tag.pres-media { background: rgba(240,168,104,0.15); color: var(--warn); }
+  .pf-ramo-tag.pres-baja { background: rgba(91,211,154,0.15); color: var(--pos); }
+  .pf-ramo p { font-size: 13px; color: var(--text-2); margin-bottom: 0; }
+
+  /* Monitoring agenda */
+  .pf-agenda {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin-top: 14px;
+  }
+  .pf-agenda-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .pf-agenda-item:last-child { border-bottom: none; }
+  .pf-agenda-text { font-size: 13.5px; color: var(--text-2); }
+  .pf-agenda-trigger {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .pf-footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-3);
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width: 768px) {
+    .pf-kpi-row, .pf-scenarios, .pf-ramos { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="pf-header">
+    <div class="pf-eyebrow">Inteligencia Macro · Comité de Inversiones</div>
+    <h1>SIPM Abril 2026 — La brecha mayorista se duplica</h1>
+    <p class="pf-subtitle">Los precios mayoristas registraron <strong>+5,2%</strong> mensual mientras el IPC marcó 2,6%. La asimetría más amplia desde mediados de 2025 anticipa presión sobre márgenes industriales en el segundo trimestre y reposiciona el debate de tarifas en seguros de Daños.</p>
+    <div class="pf-meta">
+      <span>FUENTE · INDEC SIPM</span>
+      <span>FECHA · 19/05/2026</span>
+      <span>AUDIENCIA · Comité Inv. / CFO</span>
+    </div>
+  </header>
+
+  <!-- KPI ROW -->
+  <div class="pf-kpi-row">
+    <div class="pf-kpi">
+      <div class="pf-kpi-label">IPIM Mensual</div>
+      <div class="pf-kpi-value">5,2%</div>
+      <div class="pf-kpi-delta">vs IPC 2,6% · gap +260 pb</div>
+    </div>
+    <div class="pf-kpi">
+      <div class="pf-kpi-label">IPIM Interanual</div>
+      <div class="pf-kpi-value">30,8%</div>
+      <div class="pf-kpi-delta">vs IPC 32,4% · convergencia</div>
+    </div>
+    <div class="pf-kpi">
+      <div class="pf-kpi-label">IPIM Acum. 2026</div>
+      <div class="pf-kpi-value">11,6%</div>
+      <div class="pf-kpi-delta">4 meses · vs IPC 12,3%</div>
+    </div>
+    <div class="pf-kpi">
+      <div class="pf-kpi-label">Petróleo y gas (m/m)</div>
+      <div class="pf-kpi-value">+22,9%</div>
+      <div class="pf-kpi-delta">incidencia 2,09 pp en IPIM</div>
+    </div>
+  </div>
+
+  <!-- §01 LECTURA EJECUTIVA -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 01</div>
+      <h2>Lectura ejecutiva</h2>
+    </div>
+
+    <div class="pf-exec">
+      <ul>
+        <li>El <strong>IPIM saltó 5,2% m/m</strong>, casi duplicando el IPC (2,6%). Es la mayor brecha mayorista-minorista desde mediados de 2025 y rompe el patrón de convergencia que venía observándose entre ambos índices.</li>
+        <li>El shock es <strong>concentrado y exógeno</strong>: Petróleo crudo y gas (+22,9%) y Productos refinados del petróleo (+13,6%) explican casi <em>3,72 pp</em> de los 5,16 pp del nivel general — el 72% de la suba mensual.</li>
+        <li>Sin energía, el resto del IPIM habría subido cerca de <strong>1,5% m/m</strong>: el núcleo industrial está desacelerando, no acelerando.</li>
+        <li>El interanual mayorista (30,8%) ya quedó por <em>debajo</em> del IPC interanual (32,4%): la presión sobre márgenes de las cadenas de valor industriales debería empezar a descomprimirse en H2/2026 si el shock energético no se propaga.</li>
+        <li><strong>Implicancia para seguros</strong>: tensión cierta sobre siniestralidad de Automotor e Incendio/Daños (insumos de reposición + repuestos), oportunidad de reprice en Caución vinculada a obra pública energética, y techo de pricing para Vida/Retiro con expectativa inflacionaria descendiendo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §02 DESCOMPOSICIÓN -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 02</div>
+      <h2>Anatomía del 5,2%: dónde está el shock</h2>
+    </div>
+
+    <p>El IPIM se descompone en dos historias casi opuestas. Por un lado, <strong>Productos primarios</strong> subieron 9,8% — el dato más fuerte en muchos meses — empujados íntegramente por hidrocarburos. Por otro, los <strong>manufacturados</strong> avanzaron 4,1%, con dispersión interna marcada y varios sectores en terreno negativo.</p>
+
+    <h3>Top 5 incidencias positivas sobre el IPIM</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>División</th>
+          <th class="num">Var. m/m</th>
+          <th class="num">Incidencia (pp)</th>
+          <th class="num">Var. acum. 2026</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td class="label">Petróleo crudo y gas</td>
+          <td class="num pf-warn">+22,9%</td>
+          <td class="num pf-gold">2,09</td>
+          <td class="num">62,3%</td>
+        </tr>
+        <tr class="highlight">
+          <td class="label">Productos refinados del petróleo</td>
+          <td class="num pf-warn">+13,6%</td>
+          <td class="num pf-gold">1,63</td>
+          <td class="num">25,0%</td>
+        </tr>
+        <tr>
+          <td class="label">Sustancias y productos químicos</td>
+          <td class="num">+5,1%</td>
+          <td class="num">0,46</td>
+          <td class="num">8,0%</td>
+        </tr>
+        <tr>
+          <td class="label">Alimentos y bebidas</td>
+          <td class="num">+2,2%</td>
+          <td class="num">0,26</td>
+          <td class="num">9,5%</td>
+        </tr>
+        <tr>
+          <td class="label">Productos de caucho y plástico</td>
+          <td class="num">+7,4%</td>
+          <td class="num">0,18</td>
+          <td class="num">10,6%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Sectores con variación negativa o nula</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>División</th>
+          <th class="num">Var. m/m</th>
+          <th class="num">Var. acum. 2026</th>
+          <th>Lectura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Productos metálicos básicos</td>
+          <td class="num pf-neg">-1,6%</td>
+          <td class="num pf-neg">-2,4%</td>
+          <td>Acero/aluminio: demanda industrial floja</td>
+        </tr>
+        <tr>
+          <td class="label">Vehículos automotores y repuestos</td>
+          <td class="num pf-neg">-1,0%</td>
+          <td class="num pf-neg">-0,6%</td>
+          <td>Atraso cambiario + competencia importada</td>
+        </tr>
+        <tr>
+          <td class="label">Máquinas y aparatos eléctricos</td>
+          <td class="num pf-neg">-0,8%</td>
+          <td class="num">+0,4%</td>
+          <td>Bienes durables: demanda contenida</td>
+        </tr>
+        <tr>
+          <td class="label">Productos agropecuarios</td>
+          <td class="num pf-neg">-0,6%</td>
+          <td class="num">+2,1%</td>
+          <td>Soja/maíz a la baja en cosecha</td>
+        </tr>
+        <tr>
+          <td class="label">Productos importados</td>
+          <td class="num">+2,5%</td>
+          <td class="num">+2,4%</td>
+          <td>Confirma ancla cambiaria operando</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pf-callout">
+      <div class="pf-callout-title">Insight no obvio</div>
+      <p>Los <strong>Productos importados</strong> acumulan apenas +2,4% en cuatro meses, contra un IPIM acumulado de 11,6%. La brecha de <em>9,2 pp</em> es la firma estadística más clara del ancla cambiaria: en términos relativos, lo importado es hoy un 8% más barato que en diciembre 2025. Para una aseguradora con cartera dolarizada de inversiones, esto refuerza el atractivo relativo de la posición en dólares frente al peso, especialmente si se asume que el ajuste cambiario eventual revertirá parcialmente este diferencial.</p>
+    </div>
+  </section>
+
+  <!-- §03 DESACOPLE IPC/IPIM -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 03</div>
+      <h2>El desacople IPIM-IPC: qué significa para márgenes</h2>
+    </div>
+
+    <p>Abril marcó un patrón inusual: el IPC se desaceleró fuerte (de 3,4% en marzo a 2,6%), mientras el IPIM se aceleró por encima del 5%. Históricamente, el IPIM "lidera" al IPC en 1-3 meses cuando el shock es de costos. Pero la composición del shock importa.</p>
+
+    <h3>Tres lecturas posibles</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Hipótesis</th>
+          <th>Mecánica</th>
+          <th>Probabilidad asignada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Pass-through diferido</td>
+          <td>El shock energético se trasladará a IPC en mayo-junio vía transporte, alimentos y manufacturados. El "buffer" de YPF y la postergación impositiva de abril están comprimiendo el ajuste.</td>
+          <td class="num pf-gold">45%</td>
+        </tr>
+        <tr>
+          <td class="label">Compresión de márgenes</td>
+          <td>Las cadenas de valor absorben el shock sin trasladarlo por demanda débil. El IPC se mantiene contenido pero la rentabilidad sectorial se deteriora — especialmente en transporte, química y alimentos.</td>
+          <td class="num pf-gold">35%</td>
+        </tr>
+        <tr>
+          <td class="label">Shock transitorio</td>
+          <td>El componente energético revierte parcialmente en mayo-junio si baja el Brent o si se acelera Vaca Muerta. El IPIM converge nuevamente al IPC sin propagación.</td>
+          <td class="num pf-gold">20%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pf-callout">
+      <div class="pf-callout-title">Lectura para la cartera</div>
+      <p>Si la hipótesis dominante es <strong>pass-through diferido</strong>, el IPC de mayo se ubicaría en el rango <em>3,0%-3,4%</em>, lo que cortaría la celebración política del 2,6% de abril y reactivaría la presión sobre tasas reales. Si predomina la <strong>compresión de márgenes</strong>, veremos resultados corporativos del 2T débiles en industriales y químicas — relevante para nuestra exposición en ON corporativas de esos sectores.</p>
+    </div>
+  </section>
+
+  <!-- §04 MATRIZ POR RAMO -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 04</div>
+      <h2>Matriz de impacto por línea de seguros</h2>
+    </div>
+
+    <p>El shock mayorista no afecta a todas las líneas por igual. La transmisión depende de la sensibilidad de la siniestralidad a precios de reposición y de la elasticidad del pricing en cada ramo.</p>
+
+    <div class="pf-ramos">
+      <div class="pf-ramo">
+        <div class="pf-ramo-name">
+          Automotor
+          <span class="pf-ramo-tag pres-alta">Presión Alta</span>
+        </div>
+        <p>Repuestos +0,5% m/m y vehículos -1,0% m/m, pero combustibles +13,6% impacta la frecuencia de siniestros (más uso intensivo en flotas comerciales). Reposición de unidades sigue cara en términos reales. <em>Revisar tarifas Q3 contra suma asegurada.</em></p>
+      </div>
+      <div class="pf-ramo">
+        <div class="pf-ramo-name">
+          Incendio / Propiedad
+          <span class="pf-ramo-tag pres-alta">Presión Alta</span>
+        </div>
+        <p>Materiales de construcción: caucho/plástico +7,4%, minerales no metálicos +3,1%, madera +2,3%. Costo de reconstrucción acelera sobre tarifas vigentes. <em>Riesgo de gap en pólizas con suma fija sin cláusula de ajuste automático.</em></p>
+      </div>
+      <div class="pf-ramo">
+        <div class="pf-ramo-name">
+          Caución / Crédito
+          <span class="pf-ramo-tag pres-media">Presión Media</span>
+        </div>
+        <p>Obra pública energética se vuelve más cara (insumos petroquímicos +5,1%, refinados +13,6%): mayor demanda de garantías pero también mayor exposición por monto. <em>Oportunidad de pricing si se reaseguran adecuadamente.</em></p>
+      </div>
+      <div class="pf-ramo">
+        <div class="pf-ramo-name">
+          ART
+          <span class="pf-ramo-tag pres-media">Presión Media</span>
+        </div>
+        <p>Salarios aceleran detrás del IPC, no del IPIM. Suma asegurada por ITP/IPP se ajusta con salarios pero costos médicos siguen presionados (equipos médicos +0,5% m/m, +19,6% i/a). <em>Monitorear gap entre actualización de masa salarial y siniestralidad médica.</em></p>
+      </div>
+      <div class="pf-ramo">
+        <div class="pf-ramo-name">
+          Vida / Retiro
+          <span class="pf-ramo-tag pres-baja">Presión Baja</span>
+        </div>
+        <p>Producto financiero, no real. Lo relevante es la curva de tasas reales y la expectativa inflacionaria. Si IPC sigue desacelerando, presión a la baja en rendimientos garantizados nominales — pero <em>mejora la calidad de la reserva en términos reales</em>.</p>
+      </div>
+      <div class="pf-ramo">
+        <div class="pf-ramo-name">
+          Daños generales
+          <span class="pf-ramo-tag pres-media">Presión Media</span>
+        </div>
+        <p>Mix de insumos: alimentos +2,2%, químicos +5,1%, refinados +13,6%. Frecuencia estable, severidad creciente. <em>Revisar deducibles y franquicias en pólizas con baja rotación.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §05 ESCENARIOS -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 05</div>
+      <h2>Escenarios IPC mayo-junio 2026</h2>
+    </div>
+
+    <p>El SIPM de abril es el principal input para proyectar el IPC de mayo, junto con relevamientos privados de alta frecuencia y la dinámica de tarifas reguladas.</p>
+
+    <div class="pf-scenarios">
+      <div class="pf-scenario base">
+        <div class="pf-scenario-header">
+          <div class="pf-scenario-name">Escenario base</div>
+          <div class="pf-scenario-prob">Prob. 50%</div>
+        </div>
+        <p><strong>IPC mayo: 2,9%-3,2%</strong></p>
+        <p>Pass-through parcial del shock energético. YPF traslada el buffer en mayo (+1% confirmado + ajuste impositivo). Transporte vuelve a liderar la división. Núcleo se mantiene contenido en 2,3%-2,5%.</p>
+      </div>
+      <div class="pf-scenario upside">
+        <div class="pf-scenario-header">
+          <div class="pf-scenario-name">Upside (desinflación)</div>
+          <div class="pf-scenario-prob">Prob. 25%</div>
+        </div>
+        <p><strong>IPC mayo: 2,3%-2,7%</strong></p>
+        <p>Brent retrocede en mayo, demanda débil obliga a comprimir márgenes. Núcleo desacelera a 2,0%-2,2%. Sería el segundo mes consecutivo bajo el 3% y consolidaría la narrativa de desinflación.</p>
+      </div>
+      <div class="pf-scenario downside">
+        <div class="pf-scenario-header">
+          <div class="pf-scenario-name">Downside (re-aceleración)</div>
+          <div class="pf-scenario-prob">Prob. 25%</div>
+        </div>
+        <p><strong>IPC mayo: 3,3%-3,8%</strong></p>
+        <p>Pass-through pleno + escalada en Medio Oriente eleva Brent &gt; US$110. Combustibles trepan otro 8-10%. Transporte +6%, Alimentos +2,5%. Vuelta al rango pre-abril, expectativas se deterioran.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §06 AGENDA -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 06</div>
+      <h2>Agenda de monitoreo · próximos 30 días</h2>
+    </div>
+
+    <div class="pf-agenda">
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-text"><strong>Brent</strong>: trayectoria del crudo es la variable dominante para el IPIM de mayo. Cada US$10/barril ~ 5-7% de impacto en refinados locales.</div>
+        <div class="pf-agenda-trigger">Trigger: &gt; US$105</div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-text"><strong>YPF</strong>: vencimiento del buffer (~28 de junio). Recomposición de precios postergada podría acumular impacto en SIPM/IPC del 3T.</div>
+        <div class="pf-agenda-trigger">Trigger: anuncio post-buffer</div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-text"><strong>IPC mayo</strong> (publicación 12-jun aprox.): clave para validar la hipótesis dominante de pass-through.</div>
+        <div class="pf-agenda-trigger">Trigger: IPC &gt; 3,3%</div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-text"><strong>Tipo de cambio</strong>: el ancla cambiaria sostiene el contraste IPIM nacional vs. importado. Cualquier salto en CCL/MEP reordena toda la lectura.</div>
+        <div class="pf-agenda-trigger">Trigger: brecha &gt; 15%</div>
+      </div>
+      <div class="pf-agenda-item">
+        <div class="pf-agenda-text"><strong>Curva CER vs. tasa fija</strong>: si el pass-through se confirma, el breakeven implícito de los CER subirá. Posicionamiento defensivo en duration.</div>
+        <div class="pf-agenda-trigger">Trigger: breakeven 5Y &gt; 28%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §07 RECOMENDACIONES -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 07</div>
+      <h2>Recomendaciones al Comité</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Dimensión</th>
+          <th>Acción sugerida</th>
+          <th>Horizonte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Cartera CER</td>
+          <td>Mantener o aumentar marginalmente exposición a tramo 2-3Y. El shock energético eleva el breakeven implícito y los CER capturarían la propagación si ocurre.</td>
+          <td>1-3 meses</td>
+        </tr>
+        <tr>
+          <td class="label">ON corporativas industriales</td>
+          <td>Reducir exposición a emisores químicos y alimenticios con baja capacidad de pricing. Spread podría ampliarse en 2T si márgenes se comprimen.</td>
+          <td>2-4 meses</td>
+        </tr>
+        <tr>
+          <td class="label">Energía / Oil & Gas</td>
+          <td>Sobreponderar selectivamente. Vaca Muerta + paridad de importación + buffer en recomposición favorecen a integradas. Atención a regulación.</td>
+          <td>6-12 meses</td>
+        </tr>
+        <tr>
+          <td class="label">Pricing Automotor / Incendio</td>
+          <td>Acelerar revisión tarifaria del 3T. Costos de reposición acumulados están por encima del ajuste tarifario vigente. Riesgo de combined ratio &gt; 100%.</td>
+          <td>Inmediato</td>
+        </tr>
+        <tr>
+          <td class="label">Reserva técnica Vida</td>
+          <td>Sostener la duration actual. Si la desinflación se consolida, la mejora en el valor real de la reserva supera el costo de oportunidad nominal.</td>
+          <td>3-6 meses</td>
+        </tr>
+        <tr>
+          <td class="label">Posición dolarizada</td>
+          <td>Mantener. El ancla cambiaria opera, pero el diferencial acumulado (importados +2,4% YTD vs nacionales +12,3%) sugiere ajuste pendiente.</td>
+          <td>6-12 meses</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- §08 TAKEAWAY -->
+  <section class="pf-section">
+    <div class="pf-section-header">
+      <div class="pf-section-num">§ 08</div>
+      <h2>Takeaway para CFO/CEO</h2>
+    </div>
+
+    <div class="pf-exec">
+      <ul>
+        <li>El SIPM de abril <strong>no contradice</strong> la desinflación del IPC — la mide en otra dimensión. Es un shock de costos concentrado en energía, no una re-aceleración generalizada.</li>
+        <li>La pregunta operativa relevante es <em>quién absorbe el ajuste</em>: si lo absorben las cadenas de valor (compresión de márgenes), el IPC seguirá bajo y los resultados corporativos del 2T serán débiles. Si lo trasladan, el IPC de mayo-junio supera 3% y la narrativa de desinflación se quiebra.</li>
+        <li>Para la operación aseguradora, el mensaje principal es: <strong>los costos de siniestralidad en Automotor e Incendio están subiendo más rápido que el IPC</strong>. Revisar pricing y suma asegurada antes del cierre del 2T es prioritario.</li>
+        <li>Las inversiones en CER deberían mantener o aumentar exposición; las ON corporativas industriales merecen revisión emisor por emisor.</li>
+        <li>El próximo SIPM (mayo, publicación ~19-jun) será decisivo. Si el efecto energético se sostiene o amplía, recalibramos todo el escenario macro para el 3T.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="pf-footer">
+    SIPM Abril 2026 · Informe INDEC · Publicado 19/05/2026 · Análisis interno · Elaborado para Comité de Inversiones
+  </div>
+
+</div>
+</body>
+</html>
