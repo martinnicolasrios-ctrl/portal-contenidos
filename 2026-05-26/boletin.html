@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial — Análisis Regulatorio · 26/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 60%);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 1040px; margin: 0 auto; padding: 48px 40px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 48px; }
+  .logo { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; color: var(--accent); letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-2); margin-bottom: 8px; }
+  .header-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); }
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+  .section-title { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
+  .section-line { flex: 1; height: 1px; background: var(--line); }
+  section { margin-bottom: 56px; }
+  .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px 16px; margin-bottom: 16px; }
+  .card-urgente { border-left: 2px solid var(--neg); }
+  .card-novedad { border-left: 2px solid var(--accent); }
+  .card-financiero { border-left: 2px solid var(--gold); }
+  .card-norm-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
+  .card-urgente .card-norm-num { color: var(--accent); }
+  .card-novedad .card-norm-num { color: var(--accent); }
+  .card-financiero .card-norm-num { color: var(--gold); }
+  .card-organismo { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .card-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+  .card-desc { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin-bottom: 16px; }
+  .card-links { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+  .card-link { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-decoration: none; border-radius: 3px; padding: 3px 8px; transition: opacity 0.15s; }
+  .card-link:hover { opacity: 0.75; }
+  .link-neg { color: var(--neg); border: 1px solid rgba(239,108,108,.3); }
+  .link-accent { color: var(--accent); border: 1px solid rgba(52,187,218,.3); }
+  .link-gold { color: var(--gold); border: 1px solid rgba(232,176,74,.3); }
+  .link-ink3 { color: var(--ink-3); border: 1px solid rgba(123,145,163,.3); }
+  .chip { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 16px 20px; margin-bottom: 12px; }
+  .chip-date { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 4px; }
+  .chip-desc { font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+  .chip-action { font-size: 13px; color: var(--ink); font-weight: 600; }
+  .impact-label { color: var(--ink); font-weight: 600; }
+  footer { border-top: 1px solid var(--line); padding-top: 24px; margin-top: 24px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); }
+  @media (max-width: 720px) {
+    .container { padding: 28px 20px; }
+    .logo { font-size: 22px; }
+    .section-title { font-size: 20px; }
+    .card-links { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">Hipotecario Seguros</div>
+    <div class="subtitle">Boletín Oficial &mdash; Análisis Regulatorio</div>
+    <div class="header-date">26 de mayo de 2026</div>
+  </header>
+
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Novedades Regulatorias</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="card card-novedad">
+      <div class="card-norm-num">RESOG-2026-4-APN-IGJ#MJ &nbsp;·&nbsp; Resolución General 4/2026</div>
+      <div class="card-organismo">Inspección General de Justicia — Ministerio de Justicia</div>
+      <div class="card-title">Simplificación registral para sociedades constituidas en el extranjero (arts. 118 y 123, Ley 19.550)</div>
+      <div class="card-desc">
+        La IGJ deroga y reemplaza múltiples artículos de la RG 15/24, unificando los regímenes de inscripción de los arts. 118 y 123 en un esquema de requisitos comunes y eliminando exigencias formales que no cumplen función sustantiva de control. Los plazos de presentación de estados contables para sucursales extranjeras quedan fijados en 120 días corridos desde el cierre del ejercicio. Se admite documentación proveniente del exterior en formato digital apostillado. Vigencia desde el 27/05/2026.
+        <br><br>
+        <span class="impact-label">Impacto para aseguradoras:</span> Facilita la inscripción y el mantenimiento registral de reaseguradoras extranjeras, holdings y representaciones permanentes de grupos aseguradores del exterior con actuación en Argentina. Reduce costos de cumplimiento societario para estructuras de inversión con participación extranjera directa.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342361/20260526" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+    <div class="card card-novedad">
+      <div class="card-norm-num">COM. "C" 101866/2026</div>
+      <div class="card-organismo">Banco Central de la República Argentina</div>
+      <div class="card-title">Fe de erratas en archivos de reporte de Prevención de LA/FT — Sección 8, Régimen Informativo BCRA</div>
+      <div class="card-desc">
+        El BCRA corrige la denominación de los archivos PDF de la Sección 8 del régimen informativo ("Presentación de Informaciones al BCRA"): se actualizan los nombres de los archivos correspondientes al informe de autoevaluación de riesgos LA/FT, declaración de tolerancia de riesgo e informe anual del revisor externo independiente, en función de lo dispuesto por la Com. "A" 8430.
+        <br><br>
+        <span class="impact-label">Impacto para aseguradoras:</span> Las aseguradoras deben verificar con el área de Compliance/PLA si la corrección en la denominación de archivos del régimen informativo BCRA afecta los formularios o plataformas propias de reporte regulatorio ante la SSN o cualquier obligación de reporte cruzado.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342383/20260526" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Impacto Financiero</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="card card-financiero">
+      <div class="card-norm-num">COM. "A" 8441/2026 &nbsp;·&nbsp; Circular CAMEX 1-1062</div>
+      <div class="card-organismo">Banco Central de la República Argentina — Gerencia de Exterior y Cambios</div>
+      <div class="card-title">Pagarés en moneda extranjera (RG CNV 1003/24) incorporados al régimen de aplicación de divisas SECOEXPO</div>
+      <div class="card-desc">
+        El BCRA incorpora al punto 7.3. del texto ordenado de Exterior y Cambios los pagarés denominados y pagaderos en moneda extranjera emitidos bajo la RG CNV 1003/24, habilitándolos como instrumentos de aplicación de divisas en el seguimiento de cobro de exportaciones (SECOEXPO). Condiciones: liquidación en el mercado de cambios dentro de las 72 hs. hábiles de acreditados los fondos; cancelación de capital/intereses mediante transferencia desde cuenta en ME en entidad local; certificación emitida por la entidad encargada del seguimiento. Los fondos destinados a cancelar estos pagarés quedan exceptuados de la obligación general de liquidación de cobros de exportaciones de bienes.
+        <br><br>
+        <span class="impact-label">Impacto para aseguradoras:</span> Las aseguradoras que mantengan en cartera pagarés emitidos bajo RG CNV 1003/24 deben evaluar el tratamiento cambiario de dichas posiciones y su elegibilidad como activo de inversión regulatorio ante la SSN. El área de Inversiones y el área Financiera deben revisar: (1) la admisibilidad de estos instrumentos para cobertura de reservas técnicas, (2) el cumplimiento del plazo de 72 hs. para eventuales liquidaciones, y (3) el impacto en la gestión de activos en ME ante un cambio en las reglas de mercado de cambios.
+      </div>
+      <div class="card-links">
+        <a class="card-link link-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342382/20260526" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Próximos Vencimientos</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="chip">
+      <div class="chip-date">27 / 05 / 2026</div>
+      <div class="chip-desc">Entrada en vigencia de la RG IGJ 4/2026 (simplificación registral de sociedades extranjeras, arts. 118 y 123 Ley 19.550).</div>
+      <div class="chip-action">Verificar si alguna subsidiaria, reaseguradora o holding del exterior requiere actualización de inscripción bajo el nuevo régimen.</div>
+    </div>
+
+    <div class="chip">
+      <div class="chip-date">Plazo corriente — 72 hs. hábiles</div>
+      <div class="chip-desc">Ventana de liquidación en el mercado de cambios para fondos de pagarés MX bajo SECOEXPO (BCRA Com. "A" 8441/2026).</div>
+      <div class="chip-action">Inversiones/Financiero: confirmar tenencias de pagarés RG CNV 1003/24 en cartera y revisar tratamiento cambiario.</div>
+    </div>
+
+    <div class="chip">
+      <div class="chip-date">Sin fecha fija en esta edición</div>
+      <div class="chip-desc">Fe de erratas de archivos de reporte LA/FT (BCRA Com. "C" 101866/2026).</div>
+      <div class="chip-action">Compliance/PLA: verificar si la corrección de denominaciones de archivos BCRA Sección 8 impacta en formularios de reporte regulatorio propio.</div>
+    </div>
+
+  </section>
+
+  <footer>
+    Generado automáticamente &nbsp;·&nbsp; 26/05/2026 &nbsp;·&nbsp; Fuente: Boletín Oficial de la República Argentina
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Cronista — Análisis Macro 26.05.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+  body {
+    background: #0B1620;
+    color: #F2F6F9;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 24px 64px; }
+
+  /* HEADER */
+  .header { padding: 40px 0 32px; border-bottom: 1px solid #1E3447; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F2F6F9;
+    line-height: 1.25;
+    max-width: 760px;
+    margin-bottom: 16px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #7B91A3;
+  }
+  .meta-sep { color: #1E3447; }
+
+  /* KPI STRIP */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    padding: 28px 0;
+    border-bottom: 1px solid #1E3447;
+  }
+  @media (max-width: 720px) {
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-strip .kpi-card:last-child { grid-column: 1 / -1; }
+  }
+  .kpi-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 16px 14px;
+  }
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #7B91A3;
+    margin-bottom: 6px;
+  }
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: #F2F6F9;
+    letter-spacing: -0.5px;
+  }
+  .kpi-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .kpi-delta.pos { color: #5BD39A; }
+  .kpi-delta.neg { color: #EF6C6C; }
+  .kpi-delta.neu { color: #7B91A3; }
+
+  /* SECTIONS */
+  .section { padding: 40px 0; border-bottom: 1px solid #1E3447; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #34BBDA;
+    letter-spacing: 1px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #F2F6F9;
+  }
+
+  /* BULLET LIST */
+  .bullet-list { display: flex; flex-direction: column; gap: 14px; }
+  .bullet-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .bullet-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34BBDA;
+    box-shadow: 0 0 6px rgba(52,187,218,.5);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .bullet-text { color: #B5C5D3; font-size: 15px; line-height: 1.6; }
+  .bullet-text strong { color: #F2F6F9; font-weight: 600; }
+
+  /* CARD */
+  .card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .card-header {
+    background: #17293A;
+    padding: 12px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #34BBDA;
+    border-bottom: 1px solid #1E3447;
+  }
+  .card-content { padding: 20px 18px; color: #B5C5D3; font-size: 15px; line-height: 1.7; }
+  .card-content p + p { margin-top: 14px; }
+  .card-content strong { color: #F2F6F9; }
+  .card-alert {
+    border-left: 3px solid #EF6C6C;
+    background: rgba(239,108,108,.04);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .card-rec {
+    border-left: 3px solid #E8B04A;
+    background: rgba(232,176,74,.04);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* TENSION LIST */
+  .tension-list { display: flex; flex-direction: column; gap: 14px; }
+  .tension-item {
+    border-left: 3px solid #34BBDA;
+    padding: 12px 16px;
+    background: rgba(52,187,218,.04);
+    border-radius: 0 4px 4px 0;
+  }
+  .tension-title { font-weight: 600; color: #F2F6F9; margin-bottom: 4px; font-size: 14px; }
+  .tension-body { color: #B5C5D3; font-size: 14px; line-height: 1.6; }
+
+  /* VAR CARDS */
+  .var-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 720px) { .var-grid { grid-template-columns: 1fr 1fr; } }
+  .var-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 16px;
+  }
+  .var-card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7B91A3;
+    margin-bottom: 8px;
+  }
+  .var-card-body { font-size: 13px; color: #B5C5D3; line-height: 1.55; }
+  .var-card-body strong { color: #F2F6F9; }
+  .var-card-verdict {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .verdict-pos { background: rgba(91,211,154,.12); color: #5BD39A; }
+  .verdict-neg { background: rgba(239,108,108,.12); color: #EF6C6C; }
+  .verdict-neu { background: rgba(123,145,163,.12); color: #7B91A3; }
+  .verdict-gold { background: rgba(232,176,74,.12); color: #E8B04A; }
+
+  /* POS GRID */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 720px) { .pos-grid { grid-template-columns: 1fr; } }
+  .pos-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .pos-top {
+    padding: 10px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .pos-top.green { background: rgba(91,211,154,.1); color: #5BD39A; border-bottom: 1px solid rgba(91,211,154,.2); }
+  .pos-top.red { background: rgba(239,108,108,.1); color: #EF6C6C; border-bottom: 1px solid rgba(239,108,108,.2); }
+  .pos-top.gold { background: rgba(232,176,74,.1); color: #E8B04A; border-bottom: 1px solid rgba(232,176,74,.2); }
+  .pos-top.blue { background: rgba(52,187,218,.1); color: #34BBDA; border-bottom: 1px solid rgba(52,187,218,.2); }
+  .pos-body { padding: 14px; }
+  .pos-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #B5C5D3;
+    line-height: 1.5;
+  }
+  .pos-item:last-child { margin-bottom: 0; }
+  .pos-item::before { content: "—"; color: #1E3447; flex-shrink: 0; margin-top: 1px; }
+  .pos-item strong { color: #F2F6F9; }
+
+  /* ALERT LIST */
+  .alert-list { display: flex; flex-direction: column; gap: 12px; }
+  .alert-item {
+    border-left: 3px solid #EF6C6C;
+    padding: 12px 16px;
+    background: rgba(239,108,108,.04);
+    border-radius: 0 4px 4px 0;
+  }
+  .alert-title { font-weight: 600; color: #EF6C6C; margin-bottom: 4px; font-size: 14px; }
+  .alert-body { color: #B5C5D3; font-size: 13px; line-height: 1.6; }
+
+  /* NO PRICEADO */
+  .highlight-list { display: flex; flex-direction: column; gap: 12px; }
+  .highlight-item {
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #B5C5D3;
+    line-height: 1.6;
+  }
+  .highlight-item.accent { border-left: 3px solid #34BBDA; background: rgba(52,187,218,.05); }
+  .highlight-item.neg { border-left: 3px solid #EF6C6C; background: rgba(239,108,108,.04); }
+  .highlight-item strong { color: #F2F6F9; }
+
+  /* INS TABS */
+  .ins-tabs { display: flex; gap: 0; margin-bottom: -1px; position: relative; z-index: 1; }
+  .ins-tab {
+    padding: 9px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid #1E3447;
+    border-radius: 4px 4px 0 0;
+    border-bottom: none;
+    color: #7B91A3;
+    background: #0B1620;
+    transition: background 0.15s;
+  }
+  .ins-tab.active-pesos { background: rgba(52,187,218,.12); color: #34BBDA; border-color: #34BBDA; }
+  .ins-tab.active-cer { background: rgba(168,85,247,.12); color: #A855F7; border-color: #A855F7; }
+  .ins-tab.active-riesgo { background: rgba(239,108,108,.12); color: #EF6C6C; border-color: #EF6C6C; }
+  .ins-body {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 0 4px 4px 4px;
+    padding: 20px;
+  }
+  .ins-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #1E3447;
+  }
+  .ins-sub:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+  .ins-sub.pesos { color: #34BBDA; }
+  .ins-sub.cer { color: #A855F7; }
+  .ins-sub.riesgo { color: #EF6C6C; }
+  .ins-sub.gold { color: #E8B04A; }
+  .ins-para { font-size: 14px; color: #B5C5D3; line-height: 1.65; margin-bottom: 10px; }
+  .ins-para strong { color: #F2F6F9; }
+  .ins-para:last-child { margin-bottom: 0; }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    vertical-align: middle;
+  }
+  .tag.pos { background: rgba(91,211,154,.15); color: #5BD39A; }
+  .tag.neg { background: rgba(239,108,108,.15); color: #EF6C6C; }
+  .tag.gold { background: rgba(232,176,74,.15); color: #E8B04A; }
+  .tag.blue { background: rgba(52,187,218,.15); color: #34BBDA; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    background: #17293A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #7B91A3;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #1E3447;
+  }
+  .data-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #1E3447;
+    color: #B5C5D3;
+  }
+  .data-table tr:nth-child(even) td { background: #0B1620; }
+  .data-table tr:nth-child(odd) td { background: #0F1E2B; }
+  .data-table tr:hover td { background: rgba(52,187,218,.04); }
+  .data-table td:first-child { color: #F2F6F9; font-weight: 500; }
+  .data-table td.mono { font-family: 'IBM Plex Mono', monospace; }
+
+  /* FOOTER */
+  .footer {
+    padding: 32px 0;
+    border-top: 1px solid #1E3447;
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .footer-col { }
+  .footer-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 6px;
+  }
+  .footer-text { font-size: 12px; color: #7B91A3; line-height: 1.6; }
+  .divider { height: 1px; background: #1E3447; margin: 24px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">El Cronista &mdash; Análisis Macro Diario &mdash; Martes 26 de Mayo de 2026</div>
+    <h1 class="header-title">El carry resiste, pero el FMI pone el dedo en la llaga: el superávit que no es tan superávit</h1>
+    <div class="header-meta">
+      <span class="meta-item">Fecha: 26.05.2026</span>
+      <span class="meta-sep">|</span>
+      <span class="meta-item">Fuente: El Cronista / cronista.com</span>
+      <span class="meta-sep">|</span>
+      <span class="meta-item">Cobertura: Economía · Finanzas · Mercados · Regulación</span>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="kpi-label">TC Oficial BNA</div>
+      <div class="kpi-value">$1.425</div>
+      <div class="kpi-delta neu">Venta · Banda inf. activa</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Dólar Blue / MEP</div>
+      <div class="kpi-value">$1.425</div>
+      <div class="kpi-delta pos">Blue = Oficial · Brecha 0%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Dólar MEP</div>
+      <div class="kpi-value">$1.431</div>
+      <div class="kpi-delta neu">+0.05% · Spread ~0.4%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Riesgo País</div>
+      <div class="kpi-value">~500 pb</div>
+      <div class="kpi-delta pos">Tendencia bajista · Objetivo 450</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Break-Even Inflac.</div>
+      <div class="kpi-value">26.2%</div>
+      <div class="kpi-delta pos">-4.75pp desde pico abr · Comprimiendo</div>
+    </div>
+  </div>
+
+  <!-- § 01 RESUMEN EJECUTIVO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <div class="bullet-list">
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>El FMI aprobó la 2da revisión del programa y desembolsó u$s 1.000 millones</strong>, pero dejó una nota al pie explosiva: si se incorporan los intereses de los bonos cupón cero "por encima de la línea", el déficit fiscal sube a ~0,8% del PBI. El equilibrio fiscal que muestra el Gobierno depende del criterio contable utilizado.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>La brecha cambiaria se desplomó a cero</strong>: el dólar blue y el oficial venden al mismo precio ($1.425), el BCRA compró u$s 9.000 millones en el año y el tipo de cambio opera lejos del piso de banda. El carry sigue siendo la estrategia dominante, pero varios analistas —incluido BlackRock— advierten sobre atraso cambiario acumulado.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>La desaceleración inflacionaria se acelera</strong>: la curva de tasa fija en pesos opera plana entre 1,7% y 2,1% TEM en todos los tramos, y el break-even CER vs tasa fija bajó a 26,2% anualizado a 12 meses (desde 31% en abril). El mercado anticipa perforación del 2% mensual en junio-julio.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>El Gobierno lanzó el "Súper RIGI" (Régimen de Incentivo para Nuevas Industrias)</strong> con beneficios fiscales y cambiarios para inversiones mínimas de u$s 1.000 millones en IA, semiconductores y biotecnología, y bajó retenciones al trigo y cebada del 7,5% al 5,5% desde junio 2026. El costo fiscal combinado supera u$s 1.000 millones para 2028.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>Fecha clave 23 de junio: MSCI revisa la clasificación de Argentina</strong>. El mercado estima posible salida de la categoría "Standalone" hacia "Frontier". Un upgrade desataría flujos de fondos indexados a ADRs argentinos; el principal obstáculo sigue siendo la existencia de controles de capitales residuales.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 02 LECTURA DE MERCADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Interpretación estructural — 26.05.2026</div>
+      <div class="card-content">
+        <p>El régimen actual <strong>no es carry puro ni cobertura</strong>: es un híbrido de transición donde el ancla cambiaria funciona como catalizador de desinflación, el mercado la valida (brecha cero, volatilidad cambiaria en mínimos desde 2023), pero la sostenibilidad del esquema depende de una acumulación de reservas que el FMI reconoce como prioritaria y que hoy se apoya en un flujo de cosecha que es estacional.</p>
+        <p>La noticia del día que el mercado no está chequeando con suficiente atención es <strong>la nota al pie del staff report del FMI</strong>: el organismo dice explícitamente que si los intereses capitalizados de los bonos cupón cero se contabilizan "sobre la línea", el resultado fiscal pasa de equilibrio a déficit de 0,8% del PBI. Esto no es un tecnicismo menor: pone en cuestión la narrativa de superávit fiscal que sostiene toda la estructura de confianza del programa.</p>
+        <p>Al mismo tiempo, la tregua entre EE.UU. e Irán y la caída del Brent (-4% a u$s 100/barril) generan un contexto externo más favorable para emergentes importadores de petróleo. Argentina se beneficia doblamente: menor presión inflacionaria importada y potencial reorientación de flujos de capital hacia activos de mayor riesgo. <strong>Si el riesgo país perfora 450 pb, los bonos argentinos pasarían a rendir por debajo del 9% anual</strong>, cambiando estructuralmente el perfil riesgo-retorno del crédito soberano.</p>
+        <p>El nombramiento de Warsh en la Fed y la expectativa de mercado de una suba de tasas a fin de año en EE.UU. introduce una variable de riesgo global de duration que podría presionar las tasas libres de riesgo al alza, encareciendo el costo financiero de toda la curva emergente. La tensión entre inflación global (por el conflicto Medio Oriente) y recesión (por enfriamiento de actividad) es el vector de riesgo sistémico más relevante para Argentina en el segundo semestre.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <div class="tension-list">
+      <div class="tension-item">
+        <div class="tension-title">TC vs. Reservas: el carry se financia con flujo de cosecha, no con stock</div>
+        <div class="tension-body">El BCRA acumuló u$s 9.000 millones en el año, pero el tipo de cambio real se aprecia continuamente. El ingreso estacional de divisas por cosecha fina sostiene el esquema hasta agosto-septiembre. Después, la dinámica cambia. <strong>El mercado todavía no está priceando el riesgo estacional de segunda mitad</strong>.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">Superávit fiscal vs. contabilidad creativa: la grieta que abre el FMI</div>
+        <div class="tension-body">La nota al pie del staff report señala un potencial déficit de 0,8% del PBI si se recontabilizan los intereses de bonos cupón cero. El Gobierno "se puede hacer el distraído porque es un pie de página" (diputado opositor). Pero <strong>si este debate escala políticamente o el FMI lo incorpora a revisiones futuras, el piso del riesgo soberano se mueve</strong>.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">Desinflación vs. atraso cambiario: la secuencia del ancla</div>
+        <div class="tension-body">El ancla cambiaria funciona para bajar la inflación (break-even ya en 26%), pero acumula apreciación real. BlackRock, Kiguel (Econviews) y el propio FMI advierten sobre este riesgo. <strong>La secuencia importa: si la inflación no baja lo suficientemente rápido antes de que se retire el ancla, el ajuste cambiario posterior será más violento</strong>.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">Tasas globales al alza vs. carry local: la tensión de Warsh</div>
+        <div class="tension-body">Wall Street anticipa suba de tasas de la Fed bajo Warsh a fin de 2026. El 10-year Treasury ya cotiza por encima de 4,6%. <strong>Una suba adicional de 50-75 pb en los Treasuries reduciría el diferencial de carry argentino y presionaría la curva de bonos soberanos emergentes</strong>, justo cuando Argentina espera retornar a mercados voluntarios.</div>
+      </div>
+      <div class="tension-item">
+        <div class="tension-title">Consenso fiscal nación-provincias: agenda electoral vs. sostenibilidad</div>
+        <div class="tension-body">El Gobierno busca bajar ingresos brutos provinciales para reducir costos impositivos, al mismo tiempo que baja retenciones al agro (costo &gt; u$s 1.000 MM en 2028). Las provincias no acompañan. <strong>La presión fiscal sobre el sector privado no cae si solo actúa Nación, y el impacto sobre el costo de hacer negocios permanece alto</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 04 IMPACTO EN VARIABLES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="var-grid">
+      <div class="var-card">
+        <div class="var-card-title">Tipo de Cambio</div>
+        <div class="var-card-body">
+          Oficial: <strong>$1.425</strong> venta. Blue: <strong>$1.425</strong> (brecha 0%). MEP: <strong>$1.431</strong>. CCL: levemente superior. Banda inferior activa. Tope: <strong>$1.742</strong>. El dólar mayorista cierra el gap vs. minorista en contexto de alta liquidación. Volatilidad anualizada al alza (39% semanal vs. 30% anual).
+        </div>
+        <span class="var-card-verdict verdict-gold">Apreciado · Estable</span>
+      </div>
+      <div class="var-card">
+        <div class="var-card-title">Curva de Tasas Pesos</div>
+        <div class="var-card-body">
+          Curva tasa fija <strong>plana en 1,7%-2,1% TEM</strong> en todos los tramos. Sin pendiente positiva. El mercado no premia la duration en pesos. Break-even CER-TF a 12 meses: <strong>26,2%</strong> (bajó 4,75pp desde pico de abril). El mercado implica desinflación acelerada a partir de junio.
+        </div>
+        <span class="var-card-verdict verdict-pos">Carry activo · Plana</span>
+      </div>
+      <div class="var-card">
+        <div class="var-card-title">Inflación Esperada</div>
+        <div class="var-card-body">
+          Break-even a 6M: <strong>26,9% anualizado</strong>. A 12M: <strong>26,2%</strong>. Analistas (Delphos, Econviews) esperan perforación del <strong>2% mensual en junio-julio</strong>. El ancla cambiaria, baja del petróleo y compresión de expectativas alinean el escenario de desinflación. El riesgo es el atraso cambiario acumulado.
+        </div>
+        <span class="var-card-verdict verdict-pos">Desaceleración confirmada</span>
+      </div>
+      <div class="var-card">
+        <div class="var-card-title">Liquidez del Sistema</div>
+        <div class="var-card-body">
+          BCRA posición vendida en futuros se redujo de <strong>u$s 6.800 MM</strong> (sept. 2025) a ~<strong>u$s 1.900 MM</strong> en mayo 2026. Caída de la demanda de cobertura. Alta liquidación de cosecha. Crédito bancario en pesos creciendo pero spread morosidad monitoreado por bancos. Obras sociales bajo crisis regulatoria.
+        </div>
+        <span class="var-card-verdict verdict-pos">Holgada · Cosecha</span>
+      </div>
+      <div class="var-card">
+        <div class="var-card-title">Riesgo Soberano</div>
+        <div class="var-card-body">
+          Bonos argentinos operan ~<strong>9% anual</strong>. Tendencia bajista hacia 450 pb si se consolida el cierre de conflicto Irán-EE.UU. Fitch ya mejoró calificación. Crédito de bancos comerciales con garantía multilateral de <strong>u$s 4.000 MM</strong> en proceso. MSCI review el <strong>23 de junio</strong> como catalizador adicional.
+        </div>
+        <span class="var-card-verdict verdict-gold">Bajando · Catalizadores</span>
+      </div>
+      <div class="var-card">
+        <div class="var-card-title">Contexto Global</div>
+        <div class="var-card-body">
+          Brent: <strong>u$s 100/barril</strong> (-4%). Tregua EE.UU.-Irán de 60 días. Treasuries 10Y: <strong>&gt;4,6%</strong>. Fed (Warsh) con sesgo hawkish a fin de 2026. Flujos de capitales hacia emergentes mejoran por menor inflación energética. Riesgo de stagflation global no descartado.
+        </div>
+        <span class="var-card-verdict verdict-neu">Dual: Positivo CP / Riesgo LP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 05 POSICIONAMIENTO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 05</span>
+      <span class="section-title">Implicancias de Posicionamiento</span>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card">
+        <div class="pos-top green">Activos que se benefician</div>
+        <div class="pos-body">
+          <div class="pos-item"><span><strong>Bonos soberanos hard dollar (GD30, AL30)</strong>: compresión de spread hacia 450 pb si se cierra Irán. Mayor upside en tramos cortos donde el riesgo de duration global es menor. <span class="tag pos">Carry + Compresión</span></span></div>
+          <div class="pos-item"><span><strong>Tasa fija en pesos (corto plazo 3-6M)</strong>: desinflación acelerada favorece posiciones a tasa fija sobre CER en el tramo corto. Break-even ya cayó 4,75pp. <span class="tag pos">Desinflación</span></span></div>
+          <div class="pos-item"><span><strong>Acciones con ADRs (energía, bancos)</strong>: posible upgrade MSCI el 23/6 desataría ingreso de flujos
