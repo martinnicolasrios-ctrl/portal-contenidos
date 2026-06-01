@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis Macro — El Cronista | 1 de junio de 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  body {
+    background: #0B1620;
+    color: #F2F6F9;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ─── HEADER ─────────────────────────────────── */
+  .site-header {
+    background: #0F1E2B;
+    border-bottom: 1px solid #1E3447;
+    padding: 32px 0 28px;
+    margin-bottom: 0;
+  }
+  .site-header .container { padding-top: 0; padding-bottom: 0; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 12px;
+  }
+
+  .header-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F2F6F9;
+    line-height: 1.25;
+    max-width: 780px;
+    margin-bottom: 20px;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #7B91A3;
+  }
+  .meta-item span {
+    color: #B5C5D3;
+    font-weight: 500;
+  }
+
+  /* ─── KPI STRIP ──────────────────────────────── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: #1E3447;
+    border-bottom: 1px solid #1E3447;
+    margin-bottom: 40px;
+  }
+
+  .kpi-card {
+    background: #0F1E2B;
+    padding: 18px 16px 16px;
+  }
+
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #7B91A3;
+    margin-bottom: 8px;
+  }
+
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: #F2F6F9;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .kpi-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .kpi-delta.pos { color: #5BD39A; }
+  .kpi-delta.neg { color: #EF6C6C; }
+  .kpi-delta.neu { color: #7B91A3; }
+
+  /* ─── SECTION HEAD ───────────────────────────── */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-top: 40px;
+    border-top: 1px solid #1E3447;
+  }
+  .section-head:first-of-type { border-top: none; }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #34BBDA;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #F2F6F9;
+    line-height: 1.2;
+  }
+
+  /* ─── BULLET LIST (§01) ──────────────────────── */
+  .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+  .bullet-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .bullet-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34BBDA;
+    box-shadow: 0 0 6px rgba(52,187,218,.5);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .bullet-text {
+    font-size: 15px;
+    color: #B5C5D3;
+    line-height: 1.6;
+  }
+  .bullet-text strong { color: #F2F6F9; }
+
+  /* ─── CARD ───────────────────────────────────── */
+  .card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .card-header {
+    background: #17293A;
+    padding: 12px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #7B91A3;
+    border-bottom: 1px solid #1E3447;
+  }
+
+  .card-content {
+    padding: 20px;
+    font-size: 15px;
+    color: #B5C5D3;
+    line-height: 1.7;
+  }
+  .card-content strong { color: #F2F6F9; }
+  .card-content p + p { margin-top: 14px; }
+
+  .card-alert {
+    border-left: 3px solid #EF6C6C;
+    background: rgba(239,108,108,.04);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .card-rec {
+    border-left: 3px solid #E8B04A;
+    background: rgba(232,176,74,.04);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  /* ─── TENSION LIST (§03) ─────────────────────── */
+  .tension-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .tension-item {
+    padding: 16px 20px;
+    border-left: 3px solid #34BBDA;
+    background: #0F1E2B;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .tension-title {
+    font-weight: 600;
+    color: #F2F6F9;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  .tension-body {
+    font-size: 14px;
+    color: #B5C5D3;
+    line-height: 1.55;
+  }
+
+  /* ─── VARIABLE CARDS (§04) ───────────────────── */
+  .var-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .var-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 18px;
+  }
+
+  .var-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #34BBDA;
+    margin-bottom: 8px;
+  }
+
+  .var-card-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: #F2F6F9;
+    margin-bottom: 10px;
+  }
+
+  .var-card-body {
+    font-size: 13px;
+    color: #B5C5D3;
+    line-height: 1.55;
+  }
+  .var-card-body strong { color: #F2F6F9; }
+
+  /* ─── POS GRID (§05) ─────────────────────────── */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .pos-cell {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .pos-top {
+    padding: 10px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .pos-top.green { background: rgba(91,211,154,.08); color: #5BD39A; }
+  .pos-top.red   { background: rgba(239,108,108,.08); color: #EF6C6C; }
+  .pos-top.gold  { background: rgba(232,176,74,.08); color: #E8B04A; }
+  .pos-top.blue  { background: rgba(52,187,218,.08); color: #34BBDA; }
+
+  .pos-body {
+    padding: 14px 16px;
+  }
+
+  .pos-body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .pos-body li { font-size: 13px; color: #B5C5D3; padding-left: 14px; position: relative; }
+  .pos-body li::before { content: '—'; position: absolute; left: 0; color: #7B91A3; font-size: 11px; }
+  .pos-body li strong { color: #F2F6F9; }
+
+  /* ─── ALERT LIST (§06) ───────────────────────── */
+  .alert-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .alert-item {
+    padding: 14px 18px;
+    border-left: 3px solid #EF6C6C;
+    background: rgba(239,108,108,.04);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-title {
+    font-weight: 600;
+    color: #EF6C6C;
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  .alert-body {
+    font-size: 13px;
+    color: #B5C5D3;
+    line-height: 1.5;
+  }
+
+  /* ─── NO PRICEADO (§07) ──────────────────────── */
+  .noprice-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .noprice-item {
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+  .noprice-item.accent { border-left: 3px solid #34BBDA; background: rgba(52,187,218,.04); }
+  .noprice-item.neg    { border-left: 3px solid #EF6C6C; background: rgba(239,108,108,.04); }
+  .noprice-item.gold   { border-left: 3px solid #E8B04A; background: rgba(232,176,74,.04); }
+
+  .noprice-title {
+    font-weight: 600;
+    color: #F2F6F9;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .noprice-item.accent .noprice-title { color: #34BBDA; }
+  .noprice-item.neg    .noprice-title { color: #EF6C6C; }
+  .noprice-item.gold   .noprice-title { color: #E8B04A; }
+
+  .noprice-body { font-size: 13px; color: #B5C5D3; line-height: 1.55; }
+
+  /* ─── INS TABS (§08) ─────────────────────────── */
+  .ins-tabs { display: flex; gap: 2px; margin-bottom: 0; }
+
+  .ins-tab {
+    padding: 9px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 4px 4px 0 0;
+    cursor: default;
+    border: 1px solid #1E3447;
+    border-bottom: none;
+  }
+  .ins-tab.pesos  { background: rgba(52,187,218,.12); color: #34BBDA; }
+  .ins-tab.cer    { background: rgba(160,110,220,.12); color: #a06edc; }
+  .ins-tab.riesgo { background: rgba(239,108,108,.12); color: #EF6C6C; }
+
+  .ins-body {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 0 4px 4px 4px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .ins-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7B91A3;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+  .ins-sub:first-child { margin-top: 0; }
+
+  .ins-text {
+    font-size: 14px;
+    color: #B5C5D3;
+    line-height: 1.6;
+  }
+  .ins-text strong { color: #F2F6F9; }
+  .ins-text + .ins-text { margin-top: 10px; }
+
+  /* ─── TAG ────────────────────────────────────── */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .tag.neg  { background: rgba(239,108,108,.15); color: #EF6C6C; }
+  .tag.pos  { background: rgba(91,211,154,.15); color: #5BD39A; }
+  .tag.gold { background: rgba(232,176,74,.15); color: #E8B04A; }
+  .tag.blue { background: rgba(52,187,218,.15); color: #34BBDA; }
+
+  /* ─── TABLE ──────────────────────────────────── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .data-table th {
+    background: #17293A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7B91A3;
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 1px solid #1E3447;
+  }
+  .data-table td {
+    padding: 9px 14px;
+    color: #B5C5D3;
+    border-bottom: 1px solid #1E3447;
+  }
+  .data-table tr:nth-child(even) td { background: #17293A; }
+  .data-table tr:hover td { background: rgba(52,187,218,.04); }
+  .data-table td.val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #F2F6F9;
+  }
+  .data-table td.pos { color: #5BD39A; font-family: 'IBM Plex Mono', monospace; }
+  .data-table td.neg { color: #EF6C6C; font-family: 'IBM Plex Mono', monospace; }
+  .data-table td.neu { color: #7B91A3; font-family: 'IBM Plex Mono', monospace; }
+
+  /* ─── FOOTER ─────────────────────────────────── */
+  .site-footer {
+    border-top: 1px solid #1E3447;
+    padding: 24px 0;
+    margin-top: 40px;
+  }
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .footer-sources {
+    font-size: 12px;
+    color: #7B91A3;
+    line-height: 1.7;
+  }
+  .footer-sources strong { color: #B5C5D3; }
+  .footer-disclaimer {
+    font-size: 11px;
+    color: #7B91A3;
+    max-width: 420px;
+    line-height: 1.5;
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────── */
+  @media (max-width: 720px) {
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-strip .kpi-card:last-child { grid-column: 1 / -1; }
+    .var-grid { grid-template-columns: 1fr; }
+    .pos-grid { grid-template-columns: 1fr; }
+    .header-title { font-size: 22px; }
+    .ins-tabs { flex-wrap: wrap; }
+    .footer-row { flex-direction: column; }
+  }
+
+  /* ─── DIVIDER ────────────────────────────────── */
+  .divider { height: 1px; background: #1E3447; margin: 32px 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  HEADER                                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container">
+    <p class="eyebrow">El Cronista &mdash; Análisis Macro &mdash; 1 de Junio de 2026</p>
+    <h1 class="header-title">La pax cambiaria se afirma con brecha cero, pero el FMI abre un frente nuevo: la autonomía del BCRA</h1>
+    <div class="header-meta">
+      <span class="meta-item">Dólar BNA Venta <span>$1.430</span></span>
+      <span class="meta-item">Dólar Blue <span>$1.430</span></span>
+      <span class="meta-item">Dólar MEP <span>$1.434</span></span>
+      <span class="meta-item">CCL (GD30) <span>$1.485</span></span>
+      <span class="meta-item">Riesgo País <span>~493 pb</span></span>
+      <span class="meta-item">Banda BCRA (sup.) <span>$1.757</span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  KPI STRIP                                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="kpi-strip">
+  <div class="kpi-card">
+    <div class="kpi-label">Dólar Oficial (BNA Venta)</div>
+    <div class="kpi-value">$1.430</div>
+    <div class="kpi-delta neu">0.00% — sin cambios</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Brecha Blue / Oficial</div>
+    <div class="kpi-value">0%</div>
+    <div class="kpi-delta pos">Nula — mínimo histórico reciente</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Riesgo País (EMBI)</div>
+    <div class="kpi-value">~493 pb</div>
+    <div class="kpi-delta pos">Perforó 500 — mín. desde feb.</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Dólar CCL (GD30)</div>
+    <div class="kpi-value">$1.485</div>
+    <div class="kpi-delta neg">+0,05% — sobreprime al BNA</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Banda sup. BCRA</div>
+    <div class="kpi-value">$1.757</div>
+    <div class="kpi-delta neu">Margen ~23% sobre oficial</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  MAIN CONTENT                                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- § 01 RESUMEN EJECUTIVO -->
+  <div class="section-head">
+    <span class="section-num">§ 01</span>
+    <h2 class="section-title">Resumen Ejecutivo</h2>
+  </div>
+
+  <ul class="bullet-list">
+    <li class="bullet-item">
+      <span class="bullet-dot"></span>
+      <span class="bullet-text"><strong>Carry soberano y pax cambiaria se consolidan al inicio de junio:</strong> el riesgo país perforó los 500 pb y cierra mayo en ~493 — mínimo desde febrero — mientras la brecha oficial/blue colapsa a cero ($1.430 en ambas ventanas), validando el régimen de bandas del BCRA. El tipo de cambio oficial tiene un margen del 23% antes de tocar la banda superior.</span>
+    </li>
+    <li class="bullet-item">
+      <span class="bullet-dot"></span>
+      <span class="bullet-text"><strong>El FMI abre un frente de segunda generación:</strong> la discusión con el Gobierno ya no es fiscal sino institucional — el Fondo exige mayor autonomía del BCRA, mientras el Gobierno frena. Esta tensión es estructural y potencialmente reordenadora del régimen monetario post-acuerdo.</span>
+    </li>
+    <li class="bullet-item">
+      <span class="bullet-dot"></span>
+      <span class="bullet-text"><strong>Reforma laboral se activa en cascada:</strong> reglamentación de la Ley de Modernización Laboral (recibos digitales, jubilaciones, sindicatos), inicio del blanqueo laboral y confirmación de que el FAL (Fondo de Asistencia Laboral) arranca en noviembre con inversión exclusiva en activos argentinos — demanda institucional local que ingresa al mercado de capitales.</span>
+    </li>
+    <li class="bullet-item">
+      <span class="bullet-dot"></span>
+      <span class="bullet-text"><strong>CNV reglamentó los primeros ETF argentinos</strong> (resoluciones 1142 y 1143), abriendo dos estructuras — FCI Abiertos ETF y Certificados de Valores Exchange Traded (CEVA-ETP) — con participación habilitada para bancos como Galicia, BBVA y Macro. Es el mayor cambio estructural en el mercado de capitales local en años.</span>
+    </li>
+    <li class="bullet-item">
+      <span class="bullet-dot"></span>
+      <span class="bullet-text"><strong>El Gobierno reconoce que el "veranito" tiene techo:</strong> la actividad económica se divide en dos velocidades — estancamiento en consumo y manufacturas, con energía e infraestructura como únicos motores. La demanda de dólares de individuos se aceleró en abril (dato BCRA), señal de que la desinflación no está convirtiendo pesos ociosos en consumo, sino en ahorro dolarizado.</span>
+    </li>
+  </ul>
+
+  <!-- § 02 LECTURA DE MERCADO -->
+  <div class="section-head">
+    <span class="section-num">§ 02</span>
+    <h2 class="section-title">Lectura de Mercado</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Qué está cambiando hoy en el escenario macro</div>
+    <div class="card-content">
+      <p>El dato más importante del día no es la cotización del dólar — es su quietud. Que el blue y el oficial coticen exactamente en $1.430 no es equilibrio natural: es resultado de una intervención implícita sostenida, con el BCRA comprando reservas gracias a la oferta exportadora y con el paralelo anclado por ausencia de demanda de cobertura especulativa. Esto habla de un mercado que <strong>confía en el régimen actual pero no lo demanda</strong> — nadie corre al blue porque no anticipa salto inminente, no porque le sobre confianza estructural.</p>
+      <p>El riesgo país bajo los 500 puntos, producto de la segunda quincena positiva de mayo (el rebote vino después de las primeras dos semanas de caída), construye una narrativa de <strong>normalización soberana incipiente</strong>. La correlación con la distensión en el estrecho de Ormuz (negociaciones EEUU-Irán) muestra que el crédito argentino sigue siendo tratado como activo de alto beta al apetito global por riesgo — factor exógeno que puede revertir sin aviso.</p>
+      <p>Lo que refuerza el régimen actual es la consolidación fiscal y el ancla cambiaria que la banda provee. Lo que lo desafía es el nuevo frente FMI — si el Fondo presiona por mayor autonomía del BCRA, eso implica eventualmente liberar la política de tasas de la tutela del Ejecutivo, lo que redefine la dinámica del carry y el costo del crédito en pesos. <strong>El mercado todavía no está priceando este riesgo institucional.</strong></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">¿Refuerza o cambia el régimen? — Carry / Cobertura / Estrés / Transición</div>
+    <div class="card-content">
+      <p>El régimen vigente es <strong>carry activo con cobertura latente</strong>. La brecha cero reduce el costo de oportunidad de mantenerse en pesos, pero la deuda dolarizada de personas (dato abril del BCRA muestra aumento en compra de divisas) sugiere que <strong>el carry no está siendo reciclado en consumo, sino en acumulación precautoria de USD</strong>. Esto es consistente con un mercado que acepta el ancla pero no la internaliza como permanente.</p>
+      <p>La entrada institucional del FAL a partir de noviembre y los ETF locales representan una <strong>transición estructural hacia profundización de mercado de capitales</strong>. Si el FAL invierte sólo en activos argentinos, la demanda institucional en pesos crecerá de forma secular — favoreciendo bonos CER, ON corporativas y eventualmente acciones locales.</p>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES CLAVE -->
+  <div class="section-head">
+    <span class="section-num">§ 03</span>
+    <h2 class="section-title">Tensiones Clave</h2>
+  </div>
+
+  <div class="tension-list">
+    <div class="tension-item">
+      <div class="tension-title">Brecha cero vs. demanda creciente de dólares por individuos</div>
+      <div class="tension-body">El BCRA reportó que en abril subió la compra de divisas por personas humanas, en simultáneo con mayor oferta exportadora. La brecha cero no refleja ausencia de presión, sino que las dos fuerzas se compensan. Si la oferta exportadora cae (estacionalidad, precios internacionales), el equilibrio se rompe sin amortiguador visible.</div>
+    </div>
+    <div class="tension-item">
+      <div class="tension-title">FMI pide autonomía BCRA — Gobierno frena: tasas en el medio</div>
+      <div class="tension-body">Mayor autonomía del BCRA implica que la política de tasas dejaría de ser decidida por el Ejecutivo. El riesgo inmediato: si el BCRA sube tasas de forma independiente para combatir inflación, el carry se exacerba, el dólar se atrasa más, y la cuenta corriente se deteriora. Si baja tasas, la cobertura se vuelve atractiva. Cualquier resolución reordena el posicionamiento.</div>
+    </div>
+    <div class="tension-item">
+      <div class="tension-title">Actividad a dos velocidades: energía e infraestructura como enclave, consumo estancado</div>
+      <div class="tension-body">El crecimiento del sector energético y de obras (impulsado por el RIGI y el Super RIGI) no derrama hacia consumo masivo. El crédito al consumo se desacelera (nota sobre "estrés del crédito" en consumo). Esto genera una recuperación estadística sin correlato en el salario real efectivo, lo que limita la reducción de riesgo político antes de las elecciones de octubre.</div>
+    </div>
+    <div class="tension-item">
+      <div class="tension-title">Reforma tributaria cuestionada: Ganancias, IVA y Monotributo</div>
+      <div class="tension-body">Empresarios impugnan los cambios propuestos por el FMI en el sistema tributario. IVA más amplio reduce consumo; cambios en Ganancias generan incertidumbre en planificación financiera; el Monotributo reformado puede informalizar parte del mercado. El conflicto entre agenda fiscal del FMI y viabilidad política interna de las reformas es una tensión de primer orden para el segundo semestre.</div>
+    </div>
+    <div class="tension-item">
+      <div class="tension-title">Blue acumula -$100 en 2026: ¿desinflación monetaria o represión de demanda?</div>
+      <div class="tension-body">El dólar blue pasó de $1.530 a $1.430, una baja de $100 en cinco meses. Esto puede leerse como éxito del ancla cambiaria o como represión artificial. Con tarifas subiendo en junio (prepagas, alquileres, transporte), el IPC podría repuntar momentáneamente y poner a prueba la narrativa de desinflación sostenida.</div>
+    </div>
+  </div>
+
+  <!-- § 04 IMPACTO EN VARIABLES CLAVE -->
+  <div class="section-head">
+    <span class="section-num">§ 04</span>
+    <h2 class="section-title">Impacto en Variables Clave</h2>
+  </div>
+
+  <div class="var-grid">
+    <div class="var-card">
+      <div class="var-card-label">Tipo de Cambio — Oficial / MEP / CCL</div>
+      <div class="var-card-value">$1.430 / $1.434 / $1.485</div>
+      <div class="var-card-body">
+        <strong>Oficial</strong> sin movimiento; la banda funciona como ancla creíble. <strong>Brecha MEP/oficial</strong>: 0,3% — prácticamente nula. <strong>CCL</strong> a $1.485 muestra una sobretasa del 3,8% sobre el oficial, reflejo de demanda institucional y cobertura de largo plazo. El mayorista (~$1.427) opera lejos del techo de banda ($1.757), con <strong>23% de colchón</strong>. No hay señal de estrés cambiario a corto plazo, pero la aceleración de compras de divisas de individuos en abril es una alerta temprana.
+      </div>
+    </div>
+
+    <div class="var-card">
+      <div class="var-card-label">Curva de Tasas — Corto vs. Largo Plazo</div>
+      <div class="var-card-value">Tasa nominal a la baja</div>
+      <div class="var-card-body">
+        El artículo sobre "4 inversiones con tasas en baja y dólar planchado" confirma que el mercado ya internaliza una <strong>curva de tasa nominal declinante</strong>. El carry sigue siendo positivo en términos reales pero el margen se comprime. La discusión FMI-autonomía BCRA podría generar un <strong>rebote técnico en tasas</strong> si el mercado anticipa mayor independencia monetaria. La duration corta domina el posicionamiento prudente.
+      </div>
+    </div>
+
+    <div class="var-card">
+      <div class="var-card-label">Inflación Esperada</div>
+      <div class="var-card-value">Tendencia baja, riesgo junio</div>
+      <div class="var-card-body">
+        La desinflación es el ancla narrativa del Gobierno. Sin embargo, <strong>junio presenta riesgos específicos</strong>: aumentos en prepagas, alquileres (nuevo índice), transporte y tarifas de servicios básicos. El IPC de junio podría mostrar un rebote puntual del 3-4% mensual que interrumpa la narrativa de "desinflación sostenida". El mercado de tasas no lo está descontando de forma visible todavía.
+      </div>
+    </div>
+
+    <div class="var-card">
+      <div class="var-card-label">Liquidez del Sistema</div>
+      <div class="var-card-value">Amplia, pero dolarizándose</div>
+      <div class="var-card-body">
+        La liquidez en pesos es abundante (tasas en baja lo confirman), pero el dato de compras de dólares por individuos en abril sugiere <strong>fuga gradual hacia USD como ahorro precautorio</strong>. El blanqueo laboral puede inyectar algo de informalidad al sistema formal. La entrada del FAL en noviembre y los ETF locales son catalizadores de demanda institucional en pesos, pero aún distantes en el tiempo.
+      </div>
+    </div>
+
+    <div class="var-card" style="grid-column: 1 / -1;">
+      <div class="var-card-label">Riesgo Soberano — EM

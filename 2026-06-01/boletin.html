@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Oficial — Análisis Regulatorio — 01/06/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(ellipse at top left, rgba(52,187,218,0.06) 0%, transparent 60%);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 1040px; margin: 0 auto; padding: 48px 40px; }
+  header { padding-bottom: 32px; border-bottom: 1px solid var(--line); margin-bottom: 48px; }
+  .logo { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; color: var(--accent); letter-spacing: -0.5px; margin-bottom: 6px; }
+  .header-subtitle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); margin-bottom: 4px; }
+  .header-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 500; flex-shrink: 0; }
+  .section-title { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--ink); flex: 1; }
+  .section-block { margin-bottom: 56px; }
+  .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-bottom: 16px; }
+  .card-urgent { border-left: 2px solid var(--neg); }
+  .card-news { border-left: 2px solid var(--accent); }
+  .card-finance { border-left: 2px solid var(--gold); }
+  .card-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .card-num-urgent { color: var(--neg); }
+  .card-num-news { color: var(--accent); }
+  .card-num-finance { color: var(--gold); }
+  .card-organism { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-3); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .card-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+  .card-desc { font-size: 13px; color: var(--ink-2); line-height: 1.65; margin-bottom: 16px; }
+  .link-group { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--line); }
+  .link-btn { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-decoration: none; border-radius: 3px; padding: 3px 8px; transition: opacity 0.15s; white-space: nowrap; }
+  .link-btn:hover { opacity: 0.75; }
+  .link-bora-neg { color: var(--neg); border: 1px solid rgba(239,108,108,.3); }
+  .link-bora-accent { color: var(--accent); border: 1px solid rgba(52,187,218,.3); }
+  .link-bora-gold { color: var(--gold); border: 1px solid rgba(232,176,74,.3); }
+  .link-kronos { color: var(--ink-3); border: 1px solid rgba(123,145,163,.3); }
+  .chip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .chip { background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 16px 20px; }
+  .chip-date { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 4px; }
+  .chip-desc { font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+  .chip-action { font-size: 13px; color: var(--ink); font-weight: 600; }
+  footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: center; }
+  @media (max-width: 720px) { .container { padding: 32px 20px; } .section-title { font-size: 20px; } .chip-grid { grid-template-columns: 1fr; } .logo { font-size: 22px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo"></div>
+    <div class="header-subtitle">Boletín Oficial — Análisis Regulatorio</div>
+    <div class="header-date">01 de junio de 2026</div>
+  </header>
+
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Urgente</span>
+    </div>
+    <div class="card card-urgent">
+      <div class="card-num card-num-urgent">Resolución General 1144/2026</div>
+      <div class="card-organism">Comisión Nacional de Valores (CNV)</div>
+      <div class="card-title">Nuevos límites prudenciales de liquidez y apalancamiento para ALyC — Vigencia inmediata y cronograma gradual</div>
+      <div class="card-desc">La CNV fija índices de liquidez (I, II y III) e índice de apalancamiento computable de cumplimiento obligatorio y continuo para los ALyC. El índice de liquidez I (activo corriente / pasivo corriente) debe ser igual o mayor a 1 en todo momento, por moneda y consolidado; el apalancamiento computable no puede superar 5 veces el excedente patrimonial. Se establece un cronograma de adecuación progresiva: mayo: liquidez mínima 0,85 / apalancamiento máximo 8 veces; junio: 0,90 / 7 veces; julio: 0,95 / 6 veces hasta alcanzar los límites definitivos. Las aseguradoras deben verificar si sus ALyC contrapartes cumplen estos ratios, ya que el incumplimiento puede derivar en restricción de operaciones por cuenta propia y afectar la liquidez de las carteras gestionadas.</div>
+      <div class="link-group">
+        <a class="link-btn link-bora-neg" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342642/20260601" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+    <div class="card card-urgent">
+      <div class="card-num card-num-urgent">Resolución Conjunta 30/2026</div>
+      <div class="card-organism">Secretaría de Finanzas y Secretaría de Hacienda — Ministerio de Economía</div>
+      <div class="card-title">Recompra de Letra Intransferible al BCRA por USD 1.040 millones — Impacto sobre reservas y tipo de cambio</div>
+      <div class="card-desc">El Tesoro Nacional concretó la recompra anticipada de la Letra Intransferible en USD vencimiento 2032 en poder del BCRA por USD 1.040.378.745,11 (precio USD 56,22 por VNO 100), con liquidación el 29/05/2026. Los títulos serán dados de baja del registro de deuda pública. La operación, enmarcada en el acuerdo con el FMI (DNU 179/2025), fortalece técnicamente las reservas internacionales del BCRA y reduce el stock de letras intransferibles. Para las aseguradoras, el impacto es relevante en dos dimensiones: (i) posible presión apreciadora sobre el tipo de cambio de referencia que afecta la valuación de activos dolarizados en cartera, y (ii) señal de continuidad del programa macro que sostiene el marco de estabilización de la cartera de inversiones.</div>
+      <div class="link-group">
+        <a class="link-btn link-bora-neg" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342643/20260601" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Novedades Regulatorias</span>
+    </div>
+    <div class="card card-news">
+      <div class="card-num card-num-news">Resolución General 1142/2026</div>
+      <div class="card-organism">Comisión Nacional de Valores (CNV)</div>
+      <div class="card-title">Reforma integral del régimen CEDEAR y creación del CEVA como vehículo local de ETP de gestión pasiva</div>
+      <div class="card-desc">La CNV modifica el Capítulo VIII del Título II de las Normas (N.T. 2013), separando los regímenes de CEDEAR (representación de valores extranjeros) y CEVA (certificados de valores argentinos para estructuras ETP locales). Para emitir CEDEAR o CEVA se requieren antecedentes mínimos (10 vehículos y UVA 50 MM de patrimonio gestionado para Fiduciarios y Sociedades Gerentes). Se regula la figura de Participantes Autorizados (solo ALyC Integral o Propio) para creación/cancelación por canasta, y Hacedores de Mercado obligatorios para los CEVA. Se fija un límite del 30% del patrimonio para préstamo de valores. Los subyacentes no integran el activo ni el patrimonio neto del emisor (registración en cuentas de orden). Para las aseguradoras con CEDEARs en cartera, esta norma clarifica el riesgo concursal y exige verificar que los contratos de custodia contemplen las nuevas leyendas obligatorias de riesgo.</div>
+      <div class="link-group">
+        <a class="link-btn link-bora-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342640/20260601" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+    <div class="card card-news">
+      <div class="card-num card-num-news">Resolución General 1143/2026</div>
+      <div class="card-organism">Comisión Nacional de Valores (CNV)</div>
+      <div class="card-title">Creación del FCIA ETF — Fondos Comunes de Inversión Abiertos cotizantes de gestión pasiva indexada</div>
+      <div class="card-desc">Se incorpora a las Normas CNV (Sección VII, Capítulo VII, Título V) el régimen de FCIA ETF: fondos abiertos que replican pasivamente índices o canastas de activos, con cuotapartes cotizantes en mercados autorizados. La suscripción y rescate queda reservada exclusivamente a los Participantes Autorizados (ALyC), mientras los inversores solo pueden operar en el mercado secundario. Se admite préstamo de valores hasta el 30% del patrimonio neto. El índice de referencia debe cumplir requisitos de transparencia (metodología pública, sin ajustes retroactivos, objetivo único). Estos fondos no pueden invertir en otros FCIA ETF, CEVA ETP ni CEDEAR. Para las aseguradoras, amplía el universo de FCI elegibles como inversión para reservas, con ventajas de bajo costo y diversificación indexada alineadas con las exigencias de política de inversión de la SSN.</div>
+      <div class="link-group">
+        <a class="link-btn link-bora-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342641/20260601" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+    <div class="card card-news">
+      <div class="card-num card-num-news">Decreto 409/2026</div>
+      <div class="card-organism">Poder Ejecutivo Nacional</div>
+      <div class="card-title">Reglamentación del Régimen de Promoción del Empleo Registrado — Condonación del 100% de cuotas ART y SCVO</div>
+      <div class="card-desc">Se reglamenta el Título XXII de la Ley 27.802, definiendo que la condonación de deudas por empleo no registrado alcanza el 100% para las cuotas adeudadas a ART (Ley 24.557) y al Seguro Colectivo de Vida Obligatorio (Decreto 1567/74). Para las demás obligaciones de la seguridad social, la condonación varía entre 70% (grandes empleadores), 80% (medianas empresas) y 90% (PyMEs). Los empleadores deben adherirse al régimen y cancelar la deuda residual al contado (con reducción adicional del 50%) o a través de un plan de facilidades de ARCA. Para las aseguradoras que operan los ramos ART y Vida Colectivo, este decreto puede reducir la cartera de primas adeudadas de empleadores acogidos al régimen, con efecto sobre las reservas de primas y el flujo de caja esperado de cobros.</div>
+      <div class="link-group">
+        <a class="link-btn link-bora-accent" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342621/20260601" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Impacto Financiero</span>
+    </div>
+    <div class="card card-finance">
+      <div class="card-num card-num-finance">Comunicación "A" 8442/2026</div>
+      <div class="card-organism">Banco Central de la República Argentina (BCRA)</div>
+      <div class="card-title">Nueva habilitación cambiaria: precancelación de deuda financiera externa con fondos de grupo económico</div>
+      <div class="card-desc">El BCRA autoriza el acceso al mercado de cambios para precancelar capital e intereses de deudas financieras externas cuando los fondos provienen de una empresa del mismo grupo económico que liquidó nuevo endeudamiento en el MULC. Las condiciones son: (i) los fondos deben ser transferidos a la cuenta bancaria local del cliente por una sociedad controlante o integrante del mismo grupo; (ii) deben haberse originado en la liquidación de nuevos endeudamientos externos por parte de esa sociedad; (iii) el acceso al cambio para la precancelación debe concretarse dentro de las 72 horas hábiles de la liquidación. La norma también aclara que estas transferencias de pesos no computan para las DDJJ del punto 3.16.3.4. Para aseguradoras con pasivos en moneda extranjera o con estructuras de financiamiento intragrupo, este mecanismo permite optimizar la gestión de deuda en divisas y reducir el costo de precancelación.</div>
+      <div class="link-group">
+        <a class="link-btn link-bora-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342654/20260601" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+    <div class="card card-finance">
+      <div class="card-num card-num-finance">Decreto 406/2026</div>
+      <div class="card-organism">Poder Ejecutivo Nacional — Impuesto a las Ganancias</div>
+      <div class="card-title">Reglamentación de exenciones de IG: alquiler para casa habitación e ITI sobre inmuebles — Vigencia 01/01/2026</div>
+      <div class="card-desc">Se modifica el Decreto 862/2019 para reglamentar dos exenciones de IG introducidas por la Ley 27.802: (i) quedan exentas las rentas de locación de inmuebles cuando el locatario destina el inmueble a su vivienda única, familiar y permanente (todas las unidades del locador afectadas a tal destino), con efecto sobre rentas devengadas desde el 01/01/2026; (ii) queda exento el resultado por enajenación de inmuebles sujetos al ITI (art. 99 IG), transferidos desde el 01/01/2026. Para las aseguradoras con inversiones inmobiliarias en cartera (activos afectados a reservas técnicas), estas exenciones mejoran el rendimiento neto post-impuesto de las inversiones en inmuebles locados para habitación. El área impositiva debe reclasificar los activos en cartera, actualizar las proyecciones de carga fiscal del ejercicio 2026 y coordinar con el área contable el impacto en los EECC.</div>
+      <div class="link-group">
+        <a class="link-btn link-bora-gold" href="https://www.boletinoficial.gob.ar/detalleAviso/primera/342624/20260601" target="_blank">→ Ver en BORA</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-header">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Próximos Vencimientos</span>
+    </div>
+    <div class="chip-grid">
+      <div class="chip">
+        <div class="chip-date">Junio 2026</div>
+        <div class="chip-desc">RG CNV 1144 — Segunda etapa del cronograma de adecuación de indicadores financieros de ALyC</div>
+        <div class="chip-action">Ratio mínimo liquidez I: 0,90 · Apalancamiento máximo computable: 7 veces</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">Julio 2026</div>
+        <div class="chip-desc">RG CNV 1144 — Tercera y última etapa del cronograma de adecuación progresiva</div>
+        <div class="chip-action">Ratio mínimo liquidez I: 0,95 · Apalancamiento máximo computable: 6 veces</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">Dentro de los 8 días hábiles del cierre de junio</div>
+        <div class="chip-desc">RG CNV 1144 — Presentación del primer informe mensual de Indicadores Financieros bajo el nuevo formato (detalle diario para límites prudenciales)</div>
+        <div class="chip-action">Remitir a la CNV vía AIF con carácter de DDJJ</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">02/06/2026 (día siguiente a publicación)</div>
+        <div class="chip-desc">RG CNV 1142 y 1143 — Entrada en vigencia del nuevo régimen integral de CEDEAR, CEVA y FCIA ETF</div>
+        <div class="chip-action">Revisar cartera de inversiones: actualizar tratamiento contable de CEDEARs (cuentas de orden) y evaluar elegibilidad de nuevos FCIA ETF para reservas</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">Continuo (desde 01/06/2026)</div>
+        <div class="chip-desc">BCRA Com. "A" 8442 — Ventana de 72 hs. hábiles para acceso al MULC en precancelaciones intragrupo</div>
+        <div class="chip-action">Identificar pasivos en moneda extranjera elegibles y coordinar con el banco interviniente la notificación obligatoria al momento de liquidar el nuevo endeudamiento del grupo</div>
+      </div>
+      <div class="chip">
+        <div class="chip-date">Ejercicio fiscal 2026 (retroactivo al 01/01/2026)</div>
+        <div class="chip-desc">Decreto 406/2026 — Exenciones de IG sobre alquileres casa habitación y enajenación de inmuebles ITI</div>
+        <div class="chip-action">Actualizar proyecciones de carga fiscal 2026 y reclasificar activos inmobiliarios en cartera de inversiones</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Generado automáticamente · 01/06/2026 · Fuente: Boletín Oficial de la República Argentina
+  </footer>
+</div>
+</body>
+</html>
