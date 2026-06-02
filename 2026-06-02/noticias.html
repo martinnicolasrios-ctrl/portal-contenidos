@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Cronista — Análisis Ejecutivo | 2 de junio de 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0B1620;
+    --bg-2: #0F1E2B;
+    --bg-3: #17293A;
+    --line: #1E3447;
+    --ink: #F2F6F9;
+    --ink-2: #B5C5D3;
+    --ink-3: #7B91A3;
+    --accent: #34BBDA;
+    --gold: #E8B04A;
+    --pos: #5BD39A;
+    --neg: #EF6C6C;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: #0B1620;
+    color: #F2F6F9;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    border-bottom: 1px solid #1E3447;
+    padding: 40px 0 32px;
+    margin-bottom: 32px;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 10px;
+  }
+
+  .site-header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F2F6F9;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    max-width: 780px;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #7B91A3;
+  }
+
+  .meta-item span {
+    color: #B5C5D3;
+    font-weight: 500;
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .kpi-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 16px 14px;
+  }
+
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    margin-bottom: 6px;
+  }
+
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: #F2F6F9;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .kpi-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .kpi-delta.pos { color: #5BD39A; }
+  .kpi-delta.neg { color: #EF6C6C; }
+  .kpi-delta.neu { color: #7B91A3; }
+
+  /* ── SECTION STRUCTURE ── */
+  .section {
+    margin-bottom: 44px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1E3447;
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #34BBDA;
+    letter-spacing: 0.05em;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #F2F6F9;
+  }
+
+  /* ── BULLET LIST § 01 ── */
+  .bullet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .bullet-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .bullet-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34BBDA;
+    box-shadow: 0 0 6px rgba(52,187,218,.5);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .bullet-text {
+    font-size: 14px;
+    color: #B5C5D3;
+    line-height: 1.65;
+  }
+
+  .bullet-text strong {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  /* ── CARD § 02 ── */
+  .card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: #17293A;
+    padding: 12px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7B91A3;
+  }
+
+  .card-content {
+    padding: 20px;
+    font-size: 14px;
+    color: #B5C5D3;
+    line-height: 1.7;
+  }
+
+  .card-content p + p {
+    margin-top: 12px;
+  }
+
+  .card-content strong {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  .card-alert {
+    border-left: 3px solid #EF6C6C;
+    background: rgba(239,108,108,.04);
+  }
+
+  .card-rec {
+    border-left: 3px solid #E8B04A;
+    background: rgba(232,176,74,.04);
+  }
+
+  /* ── TENSION LIST § 03 ── */
+  .tension-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tension-item {
+    border-left: 3px solid #34BBDA;
+    background: #0F1E2B;
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .tension-title {
+    font-weight: 600;
+    color: #F2F6F9;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .tension-body {
+    font-size: 13px;
+    color: #B5C5D3;
+    line-height: 1.6;
+  }
+
+  /* ── VARIABLE CARDS § 04 ── */
+  .var-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .var-card {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+
+  .var-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #34BBDA;
+    margin-bottom: 8px;
+  }
+
+  .var-card-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: #F2F6F9;
+    margin-bottom: 6px;
+  }
+
+  .var-card-body {
+    font-size: 12px;
+    color: #B5C5D3;
+    line-height: 1.6;
+  }
+
+  /* ── POS GRID § 05 ── */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .pos-cell {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .pos-top {
+    padding: 8px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .pos-top.green { background: rgba(91,211,154,.08); color: #5BD39A; }
+  .pos-top.red   { background: rgba(239,108,108,.08); color: #EF6C6C; }
+  .pos-top.gold  { background: rgba(232,176,74,.08);  color: #E8B04A; }
+  .pos-top.blue  { background: rgba(52,187,218,.08);  color: #34BBDA; }
+
+  .pos-body {
+    padding: 14px;
+  }
+
+  .pos-body ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .pos-body ul li {
+    font-size: 12.5px;
+    color: #B5C5D3;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .pos-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #7B91A3;
+  }
+
+  .pos-body ul li strong {
+    color: #F2F6F9;
+  }
+
+  /* ── TAG ── */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tag.pos  { background: rgba(91,211,154,.12);  color: #5BD39A; }
+  .tag.neg  { background: rgba(239,108,108,.12); color: #EF6C6C; }
+  .tag.gold { background: rgba(232,176,74,.12);  color: #E8B04A; }
+  .tag.blue { background: rgba(52,187,218,.12);  color: #34BBDA; }
+
+  /* ── ALERT LIST § 06 ── */
+  .alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .alert-item {
+    border-left: 3px solid #EF6C6C;
+    background: rgba(239,108,108,.04);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-title {
+    font-weight: 600;
+    color: #EF6C6C;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .alert-body {
+    font-size: 13px;
+    color: #B5C5D3;
+    line-height: 1.6;
+  }
+
+  /* ── NO PRICEADO § 07 ── */
+  .noprice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .noprice-item {
+    border-left: 3px solid #34BBDA;
+    background: rgba(52,187,218,.04);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .noprice-item.warn {
+    border-left-color: #EF6C6C;
+    background: rgba(239,108,108,.04);
+  }
+
+  .noprice-title {
+    font-weight: 600;
+    color: #34BBDA;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .noprice-item.warn .noprice-title {
+    color: #EF6C6C;
+  }
+
+  .noprice-body {
+    font-size: 13px;
+    color: #B5C5D3;
+    line-height: 1.6;
+  }
+
+  /* ── INS TABS § 08 ── */
+  .ins-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ins-tab {
+    padding: 9px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #1E3447;
+    border-bottom: none;
+    cursor: default;
+    margin-right: 4px;
+  }
+
+  .ins-tab.pesos { background: rgba(52,187,218,.1);  color: #34BBDA; }
+  .ins-tab.cer   { background: rgba(167,139,250,.1); color: #a78bfa; }
+  .ins-tab.riesgo{ background: rgba(239,108,108,.1); color: #EF6C6C; }
+
+  .ins-body {
+    background: #0F1E2B;
+    border: 1px solid #1E3447;
+    border-radius: 0 4px 4px 4px;
+    padding: 22px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .ins-col {}
+
+  .ins-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1E3447;
+  }
+
+  .ins-sub.pesos { color: #34BBDA; }
+  .ins-sub.cer   { color: #a78bfa; }
+  .ins-sub.riesgo{ color: #EF6C6C; }
+
+  .ins-text {
+    font-size: 12.5px;
+    color: #B5C5D3;
+    line-height: 1.65;
+  }
+
+  .ins-text strong {
+    color: #F2F6F9;
+    font-weight: 600;
+  }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 16px;
+  }
+
+  .data-table th {
+    background: #17293A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7B91A3;
+    padding: 9px 14px;
+    text-align: left;
+  }
+
+  .data-table td {
+    padding: 9px 14px;
+    color: #B5C5D3;
+    border-bottom: 1px solid #1E3447;
+  }
+
+  .data-table tr:nth-child(even) td {
+    background: rgba(15,30,43,.5);
+  }
+
+  .data-table tr:hover td {
+    background: rgba(52,187,218,.04);
+  }
+
+  .data-table .num {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #F2F6F9;
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid #1E3447;
+    padding: 28px 0 0;
+    margin-top: 20px;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footer-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #7B91A3;
+    line-height: 1.7;
+  }
+
+  .footer-source strong {
+    color: #B5C5D3;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-strip .kpi-card:last-child { grid-column: span 2; }
+    .var-grid { grid-template-columns: 1fr; }
+    .pos-grid { grid-template-columns: 1fr; }
+    .ins-body { grid-template-columns: 1fr; }
+    .ins-tabs { flex-wrap: wrap; }
+    .site-header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="eyebrow">El Cronista — Análisis Ejecutivo &nbsp;|&nbsp; Martes 2 de junio de 2026</div>
+    <h1>El trimestre dorado llega a su último mes: el BCRA ya compró casi USD 10.000 M, pero el mercado empieza a mirar el segundo semestre con cobertura en mente</h1>
+    <div class="header-meta">
+      <span class="meta-item">Dólar BNA <span>$1.445</span></span>
+      <span class="meta-item">Dólar Blue <span>$1.435</span></span>
+      <span class="meta-item">Dólar MEP <span>$1.440</span></span>
+      <span class="meta-item">CCL <span>~$1.487</span></span>
+      <span class="meta-item">Fuente <span>cronista.com · 2 jun 2026</span></span>
+    </div>
+  </header>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="kpi-label">Riesgo País</div>
+      <div class="kpi-value">&lt;500</div>
+      <div class="kpi-delta pos">Por debajo del umbral</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Compras BCRA 2026</div>
+      <div class="kpi-value">$9.747 M</div>
+      <div class="kpi-delta pos">Meta anual: USD 10.000 M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Inflación Mayo (Ferreres)</div>
+      <div class="kpi-value">2,3%</div>
+      <div class="kpi-delta pos">Núcleo: 1,4% mensual</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Merval USD</div>
+      <div class="kpi-value">USD 2.080</div>
+      <div class="kpi-delta pos">+10% en mayo</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Mora Familias (abr)</div>
+      <div class="kpi-value">12,0%</div>
+      <div class="kpi-delta neg">18va suba mensual consecutiva</div>
+    </div>
+  </div>
+
+  <!-- § 01 RESUMEN EJECUTIVO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 01</span>
+      <span class="section-title">Resumen Ejecutivo</span>
+    </div>
+    <div class="bullet-list">
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>BCRA en modo sprint final:</strong> El Central acumula USD 9.747 M en compras durante 2026 y completará la meta de USD 10.000 M esta semana, antes de que finalice junio. Las reservas brutas llegaron a USD 48.191 M el viernes, aunque caen ~USD 1.000 M hoy por vencimientos de Bopreal. El dólar oficial subió 1,05% al arrancar el mes, con el mayorista cerrando en $1.426.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>Inflación núcleo desacelera con fuerza:</strong> Ferreres estimó 2,3% mensual para mayo (vs 2,6% en abril), con inflación núcleo en 1,4%, el nivel más bajo del año. La interanual queda en 31,4% y el acumulado enero-mayo en 13,7%. El mercado empieza a discutir si CER sigue siendo la estrategia óptima o si Lecaps y tasa fija ganan atractivo relativo.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>El carry trade en pesos fue el activo ganador de los primeros 5 meses:</strong> Según GMA Capital, los Boncer lideraron el ranking con +25,1% en USD CCL, seguidos por plazos fijos UVA (+20,2%) y Lecaps (+19,6%). El Merval sumó +9,3% en mayo. La compresión del riesgo país y la estabilidad cambiaria convirtieron al peso en la apuesta ganadora del año, aunque el horizonte del segundo semestre complica el panorama.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>El cepo corporativo genera brecha secundaria del 11-13%:</strong> La decisión del presidente del BCRA, Santiago Bausili, de no flexibilizar el cepo para empresas generó un ensanchamiento en la brecha del Bopreal. Las corporaciones pagan una prima implícita del 11% sobre el MEP (Bopreal Serie 3 a $1.590 vs MEP a $1.435) por el costo de la restricción cruzada de 90 días. Esto señala demanda represada de cobertura corporativa.</div>
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-dot"></div>
+        <div class="bullet-text"><strong>Morosidad en máximos de dos décadas con señal de alarma sistémica:</strong> La mora de familias llegó al 12% en abril (18va suba consecutiva), con 5,3 millones de personas con crédito impago. La irregularidad en entidades no financieras alcanzó el 31,5%. La consultora 1816 advierte que el crédito al consumo no impulsará la actividad en 2027, lo que condiciona directamente el canal de reactivación post-cosecha.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 02 LECTURA DE MERCADO -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 02</span>
+      <span class="section-title">Lectura de Mercado</span>
+    </div>
+    <div class="card">
+      <div class="card-header">Interpretación — Régimen actual y narrativa implícita</div>
+      <div class="card-content">
+        <p>El mercado llega a junio con una narrativa de transición que convive con datos de éxito. <strong>El régimen de carry en pesos llegó a su madurez:</strong> quien estuvo posicionado en CER o Lecaps en los primeros cinco meses acumuló retornos en dólares que ningún activo internacional replicó. Pero esa ventana no es infinita, y el propio mercado empieza a advertirlo.</p>
+        <p>La señal más reveladora del día no es el dólar que sube 1,05% (eso es técnico, por Bopreal). Es la combinación de tres datos que apuntan en la misma dirección: <strong>(1) el BCRA alcanza su meta de reservas antes de tiempo, pero justamente cuando se acaban los dólares de la cosecha gruesa; (2) la inflación núcleo cae con fuerza a 1,4%, lo que comprime el retorno esperado de CER para adelante; y (3) la brecha del Bopreal en el 11-13% está diciendo que las empresas ya están dispuestas a pagar un precio por dolarizarse.</strong></p>
+        <p>El régimen vigente es todavía de <strong>carry administrado con ancla cambiaria</strong>. El dólar subió en mayo a un ritmo de ~1,8% mensual (vs inflación 2,3-2,6%), lo que implica un tipo de cambio real que sigue apreciándose. Esto es consistente con el esquema, pero genera una presión acumulada que el mercado está empezando a descontar hacia el segundo semestre.</p>
+        <p>La narrativa implícita es la de un gobierno que consolida lo fiscal y lo cambiario antes de las elecciones de 2027, pero que enfrenta el dilema clásico: cuanto más exitoso es el carry, más vulnerabilidad post-cosecha se acumula. Cavallo lo dijo explícitamente: la acumulación de reservas es lo más importante, y el fin del cepo corporativo es el paso pendiente. El mercado escucha pero no priceó todavía el timing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 03 TENSIONES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 03</span>
+      <span class="section-title">Tensiones Clave</span>
+    </div>
+    <div class="tension-list">
+
+      <div class="tension-item">
+        <div class="tension-title">Reservas vs. Velocidad del Carry: el mecanismo que preocupa en la City</div>
+        <div class="tension-body">El Gobierno acumula reservas con un mecanismo que implica alto rollover de deuda en pesos y tasas elevadas que atraen capitales al carry. Econviews advierte que el Tesoro necesitará emitir ~USD 10.000 M adicionales entre mercado local e internacional para cubrir vencimientos de 2026 y 2027, que superan los USD 32.000 M. Si la demanda de pesos se agota o el tipo de cambio pierde atractivo, el mecanismo se frena abruptamente.</div>
+      </div>
+
+      <div class="tension-item">
+        <div class="tension-title">Inflación núcleo baja, pero combustibles, tarifas y estacionales presionan el general</div>
+        <div class="tension-body">Mayo cerró con inflación general de 2,3% pero con precios estacionales al +6,0% mensual y regulados al +2,7%. El Gobierno postergó hasta julio la suba de impuestos a combustibles, lo que implica que en julio hay un factor adicional de presión sobre el IPC. La combinación de desinflación del núcleo con represión de regulados genera una brecha que en algún momento se libera.</div>
+      </div>
+
+      <div class="tension-item">
+        <div class="tension-title">Cepo corporativo: el BCRA no lo levanta mientras las empresas pagan 11-13% de prima</div>
+        <div class="tension-body">Bausili confirmó que el cepo para empresas continúa, pero la realidad operativa muestra que hay demanda estructural de cobertura. Empresas que accedieron al oficial deben esperar 90 días para acceder al CCL, y mientras tanto compran Bopreal con una brecha del 11% sobre MEP y del 13% sobre el mayorista. Esto es una señal de represión de demanda que, al liberarse, puede ampliar la brecha del CCL.</div>
+      </div>
+
+      <div class="tension-item">
+        <div class="tension-title">Morosidad vs. Tasas activas: la trampa del crédito</div>
+        <div class="tension-body">La TNA de préstamos personales bancarios bajó de 68,8% a 66,9% TNA en mayo, pero la tasa de REPO cayó de 39,3% a 20,3%. El spread bancario se amplió en lugar de reducirse, porque la morosidad al 12% en familias impide bajar tasas activas. Esto crea un círculo vicioso: mora alta – tasas activas altas – menor acceso al crédito – mora que no baja. Cinco millones de personas quedan fuera del mercado crediticio.</div>
+      </div>
+
+      <div class="tension-item">
+        <div class="tension-title">Elecciones 2027 como catalizador de dolarización</div>
+        <div class="tension-body">El BCRA y la City coinciden: la demanda de cobertura cambiaria crecerá a medida que se acerquen las elecciones. El historial argentino dice que el dólar siempre es más caro en año electoral. El mercado empieza a monitorear el fin del efecto cosecha gruesa (más de USD 10.000 M liquidados en el trimestre dorado) y la transición hacia un segundo semestre con menor oferta de divisas y mayor demanda de cobertura.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- § 04 IMPACTO EN VARIABLES CLAVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§ 04</span>
+      <span class="section-title">Impacto en Variables Clave</span>
+    </div>
+    <div class="var-grid">
+
+      <div class="var-card">
+        <div class="var-card-label">Tipo de Cambio — Oficial / MEP / CCL</div>
+        <div class="var-card-value">BNA $1.445 | MEP $1.440 | CCL ~$1.487</div>
+        <div class="var-card-body">
+          El oficial subió 1,05% el lunes (arranque de junio), con el mayorista cerrando a $1.426. La suba fue técnica por el pago de Bopreal (~USD 1.000 M). La brecha MEP/oficial es mínima (~0,3%), lo que indica control efectivo del BCRA. La brecha CCL/oficial es del 2,9%, todavía contenida. El riesgo de corto plazo es bajo mientras dure la liquidación de cosecha. La brecha del Bopreal al 11-13% es la variable a monitorear como indicador adelantado de tensión corporativa.
+        </div>
+      </div>
+
+      <div class="var-card">
+        <div class="var-card-label">Curva de Tasas — Corto vs. Largo</div>
+        <div class="var-card-value">TAMAR ~22,8% TNA | Repo 20,3% | Activas 66,9%</div>
+        <div class="var-card-body">
+          La curva de pesos está en compresión: el Repo bajó 19 pp desde enero (de 39,3% a 20,3%), pero las tasas activas solo bajaron 2 pp. La TAMAR al 22,8% TNA (1,9% TEM) sigue siendo menor que la inflación general pero superior a la núcleo (1,4%). Los bonos CER siguen ofreciendo valor en el corto plazo pero el diferencial contra Lecaps se estrecha. El rollover del Tesoro al 114,7% en la última licitación y el cupo de AO27 agotado sugieren demanda robusta del tramo largo.
+        </div>
+      </div>
+
+      <div class="var-card">
+        <div class="var-card-label">Inflación Esperada</div>
+        <div class="var-card-value">Mayo Ferreres: 2,3% | Núcleo: 1,4% | Interanual: 31,4%</div>
+        <div class="var-card-body">
+          La desaceleración del núcleo a 1,4% es la mejor noticia del año para el programa. Sin embargo, los componentes regulados (+2,7%) y estacionales (+6,0%) mantienen presión sobre el IPC general. La postergación hasta julio de los impuestos a combustibles comprime el IPC de junio pero suma un factor de presión en julio. Salud (+3,5%), Alimentos (+3,5%) y Vivienda (+3,3%) son los rubros con mayor inercia. La inflación acumulada del año (13,7%) aún supera el crawling del TC (+11%), lo que implica apreciación real.
+        </div>
+      </div>
+
+      <div class="var-card">
+        <div class="var-card-label">Liquidez del Sistema</div>
+        <div class="var-card-value">Recaudación may: $21,5 B (+35,6% i.a.)</div>
+        <div class="var-card-body">
+          Ganancias le dio un respiro temporal a la recaudación: los ingresos tributarios de mayo crecieron 35,6% i.a., impulsados por el vencimiento del impuesto a las Ganancias (+70% en ese rubro). Pero la base de comparación baja limita la lectura. El sistema financiero mantiene cobertura de previsiones al 90,1% de la cartera irregular. El crédito al sector privado muestra tensión en hogares, pero la baja penetración (12% del PBI) limita el riesgo sistémico inmediato. Las billeteras digitales (Tarjeta Naranja, Mercado Libre) tienen la mora más alta del segmento no bancario: 31,5% de irregularidad.
+        </div>
+      </div>
+
+      <div class="var-card" style="grid-column: span 2;">
+        <div class="var-card-label">Riesgo Soberano</div>
+        <div class="var-card-value">Riesgo país &lt;500 pb | Merval USD 2.080 | Rollover Tesoro: 114,7%</div>
+        <div class="var-card-body">
+          La compresión del spread soberano a menos de 500 pb fue el hecho central de mayo. Los bonos largos avanzaron más de 2% en la semana. El Merval acumuló 10% en mayo y los bancos lideraron con ganancias del 18-23% (Galicia, Macro). El Tesoro demostró capacidad de rollover con el cupo del AO27 (USD 2.000 M) completamente agotado. La amenaza de fondo son los vencimientos de 2026-
